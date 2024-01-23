@@ -1,14 +1,16 @@
 # Technique Name
 
 ## Code Name
-SITE-TAKEOVER1
+CODENAME
 
 ## ATT&CK TTPs
-- Privileged Escalation
+- Privilege Escalation
 
 ## Required Privilege / Context
 
 ## Summary
+
+## Impact
 
 ## Defensive IDs
 
