@@ -1,6 +1,16 @@
 # SCCM Foundational Knowledge
 Familiarity with the terms and concepts presented on this page are required for understanding the various attack and defense techniques covered in this repository.
 
+## SCCM
+A client-server solution commonly used to deploy software and updates to Windows systems, currently named Microsoft Configuration Manager (ConfigMgr, Config Man, or MCM), but formerly:
+- Microsoft Endpoint Configuration Manager (MECM)
+- Microsoft Endpoint Manager Configuration Manager (MEMCM)
+- System Center Configuration Manager (SCCM)
+- Systems Management Server (SMS)
+
+## Hierarchy
+All of the sites in one instance of SCCM
+
 ## Site
 The SCCM site consists of the various systems that compose the SCCM environment. Each site is identified by a three character site code (e.g., PS1).
 
@@ -13,8 +23,23 @@ A site that clients are assigned to and that is administered using the Configura
 ## Primary Site Server
 The server responsible for processing client-generated data and interacting with the site database. Also referred to as the site server.
 
+## Secondary Site
+A child of a primary site used to distribute content to clients in remote locations with low bandwidth connections
+
+## Central Administration Site
+An optional top-level site that can be used to manage multiple primary sites
+
 ## Site System
 A computer that is assigned one or more site system roles in the site.
+
+## Site System Role
+A role installed on a site system to host functionality for a site (e.g., site server, site database, distribution point)
+
+## Site Database
+A required site system role for central administration sites, primary sites, and secondary sites that stores and processes data
+
+## Site Database Server
+Hosts the site database for a site, can be colocated on the site server or hosted on a remote system
 
 ## SMS Provider
 A site system with Windows Management Instrumentation (WMI) and HTTPS REST API providers that allow indirect access to the site database. This role is installed on the primary site server by default but can also be installed elsewhere. SharpSCCM interacts with SMS providers via WMI and HTTP(S).
@@ -47,3 +72,12 @@ Beginning with Configuration Manager current branch, version 2207, the “Allow 
 
 ## Registration Request
 A message sent to the management point to register a new client with the site.
+
+## ConfigMgr Console
+The software that administrators use to manage a site
+
+## Security Role
+A set of permissions applied to admin users to control access to SCCM objects (e.g., sites, device collections) and actions (e.g., read, modify, deploy)
+
+## Security Scope
+A container of objects to which a security role can be granted access (e.g., an admin is granted the permissions in security role A to the objects added to security scope B)
