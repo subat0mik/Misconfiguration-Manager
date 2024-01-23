@@ -1,9 +1,14 @@
 | Codname | Description | Notes |
 |---------|-------------|-------|
-| CREDENTIAL1 | PXE boot creds |
-| CREDENTIAL2 | Request machine policy and deobfuscate secrets |
-| CREDENTIAL3 | current NAA DPAPI |
-| CREDENTIAL4 | Legacy NAA DPAPI blobs
-| CREDENTIAL5 | SCCM database credential dump |
-| SITETAKEOVER1 | NTLM relay to MSSQL on standalone site database |
-| SITETAKEOVER2 |
+| CREDENTIAL01 | PXE boot creds |
+| CREDENTIAL02 | Request machine policy and deobfuscate secrets |
+| CREDENTIAL03 | current NAA DPAPI |
+| CREDENTIAL04 | Legacy NAA DPAPI blobs
+| CREDENTIAL05 | SCCM database credential dump |
+| SITETAKEOVER01 | NTLM relay to MSSQL on standalone site database |
+| SITETAKEOVER02 | 
+| SITETAKEOVER03 |
+| SITETAKEOVER04 |
+| SITETAKEOVER05 |
+| SITETAKEOVER06 |
+

@@ -1,7 +1,12 @@
-# Plain English Title
+# Technique Name
 
 ## Code Name
-SITE-TAKEOVERX
+SITE-TAKEOVER1
+
+## ATT&CK TTPs
+- Privileged Escalation
+
+## Required Privilege / Context
 
 ## Summary
 
@@ -10,4 +15,4 @@ SITE-TAKEOVERX
 ## Examples
 
 ## References
-Author, Title, Link
+Author, Title, URL
