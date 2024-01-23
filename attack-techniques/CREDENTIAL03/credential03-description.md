@@ -9,18 +9,17 @@ Dump network access account (NAA) credentials via WMI
 - [TA0004 - Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
 - [T1555 - Passwords from Password Stores](https://attack.mitre.org/techniques/T1555/)
 
-
-
 ## Required Privilege / Context
 - Local administrative privileges on the SCCM client
-
 
 ## Summary
 The network access account (NAA) is an account that can be configured on the SCCM site server. The NAA is used  to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace. This can be verified with the following PowerShell one-liner: `Get-WmiObject -namespace "root\ccm\policy\Machine\ActualConfig" -class "CCM_NetworkAccessAccount"`.
 
-Within this class, there exists two members of interest: `NetworkAccessUsername` and `NetworkAccessPassword`, which contain hexidecimal strings of encrypted data. This data is protected via the Data Protection API (DPAPI) and the SYSTEM DPAPI masterkey. Therefore, we must be elevated on the host in order to retrieve the SYSTEM masterkey which can then be used to decrypt the secrets.
+Within this class, there exists two members of interest: `NetworkAccessUsername` and `NetworkAccessPassword`, which contain hexidecimal strings of encrypted data. This data is protected via the Data Protection API (DPAPI) and the SYSTEM DPAPI masterkey. Therefore, we must be elevated on the host in order to retrieve the SYSTEM masterkey which can then be used to decrypt the secrets. This technique applies only to currently-configured NAAs.
 
 This process is automated in [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#sccm) and [SharpSCCM](https://github.com/Mayyhem/SharpSCCM).
+
+A successful decryption result of `00 00 0E 0E 0E 0E...` indicates that the Site Server is configured for NAA but the client is instructed to use its [machine account](https://twitter.com/subat0mik/status/1582387536147582976?s=20).
 
 ## Impact
 
@@ -143,3 +142,4 @@ SharpDPAPI completed in 00:00:00.0397643
 - Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
 - Chris Thompson, SharpSCCCM, https://github.com/Mayyhem/SharpSCCM
 - Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#sccm
+- Duane Michael, X, https://twitter.com/subat0mik/status/1582387536147582976?s=20
