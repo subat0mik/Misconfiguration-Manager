@@ -1,7 +1,7 @@
-# Site Takeover via NTLM Coercion and Relay from Site Server to Site Database
+# Hierarchy Takeover via NTLM Coercion and Relay from Site Server to Site Database
 
 ## Code Name
-SITE-TAKEOVER1
+TAKEOVER1
 
 ## ATT&CK Tactic
 - Privileged Escalation

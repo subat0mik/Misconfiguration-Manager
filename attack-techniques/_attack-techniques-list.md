@@ -11,5 +11,5 @@
 | TAKEOVER03 | NTLM relay to MSSQL from Passive site server |
 | TAKEOVER04 | NTLM relay to AdminService from Passive site server |
 | TAKEOVER05 | NTLM relay to SMB from high Passive site server |
-| TAKEOVER06 | NTLM relay from CAS to SMS Provider child primary site server |
-
+| TAKEOVER06 | NTLM relay to AdminService from Central Admnistration site server |
+| TAKEOVER07 | NTLM relay to SMB from Central Administration site server |
