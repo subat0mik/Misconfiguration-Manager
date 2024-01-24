@@ -141,5 +141,5 @@ SharpDPAPI completed in 00:00:00.0397643
 ## References
 - Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
 - Chris Thompson, SharpSCCCM, https://github.com/Mayyhem/SharpSCCM
-- Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#sccm
+- Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI
 - Duane Michael, X, https://twitter.com/subat0mik/status/1582387536147582976?s=20
