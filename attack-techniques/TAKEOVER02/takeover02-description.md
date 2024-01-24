@@ -1,7 +1,7 @@
-# Site Takeover via NTLM Coercion and Relay from Site Server to SMS Provider
+# Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
 
 ## Code Name
-- SITETAKEOVER02
+- TAKEOVER02
 
 ## ATT&CK TTPs
 - [T1078.002 - Valid Accounts](https://attack.mitre.org/techniques/T1078/002/)
@@ -12,7 +12,8 @@ Valid domain credentials with network connectivity to the primary site server an
 
 ## Summary
 
-The SMS Provider is a SCCM site server role installed by default on the site server when configuring a primary site or central administration site. The role can optionally be installed on additional SCCM component servers for high availability configurations.  The SMS Provider is a Windows Management Instrumentation (WMI) provider that performs as an intermediary for accessing and modifying data stored in the site database. Access to the SMS Provider is controlled via membership of the the `SMS Admins` local security group on each site server. The site server computer account is a member of the `SMS Admins` security group on each SMS Provider in a site by default.
+The SMS Provider is a SCCM site server role installed by default on the site server when configuring a primary site or central administration site. The role can optionally be installed on additional SCCM site systems for high availability configurations.  The SMS Provider is a Windows Management Instrumentation (WMI) provider that performs as an intermediary for accessing and modifying data stored in the site database. Access to the SMS Provider is controlled via membership of the the `SMS Admins` local security group on each site server. The site server computer account is a member of the `SMS Admins` security group on each SMS Provider in a site by default.
+
 The SMS Provider also provides access to the site database via the administration service (adminservice) REST API and uses Microsoft Negotiate for authentication. In default configurations, the adminservice is vulnerable to NTLM relay attacks. 
 
 ## Impact

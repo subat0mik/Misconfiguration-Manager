@@ -1,7 +1,7 @@
-# Site Takeover via NTLM Coercion and MSSQL Relay From Passive Site Server
+# Hierarchy Takeover via NTLM Coercion and MSSQL Relay From Passive Site Server
 
 ## Code Name
-SITETAKEOVER03
+TAKEOVER03
 
 ## ATT&CK TTPs
 - Privilege Escalation
@@ -11,7 +11,7 @@ SITETAKEOVER03
 Valid domain credentials with network connectivity to the passive primary site server and site database server.
 
 ## Summary
-For high availability configurations the passive site server role is deployed to SCCM sites where redundancy for the site server role is required. A passive site server share's the same configuration and privileges as the active site server yet performs no writes or changes to the site until promoted manually or during an automated failover. As such, the passive site server machine account is required to be a sysadmin for the site database. In default configurations, the MSSQL service on the site database server is vulnerable to NTLM relay attacks.
+For high availability configurations the passive site server role is deployed to SCCM sites where redundancy for the site server role is required. A passive site server shares the same configuration and privileges as the active site server yet performs no writes or changes to the site until promoted manually or during an automated failover. As such, the passive site server machine account is required to be a sysadmin for the site database. In default configurations, the MSSQL service on the site database server is vulnerable to NTLM relay attacks.
 
 ## Impact
 
@@ -149,5 +149,5 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 
 
 ## References
-Author, Title, URL
+Chris Thompson, SCCM Site Takeover via Automatic Client Push Installation, https://posts.specterops.io/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1
 Microsoft, Site server high availability in Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/site-server-high-availability
