@@ -1,4 +1,4 @@
-# Technique Name
+# Site Takeover via NTLM Coercion and Relay from Site Server to SMS Provider
 
 ## Code Name
 - SITETAKEOVER02
@@ -20,7 +20,7 @@ The SMS Provider also provides access to the site database via the administratio
 This technique may allow an attacker to relay a primary site server machine account to a remote SMS Provider and elevate their privileges to "Full Administrator" for the SCCM Hierarchy. If successful, this technique enables lateral movement to all SCCM clients and/or sensitive systems.
 
 ## Examples
-- Use SCCMHutner to profile SCCM component server roles
+- Use SCCMHunter to profile SCCM component server roles
 - Use PetitPotam to coerce authentication from primary site server
 - Use NTLMrelayx to relay credentials to remote SMS Provider
 
