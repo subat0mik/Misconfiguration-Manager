@@ -1,6 +1,6 @@
 # Retrieve secrets from PXE boot media
 ## Code Name
-- CREDENTIAL01
+- CRED01
 
 ## ATT&CK TTPs
 - [TA0001 - Initial Access](https://attack.mitre.org/tactics/TA0001)

@@ -1,10 +1,10 @@
 | Codename | Description | Notes |
 |---------|-------------|-------|
-| CREDENTIAL01 | PXE boot creds |
-| CREDENTIAL02 | Request machine policy and deobfuscate secrets |
-| CREDENTIAL03 | current NAA DPAPI |
-| CREDENTIAL04 | Legacy NAA DPAPI blobs
-| CREDENTIAL05 | SCCM database credential dump |
+| CRED01 | PXE boot creds |
+| CRED02 | Request machine policy and deobfuscate secrets |
+| CRED03 | current NAA DPAPI |
+| CRED04 | Legacy NAA DPAPI blobs
+| CRED05 | SCCM database credential dump |
 | ELEVATION01 | NTLM relay site server to SMB on component servers |
 | TAKEOVER01 | NTLM relay to MSSQL on standalone site database |
 | TAKEOVER02 | NTLM relay to AdminService on standalone SMS Provider |
