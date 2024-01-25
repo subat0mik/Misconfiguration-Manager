@@ -103,4 +103,5 @@ NetworkAccessPassword: <password>
 ## References
 - Adam Chester, Unobfuscating Network Access Accounts, https://blog.xpnsec.com/unobfuscating-network-access-accounts/
 - Adam Chester, sccmwtf, https://github.com/xpn/sccmwtf
+- Chris Thompson, SharpSCCM, https://github.com/Mayyhem/SharpSCCM/
 
