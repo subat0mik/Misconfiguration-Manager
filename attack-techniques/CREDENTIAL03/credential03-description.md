@@ -137,6 +137,7 @@ SharpDPAPI completed in 00:00:00.0397643
 ## Defensive IDs
 - [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
 - [PROTECT05](../../defense-techniques/PROTECT05/protect05-description.md)
+- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
 
 ## References
 - Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
