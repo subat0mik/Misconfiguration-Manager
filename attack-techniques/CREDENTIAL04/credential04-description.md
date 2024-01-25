@@ -1,5 +1,4 @@
-# Technique Name
-Dump legacy network access account (NAA) credentials from the CIM Repository
+# Retrieve legacy network access account (NAA) credentials from the CIM Repository
 
 ## Code Name
 - CREDENTIAL03

@@ -1,6 +1,4 @@
-# Technique Name
-Retrieve secrets from PXE boot media
-
+# Retrieve secrets from PXE boot media
 ## Code Name
 - CREDENTIAL01
 

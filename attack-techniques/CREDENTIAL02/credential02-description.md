@@ -1,6 +1,4 @@
-# Technique Name
-Request and deobfuscate machine policy to retrieve credential material
-
+# Request and deobfuscate machine policy to retrieve credential material
 ## Code Name
 - CREDENTIAL03
 

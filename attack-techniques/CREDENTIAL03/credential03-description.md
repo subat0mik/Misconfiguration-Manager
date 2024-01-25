@@ -1,5 +1,4 @@
-# Technique Name
-Dump network access account (NAA) credentials via WMI
+# Dump network access account (NAA) credentials via WMI
 
 ## Code Name
 - CREDENTIAL03
