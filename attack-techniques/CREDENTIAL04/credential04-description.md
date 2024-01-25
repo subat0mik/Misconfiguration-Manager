@@ -109,6 +109,7 @@ SharpDPAPI completed in 00:00:00.0397643
 ## Defensive IDs
 - [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
 - [PROTECT05](../../defense-techniques/PROTECT05/protect05-description.md)
+- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
 - [PROTECT16](../../defense-techniques/PROTECT16/protect16-description.md)
 
 ## References
