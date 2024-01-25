@@ -23,6 +23,10 @@ A site that clients are assigned to and that is administered using the Configura
 ## Primary Site Server
 The server responsible for processing client-generated data and interacting with the site database. Also referred to as the site server.
 
+## Passive Site Server
+
+A failover primary site server used for redundancy in high availability configurations
+
 ## Secondary Site
 A child of a primary site used to distribute content to clients in remote locations with low bandwidth connections
 
