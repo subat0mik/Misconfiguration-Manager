@@ -13,3 +13,6 @@
 | TAKEOVER05 | NTLM relay to SMB from high Passive site server |
 | TAKEOVER06 | NTLM relay to AdminService from Central Admnistration site server |
 | TAKEOVER07 | NTLM relay to SMB from Central Administration site server |
+| RECON01 | Remote LDAP Recon |
+| RECON02| Remote SMB Recon|
+| RECON03| Remote HTTP(s) Recon|
