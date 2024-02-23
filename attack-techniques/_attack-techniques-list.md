@@ -16,3 +16,5 @@
 | RECON01 | Remote LDAP Recon |
 | RECON02| Remote SMB Recon|
 | RECON03| Remote HTTP(s) Recon|
+| RECON04| CMPivot Recon|
+
