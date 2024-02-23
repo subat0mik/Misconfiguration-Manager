@@ -1,6 +1,6 @@
 # Leverage CMPivot to query information from ConfigMgr client hosts
 ## Code Name
-- RECON02
+- RECON04
 
 ## ATT&CK TTPs
 - [TA0009 - Collection](https://attack.mitre.org/tactics/TA0009/)
