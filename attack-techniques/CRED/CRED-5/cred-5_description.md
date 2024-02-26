@@ -3,7 +3,7 @@
 ## Code Name
 - CRED05
 
-## ATT&CK TTPs
+## MITRE ATT&CK TTPs
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006)
 - [T1078.002 - Valid Accounts: Domain Accounts](https://attack.mitre.org/techniques/T1078/002/)
 

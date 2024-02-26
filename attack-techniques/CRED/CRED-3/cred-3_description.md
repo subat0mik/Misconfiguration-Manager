@@ -3,7 +3,7 @@
 ## Code Name
 - CRED03
 
-## ATT&CK TTPs
+## MITRE ATT&CK TTPs
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006/)
 - [TA0004 - Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
 - [T1555 - Passwords from Password Stores](https://attack.mitre.org/techniques/T1555/)
