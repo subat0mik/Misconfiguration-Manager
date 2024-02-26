@@ -1,4 +1,4 @@
-# TAKEOVER-01
+# TAKEOVER-1
 
 ## Description
 Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
@@ -14,7 +14,8 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
     - TAKEOVER-1.2: SMS Provider
     - TAKEOVER-1.3: CAS site server
     - TAKEOVER-1.4: Passive site server
-- Connectivity to MSSQL (TCP/1433) on the relay target, the site database
+- Connectivity from the coercion target to SMB (TCP/445) on the relay server
+- Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
 - Coercion target settings:
     - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
     - `RestrictNTLMInDomain` = `0` or not present, or = `X` and `DCAllowedNTLMServers` contains attacker relay server
@@ -23,7 +24,7 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
     - Extended protection for authentication is not required on the site database
 
 ## Summary
-By default, the the Active Directory domain computer accounts for primary site servers, systems hosting the SMS Provider role, CAS site servers, and passive site servers are granted the `db_owner` role in their respective site's MSSQL database. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.
+By default, the Active Directory domain computer accounts for primary site servers, systems hosting the SMS Provider role, CAS site servers, and passive site servers are granted the `db_owner` role in their respective site's MSSQL database. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.
 
 ## Impact
 The "Full Administrator" security role is granted all permissions in Configuration Manager for all scopes and all collections. An attacker with this privilege can execute arbitrary programs on any client device that is online as SYSTEM, the currently logged on user, or as a specific user when they next log on. They can also leverage tools such as CMPivot and Run Script to query or execute scripts on client devices in real-time using the AdminService or WMI on an SMS Provider.
