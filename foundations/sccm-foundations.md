@@ -14,7 +14,7 @@ All of the sites in one instance of SCCM
 ## Site
 The SCCM site consists of the various systems that compose the SCCM environment. Each site is identified by a three character site code (e.g., PS1).
 
-## Client
+## Client/Device
 SCCM clients are systems that are joined to, managed by, and receive content from an SCCM site.
 
 ## Primary Site
@@ -24,7 +24,6 @@ A site that clients are assigned to and that is administered using the Configura
 The server responsible for processing client-generated data and interacting with the site database. Also referred to as the site server.
 
 ## Passive Site Server
-
 A failover primary site server used for redundancy in high availability configurations
 
 ## Secondary Site
@@ -40,10 +39,10 @@ A computer that is assigned one or more site system roles in the site.
 A role installed on a site system to host functionality for a site (e.g., site server, site database, distribution point)
 
 ## Site Database
-A required site system role for central administration sites, primary sites, and secondary sites that stores and processes data
+A required site system role for central administration sites, primary sites, and secondary sites that stores and processes data.  This database is fully replicated between CAS sites and primary sites and partially replicated to secondary sites.
 
 ## Site Database Server
-Hosts the site database for a site, can be colocated on the site server or hosted on a remote system
+Hosts the site database for a site, can be colocated on the site server or hosted on a remote system. 
 
 ## SMS Provider
 A site system with Windows Management Instrumentation (WMI) and HTTPS REST API providers that allow indirect access to the site database. This role is installed on the primary site server by default but can also be installed elsewhere. SharpSCCM interacts with SMS providers via WMI and HTTP(S).
