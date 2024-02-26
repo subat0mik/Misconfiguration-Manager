@@ -1,15 +1,14 @@
-# Hierarchy Takeover via NTLM Coercion and SMB Relay From Passive Site Server
+# TAKEOVER-5
 
-## Code Name
-TAKEOVER05
+## Description
+Hierarchy Takeover via NTLM Coercion and SMB Relay From Passive Site Server
 
-## ATT&CK TTPs
+## MITRE ATT&CK TTPs
 - [T1078.002 - Valid Accounts](https://attack.mitre.org/techniques/T1078/002/)
 - [T1187 - Forced Authentication](https://attack.mitre.org/techniques/T1187/)
 - [T1003.004 - OS Credential Dumping](https://attack.mitre.org/techniques/T1003/004/) 
 
-
-## Required Privilege / Context
+## Requirements
 
 Valid domain credentials with network connectivity to the passive primary site server and active primary site server.
 
