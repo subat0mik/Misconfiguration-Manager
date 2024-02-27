@@ -4,7 +4,7 @@
 | PREVENT-2 | Disable Fallback to NTLM | | TAKEOVER-1| QA
 | PREVENT-3 | Harden or Disable Network Access Account | | CRED-1, CRED-2, CRED-3 | QA
 | PREVENT-4 | Configure Enhanced HTTP | | CRED-2, CRED-3, CRED-4, PREVENT-3, PREVENT-8, PREVENT-15| WIP
-| PREVENT-5 | Disable automatic side-wide client push installation |
+| PREVENT-5 | Disable automatic side-wide client push installation | | PREVENT-2 |
 | PREVENT-6 | Configure strong PXE boot password | Prevents cracking to obtain OSD secrets | CRED-1 |
 | PREVENT-7 | Disable command support in PXE boot configuration| Prevents entering "F8-debugging" | CRED-1 |
 | PREVENT-8 | Require PKI certificates for client authentation | Prevents rogue device registration | TAKEOVER-2 |
