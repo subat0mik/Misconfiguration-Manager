@@ -93,11 +93,6 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 
 ## Defensive IDs
 
-- [PROTECT01](../../defense-techniques/PROTECT01/protect01-description.md)
-- [PROTECT10](../../defense-techniques/PROTECT10/protect10-description.md)
-- [DETECT01](../../defense-techniques/DETECT01/detect01-description.md)
-
-
 
 ## References
 - Garrett Foster, Site Takeover via SCCM’s AdminService API, https://posts.specterops.io/site-takeover-via-sccms-adminservice-api-d932e22b2bf

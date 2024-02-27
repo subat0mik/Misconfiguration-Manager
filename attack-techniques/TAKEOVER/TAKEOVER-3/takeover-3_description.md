@@ -17,6 +17,9 @@ For high availability configurations the passive site server role is deployed to
 
 This technique may allow an attacker to coerce and relay authentication from a passive site server machine account to the MSSQL service of the site database server and execute SQL queries in the privileged context of the relayed account to compromise the hierarchy.
 
+## Defensive IDs
+
+
 ## Examples
 
 - Use SCCMHunter to profile SCCM component server roles
@@ -112,15 +115,6 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 [*] SMBD-Thread-7 (process_request_thread): Connection from 10.10.100.141 controlled, but there are no more targets left!
 ```
 
-
-## Defensive IDs
-- [PROTECT01](../../defense-techniques/PROTECT01/protect01-description.md)
-- [PROTECT15](../../defense-techniques/PROTECT15/protect15-description.md)
-- [PROTECT21](../../defense-techniques/PROTECT21/protect21-description.md)
-- [DETECT01](../../defense-techniques/DETECT01/detect01-description.md)
-
-
-
 ## References
-Chris Thompson, SCCM Site Takeover via Automatic Client Push Installation, https://posts.specterops.io/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1
-Microsoft, Site server high availability in Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/site-server-high-availability
+- Chris Thompson, SCCM Site Takeover via Automatic Client Push Installation, https://posts.specterops.io/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1
+- Microsoft, Site server high availability in Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/site-server-high-availability
