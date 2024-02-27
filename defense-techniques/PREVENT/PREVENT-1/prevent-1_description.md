@@ -1,4 +1,4 @@
-# Patch SCCM to Disable NTLM Fallback for Automatic Client Push Installation
+# Patch SCCM Site Server with KB15599094
 
 ## Code Name
 PREVENT-1
@@ -14,6 +14,9 @@ _Figure 1 - Client Push Installation Properties_
 In SCCM versions prior to 2207, there exists a bug such that without this setting enabled, the connection will fallback to NTLM regardless of the setting. Microsoft patched this bug in [KB15599094](https://learn.microsoft.com/en-us/mem/configmgr/hotfix/2207/15599094). This patch is applied by default to new site installations of version 2207+.
 
 This patch only applies to versions 2103+. If the installed version is older, Microsoft recommends updating to a current version.
+
+## Linked Defensive IDs
+- [PREVENT-2](../PREVENT-2/prevent-2_description.md)
 
 ## References
 - Microsoft, NTLM client installation update for Microsoft Endpoint Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/hotfix/2207/15599094
