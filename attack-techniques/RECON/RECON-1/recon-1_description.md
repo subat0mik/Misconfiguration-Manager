@@ -52,7 +52,7 @@ For each individual site published to AD an `mSSMSSite` class is published. This
 
 ### cn=MS-SMS-Management-Point
 
-The mSMSManagementPoint class is used by SCCM to publish details for SCCM clients to identify their respective default [management point](cn=MS-SMS-Management-Point) (MP). This class provides the opportunity to identify potential attack paths in NAASPOOFTAKEVER, TAKEOVER06, TAKEOVER07 using the following attributes.
+The mSMSManagementPoint class is used by SCCM to publish details for SCCM clients to identify their respective default management point (MP)(cn=MS-SMS-Management-Point). This class provides the opportunity to identify potential attack paths in NAASPOOFTAKEVER, TAKEOVER06, TAKEOVER07 using the following attributes.
 
 |Attribute|Notes|
 |---------|-----|

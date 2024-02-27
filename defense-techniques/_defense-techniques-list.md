@@ -21,8 +21,8 @@
 | PREVENT-19 | Remove database links from site database |
 | PREVENT-20 | Block unnecessary connections to site systems (E.g., SMB, MSSQL) | Reduces coercion via SMB and relay to SMB/MSSQL
 | PREVENT-21 | Restrict PXE boot to authorized VLANs | | CRED-1 |
-| PREVENT-X | Do not manage Tier 0 assets | 
-| DETECT01 | Monitor siste system computer accounts authenticating from a source that is not its static IP |
+| PREVENT-22 | Do not manage Tier 0 assets | 
+| DETECT01 | Monitor site system computer accounts authenticating from a source that is not its static IP |
 | DETECT02 | Monitor client push installation accounts authenticating from anywhere other than the primary site server |
 | DETECT03 | Monitor application deployment logs  in the site's Audit Status Messages |
 | CANARY01 | Configure an appropriately-privileged NAA with interactive logon restricted, monitor for usage |
