@@ -5,7 +5,9 @@ SITE-TAKEOVERX
 
 ## Summary
 
-## Examples
+## Linked Defensive IDs
+
+## Associated Offensive IDs
 
 ## References
 Author, Title, Link
