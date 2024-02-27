@@ -1,11 +1,11 @@
-# Leverage CMPivot to query information from ConfigMgr client hosts
+# Leverage CMPivot to Query Information from Clients
 ## Code Name
-- RECON04
+- RECON-4
 
 ## ATT&CK TTPs
-- [TA0009 - Collection](https://attack.mitre.org/tactics/TA0009/)
-- [TA0010 - Exfiltration](https://attack.mitre.org/tactics/TA0010/)
-- [TA0043 - Reconnaissance](https://attack.mitre.org/tactics/TA0043/)
+- [TA0009](https://attack.mitre.org/tactics/TA0009/) - Collection
+- [TA0010](https://attack.mitre.org/tactics/TA0010/) - Exfiltration
+- [TA0043](https://attack.mitre.org/tactics/TA0043/) - Reconnaissance
 
 ## Required Privilege / Context
 - Run CMPivot permission on the Collection scope
@@ -54,12 +54,11 @@ Some of these operations allow for enumeration of:
 And a lot more. There are more than 130 queries available
 
 ## Defensive IDs
-------------------------------------------
 - [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
 - [PROTECT07](../../defense-techniques/PROTECT07/protect07-description.md)
 - [PROTECT08](../../defense-techniques/PROTECT08/protect08-description.md)
 - [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
------------------------------------------
+
 ## Examples
 
 - Using SharpSCCM to enumerate local administrators group from the ConfigMgr client with ID 16777226

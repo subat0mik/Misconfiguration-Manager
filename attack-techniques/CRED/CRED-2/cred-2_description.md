@@ -1,13 +1,13 @@
 # Request and deobfuscate machine policy to retrieve credential material
 ## Code Name
-- CRED03
+- CRED-3
 
 ## MITRE ATT&CK TTPs
-- [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006/)
-- [TA0004 - Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
-- [T1555 - Passwords from Password Stores](https://attack.mitre.org/techniques/T1555/)
+- [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
+- [TA0004](https://attack.mitre.org/tactics/TA0004/) - Privilege Escalation
+- [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
-## Required Privilege / Context
+## Requirements
 - Domain authentication
 
 ## Summary
@@ -38,9 +38,9 @@ In environments using Active Directory defaults, SCCM defaults, and NAAs, any do
 If the NAA is implementely under the principle of least privilege, this may not extend the attacker's privilege level in the domain.  The more common result: If the NAA is over-privileged, this technique serves as a trivial privilege escalation vector.
 
 ## Defensive IDs
-- [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
-- [PROTECT05](../../defense-techniques/PROTECT05/protect05-description.md)
-- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
+- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
+- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 
 ## Examples
 - Using Powermad and SharpSCCM
@@ -102,4 +102,5 @@ NetworkAccessPassword: <password>
 - Adam Chester, Unobfuscating Network Access Accounts, https://blog.xpnsec.com/unobfuscating-network-access-accounts/
 - Adam Chester, sccmwtf, https://github.com/xpn/sccmwtf
 - Chris Thompson, SharpSCCM, https://github.com/Mayyhem/SharpSCCM/
+- Evan McBroom, SCCM Credential Recovery for Network Access Accounts, https://gist.github.com/EvanMcBroom/525d84b86f99c7a4eeb4e3495cffcbf0
 

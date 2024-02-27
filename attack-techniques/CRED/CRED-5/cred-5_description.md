@@ -1,7 +1,7 @@
 # Dump SCCM Credentials from Site Database
 
 ## Code Name
-- CRED05
+- CRED-5
 
 ## MITRE ATT&CK TTPs
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006)

@@ -1,20 +1,20 @@
 # Retrieve legacy network access account (NAA) credentials from the CIM Repository
 
 ## Code Name
-- CRED03
+- CRED-4
 
 ## MITRE ATT&CK TTPs
-- [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006/)
-- [TA0004 - Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
-- [T1555 - Passwords from Password Stores](https://attack.mitre.org/techniques/T1555/)
+- [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
+- [TA0004](https://attack.mitre.org/tactics/TA0004/) - Privilege Escalation
+- [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
-## Required Privilege / Context
+## Requirements
 - Local administrative privileges on the SCCM client
 
 ## Summary
 The network access account (NAA) is an account that can be configured on the SCCM site server. The NAA is used  to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace.
 
-This technique may apply whether an NAA is currently configured ([CRED03](../CRED03/credential03-description.md)) or not. Therefore, even if [CRED03](../CRED03/credential03-description.md) is fruitless, there is still hope.
+This technique may apply whether an NAA is currently configured ([CRED-3](../CRED-3/cred-3_description.md) or not. Therefore, even if [CRED-3](../CRED-3/cred-3_description.md) is fruitless, there is still hope.
 
 Data stored within WMI classes exists on disk in the CIM repository file located at `C:\Windows\System32\wbem\Repository\OBJECTS.DATA`. Due to the [nuance](https://github.com/mandiant/flare-wmi/blob/master/python-cim/doc/data-recovery.md) of how WMI and CIM clean up these objects, they may be cleared from the database (as read from a WMI context) but still persist on disk in the CIM repository file.
 
@@ -29,6 +29,12 @@ This technique may allow an attacker to retrieve plaintext domain credentials. E
 We (SpecterOps) commonly see accounts that are members of the `SCCM Administrators` and `Domain Admins` groups configured as the NAA.
 
 Currently-configured NAAs and/or legacy NAA configurations may be present in the CIM repository file. If so, an attacker can recover legacy accounts that have been configured for NAA in the past. For example, if a system administrator configure their SCCM Admin account as the NAA when the site was created but, years later, fixed their mistake and no longer use an overprivileged NAA or NAA at all, their SCCM Admin credentials may still be on disk on SCCM clients.
+
+## Defensive IDs
+- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
+- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-15: Disable legacy network access accounts in Active Directory](../../../defense-techniques/PREVENT/PREVENT-15/prevent-15_description.md)
 
 ## Examples
 
@@ -103,13 +109,6 @@ PS C:\Users\labadmin\Desktop> .\SharpDPAPI.exe blob /target:$b64 /mkfile:masterk
 
 SharpDPAPI completed in 00:00:00.0397643
 ```
-
-
-## Defensive IDs
-- [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
-- [PROTECT05](../../defense-techniques/PROTECT05/protect05-description.md)
-- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
-- [PROTECT16](../../defense-techniques/PROTECT16/protect16-description.md)
 
 ## References
 - Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9

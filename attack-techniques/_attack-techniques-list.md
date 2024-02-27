@@ -1,22 +1,25 @@
-| Codename | Description | Notes |
-|---------|-------------|-------|
-| CRED01 | PXE boot creds | 
-| CRED02 | Request machine policy and deobfuscate secrets |
-| CRED03 | Current NAA DPAPI blobs |
-| CRED04 | Legacy NAA DPAPI blobs |
-| CRED05 | SCCM database credential dump |
-| ELEVATION01 | NTLM relay site server to SMB on component servers |
-| EXEC01 | Application deployment |
-| EXEC02 | PowerShell script execution |
-| TAKEOVER01 | NTLM relay site server or SMS Provider SMB to MSSQL on remote site database | X - or SMS Provider?
-| TAKEOVER02 | NTLM relay site server SMB to SMB on remote site database | *
-| TAKEOVER03 | NTLM relay site server SMB to AdminService on remote SMS Provider | X
-| TAKEOVER04 | NTLM relay site server SMB to SMB on remote SMS Provider | *
-| TAKEOVER05 | NTLM relay passive site server SMB to SMB on primary site server | X
-| TAKEOVER06 | NTLM relay site server HTTP to LDAP on domain controller | *
-| TAKEOVER07 | NTLM relay site server HTTP to HTTP on ADCS | *
-| TAKEOVER08 | NTLM relay CAS SMB to SMB on originating child primary site server | X (prerelease)
-
+| Codename | Description | Notes | Links | Status |
+|----------|-------------|-------| ----- | ------ |
+| CRED-1 | PXE boot creds | | PREVENT-3, PREVENT-6, PREVENT-7, PREVENT-21 | Complete |
+| CRED-2 | Request machine policy and deobfuscate secrets | | PREVENT-3, PREVENT-4, PREVENT-10 | Complete
+| CRED-3 | Current NAA DPAPI blobs | | PREVENT-3, PREVENT-4, PREVENT-10 | Complete
+| CRED-4 | Legacy NAA DPAPI blobs | | CRED-3, PREVENT-3, PREVENT-4, PREVENT-10, PREVENT-15 | Complete
+| CRED-5 | SCCM database credential dump | | | QA
+| ELEVATE-1 | NTLM relay site server to SMB on component servers |
+| EXEC-1 | Application deployment |
+| EXEC-2 | PowerShell script execution |
+| TAKEOVER-1 | NTLM relay site server or SMS Provider SMB to MSSQL on remote site database | X - or SMS Provider?
+| TAKEOVER-2 | NTLM relay site server SMB to SMB on remote site database | *
+| TAKEOVER-3 | NTLM relay site server SMB to AdminService on remote SMS Provider | X
+| TAKEOVER-4 | NTLM relay site server SMB to SMB on remote SMS Provider | *
+| TAKEOVER-5 | NTLM relay passive site server SMB to SMB on primary site server | X
+| TAKEOVER-6 | NTLM relay site server HTTP to LDAP on domain controller | *
+| TAKEOVER-7 | NTLM relay site server HTTP to HTTP on ADCS | *
+| TAKEOVER-8 | NTLM relay CAS SMB to SMB on originating child primary site server | X (prerelease)
+| RECON01 | Remote LDAP Recon | | | Partial
+| RECON02| Remote SMB Recon |
+| RECON03| Remote HTTP(s) Recon |
+| RECON04| CMPivot Recon | | | QA
 
 | TAKEOVER01 | NTLM relay primary site server SMB to MSSQL on remote site database | X
 | TAKEOVER02 | NTLM relay primary site server SMB to AdminService on remote SMS Provider | X
@@ -39,7 +42,3 @@
 | TAKEOVER07 | NTLM relay CAS SMB to SMB on originating child primary site server (auth to MSSQL) | X (prerelease)
 | TAKEOVER07 | NTLM relay site database SMB to MSSQL on another site database in availability group? | 
 
-| RECON01 | Remote LDAP Recon |
-| RECON02| Remote SMB Recon |
-| RECON03| Remote HTTP(s) Recon |
-| RECON04| CMPivot Recon |

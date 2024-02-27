@@ -1,14 +1,14 @@
 # Dump network access account (NAA) credentials via WMI
 
 ## Code Name
-- CRED03
+- CRED-3
 
 ## MITRE ATT&CK TTPs
-- [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006/)
-- [TA0004 - Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
-- [T1555 - Passwords from Password Stores](https://attack.mitre.org/techniques/T1555/)
+- [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
+- [TA0004](https://attack.mitre.org/tactics/TA0004/) - Privilege Escalation
+- [T1555s](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Store
 
-## Required Privilege / Context
+## Requirements
 - Local administrative privileges on the SCCM client
 
 ## Summary
@@ -25,6 +25,11 @@ A successful decryption result of `00 00 0E 0E 0E 0E...` indicates that the Site
 This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA is not over-privileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the NAA is overprivileged, this technique enables lateral movement to other clients and/or sensitive systems.
 
 We (SpecterOps) commonly see accounts that are members of the `SCCM Administrators` and `Domain Admins` groups configured as the NAA.
+
+## Defensive IDs
+- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
+- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 
 ## Examples
 
@@ -131,12 +136,6 @@ PS C:\Users\labadmin\Desktop> .\SharpDPAPI.exe blob /target:$b64 /mkfile:masterk
 
 SharpDPAPI completed in 00:00:00.0397643
 ```
-
-
-## Defensive IDs
-- [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
-- [PROTECT05](../../defense-techniques/PROTECT05/protect05-description.md)
-- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
 
 ## References
 - Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9

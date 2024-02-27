@@ -1,12 +1,12 @@
 # Enumerating LDAP for SCCM Related Assets
 
 ## Code Name
-RECON01
+RECON-1
 
-## ATT&CK TTPs
-- Privilege Escalation
+## MITRE ATT&CK TTPs
+- [TA0043](https://attack.mitre.org/tactics/TA0043) - Reconnaissance
 
-## Required Privilege / Context
+## Requirements
 
 Valid Active Directory domain credentials
 
@@ -74,7 +74,7 @@ We (SpecterOps) frequently observe predictable naming conventions in use to help
 1. Identifying the presence of site server systems is typically the first step in building potential attack paths
 2. A resolved MP site system role can be abused to spoof SCCM client enrollment and potentially recover credentials
 3. A resolved MP site system role can be used to elevate privileges via credential relay attacks
-4. All SCCM sites require at least one MP role except for central administration sites (CAS) which [do not](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/design-a-hierarchy-of-sites#BKMK_ChooseCAS) support roles that interact with clients. However, the CAS site code is still published via the `mSSMSSite` class. Additionally, the CAS primary site server requires FULL CONTROl for the `System Management` container for publish purposes. Therefore, a query for all published site codes in a domain can be used to identify the CAS primary site server by elimintating site codes that have a published MP. Knowlege of the CAS can be used to perform credential relay attacks to elevate privileges in the domain or for the SCCM service
+4. All SCCM sites require at least one MP role except for central administration sites (CAS) which [do not](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/design-a-hierarchy-of-sites#BKMK_ChooseCAS) support roles that interact with clients. However, the CAS site code is still published via the `mSSMSSite` class. Additionally, the CAS primary site server requires FULL CONTROL for the `System Management` container for publish purposes. Therefore, a query for all published site codes in a domain can be used to identify the CAS primary site server by elimintating site codes that have a published MP. Knowlege of the CAS can be used to perform credential relay attacks to elevate privileges in the domain or for the SCCM service
 5. Predictble naming conventions help identify high value targets associated with the SCCM service that are not to AD
 
 

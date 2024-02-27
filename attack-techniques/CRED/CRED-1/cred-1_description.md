@@ -3,9 +3,9 @@
 - CRED-1
 
 ## MITRE ATT&CK TTPs
-- [TA0001 - Initial Access](https://attack.mitre.org/tactics/TA0001)
-- [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006)
-- [T1078.002 - Valid Accounts: Domain Accounts](https://attack.mitre.org/techniques/T1078/002/)
+- [TA0001](https://attack.mitre.org/tactics/TA0001) - Initial Access
+- [TA0006](https://attack.mitre.org/tactics/TA0006) - Credential Access
+- [T1078.002](https://attack.mitre.org/techniques/T1078/002/) - Valid Accounts: Domain Accounts
 
 ## Requirements
 - Unauthenticated network access
@@ -47,10 +47,11 @@ Attackers may recover domain credentials from this process, the difficulty of wh
 With these credentials, attackers may transition from an unauthenticated context on the network to a domain-authenticated context. If any of the credentials recovered are privileged, it may also enable privilege escalation and lateral movement vectors.
 
 ## Defensive IDs
-- [PREVENT-4](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
-- [PREVENT-7](../../../defense-techniques/PREVENT/PREVENT-7/prevent-7_description.md)
-- [PREVENT-8](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
-- [PREVENT-11](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
+- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-6: Configure strong PXE boot password](../../../defense-techniques/PREVENT/PREVENT-6/prevent-6_description.md)
+- [PREVENT-7: Disable command support in PXE boot configuration](../../../defense-techniques/PREVENT/PREVENT-7/prevent-7_description.md)
+- [PREVENT-21: Restrict PXE boot to authorized VLANs](../../../defense-techniques/PREVENT/PREVENT-21/prevent-21_description.md)
+
 
 ## Examples
 

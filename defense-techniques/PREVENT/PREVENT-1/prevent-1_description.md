@@ -1,4 +1,4 @@
-# Patch SCCM Site Server with KB15599094
+# Patch Site Server with KB15599094
 
 ## Code Name
 PREVENT-1

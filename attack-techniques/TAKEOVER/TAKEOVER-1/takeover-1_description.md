@@ -3,9 +3,9 @@
 ## Description
 Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
 
-## MITRE ATT&CK Tactics
-- Lateral Movement
-- Privilege Escalation
+## MITRE ATT&CK TTPs
+- [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+- [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
 - Valid Active Directory domain credentials
