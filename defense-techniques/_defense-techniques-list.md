@@ -8,7 +8,7 @@
 | PREVENT-6 | Configure strong PXE boot password | Prevents cracking to obtain OSD secrets | CRED-1 |
 | PREVENT-7 | Disable command support in PXE boot configuration| Prevents entering "F8-debugging" | CRED-1 |
 | PREVENT-8 | Require PKI certificates for client authentation | Prevents rogue device registration
-| PREVENT-9 | Enforce MFA for SMS Provider calls | 
+| PREVENT-9 | Enforce MFA for SMS Provider calls | | RECON-4 |
 | PREVENT-10 | Principle of Least Privilege | Don't over-privilege accounts | CRED-3 | 
 | PREVENT-11 | Disable / Uninstall WebClient on site servers  | Prevents NTLM coercion over HTTP |
 | PREVENT-12 | Require SMB signing on site systems | Prevents SMB relay | TAKEOVER-1 |

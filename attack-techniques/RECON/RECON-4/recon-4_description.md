@@ -54,20 +54,13 @@ Some of these operations allow for enumeration of:
 And a lot more. There are more than 130 queries available
 
 ## Defensive IDs
-- [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
-- [PROTECT07](../../defense-techniques/PROTECT07/protect07-description.md)
-- [PROTECT08](../../defense-techniques/PROTECT08/protect08-description.md)
-- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
+- [PREVENT-9: Enforce MFA for SMS provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
 
 ## Examples
 
 - Using SharpSCCM to enumerate local administrators group from the ConfigMgr client with ID 16777226
 ```
 .\SharpSCCM.exe invoke admin-service -r 16777226 -q "Administrators" -sms site-sms -d 10
-
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |    @_Mayyhem
 
 [+] Sending query to AdminService
 [+] URL: "https://site-sms/AdminService/v1.0/Device(16777226)/AdminService.RunCMPivot"
