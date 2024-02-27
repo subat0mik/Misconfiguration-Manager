@@ -8,7 +8,7 @@
 | ELEVATE-1 | NTLM relay site server to SMB on component servers |
 | EXEC-1 | Application deployment |
 | EXEC-2 | PowerShell script execution |
-| TAKEOVER-1 | NTLM relay site server or SMS Provider SMB to MSSQL on remote site database | X - or SMS Provider?
+| TAKEOVER-1 | NTLM relay site server or SMS Provider SMB to MSSQL on remote site database | X - or SMS Provider? | PREVENT-2, PREVENT-12, PREVENT-14 |
 | TAKEOVER-2 | NTLM relay site server SMB to SMB on remote site database | *
 | TAKEOVER-3 | NTLM relay site server SMB to AdminService on remote SMS Provider | X
 | TAKEOVER-4 | NTLM relay site server SMB to SMB on remote SMS Provider | *
@@ -19,7 +19,7 @@
 | RECON01 | Remote LDAP Recon | | | Partial
 | RECON02| Remote SMB Recon |
 | RECON03| Remote HTTP(s) Recon |
-| RECON04| CMPivot Recon | | | QA
+| RECON04| CMPivot Recon | | PREVENT-9 | QA
 
 | TAKEOVER01 | NTLM relay primary site server SMB to MSSQL on remote site database | X
 | TAKEOVER02 | NTLM relay primary site server SMB to AdminService on remote SMS Provider | X
