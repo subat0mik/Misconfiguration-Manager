@@ -25,4 +25,4 @@ _Figure 1 - Enhanced HTTP Diagram_
 
 ## References
 - Christopher Panayi, An inside look: How to distribute credentials securely in SCCM, https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm
-- 
+- Microsoft, Enhanced HTTP, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/enhanced-http
