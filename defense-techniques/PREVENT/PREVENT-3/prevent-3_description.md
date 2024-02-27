@@ -4,9 +4,9 @@
 PREVENT-3
 
 ## Summary
-The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is an account that can be configured on the site server. The NAA is used  to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI).
+The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI).
 
-If the site is configured with to use HTTPS or [Enhanced HTTP (eHTTP)](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/enhanced-http) communication, the NAA is not needed to access the contents of a distribution point. Despite HTTPS or eHTTP being configured, we sometimes find the NAA configured as part of a site installation and long forgotten about. If this is your scenario, we (and Microsoft) recommend disabling the NAA entirely.
+If the site is configured to use HTTPS or [Enhanced HTTP (eHTTP)](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/enhanced-http) communication, the NAA is not needed to access the contents of a distribution point. Despite HTTPS or eHTTP being configured, we sometimes find the NAA configured as part of a site installation and long forgotten about. If this is your scenario, we (and Microsoft) recommend disabling the NAA entirely.
 
 There exist several scenarios where the NAA is required, including HTTPS and eHTTP scenarios:
 - [Multicast](https://learn.microsoft.com/en-us/mem/configmgr/osd/deploy-use/use-multicast-to-deploy-windows-over-the-network) is configured for operating system deployment.
@@ -16,7 +16,7 @@ There exist several scenarios where the NAA is required, including HTTPS and eHT
 - A task sequence is configured with "Run another program first."
 - Managing clients in untrusted domains and cross-forest trusts
 
-If operating within one of the above scenarios, ensure the NAA is properly permissioned such that it cannot logon interactively and can read the distribution point network share.
+If operating within one of the above scenarios, ensure the NAA is properly permissioned such that it cannot logon interactively and can only read the distribution point network share.
 
 If none of the above scenarios pertain to the site in question, Microsoft recommends disabling the NAA in favor of using HTTPS or Enhanced HTTP communications for retrieving software from distribution points. The NAA configuration window is shown in Figure 1 with the "Remove" option highlighted.
 

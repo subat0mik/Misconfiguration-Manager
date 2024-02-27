@@ -11,7 +11,7 @@
 - Domain authentication
 
 ## Summary
-The network access account (NAA) is an account that can be configured on the SCCM site server. The NAA is used  to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI). But what happens before that? How are the secrets protected in transit before the client protects them with DPAPI?
+The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI). But what happens before that? How are the secrets protected in transit before the client protects them with DPAPI?
 
 The client's first step is to request a list of available policies. For this technique, only `NAAConfig` is covered. The `NAAConfig` policy contains the obfuscated NAA credentials. To request this policy, the request headers must contain some important information, all of which is available at this stage.
 
