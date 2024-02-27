@@ -1,13 +1,13 @@
 # Retrieve secrets from PXE boot media
 ## Code Name
-- CRED01
+- CRED-1
 
 ## MITRE ATT&CK TTPs
 - [TA0001 - Initial Access](https://attack.mitre.org/tactics/TA0001)
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006)
 - [T1078.002 - Valid Accounts: Domain Accounts](https://attack.mitre.org/techniques/T1078/002/)
 
-## Required Privilege / Context
+## Requirements
 - Unauthenticated network access
 - Line of sight to DHCP server
 - Line of sight to PXE-enabled distrution point
@@ -47,10 +47,10 @@ Attackers may recover domain credentials from this process, the difficulty of wh
 With these credentials, attackers may transition from an unauthenticated context on the network to a domain-authenticated context. If any of the credentials recovered are privileged, it may also enable privilege escalation and lateral movement vectors.
 
 ## Defensive IDs
-- [PROTECT04](../../defense-techniques/PROTECT04/protect04-description.md)
-- [PROTECT07](../../defense-techniques/PROTECT07/protect07-description.md)
-- [PROTECT08](../../defense-techniques/PROTECT08/protect08-description.md)
-- [PROTECT11](../../defense-techniques/PROTECT11/protect11-description.md)
+- [PREVENT-4](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
+- [PREVENT-7](../../../defense-techniques/PREVENT/PREVENT-7/prevent-7_description.md)
+- [PREVENT-8](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
+- [PREVENT-11](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
 
 ## Examples
 
