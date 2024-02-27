@@ -1,7 +1,7 @@
-| Codname | Description | Notes |
-|---------|-------------|-------|
-| PREVENT-1 | Install KB15599094 |
-| PREVENT-2 | Disable Fallback to NTLM |
+| Codname | Description | Notes | Status |
+|---------|-------------|-------| -------|
+| PREVENT-1 | Install KB15599094 | | X |
+| PREVENT-2 | Disable Fallback to NTLM | | X |
 | PREVENT-3 | Disable Network Access Accounts |
 | PREVENT-4 | Configure Enhanced HTTP |
 | PREVENT-5 | Disable automatic side-wide client push installation |
