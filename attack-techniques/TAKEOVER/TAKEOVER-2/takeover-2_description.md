@@ -1,13 +1,13 @@
 # Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
 
 ## Code Name
-- TAKEOVER02
+- TAKEOVER-2
 
-## ATT&CK TTPs
-- [T1078.002 - Valid Accounts](https://attack.mitre.org/techniques/T1078/002/)
-- [T1187 - Forced Authentication](https://attack.mitre.org/techniques/T1187/)
+## MITRE ATT&CK TTPs
+- [T1078.002](https://attack.mitre.org/techniques/T1078/002/) - Valid Accounts
+- [T1187](https://attack.mitre.org/techniques/T1187/) - Forced Authentication
 
-## Required Privilege / Context
+## Requirements
 Valid domain credentials with network connectivity to the primary site server and SMS Provider.
 
 ## Summary
@@ -19,6 +19,11 @@ The SMS Provider also provides access to the site database via the administratio
 ## Impact
 
 This technique may allow an attacker to relay a primary site server machine account to a remote SMS Provider and elevate their privileges to "Full Administrator" for the SCCM Hierarchy. If successful, this technique enables lateral movement to all SCCM clients and/or sensitive systems.
+
+## Defensive IDs
+- [PREVENT-8: Require PKI certificates for client authentation](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
+- [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
+- [DETECT-4: Monitor SMS Admins group membership](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
 
 ## Examples
 - Use SCCMHunter to profile SCCM component server roles
@@ -89,13 +94,6 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 [*] Server returned code 201, attack successful
 
 ```
-
-
-## Defensive IDs
-- [PROTECT01](../../defense-techniques/PROTECT01/protect01-description.md)
-- [PROTECT10](../../defense-techniques/PROTECT10/protect10-description.md)
-- [DETECT01](../../defense-techniques/DETECT01/detect01-description.md)
-
 
 ## References
 - Garrett Foster, Site Takeover via SCCM’s AdminService API, https://posts.specterops.io/site-takeover-via-sccms-adminservice-api-d932e22b2bf
