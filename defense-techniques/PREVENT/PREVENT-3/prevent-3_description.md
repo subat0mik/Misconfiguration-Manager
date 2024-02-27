@@ -40,3 +40,4 @@ _Figure 1 - Network access account configuration_
 
 ## References
 - Microsoft, Network access account, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account
+- Christopher Panayi, An inside look: How to distribute credentials securely in SCCM, https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm
