@@ -8,22 +8,31 @@ NTLM relay via automatic client push installation
 - Privilege Escalation
 
 ## Requirements
+
+### Coercion
 - Valid Active Directory domain credentials
 - Connectivity to HTTPS (TCP/443) on a management point
 - Connectivity from the primary site server to SMB (TCP/445) on the relay server
-- Connectivity from the relay server to SMB (TCP/445) on the relay target
 - Primary site server settings:
     - Automatic site-wide client push installation is enabled
     - Automatic site assignment is enabled
     - `Allow connection fallback to NTLM` is enabled for client push installation
     - PKI certificates are not required for client authentication
     - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictNTLMInDomain` = `0` or not present, or = `X` and `DCAllowedNTLMServers` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0` or not present, or = `1` and `ClientAllowedNTLMServers` contains attacker relay server
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
+    - Domain computer account is not in `Protected Users`
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `LmCompatibilityLevel` < 5 or not present, or = `5` and LmCompatibilityLevel >= 3 on the coercion target
+
+### Relay
 - Relay target settings:
+    - Connectivity from the relay server to SMB (TCP/445) on the relay target
     - `RequireSecuritySignature` = `0` or not present
-    - `RestrictNTLMInDomain` = `0` or not present, or = `X` and `DCAllowedNTLMServers` contains attacker relay server
-    - `RestrictReceivingNTLMTraffic` = `0` or not present, or = `1` and `X` contains attacker relay server
+    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - Coercion target is local admin (to access RPC/admin shares)
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
 
 ## Summary
 When SCCM automatic site assignment and automatic client push installation are enabled, and PKI certificates aren’t required for client authentication, it’s possible to coerce NTLM authentication from the site server's installation and machine accounts to an arbitrary NetBIOS name, FQDN, or IP address, allowing the credentials to be relayed or cracked. This can be done using a low-privileged domain account on any Windows system.
