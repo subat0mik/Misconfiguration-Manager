@@ -13,5 +13,5 @@ When configuring a boot image for preboot execution environment (PXE) booting fr
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
 
 ## References
-Microsoft, WinPE Boot, https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#winpe-boot
-Jason Barrett, How to Enable Command Support Console in WinPE, https://learnmesccm.com/ts/enable-command-support-console-winpe.html
+- Microsoft, WinPE Boot, https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#winpe-boot
+- Jason Barrett, How to Enable Command Support Console in WinPE, https://learnmesccm.com/ts/enable-command-support-console-winpe.html
