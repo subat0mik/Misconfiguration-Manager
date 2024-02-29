@@ -1,7 +1,7 @@
-# Configure strong PXE boot password
+# PREVENT-6
 
-## Code Name
-PREVENT-6
+## Description
+Configure strong PXE boot password
 
 ## Summary
 
@@ -14,7 +14,7 @@ _Figure 1 - Distribution Point PXE Settings_
 This password can be retrieve using tools like [PXEThief](https://github.com/MWR-CyberSec/PXEThief) and [pxethiefy](https://github.com/csandker/pxethiefy) and subjected to offline password attacks. Therefore, it is paramount to choose a unique, strong password that can withstand cryptographic interogation.
 
 ## Linked Defensive IDs
-- 
+- N/A
 
 ## Associated Offensive IDs
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)

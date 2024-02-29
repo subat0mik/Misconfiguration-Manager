@@ -1,7 +1,7 @@
-# Patch Site Server with KB15599094
+# PREVENT-1
 
-## Code Name
-PREVENT-1
+## Description
+Patch Site Server with KB15599094
 
 ## Summary
 
@@ -17,6 +17,9 @@ This patch only applies to versions 2103+. If the installed version is older, Mi
 
 ## Linked Defensive IDs
 - [PREVENT-2](../PREVENT-2/prevent-2_description.md)
+
+## Associated Offensive IDs
+- [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
 
 ## References
 - Microsoft, NTLM client installation update for Microsoft Endpoint Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/hotfix/2207/15599094
