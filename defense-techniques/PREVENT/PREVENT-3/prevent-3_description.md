@@ -1,7 +1,7 @@
-# Harden or Disable Network Access Account
+# PREVENT-3
 
-## Code Name
-PREVENT-3
+## Description
+Harden or Disable Network Access Account
 
 ## Summary
 The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI).

@@ -1,10 +1,9 @@
-# Disable automatic side-wide client push installation
+# PREVENT-5
 
-## Code Name
-PREVENT-5
+## Description
+Disable automatic side-wide client push installation
 
 ## Summary
-
 [Client push installation](https://learn.microsoft.com/en-us/mem/configmgr/core/clients/deploy/deploy-clients-to-windows-computers) involves the automatic installation of the client software on discovered computers that meet specified criteria. This method is initiated from the ConfigMgr console and can target individual computers, collections of computers, or newly discovered systems that appear in the ConfigMgr database. The process uses a client push installation account, which must have administrative rights on the target computers, to remotely install the client software. This behavior requires the site server to authenticate to the client, thus potentially enabling authentication coercion opportunities, depending on the configuration.
 
 In ConfigMgr versions 1806+, the site server will attempt to authenticate to the client using Kerberos. However, if this fails, the site server will fallback to NTLM authentication. The "Allow connection fallback to NTLM" setting [PREVENT-2](../PREVENT-2/prevent-2_description.md) is enabled by default in versions prior to 2207.
@@ -17,7 +16,6 @@ If a client push installation account is not configured, the site server will us
 
 ## Linked Defensive IDs
 - [PREVENT-2: Disable Fallback to NTLM ](../PREVENT-2/prevent-2_description.md)
-
 
 ## Associated Offensive IDs
 
