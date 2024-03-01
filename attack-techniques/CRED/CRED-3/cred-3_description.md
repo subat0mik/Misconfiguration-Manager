@@ -131,3 +131,4 @@ SharpDPAPI completed in 00:00:00.0397643
 - Chris Thompson, SharpSCCCM, https://github.com/Mayyhem/SharpSCCM
 - Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI
 - Duane Michael, X, https://twitter.com/subat0mik/status/1582387536147582976?s=20
+- Benjamin Delpy, X, https://twitter.com/gentilkiwi/status/1392594113745362946

@@ -1,7 +1,7 @@
-# Configure Enhanced HTTP
+# PREVENT-4
 
-## Code Name
-PREVENT-4
+## Description
+Configure Enhanced HTTP
 
 ## Summary
 [Enhanced HTTP](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/enhanced-http) (eHTTP) is a simplified method of secure communication without the overhead of a standard PKI deployment. In an eHTTP setup, the site issues self-signed certificates to the various site servers, such as management points and distribution points. Then, these site systems issue unique site tokens to clients. The client then uses the site token for communication with site servers. Microsoft provides a diagram of this process (Figure 1).

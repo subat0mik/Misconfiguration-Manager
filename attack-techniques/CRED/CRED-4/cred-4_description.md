@@ -14,7 +14,7 @@
 ## Summary
 The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace.
 
-This technique may apply whether an NAA is currently configured ([CRED-3](../CRED-3/cred-3_description.md) or not. Therefore, even if [CRED-3](../CRED-3/cred-3_description.md) is fruitless, there is still hope.
+This technique may apply whether an NAA is currently configured [CRED-3](../CRED-3/cred-3_description.md) or not. Therefore, even if [CRED-3](../CRED-3/cred-3_description.md) is fruitless, there is still hope.
 
 Data stored within WMI classes exists on disk in the CIM repository file located at `C:\Windows\System32\wbem\Repository\OBJECTS.DATA`. Due to the [nuance](https://github.com/mandiant/flare-wmi/blob/master/python-cim/doc/data-recovery.md) of how WMI and CIM clean up these objects, they may be cleared from the database (as read from a WMI context) but still persist on disk in the CIM repository file.
 
