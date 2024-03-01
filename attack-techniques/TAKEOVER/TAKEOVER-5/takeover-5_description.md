@@ -14,9 +14,7 @@ Valid domain credentials with network connectivity to the passive primary site s
 
 ## Summary
 
-For high availability configurations the passive site server role is deployed to SCCM sites where redundancy for the site server role is required. A passive site server shares the same configuration and privileges as the active site server yet performs no writes or changes to the site until promoted manually or during an automated failover.
-
-During setup, the passive site server is [required](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/site-server-high-availability#configurations-for-the-site-server-in-passive-mode) to be a member of the active site server's local administrator group. In default setups, SMB signing is not enforced on either site server host operating system and are vulnerable to NTLM relay attacks. 
+For high availability configurations the passive site server role is deployed to SCCM sites where redundancy for the site server role is required. A passive site server shares the same configuration and privileges as the active site server yet performs no writes or changes to the site until promoted manually or during an automated failover. During setup, the passive site server is [required](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/site-server-high-availability#configurations-for-the-site-server-in-passive-mode) to be a member of the active site server's local administrator group. In default setups, SMB signing is not enforced on either site server host operating system and are vulnerable to NTLM relay attacks. 
 
 ## Impact
 

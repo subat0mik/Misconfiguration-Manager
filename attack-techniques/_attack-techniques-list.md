@@ -5,7 +5,7 @@
 | CRED-3 | Current NAA DPAPI blobs | | PREVENT-3, PREVENT-4, PREVENT-10 | Complete
 | CRED-4 | Legacy NAA DPAPI blobs | | CRED-3, PREVENT-3, PREVENT-4, PREVENT-10, PREVENT-15 | Complete
 | CRED-5 | SCCM database credential dump | | | QA
-| ELEVATE-1 | NTLM relay site server to SMB on component servers | | | Not started
+| ELEVATE-1 | NTLM relay site server to SMB on site systems | | | Not started
 | EXEC-1 | Application deployment | | | Not started
 | EXEC-2 | PowerShell script execution | | | Not started
 | TAKEOVER-1 | NTLM relay site server or SMS Provider SMB to MSSQL on remote site database | X - or SMS Provider? | PREVENT-2, PREVENT-12, PREVENT-14 | QA
@@ -20,7 +20,6 @@
 | RECON02| Remote SMB Recon | | | Not started
 | RECON03| Remote HTTP(s) Recon | | | Not started
 | RECON04| CMPivot Recon | | PREVENT-9 | QA
-
 | TAKEOVER01 | NTLM relay primary site server SMB to MSSQL on remote site database | X
 | TAKEOVER02 | NTLM relay primary site server SMB to AdminService on remote SMS Provider | X
 | TAKEOVER08 | NTLM relay primary site server SMB to SMB on remote site database | *

