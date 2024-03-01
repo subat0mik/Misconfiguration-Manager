@@ -1,7 +1,7 @@
 # TAKEOVER-1
 
 ## Description
-Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
+Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 
 ## MITRE ATT&CK TTPs
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
@@ -12,10 +12,9 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on the site database
 ### Coercion
 - Valid Active Directory domain credentials
 - Connectivity to SMB (TCP/445) on a coercion target:
-    - TAKEOVER-1.1: Primary site server 
-    - TAKEOVER-1.2: SMS Provider
-    - TAKEOVER-1.3: CAS site server
-    - TAKEOVER-1.4: Passive site server
+    - TAKEOVER-1.1: Coerce primary site server
+    - TAKEOVER-1.2: Coerce SMS Provider
+    - TAKEOVER-1.3: Coerce passive site server
 - Connectivity from the coercion target to SMB (TCP/445) on the relay server
 - Coercion target settings:
     - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
@@ -47,13 +46,12 @@ The "Full Administrator" security role is granted all permissions in Configurati
 - [PREVENT-14: Require Extended Protection for Authentication (EPA) on AD CS CAs and standalone site databases](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
 
 ## Subtechniques
-- TAKEOVER-1.1: NTLM relay primary site server SMB to MSSQL on remote site database
-- TAKEOVER-1.2: NTLM relay SMS Provider SMB to MSSQL on remote site database
-- TAKEOVER-1.3: NTLM relay CAS site server SMB to MSSQL on remote CAS site database
-- TAKEOVER-1.4: NTLM relay passive site server SMB to MSSQL on remote site database
+- TAKEOVER-1.1: Coerce primary site server
+- TAKEOVER-1.2: Coerce SMS Provider
+- TAKEOVER-1.3: Coerce passive site server
 
 ## Examples
-The steps to execute TAKEOVER-1.1 through TAKEOVER-1.4 are the same except that a different system is targeted for coercion of NTLM authentication.
+The steps to execute TAKEOVER-1.1 through TAKEOVER-1.3 are the same except that a different system is targeted for coercion of NTLM authentication.
 
 1. (Linux) Use `sccmhunter` to get the hex-formatted SID of the Active Directory user you'd like to grant the Full Administrator role in SCCM, as well as the MSSQL statements required to grant the role to the user:
 

@@ -1,7 +1,7 @@
-# TAKEOVER-6
+# TAKEOVER-8
 
 ## Description
-Hierarchy takeover via NTLM coercion and relay to LDAP on a domain controller, then add a Full Administrator to the site
+Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller
 
 ## MITRE ATT&CK TTPs
 - [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
@@ -11,11 +11,10 @@ Hierarchy takeover via NTLM coercion and relay to LDAP on a domain controller, t
 ### Coercion
 - Valid Active Directory domain credentials
 - Connectivity to SMB (TCP/445) on a coercion target:
-    - TAKEOVER-6.1: Primary site server 
-    - TAKEOVER-6.2: SMS Provider
-    - TAKEOVER-6.3: CAS site server
-    - TAKEOVER-6.4: Passive site server
-    - TAKEOVER-6.5: Site database server
+    - TAKEOVER-8.1: Coerce primary site server 
+    - TAKEOVER-8.2: Coerce SMS Provider
+    - TAKEOVER-8.3: Coerce passive site server
+    - TAKEOVER-8.4: Coerce site database server
 - Connectivity from the coercion target to any port on the relay server
 - The relay server is in the intranet zone and has a valid NetBIOS name or FQDN (e.g., via ADIDNS poisoning if using a network implant)
 - Coercion target settings:
@@ -41,11 +40,12 @@ Hierarchy takeover via NTLM coercion and relay to LDAP on a domain controller, t
     - `MachineAccountQuota` > `0` and domain users permitted to add computer accounts
 
 ## Summary
-An attacker who is able to successfully coerce NTLM authentication from the Active Directory domain computer account for a primary site server, system hosting the SMS Provider role, CAS site server, or passive site server via HTTP and relay it to LDAP on a domain controller can conduct resource-based constrained delegation (RBCD) or shadow credentials attacks to compromise the server, then connect to:
-- MSSQL on the site database as a site server or SMS Provider (TAKEOVER-1)
-- SMB on the site database or an SMS Provider as a site server
+An attacker who is able to successfully coerce NTLM authentication from the Active Directory domain computer account for a primary site server, system hosting the SMS Provider role, or passive site server via HTTP and relay it to LDAP on a domain controller can conduct resource-based constrained delegation (RBCD) or shadow credentials attacks to compromise the server, then connect to:
+- MSSQL on the site database as the site server or SMS Provider (see TAKEOVER-1)
+- SMB on the site database as the site server (see TAKEOVER-2)
+- SMB on the SMS Provider as the site server (see TAKEOVER-6)
 - SMB on the site database server or an SMS Provider as itself
-- SMB on the site server as a passive site server 
+- SMB on the primary site server as a passive site server, or vice versa (see TAKEOVER-7)
 
 The attacker can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.
 
@@ -56,15 +56,13 @@ The "Full Administrator" security role is granted all permissions in Configurati
 
 
 ## Subtechniques
-- TAKEOVER-6.1: NTLM relay primary site server HTTP to LDAP on a domain controller
-- TAKEOVER-6.2: NTLM relay SMS Provider HTTP to LDAP on a domain controller
-- TAKEOVER-6.3: NTLM relay CAS site server HTTP to LDAP on a domain controller
-- TAKEOVER-6.4: NTLM relay passive site server HTTP to LDAP on a domain controller
-- TAKEOVER-6.5: NTLM relay site database HTTP to LDAP on a domain controller
-
+- TAKEOVER-8.1: Coerce primary site server 
+- TAKEOVER-8.2: Coerce SMS Provider
+- TAKEOVER-8.3: Coerce passive site server
+- TAKEOVER-8.4: Coerce site database server
 
 ## Examples
-The steps to execute TAKEOVER-6.1 through TAKEOVER-6.5 are mostly the same except that a different system is targeted for coercion of NTLM authentication.
+The steps to execute TAKEOVER-8.1 through TAKEOVER-8.4 are mostly the same except that a different system is targeted for coercion of NTLM authentication.
 
 1. On the attacker relay server, start `ntlmrelayx`, targeting the IP address of the domain controller and the LDAPS service and specifying options to conduct a resource-based constrained delegation attack:
 
