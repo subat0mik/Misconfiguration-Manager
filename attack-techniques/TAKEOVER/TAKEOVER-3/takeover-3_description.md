@@ -1,7 +1,6 @@
-# Hierarchy Takeover via NTLM Coercion and Relay from Site Server to SMB
-
-## Code Name
-TAKEOVER03
+# TAKEOVER-3
+## Description
+Hierarchy Takeover via NTLM Coercion and Relay from Site Server to SMB
 
 ## ATT&CK TTPs
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement

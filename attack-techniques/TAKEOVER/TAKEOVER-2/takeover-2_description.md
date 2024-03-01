@@ -1,7 +1,7 @@
-# Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
+# - TAKEOVER-2
 
-## Code Name
-- TAKEOVER-2
+## Description
+Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
 
 ## MITRE ATT&CK TTPs
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement

@@ -1,10 +1,9 @@
-# Enumerating LDAP for SCCM Related Assets
-
-## Code Name
-RECON-1
+# RECON-1
+## Description
+Enumerating LDAP for SCCM Related Assets
 
 ## MITRE ATT&CK TTPs
-- [TA0043](https://attack.mitre.org/tactics/TA0043) - Reconnaissance
+- [TA0007](https://attack.mitre.org/tactics/TA0007/) - Discovery
 
 ## Requirements
 

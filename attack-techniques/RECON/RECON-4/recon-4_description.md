@@ -5,7 +5,7 @@
 ## ATT&CK TTPs
 - [TA0009](https://attack.mitre.org/tactics/TA0009/) - Collection
 - [TA0010](https://attack.mitre.org/tactics/TA0010/) - Exfiltration
-- [TA0043](https://attack.mitre.org/tactics/TA0043/) - Reconnaissance
+- [TA0007](https://attack.mitre.org/tactics/TA0007/) - Discovery
 
 ## Required Privilege / Context
 - Run CMPivot permission on the Collection scope
