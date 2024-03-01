@@ -4,8 +4,8 @@
 - TAKEOVER-2
 
 ## MITRE ATT&CK TTPs
-- [T1078.002](https://attack.mitre.org/techniques/T1078/002/) - Valid Accounts
-- [T1187](https://attack.mitre.org/techniques/T1187/) - Forced Authentication
+- [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+- [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
 
