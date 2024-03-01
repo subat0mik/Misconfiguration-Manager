@@ -4,8 +4,8 @@
 NTLM relay via automatic client push installation
 
 ## MITRE ATT&CK Tactics
-- Lateral Movement
-- Privilege Escalation
+- [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+- [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
 

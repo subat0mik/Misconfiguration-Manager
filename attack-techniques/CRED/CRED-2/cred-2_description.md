@@ -4,7 +4,6 @@
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
-- [TA0004](https://attack.mitre.org/tactics/TA0004/) - Privilege Escalation
 - [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
 ## Requirements

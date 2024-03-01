@@ -4,7 +4,7 @@
 User hunting via SMS Provider
 
 ## MITRE ATT&CK TTPs
-- [TA0043](https://attack.mitre.org/tactics/TA0043) - Reconnaissance
+- [TA0007](https://attack.mitre.org/tactics/TA0007/) - Discovery
 
 ## Requirements
 Permitted security roles:
