@@ -8,8 +8,33 @@ Hierarchy takeover via NTLM coercion and relay to SMB on remote site database
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
 
 ## Requirements
--
--
+
+### Coercion
+- Valid Active Directory domain credentials
+- Connectivity to SMB (TCP/445) on a coercion target:
+    - TAKEOVER-2.1: Coerce primary site server
+    - TAKEOVER-2.2: Coerce passive site server
+- Connectivity from the coercion target to SMB (TCP/445) on the relay server
+- Coercion target settings:
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
+    - Domain computer account is not in `Protected Users`
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+
+### Relay
+- Connectivity from the relay server to SMB (TCP/445) on the relay target, the site database 
+- Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
+- Relay target settings:
+    - `RequireSecuritySignature` = `0` or not present
+    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - Coercion target is local admin (to access RPC/admin shares)
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
+
+
+
 
 ## Summary
 
