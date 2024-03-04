@@ -1,4 +1,22 @@
-![Sponsored by SpecterOps](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspecterops%2F.github%2Fmain%2Fconfig%2Fshield.json)
+<p align="center">
+<a href="https://github.com/subat0mik/Misconfiguration-Manager">
+  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspecterops%2F.github%2Fmain%2Fconfig%2Fshield.json&style=flat"
+      alt="Sponsored by SpecterOps"/>
+</a>
+<a href="https://join.slack.com/t/bloodhoundhq/shared_invite/zt-1tgq6ojd2-ixpx5nz9Wjtbhc3i8AVAWw">
+    <img src="https://img.shields.io/badge/Slack-%23sccm-blueviolet?logo=slack" alt="Slack"/>
+</a>
+<a href="https://twitter.com/subat0mik">
+    <img src="https://img.shields.io/twitter/follow/subat0mik?style=social"
+      alt="@subat0mik_ on Twitter"/></a>
+<a href="https://twitter.com/_Mayyhem">
+    <img src="https://img.shields.io/twitter/follow/_Mayyhem?style=social"
+      alt="@_Mayyhem on Twitter"/></a>
+<a href="https://twitter.com/garrfoster">
+    <img src="https://img.shields.io/twitter/follow/garrfoster?style=social"
+      alt="@garrfoster on Twitter"/></a>
+
+</p>
 
 # Misconfiguration Manager
 This repository serves as a central knowledge-base for all known Microsoft Configuration Manager (AKA MCM, ConfigMgr, Systems Center Configuration Manager, or SCCM) tradecraft and associated defensive and hardening guidance. Our goal is to help demystify SCCM tradecraft and simplify SCCM attack path management for defenders while also educating offensive professionals on this nebulous attack surface. Designed to go beyond the static-nature of whitepapers, this living repository not only documents SpecterOps' real-world application of misconfigurations but also encourages ongoing contributions from the community to enhance its relevance and utility.
