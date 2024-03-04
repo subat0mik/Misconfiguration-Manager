@@ -1,7 +1,6 @@
-# Dump network access account (NAA) credentials via WMI
-
-## Code Name
-- CRED-3
+# CRED-3
+## Description
+Dump currently deployed credentials via WMI
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access

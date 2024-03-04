@@ -1,5 +1,4 @@
 # ELEVATE-2
-
 ## Description
 NTLM relay via automatic client push installation
 

@@ -1,5 +1,4 @@
 # EXEC-1
-
 ## Description
 Application deployment
 

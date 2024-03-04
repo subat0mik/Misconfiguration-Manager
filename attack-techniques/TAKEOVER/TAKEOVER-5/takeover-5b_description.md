@@ -1,7 +1,6 @@
-# Hierarchy Takeover via NTLM Coercion and AdminService Relay From Passive Site Server
-
-## Code Name
-TAKEOVER04
+# TAKEOVER-5.2
+## Description
+Hierarchy Takeover via NTLM Coercion and AdminService Relay From Passive Site Server
 
 ## ATT&CK TTPs
 - [T1078.002 - Valid Accounts](https://attack.mitre.org/techniques/T1078/002/)

@@ -1,5 +1,4 @@
 # TAKEOVER-2
-
 ## Description
 Hierarchy takeover via NTLM coercion and relay to SMB on remote site database
 

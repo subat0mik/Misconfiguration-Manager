@@ -1,5 +1,4 @@
 # CRED-5
-
 ## Description
 Dump SCCM credentials from site database
 
