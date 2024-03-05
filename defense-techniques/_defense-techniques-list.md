@@ -23,9 +23,10 @@
 | PREVENT-21 | Restrict PXE boot to authorized VLANs | | | QA
 | PREVENT-22 | Do not manage Tier 0 assets |
 | PREVENT-23 | Site database DBA account hygiene
-| DETECT-1 | Monitor site system computer accounts authenticating from a source that is not its static IP |
-| DETECT-2 | Monitor client push installation accounts authenticating from anywhere other than the primary site server |
-| DETECT-3 | Monitor application deployment logs in the site's Audit Status Messages |
-| DETECT-4 | Monitor group membership changes for SMS Admins | | TAKEOVER-2 |
+| DETECT-1 | Monitor site system computer accounts authenticating from a source that is not its static netbios name | | | X
+| DETECT-2 | Monitor the read access requests of the System Management container within Active Directory Users and Computers | | | X
+| DETECT-3 | Monitor client push installation accounts authenticating from anywhere other than the primary site server |
+| DETECT-4 | Monitor application deployment logs in the site's Audit Status Messages |
+| DETECT-5 | Monitor group membership changes for SMS Admins | | TAKEOVER-2 |
 | CANARY-1 | Configure an appropriately-privileged NAA with interactive logon restricted, monitor for usage |
 | CANARY-2 | Configure a minimally privileged client push account
