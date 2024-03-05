@@ -10,7 +10,7 @@
 | PREVENT-8 | Require PKI certificates for client authentation | Prevents rogue device registration | TAKEOVER-2 |
 | PREVENT-9 | Enforce MFA for SMS Provider calls | | RECON-4, TAKEOVER-2 |
 | PREVENT-10 | Enforce the principle of least privilege for Configuration Manager accounts | | | QA
-| PREVENT-11 | Disable / Uninstall WebClient on site servers  | Prevents NTLM coercion over HTTP |
+| PREVENT-11 | Disable / Uninstall WebClient on site servers  | Prevents NTLM coercion over HTTP | | QA
 | PREVENT-12 | Require SMB signing on site systems | Prevents SMB relay | TAKEOVER-1 |
 | PREVENT-13 | Require LDAP channel binding and signing on DCs | Prevents relay to LDAP
 | PREVENT-14 | Require Extended Protection for Authentication (EPA) on AD CS CAs and standalone site databases | Prevents relay to HTTP and MSSQL | TAKEOVER-1
