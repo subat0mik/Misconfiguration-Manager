@@ -45,7 +45,7 @@ Impact for these scenarios is difficult to quantify. In some cases a compromised
 
 ## Defensive IDs
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
-- [DETECT-1: Monitor site system computer accounts authenticating from a source that is not its static IP](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [DETECT-1: Monitor site system computer accounts authenticating from a source that is not its static netbios name](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
 
 ## Examples
 1. On the attacker host, identify and profile SCCM assets with `SCCMhunter`. The output below is snipped from the output of the SMB module. From the results, *SCCM.INTERNAL.LAB* is identified as a site server in the *LAB* site with multiple hosts from the same site hosting various site system roles.
