@@ -1,7 +1,6 @@
-# Retrieve legacy network access account (NAA) credentials from the CIM Repository
-
-## Code Name
-- CRED-4
+# CRED-4
+## Description
+Retrieve legacy network access account (NAA) credentials from the CIM Repository
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access

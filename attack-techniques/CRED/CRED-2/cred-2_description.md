@@ -1,6 +1,6 @@
-# Request and deobfuscate machine policy to retrieve credential material
-## Code Name
-- CRED-3
+# CRED-3
+## Description
+Request and deobfuscate machine policy to retrieve credential material
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access

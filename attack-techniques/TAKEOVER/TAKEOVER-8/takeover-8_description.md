@@ -1,5 +1,4 @@
 # TAKEOVER-8
-
 ## Description
 Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller
 

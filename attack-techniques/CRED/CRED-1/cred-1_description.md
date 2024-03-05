@@ -1,6 +1,6 @@
-# Retrieve secrets from PXE boot media
-## Code Name
-- CRED-1
+# CRED-1
+## Description
+Retrieve secrets from PXE boot media
 
 ## MITRE ATT&CK TTPs
 - [TA0001](https://attack.mitre.org/tactics/TA0001) - Initial Access

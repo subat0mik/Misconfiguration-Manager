@@ -1,5 +1,4 @@
 # TAKEOVER-1
-
 ## Description
 Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 

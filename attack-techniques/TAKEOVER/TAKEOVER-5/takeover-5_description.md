@@ -1,5 +1,4 @@
-# - TAKEOVER-2
-
+# TAKEOVER-5
 ## Description
 Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
 
@@ -12,9 +11,9 @@ Hierarchy Takeover via NTLM Coercion and Relay from Site Server to AdminService
 ### Coercion
 - Valid Active Directory domain credentials
 - Connectivity to SMB (TCP/445) on a coercion target:
-    - TAKEOVER-2.1: Primary site server 
-    - TAKEOVER-2.2: Passive site server
-    - TAKEOVER-2.3: CAS site server
+    - TAKEOVER-5.1: Primary site server 
+    - TAKEOVER-5.2: Passive site server
+    - TAKEOVER-5.3: CAS site server
 
 - Connectivity from the coercion target to SMB (TCP/445) on the relay server
 - Coercion target settings:
@@ -45,9 +44,9 @@ This technique may allow an attacker to relay a site server machine account to a
 - [DETECT-4: Monitor SMS Admins group membership](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
 
 ## Subtechniques
-- TAKEOVER-2.1: NTLM relay primary site server SMB to AdminService on remote SMS Provider
-- TAKEOVER-2.2: NTLM relay passive site server SMB to AdminService on remote SMS Provider
-- TAKEOVER-2.3: NTLM relay CAS site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-5.1: NTLM relay primary site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-5.2: NTLM relay passive site server SMB to AdminService on remote SMS Provider
+- TAKEOVER-5.3: NTLM relay CAS site server SMB to AdminService on remote SMS Provider
 
 
 ## Examples

@@ -1,5 +1,4 @@
-# TAKEOVER-5
-
+# TAKEOVER-7
 ## Description
 Hierarchy Takeover via NTLM Coercion and SMB Relay From Passive Site Server
 
