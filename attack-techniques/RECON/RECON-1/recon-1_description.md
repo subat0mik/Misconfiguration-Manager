@@ -78,6 +78,7 @@ We (SpecterOps) frequently observe predictable naming conventions in use to help
 
 
 ## Defensive IDs
+- [DETECT-2: Monitor read property access to the System Management container within Active Directory Users and Computers](../../../defense-techniques/DETECT/DETECT-2/detect-2_description.md)
 
 ## Examples
 
