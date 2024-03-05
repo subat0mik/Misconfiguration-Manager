@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://github.com/subat0mik/Misconfiguration-Manager">
-  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspecterops%2F.github%2Fmain%2Fconfig%2Fshield.json&style=flat"
+  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspecterops%2F.github%2Fmain%2Fconfig%2Fshield.json"
       alt="Sponsored by SpecterOps"/>
 </a>
 <a href="https://join.slack.com/t/bloodhoundhq/shared_invite/zt-1tgq6ojd2-ixpx5nz9Wjtbhc3i8AVAWw">
@@ -8,13 +8,16 @@
 </a>
 <a href="https://twitter.com/subat0mik">
     <img src="https://img.shields.io/twitter/follow/subat0mik?style=social"
-      alt="@subat0mik_ on Twitter"/></a>
+      alt="@subat0mik on Twitter"/>
+</a>
 <a href="https://twitter.com/_Mayyhem">
     <img src="https://img.shields.io/twitter/follow/_Mayyhem?style=social"
-      alt="@_Mayyhem on Twitter"/></a>
+      alt="@_Mayyhem on Twitter"/>
+</a>
 <a href="https://twitter.com/garrfoster">
     <img src="https://img.shields.io/twitter/follow/garrfoster?style=social"
-      alt="@garrfoster on Twitter"/></a>
+      alt="@garrfoster on Twitter"/>
+</a>
 
 </p>
 
