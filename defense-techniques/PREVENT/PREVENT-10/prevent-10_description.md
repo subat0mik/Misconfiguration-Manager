@@ -1,11 +1,119 @@
-# Plain English Title
+# PREVENT-10
 
-## Code Name
-SITE-TAKEOVERX
+## Description
+Enforce the principle of least privilege for Configuration Manager accounts
 
 ## Summary
+Over-privileged accounts and unnecessary permissions are a common misconfiguration in Configuration Manager. It is paramount to ensure the various accounts in use are assigned only the necessary permissions to perform their function. This article does not cover every account. Do not use these accounts for multiple purposes.
 
-## Examples
+### Active Directory forest account
+
+### Capture OS image account
+This account is used as part of task sequences. If configured, it may be deployed to various systems and recoverable as admininstrator on those systems.
+
+- Do NOT assign interactive logon permissions
+- Do NOT use the network access account
+
+### Client push installation account
+This account is used to connect to computers and install the SCCM client software. Attackers can coerce authentication from this account and potentially perform NTLM relay attacks.
+
+- Must be a member of the local `Administrators` group on target computers
+- Do NOT use a domain administrator account
+- Use domain or local group policy to `Deny log on locally`
+
+### Enrollment point connection account
+This account is used for an MDM enrollment point to connect to the SCCM site database. If this is not configured, the computer account will be used.
+
+- Required when the enrollment point is in an untrusted domain
+- Requires Read and Write access to the site database
+
+### Exchange Server connection account
+This account is used to establish a connection to an Exchange Server. This connection is used to find and manage mobile devices that connect to the Exchange Server.
+
+- Requires Exchange PowerShell cmdlets
+
+### Management point connection account
+This account is used by management points to connect to the site database for the purpose of sending and receiving client information. If this is not configured, the management point's computer account will be used.
+
+- Required when the management point is in an untrusted domain
+- Do NOT add this account to `Administrators` on the MSSQL server
+- Do NOT assign interactive logon permissions
+
+### Multicast connection account
+This account is used to read multicast information from the site database. If this is not a configured, the computer account will be used.
+
+- Required when the site database is in an untrusted domain
+- Do NOT add this account to `Administrators` on the MSSQL server
+- Do NOT assign interactive logon permissions
+
+### Network access account
+This account is used to access content on distribution points when the computer account cannot be used (E.g., not domain joined). There are several scenarios where this account is required. Please refer to the [documentation](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#actions-that-require-the-network-access-account).
+
+- Requires the `Access this computer from the network` right on the distribution point
+- Do NOT grant interactive logon permissions
+- Do NOT grant administrative rights to any systems
+
+### Package access account
+This account enables custom, granular permissions on content and packages on a distribution point.
+
+### Reporting services point account
+This account is used to retrieve report data from the site database
+
+- Requires the `Log on locally` permission on the MSSQL server hosting SQL Server Reporting Services
+
+### Site installation account
+This account is used to install a new site.
+
+- Requires membership in the local `Administrators` group on the site server, each site database server, each SMS provider instance
+- Requires Sysadmin on the site database
+
+### Site system installation account
+This account is used to install, reinstall, uninstall, and configure site systems.
+
+- Requires membership in the local `Administrators` group on the target site system
+- Requires `Access this computer from the network` right on the target site system
+
+### SMTP server connection account
+This account is used to send email alerts.
+
+- Requires ONLY ability to send emails, nothing more
+
+### Software update point connection account
+This account is used for Windows Server Update Services (WSUS) functionality.
+
+- Required if the software update point is in an untrusted forest
+- Requires membership in the local `Administrators` group on the computer where WSUS is installed
+- Requires membership in the local `WSUS Administrators` group on the computer where WSUS is installed
+
+### Task sequence domain join account
+This account is used by task sequences to join a computer to the domain.
+
+**Note:** When this account joins computers to the domain, it will be become the owner of those computer objects, effectively having full control. Remove this ownership after joining the computer to the domain.
+
+- Requires permissions to add a computer to the domain
+- Do NOT assign interactive sign-in permissions
+- Do NOT use the network access account
+
+### Task sequence network folder connection account
+This account is used by task sequences to connect to a network share.
+
+- Requires access to the target network share
+- Do NOT assign interactive sign-in permissions
+- Do NOT use the network access account
+
+
+### Task sequence run as account
+This account is used in task sequences to execute commands or scripts as an account other than the Local System account. This account should be configured with the minimum permissions necessary to complete the associated task sequence step. Create multiple run as accounts, each with tightly-scoped permissions for its specific task sequence step.
+
+- Requires interactive sign-in permissions
+- Do NOT use the network access account
+- Do NOT use a domain administrator
+
+## Linked Defensive IDs
+- [PREVENT-4: Enable Enhanced HTTP](../PREVENT-4/prevent-4_description.md)
+
+## Associated Offensive IDs
+- [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
 
 ## References
-Author, Title, Link
+- Microsoft, Accounts, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts
