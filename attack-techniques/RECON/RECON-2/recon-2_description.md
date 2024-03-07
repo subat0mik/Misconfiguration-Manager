@@ -78,9 +78,6 @@ WsusContent            A network share to be used by Local Publishing to place p
 WSUSTemp               A network share used by Local Publishing from a Remote WSUS Console Instance.
 ```
 
-
-
-
 ## Impact
 
 1. Profiling site system roles is a supplmentary step in building potential attack paths
@@ -88,8 +85,6 @@ WSUSTemp               A network share used by Local Publishing from a Remote WS
 3. A resolved DP role can be a target for sensitive information hunting via [file share triage](https://rzec.se/blog/looting-microsoft-configuration-manager) 
 3. A resolved WSUS role can be a target for lateral movement or privilege escalation detailed in [ELEVATE-1](../../ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 
-
 ## References
-Tomas Rzepka, Looting Microsoft Configuration Manager, https://rzec.se/blog/looting-microsoft-configuration-manager/
-
-Microsoft, smsdbrole_SUP, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#smsdbrole_sup
+- Tomas Rzepka, Looting Microsoft Configuration Manager, https://rzec.se/blog/looting-microsoft-configuration-manager/
+- Microsoft, smsdbrole_SUP, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#smsdbrole_sup

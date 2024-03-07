@@ -11,7 +11,7 @@ This service is installed by default on workstation versions of Windows and can 
 - 
 
 ## Associated Offensive IDs
-- [Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller](../../../attack-techniques/TAKEOVER/TAKEOVER-8/takeover-8_description.md)
+- [TAKEOVER-8: Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller](../../../attack-techniques/TAKEOVER/TAKEOVER-8/takeover-8_description.md)
 
 ## References
 - Microsoft, Disable the WebDAV protocol, https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-interception-defense?tabs=group-policy#disable-the-webdav-protocol

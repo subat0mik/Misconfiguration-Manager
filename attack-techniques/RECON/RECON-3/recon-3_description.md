@@ -49,18 +49,12 @@ https://<SMSProvier.FQDN>/AdminService/wmi/
 https://<SMSProvier.FQDN>/AdminService/v1.0/
  ```
 
-
 ## Impact
 
 1. Profiling site system roles is a supplmentary step in building potential attack paths
 2. A resolved MP role can be a target for spoofing client enrollment [CRED-2](../../CRED/CRED-2/cred-2_description.md)
 3. A resolved SMS Provider role can be a target for privilege escalation [ELEVATE-2](../../ELEVATE/ELEVATE-2/ELEVATE-2_description.md) 
 
-
-
 ## References
-
-
-Microsoft, What is the administration service in Configuration Manager?, https://learn.microsoft.com/en-us/mem/configmgr/develop/adminservice/overview
-
-Microsoft, Plan for the SMS Provider, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/plan-for-the-sms-provider
+- Microsoft, What is the administration service in Configuration Manager?, https://learn.microsoft.com/en-us/mem/configmgr/develop/adminservice/overview
+- Microsoft, Plan for the SMS Provider, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/plan-for-the-sms-provider

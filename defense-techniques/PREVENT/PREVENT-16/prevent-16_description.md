@@ -1,11 +1,17 @@
-# Plain English Title
+# TECHNIQUE ID
 
-## Code Name
-SITE-TAKEOVERX
+## Description
+This is a simple one-line description
 
 ## Summary
+This is the bulk of the content
 
-## Examples
+## Linked Defensive IDs
+- Remove if not relevant
+
+
+## Associated Offensive IDs
+- 
 
 ## References
 Author, Title, Link

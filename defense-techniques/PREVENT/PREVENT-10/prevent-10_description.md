@@ -114,6 +114,10 @@ This account is used in task sequences to execute commands or scripts as an acco
 
 ## Associated Offensive IDs
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
+- [CRED-2: Request and deobfuscate machine policy to retrieve credential material](../../../attack-techniques/CRED/CRED-2/cred-2_description.md)
+- [CRED-3: Dump currently deployed credentials via WMI](../../../attack-techniques/CRED/CRED-3/cred-3_description.md)
+- [CRED-4: Retrieve legacy network access account (NAA) credentials from the CIM Repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
+- [CRED-5: Dump SCCM credentials from site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
 
 ## References
 - Microsoft, Accounts, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts
