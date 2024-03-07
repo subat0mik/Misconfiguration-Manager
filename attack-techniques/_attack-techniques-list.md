@@ -6,6 +6,7 @@
 | CRED-4 | Legacy NAA DPAPI blobs | | CRED-3, PREVENT-3, PREVENT-4, PREVENT-10, PREVENT-15 | Complete
 | CRED-5 | SCCM database credential dump | | | QA
 | ELEVATE-1 | NTLM relay site server to SMB on site systems | | | Not started
+| ELEVATE-2 | NTLM relay via automatic client push installation | | |
 | EXEC-1 | Application deployment | | | Not started
 | EXEC-2 | PowerShell script execution | | | Not started
 | TAKEOVER-1 | NTLM relay site server or SMS Provider SMB to MSSQL on remote site database | X - or SMS Provider? | PREVENT-2, PREVENT-12, PREVENT-14 | QA
