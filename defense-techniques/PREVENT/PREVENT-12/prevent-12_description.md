@@ -1,9 +1,14 @@
 # PREVENT-12
-
 ## Description
 Require SMB signing on site systems
 
 ## Summary
+This article discusses SMB-specific mitigations that pertain to NTLM relay.
+
+Before covering the specific SMB security configurations, it is important to discuss NTLM authentication and the underlying session (SMB).
+
+### NTLM
+
 **NOTE:** This is a very high level overview of the NTLM protocol for the context of this article. We highly recommend reviewing [Pixis](https://twitter.com/HackAndDo)' articles on NTLM and NTLM relay for further detail: [NTLM article](https://en.hackndo.com/pass-the-hash/#protocol-ntlm), [NTLM Relay article](https://en.hackndo.com/ntlm-relay/). This article is heavily based on these great resources.
 
 NTLM authentication is an authentication protocol used in Windows environments. The protocol uses a challenge and response design. When a client wants to access a server, the client sends a "Negotiate" message. The server responds with a "Challenge" message containing a 64-bit nonce challenge. Next, the client encrypts the challenge using its password as the key and sends the encrypted challenge back to the server with its domain and username. At this point, the server determines (with the help of the NetLogon service and a domain controller) if the challenge was encrypted with the correct password (NT hash) and makes an authentication decision.
@@ -26,7 +31,7 @@ Session signing is a method of ensuring the integrity of a message between clien
 
 _Figure 3: Session signing failed_
 
-
+### SMB Signing
 Server Message Block (SMB) signing refers to session signing for the SMB protocol. There are two components that will determine if SMB messages are signed. First, at the authentication layer, the NTLM protocol will determine if signing is _supported_ based on the value of the `NEGOTIATE_SIGN` flag. When this flag is set to `1`, the client _supports_ signing. Next, depending on the version and options of the SMB protocol used, signing may be required, enabled, or disabled.
 
 - Disabled: Signing is not managed
@@ -52,6 +57,8 @@ Both policies are located under `Default Domain Controllers Policy > Computer Co
 - [TAKEOVER-2: Hierarchy takeover via NTLM coercion and relay to SMB on remote site databas](../../../attack-techniques/TAKEOVER/TAKEOVER-2/takeover-2_description.md)
 - [TAKEOVER-6: Hierarchy takeover via NTLM coercion and relay to SMB on remote SMS Provider](../../../attack-techniques/TAKEOVER/TAKEOVER-6/takeover-6_description.md)
 - [TAKEOVER-7: Hierarchy takeover via NTLM coercion and relay to SMB between primary and passive site servers](../../../attack-techniques/TAKEOVER/TAKEOVER-7/takeover-7_description.md)
+- [ELEVATE-1: Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
+- [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
 
 ## References
 - NTLM Relay, Pixis, https://en.hackndo.com/ntlm-relay/

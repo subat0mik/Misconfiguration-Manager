@@ -12,7 +12,7 @@
 | PREVENT-10 | Enforce the principle of least privilege for Configuration Manager accounts | | | QA
 | PREVENT-11 | Disable / Uninstall WebClient on site servers  | Prevents NTLM coercion over HTTP | | QA
 | PREVENT-12 | Require SMB signing on site systems | Prevents SMB relay | TAKEOVER-1 |
-| PREVENT-13 | Require LDAP channel binding and signing on DCs | Prevents relay to LDAP
+| PREVENT-13 | Require LDAP channel binding and signing | Prevents relay to LDAP
 | PREVENT-14 | Require Extended Protection for Authentication (EPA) on AD CS CAs and standalone site databases | Prevents relay to HTTP and MSSQL | TAKEOVER-1
 | PREVENT-15 | Disable legacy network access accounts in Active Directory |
 | PREVENT-16 | Remove SeMachineAccountPrivilege and set MachineAccountQuota to 0 for non-admin accounts | Prevent users from adding machine accounts
