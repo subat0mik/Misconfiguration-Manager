@@ -174,8 +174,6 @@ lab\SCCM$:des-cbc-md5:5de98a07aefb983e
 
 ```
 
-
-
 6. Use `sccmhunteer` as the site server to the Administration Service API and add an arbitrary user as Full Admin
 
 ```
@@ -212,8 +210,6 @@ lab\SCCM$:des-cbc-md5:5de98a07aefb983e
 [06:53:20 PM] INFO     lab\Administrator                                                                                                                     
 [08:46:39 PM] INFO     specter 
 ```
-
-
 
 ## References
 - Chris Thompson, SCCM Site Takeover via Automatic Client Push Installation, https://posts.specterops.io/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1

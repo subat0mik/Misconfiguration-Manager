@@ -1,6 +1,6 @@
-# Leverage CMPivot to Query Information from Clients
-## Code Name
-- RECON-4
+# RECON-4
+## Description
+Leverage CMPivot to Query Information from Clients
 
 ## ATT&CK TTPs
 - [TA0009](https://attack.mitre.org/tactics/TA0009/) - Collection

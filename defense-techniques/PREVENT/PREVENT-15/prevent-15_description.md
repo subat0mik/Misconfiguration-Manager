@@ -18,7 +18,6 @@ In the scenario where a legacy, dedicated NAA was used, it is recommended to dis
 ## Linked Defensive IDs
 - [PREVENT-4: Enable Enhanced HTTP](../PREVENT-4/prevent-4_description.md)
 
-
 ## Associated Offensive IDs
 - [CRED-4: Retrieve legacy network access account (NAA) credentials from the CIM Repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
 

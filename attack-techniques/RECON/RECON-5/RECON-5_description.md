@@ -1,5 +1,4 @@
 # RECON-5
-
 ## Description
 User hunting via SMS Provider
 
@@ -34,7 +33,6 @@ Attackers can assume that these users either have an active session or may log o
 - 
 
 ## Examples
-
 ### RECON-5.1
 To find computers where the user `MAYYHEM\sccmadmin` has user device affinity, execute:
 
