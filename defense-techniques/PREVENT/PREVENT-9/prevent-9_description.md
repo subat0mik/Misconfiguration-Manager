@@ -1,11 +1,16 @@
-# Plain English Title
+# PREVENT-9
 
-## Code Name
-SITE-TAKEOVERX
+## Description 
+Enforce MFA for SMS Provider calls
 
 ## Summary
 
-## Examples
+
+## Linked Defensive IDs
+- N/A
+
+## Associated Offensive IDs
+- N/A
 
 ## References
-Author, Title, Link
+Microsoft, Enable MFA for SMS Provider Calls, https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/setup-migrate-backup-recovery/enable-mfa-for-sms-provider-calls
