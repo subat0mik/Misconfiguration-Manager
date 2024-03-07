@@ -1,6 +1,6 @@
 # ELEVATE-1
 ## Description
-Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller
+NTLM relay site server SMB to SMB on site systems
 
 ## MITRE ATT&CK Tactics
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
