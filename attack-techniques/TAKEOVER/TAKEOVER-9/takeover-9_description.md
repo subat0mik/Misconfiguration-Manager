@@ -15,14 +15,10 @@ Crawl site database links configured with DBA privileges
 ## Impact
 
 ## Defensive IDs
-- [ID: Description](Link)
-
-## Subtechniques
--
--
+- [Prevent-19: Remove unnecessary links to site databases](../../../defense-techniques/PREVENT/PREVENT-19/prevent-19_description.md)
 
 ## Examples
 
 
 ## References
-- Author, [Title](URL)
+- Sanjiv Kawa, [SQLRecon](https://github.com/skahwah/SQLRecon)
