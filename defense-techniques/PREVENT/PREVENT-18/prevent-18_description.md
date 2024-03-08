@@ -1,7 +1,7 @@
-# TECHNIQUE ID
+# PREVENT-18
 
 ## Description
-This is a simple one-line description
+Use strong passwords for DBA accounts
 
 ## Summary
 This is the bulk of the content

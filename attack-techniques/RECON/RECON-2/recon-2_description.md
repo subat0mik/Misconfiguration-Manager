@@ -12,6 +12,12 @@ Enumerate SCCM roles via SMB
 ## Summary
 When certain site system roles are installed, part of the installation process involves configuring file shares on the host system. These shares contain detailed descriptions and unique naming conventions that may disclose what site they're deployed in and what roles are installed. Reviewing shares on potential site systems contributes to attack path discovery. 
 
+## Impact
+1. Profiling site system roles is a supplementary step in building potential attack paths.
+2. A resolved DP role can be a target for PXE abuse to recover domain credentials detailed in [CRED-1](../../CRED/CRED-1/cred-1_description.md).
+3. A resolved DP role can be a target for [sensitive information hunting in the Content Library](https://rzec.se/blog/looting-microsoft-configuration-manager).
+4. A resolved WSUS role can be a target for lateral movement or privilege escalation detailed in [ELEVATE-1](../../ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
+
 ## Defensive IDs
 - 
 
@@ -74,12 +80,6 @@ UpdateServicesPackages A network share to be used by client systems for collecti
 WsusContent            A network share to be used by Local Publishing to place published content on this WSUS system.
 WSUSTemp               A network share used by Local Publishing from a Remote WSUS Console Instance.
 ```
-
-## Impact
-1. Profiling site system roles is a supplementary step in building potential attack paths.
-2. A resolved DP role can be a target for PXE abuse to recover domain credentials detailed in [CRED-1](../../CRED/CRED-1/cred-1_description.md).
-3. A resolved DP role can be a target for [sensitive information hunting in the Content Library](https://rzec.se/blog/looting-microsoft-configuration-manager).
-4. A resolved WSUS role can be a target for lateral movement or privilege escalation detailed in [ELEVATE-1](../../ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 
 ## References
 - Garrett Foster, [SCCMHunter](https://github.com/garrettfoster13/sccmhunter)

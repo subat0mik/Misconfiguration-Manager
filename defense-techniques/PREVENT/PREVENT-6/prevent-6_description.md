@@ -1,7 +1,7 @@
 # PREVENT-6
 
 ## Description
-Configure strong PXE boot password
+Configure a strong PXE boot password
 
 ## Summary
 

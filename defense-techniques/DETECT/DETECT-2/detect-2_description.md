@@ -1,11 +1,9 @@
 # DETECT-2
 
 ## Description
-
 Monitor the read access requests of the `System Management` container within Active Directory Users and Computers.
 
 ## Summary
-
 An attacker may utilize LDAP requests targeting the domain controller's `System` container which contains the `System Management` container. This `System Management` container usually has `GenericAll` permissions set on the container object and contains the SCCM published site information. An attacker can query this container to resolve the potential site servers.
 
 Defenders can set focused auditing on the `System Management` container to identify anomalous read access attempts. Defenders can enable a SACL (System Access Control List) on the `System Management` container and set the audit categories to monitor for `Read all properties`. Upon the querying of the `System Management` container within Active Directory Users and Computers, a [Event ID: 4662](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4662) will highlight that a Read operation was performed on the container object.

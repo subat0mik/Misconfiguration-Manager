@@ -14,14 +14,14 @@ _Figure 1 - Enhanced HTTP Diagram_
 
 
 ## Linked Defensive IDs
-- [PREVENT-3: Harden or Disable Network Access Account](../PREVENT-3/prevent-3_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../PREVENT-3/prevent-3_description.md)
 - [PREVENT-8: Require PKI certificates for client authentication](../PREVENT-8/prevent-8_description.md)
 - [PREVENT-15: Disable legacy network access accounts in Active Directory](../PREVENT-15/prevent-15_description.md)
 
 ## Associated Offensive IDs
-- [CRED-2: Request and deobfuscate machine policy to retrieve credential material](../../../attack-techniques/CRED/CRED-2/cred-2_description.md)
-- [CRED-3: Dump network access account (NAA) credentials via WMI](../../../attack-techniques/CRED/CRED-3/cred-3_description.md)
-- [CRED-4: Retrieve legacy network access account (NAA) credentials from the CIM Repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
+- [CRED-2: Request machine policy and deobfuscate secrets](../../../attack-techniques/CRED/CRED-2/cred-2_description.md)
+- [CRED-3: Dump currently deployed secrets via WMI](../../../attack-techniques/CRED/CRED-3/cred-3_description.md)
+- [CRED-4: Retrieve legacy secrets from the CIM repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
 
 ## References
 - Christopher Panayi, An inside look: How to distribute credentials securely in SCCM, https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm

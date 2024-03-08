@@ -22,9 +22,29 @@ This repository serves as a central knowledge base for all known Microsoft Confi
 
 We've curated this repository to raise awareness of the rapidly evolving SCCM threat landscape, drawing inspiration from the [MITRE ATT&CK framework](https://attack.mitre.org/matrices/enterprise/), with a few deviations. We were also strongly influenced by Push Security's [SaaS attack techniques matrix](https://github.com/pushsecurity/saas-attacks/tree/main).
 
-Our approach extends beyond cataloging the tactics of known adversaries to include contributions from the realm of penetration testing, red team operations, and security research. At SpecterOps, we've leveraged many misconfigurations highlighted in this repository in real-world environments, while others represent experimental and exploratory research projects proved out in a lab environment. 
+Our approach extends beyond cataloging the tactics of known adversaries to include contributions from the realm of penetration testing, red team operations, and security research. At SpecterOps, we've leveraged many misconfigurations highlighted in this repository in real-world environments, while others represent experimental and exploratory research projects proved out in a lab environment.
 
-We openly invite you to submit both proven and exploratory SCCM-focused attack techniques and defensive strategies to this project.
+This project also serves as a central point of reference for all of the [SCCM attack and defense resources](./RESOURCES.md) that we're aware of.
+
+We openly invite you to submit both proven and exploratory SCCM-focused attack techniques and defensive strategies and resources to this project and to provide any feedback and recommendations about the content in this repository.
+
+<hr>
+<br>
+
+# How to use this project
+
+Start with the SCCM Attack Matrix and SCCM Attack and Defense Matrix below, which map attack techniques to their MITRE ATT&CK framework tactics, as well as to their detection and prevention strategies.
+
+Offensive security practitioners may also benefit from reviewing the list of known and documented [Attack Techniques](./attack-techniques/_attack-techniques-list.md), which identifies the security context and network access that are required for each technique.
+
+Defenders and IT administrators may benefit from reviewing the list of known and documented [Defense Techniques](./defense-techniques/_defense-techniques-list.md), which identifies the administrator roles we think are most likely to be involved in the implementation of each item.
+
+If you aren't familiar with a term used in a technique's description, refer to the [glossary page](./GLOSSARY.md), which contains definitions for terms commonly used in SCCM.
+
+If you'd like to learn more about SCCM attack and defense, please refer to the [resources page](./RESOURCES.md), which contains links to all the SCCM attack and defense resources that we are aware of, many of which inspired and informed the information in this repository. 
+
+If we've overlooked anything or are missing credits for prior work, please reach out to us or submit a pull request and we'd be happy to make updates.
+
 
 <hr>
 <br>

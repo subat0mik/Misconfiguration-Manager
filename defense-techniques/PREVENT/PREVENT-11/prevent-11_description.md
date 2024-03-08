@@ -1,6 +1,7 @@
 # PREVENT-11
 
-## Disable / Uninstall WebClient on site servers
+## Description
+Disable/uninstall WebClient on site servers
 
 ## Summary
 `WebClient` is the name of the service used for WebDAV operations on Windows hosts. WebDAV is a protocol extension to HTTP that allows file operations, similar to SMB. By default, Windows will attempt to access a resource over SMB but will fallback to HTTP if `WebClient` is running. This is commonly used to coerce authentication from remote systems, as NTLM authentication over HTTP can be relayed to other protocols, such as LDAP. 
@@ -11,7 +12,7 @@ This service is installed by default on workstation versions of Windows and can 
 - 
 
 ## Associated Offensive IDs
-- [TAKEOVER-8: Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller](../../../attack-techniques/TAKEOVER/TAKEOVER-8/takeover-8_description.md)
+- [TAKEOVER-8: NTLM relay primary site server HTTP to LDAP on domain controller](../../../attack-techniques/TAKEOVER/TAKEOVER-8/takeover-8_description.md)
 
 ## References
 - Microsoft, Disable the WebDAV protocol, https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-interception-defense?tabs=group-policy#disable-the-webdav-protocol

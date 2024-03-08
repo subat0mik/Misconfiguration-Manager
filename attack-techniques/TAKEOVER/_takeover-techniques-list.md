@@ -1,5 +1,5 @@
-| Codename | Description | Notes | Links | 
-|----------|-------------|-------| ----- |
+| Codename | Description |
+|----------|-------------|
 | TAKEOVER-1 | Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 &emsp;TAKEOVER-1.1: Coerce primary site server
 &emsp;TAKEOVER-1.2: Coerce SMS Provider
@@ -29,3 +29,4 @@
 &emsp;TAKEOVER-8.2: Coerce SMS Provider
 &emsp;TAKEOVER-8.3: Coerce passive site server
 &emsp;TAKEOVER-8.4: Coerce site database server
+| TAKEOVER-9 | Hierarchy takeover via crawling site database links configured with DBA privileges |

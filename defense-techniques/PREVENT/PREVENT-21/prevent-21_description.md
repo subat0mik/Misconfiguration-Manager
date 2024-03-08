@@ -1,6 +1,7 @@
 # PREVENT-21
 
-## Restrict PXE boot to authorized VLANs
+## Description
+Restrict PXE boot to authorized VLANs
 
 ## Summary
 As outlined in [CRED-1](../../../attack-techniques/CRED/CRED-1/cred-1_description.md), if an adversary meets certain conditions, such as having line of sight to a PXE-enabled distribution point, they may be able to PXE boot or retrieve PXE boot media.

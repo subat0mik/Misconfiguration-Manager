@@ -1,7 +1,7 @@
 # CRED-2
 
 ## Description
-Request and deobfuscate machine policy to retrieve credential material
+Request machine policy and deobfuscate secrets
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
@@ -33,18 +33,18 @@ With this domain computer context, the computer can be registered as a client wh
 
 This technique has also been built into [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/wiki/get#get-naa--get-secrets) with the `get secrets` and `get naa` commands.
 
-The `get secrets` command extends this technique to retrieve NAAs, collection variables, and task sequences.
-
+The `get secrets` command extends this technique to retrieve collection variables and task sequences from machine policies, which may also contain secrets such as credentials.
 
 ## Impact
-In environments using Active Directory defaults, SCCM defaults, and NAAs, any domain-authenticated user may create a computer object, register it as an SCCM client, request the NAA policy, and deobfuscate the credentials.
+In environments using Active Directory defaults, SCCM defaults, and NAAs (or collection variables/task sequences containing credentials), any domain-authenticated user may create a computer object, register it as an SCCM client, request the machine policy, and deobfuscate credentials.
 
-If the NAA is implemented under the principle of least privilege, this may not extend the attacker's privilege level in the domain.  The more common result: If the NAA is over-privileged, this technique serves as a trivial privilege escalation vector.
+If the NAA or credential stored in a collection variable or task sequence is implemented under the principle of least privilege, this may not extend the attacker's privilege level in the domain. The more common result: If the NAA is overprivileged, this technique serves as a trivial privilege escalation vector.
 
 ## Defensive IDs
-- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
-- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-16: Remove SeMachineAccountPrivilege and set MachineAccountQuota to 0 for non-admin accounts](../../../defense-techniques/PREVENT/PREVENT-16/prevent-16_description.md)
 
 ## Examples
 Using Powermad and SharpSCCM:
@@ -96,7 +96,6 @@ NetworkAccessPassword: <password>
 
 [+] Completed execution in 00:00:05.9045603
 ```
-
 
 ## References
 - Adam Chester, [Unobfuscating Network Access Accounts](https://blog.xpnsec.com/unobfuscating-network-access-accounts/)

@@ -40,22 +40,19 @@ This process can be abused because the files and policies can be accessed withou
 
 Once the media file is decrypted, it may contain or be used to obtain credential material in the `NAAConfig` (network access account(NAA)), `TaskSequence`, and `CollectionSettings` (collection variables) policies.
 
-
 ## Impact
-
 Attackers may recover domain credentials from this process, the difficulty of which is a direct function of the complexity of the password set on the PXE media file. If a weak password is set, cracking the password is relatively computionally "easy," depending on the hardware.
 
 With these credentials, attackers may transition from an unauthenticated context on the network to a domain-authenticated context. If any of the credentials recovered are privileged, it may also enable privilege escalation and lateral movement vectors.
 
 ## Defensive IDs
-- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
-- [PREVENT-6: Configure strong PXE boot password](../../../defense-techniques/PREVENT/PREVENT-6/prevent-6_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-6: Configure a strong PXE boot password](../../../defense-techniques/PREVENT/PREVENT-6/prevent-6_description.md)
 - [PREVENT-7: Disable command support in PXE boot configuration](../../../defense-techniques/PREVENT/PREVENT-7/prevent-7_description.md)
 - [PREVENT-21: Restrict PXE boot to authorized VLANs](../../../defense-techniques/PREVENT/PREVENT-21/prevent-21_description.md)
 
 
 ## Examples
-
 Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set:
 ```
 testsubject4@sphere4:~$ sudo python3 pxethiefy.py explore -i eth0 -a atlas.aperture.local

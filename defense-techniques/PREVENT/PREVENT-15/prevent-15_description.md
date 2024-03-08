@@ -1,7 +1,7 @@
 # PREVENT-15
 
 ## Description
-Disable and change passwords of legacy NAAs/collection variables/task sequences in Active Directory
+Disable and change passwords of legacy NAAs and collection variables/task sequence secrets in Active Directory
 
 ## Summary
 The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace.
@@ -24,4 +24,6 @@ The same prevention strategy applies to collection variables, which may include 
 - [CRED-4: Retrieve legacy secrets from the CIM repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
 
 ## References
-- Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won't Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
+- Duane Michael, [The Phantom Credentials of SCCM: Why the NAA Won't Die](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
+- Microsoft, [Network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account)
+- Christopher Panayi, [An inside look: How to distribute credentials securely in SCCM](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm)

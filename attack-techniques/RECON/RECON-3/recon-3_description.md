@@ -12,6 +12,11 @@ Enumerate SCCM roles via HTTP
 ## Summary
 When certain site system roles are installed, part of the installation process involves configuring web services on the host system. Depending on the role, static and predictable URLs can be enumerated, and when a request is sent to the URL, it provides an expected response. Fuzzing these URLS on potential site systems contributes to attack path discovery. 
 
+## Impact
+1. Profiling site system roles is a supplementary step in building potential attack paths
+2. A resolved MP role can be a target for spoofing client enrollment [CRED-2](../../CRED/CRED-2/cred-2_description.md)
+3. A resolved SMS Provider role can be a target for hierarchy takeover ([TAKEOVER-5](../../TAKEOVER/TAKEOVER-5/takeover-5_description.md) and [TAKEOVER-6](../../TAKEOVER/TAKEOVER-6/takeover-6_description.md)).
+
 ## Defensive IDs
 - 
 
@@ -45,11 +50,6 @@ APP "Default Web Site/BGB" (applicationPool:CCM Client Notification Proxy Pool)
 https://<SMSProvier.FQDN>/AdminService/wmi/
 https://<SMSProvier.FQDN>/AdminService/v1.0/
  ```
-
-## Impact
-1. Profiling site system roles is a supplementary step in building potential attack paths
-2. A resolved MP role can be a target for spoofing client enrollment [CRED-2](../../CRED/CRED-2/cred-2_description.md)
-3. A resolved SMS Provider role can be a target for hierarchy takeover ([TAKEOVER-5](../../TAKEOVER/TAKEOVER-5/takeover-5_description.md) and [TAKEOVER-6](../../TAKEOVER/TAKEOVER-6/takeover-6_description.md)).
 
 ## References
 - Garrett Foster, [SCCMHunter](https://github.com/garrettfoster13/sccmhunter)

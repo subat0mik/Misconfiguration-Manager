@@ -61,7 +61,6 @@ At SpecterOps, we frequently observe predictable naming conventions in use to he
 - "sccm site servers" for a security group that contained all SCCM site systems in the domain
 - "SCCMDP1" for a SCCM site system configured with the distribution point role
 
-
 ## Impact
 1. Identifying the presence of site servers and site systems is typically the first step in building potential attack paths
 2. A resolved MP site system role can be abused to spoof SCCM client enrollment and potentially recover credentials ([CRED-2](../../CRED/CRED-2/cred-2_description.md))

@@ -1,34 +1,35 @@
 # CRED-3
 
 ## Description
-Dump currently deployed credentials via WMI
+Dump currently deployed secrets via WMI
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
 - [T1555s](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Store
 
 ## Requirements
-- Local administrative privileges on the SCCM client
+- Local administrator privileges on an SCCM client
 
 ## Summary
-The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace. This can be verified with the following PowerShell one-liner: `Get-WmiObject -namespace "root\ccm\policy\Machine\ActualConfig" -class "CCM_NetworkAccessAccount"`.
+The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point, but it serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace. This can be verified with the following PowerShell one-liner: `Get-WmiObject -namespace "root\ccm\policy\Machine\ActualConfig" -class "CCM_NetworkAccessAccount"`.
 
 Within this class, there exists two members of interest: `NetworkAccessUsername` and `NetworkAccessPassword`, which contain hexidecimal strings of encrypted data. This data is protected via the Data Protection API (DPAPI) and the SYSTEM DPAPI masterkey. Therefore, we must be elevated on the host in order to retrieve the SYSTEM masterkey which can then be used to decrypt the secrets. This technique applies only to currently-configured NAAs.
 
 This process is automated in [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#sccm) and [SharpSCCM](https://github.com/Mayyhem/SharpSCCM).
 
-A successful decryption result of `00 00 0E 0E 0E 0E...` indicates that the Site Server is configured for NAA but the client is instructed to use its [machine account](https://twitter.com/subat0mik/status/1582387536147582976?s=20).
+A successful decryption result of `00 00 0E 0E 0E 0E...` indicates that the site server is configured to instruct the client to use its [machine account](https://twitter.com/subat0mik/status/1582387536147582976?s=20) for the NAA.
+
+The SharpSCCM `local secrets -m wmi` command extends this technique to retrieve collection variables and task sequences via WMI, which may also contain secrets such as credentials.
 
 ## Impact
+This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA or credential stored in a collection variable or task sequence is not overprivileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the credential is overprivileged, this technique may enable lateral movement to other clients and/or sensitive systems.
 
-This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA is not over-privileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the NAA is overprivileged, this technique enables lateral movement to other clients and/or sensitive systems.
-
-We (SpecterOps) commonly see accounts that are members of the `SCCM Administrators` and `Domain Admins` groups configured as the NAA.
+At SpecterOps, we commonly see accounts that are members of the SCCM `Full Administrator` role and the `Domain Admins` group configured as NAAs.
 
 ## Defensive IDs
-- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
-- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 
 ## Examples
 
@@ -126,8 +127,8 @@ SharpDPAPI completed in 00:00:00.0397643
 ```
 
 ## References
-- Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
-- Chris Thompson, SharpSCCCM, https://github.com/Mayyhem/SharpSCCM
-- Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI
-- Duane Michael, X, https://twitter.com/subat0mik/status/1582387536147582976?s=20
-- Benjamin Delpy, X, https://twitter.com/gentilkiwi/status/1392594113745362946
+- Duane Michael, [The Phantom Credentials of SCCM: Why the NAA Won’t Die](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
+- Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
+- Will Schroeder, [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI)
+- Duane Michael, https://twitter.com/subat0mik/status/1582387536147582976
+- Benjamin Delpy, https://twitter.com/gentilkiwi/status/1392594113745362946

@@ -1,4 +1,5 @@
 # TAKEOVER-1
+
 ## Description
 Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 
@@ -26,23 +27,17 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 ### Relay
 - Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
 - Extended protection for authentication not required on the site database
-- Relay target settings:
-    - `RequireSecuritySignature` = `0` or not present
-    - `RestrictReceivingNTLMTraffic` = `0` or not present
-    - Coercion target is local admin (to access RPC/admin shares)
-- Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
 
 ## Summary
-By default, the Active Directory domain computer accounts for primary site servers, systems hosting the SMS Provider role, CAS site servers, and passive site servers are granted the `db_owner` role in their respective site's MSSQL database. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.
+By default, the Active Directory domain computer accounts for primary site servers (including CAS site servers), systems hosting the SMS Provider role, and passive site servers are granted the `db_owner` role in their respective site's MSSQL database. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.
 
 ## Impact
 The "Full Administrator" security role is granted all permissions in Configuration Manager for all scopes and all collections. An attacker with this privilege can execute arbitrary programs on any client device that is online as SYSTEM, the currently logged on user, or as a specific user when they next log on. They can also leverage tools such as CMPivot and Run Script to query or execute scripts on client devices in real-time using the AdminService or WMI on an SMS Provider.
 
 ## Defensive IDs
-- [PREVENT-2: Disable Fallback to NTLM](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
-- [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
-- [PREVENT-14: Require Extended Protection for Authentication (EPA) on AD CS CAs and standalone site databases](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
+- [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [PREVENT-14: Require EPA on AD CS and site databases](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Subtechniques
 - TAKEOVER-1.1: Coerce primary site server
@@ -191,9 +186,8 @@ The steps to execute TAKEOVER-1.1 through TAKEOVER-1.3 are the same except that 
 
 
 ## References
-- Chris Thompson, SCCM Site Takeover via Automatic Client Push Installation, https://posts.specterops.io/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1
-- Chris Thompson, SCCM Hierarchy Takeover: One Site to Rule Them All, https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087
-- Garrett Foster, SCCM Hierarchy Takeover with High Availability, https://posts.specterops.io/sccm-hierarchy-takeover-with-high-availability-7dcbd3696b43
-- Garrett Foster, sccmhunter, https://github.com/garrettfoster13/sccmhunter
-- Chris Thompson, SharpSCCM, https://github.com/Mayyhem/SharpSCCM
-
+- Chris Thompson, [SCCM Site Takeover via Automatic Client Push Installation](https://posts.specterops.io/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
+- Chris Thompson, [SCCM Hierarchy Takeover: One Site to Rule Them All](https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087)
+- Garrett Foster, [SCCM Hierarchy Takeover with High Availability](https://posts.specterops.io/sccm-hierarchy-takeover-with-high-availability-7dcbd3696b43)
+- Garrett Foster, [sccmhunter](https://github.com/garrettfoster13/sccmhunter)
+- Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)

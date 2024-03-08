@@ -1,12 +1,13 @@
 # PREVENT-10
 
 ## Description
-Enforce the principle of least privilege for Configuration Manager accounts
+Enforce the principle of least privilege for accounts
 
 ## Summary
-Over-privileged accounts and unnecessary permissions are a common misconfiguration in Configuration Manager. It is paramount to ensure the various accounts in use are assigned only the necessary permissions to perform their function. This article does not cover every account. Do not use these accounts for multiple purposes.
+Overprivileged accounts and unnecessary permissions are common misconfigurations in Configuration Manager. It is paramount to ensure the various accounts in use are assigned only the necessary permissions to perform their function. This article does not cover every account. Do not use these accounts for multiple purposes.
 
 ### Active Directory forest account
+The site uses the Active Directory forest account to discover network infrastructure from Active Directory forests. Central administration sites and primary sites also use it to publish site data to Active Directory Domain Services for a forest.
 
 ### Capture OS image account
 This account is used as part of task sequences. If configured, it may be deployed to various systems and recoverable as admininstrator on those systems.
@@ -101,13 +102,17 @@ This account is used by task sequences to connect to a network share.
 - Do NOT assign interactive sign-in permissions
 - Do NOT use the network access account
 
-
 ### Task sequence run as account
 This account is used in task sequences to execute commands or scripts as an account other than the Local System account. This account should be configured with the minimum permissions necessary to complete the associated task sequence step. Create multiple run as accounts, each with tightly-scoped permissions for its specific task sequence step.
 
 - Requires interactive sign-in permissions
 - Do NOT use the network access account
 - Do NOT use a domain administrator
+
+### Collection Variables
+One of the configuration settings that can be applied to collections are custom environment variables that are only exposed to members of the collection; these are called collection variables.
+
+Nothing specifically requires that these variables be credentials, but they can be used for this purpose. In transit and on disk, they are encrypted by SCCM in the same way as credentials.
 
 ## Linked Defensive IDs
 - [PREVENT-4: Enable Enhanced HTTP](../PREVENT-4/prevent-4_description.md)
@@ -120,4 +125,6 @@ This account is used in task sequences to execute commands or scripts as an acco
 - [CRED-5: Dump SCCM credentials from site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
 
 ## References
-- Microsoft, Accounts, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts
+- Microsoft, [Accounts used in Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts)
+- Christopher Panayi, [An inside look: How to distribute credentials securely in SCCM
+](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm)

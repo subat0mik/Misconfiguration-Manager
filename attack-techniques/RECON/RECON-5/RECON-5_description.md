@@ -26,14 +26,15 @@ Attributes that clients periodically report to their management point can be que
 
 Attackers can assume that these users either have an active session or may log onto these systems again, in which case stored credentials in memory could be used to conduct further actions in the context of that user. For example, they could identify devices where a member of the `Domain Admins` group is the primary user or the last to log on and move laterally to the system or coerce NTLM authentication to compromise their account (EXEC-1).
 
+## Defensive IDs
+- 
+
 ## Subtechniques
 - RECON-5.1 - User device affinity
 - RECON-5.2 - LastLogon
 
-## Defensive IDs
-- 
-
 ## Examples
+
 ### RECON-5.1
 To find computers where the user `MAYYHEM\sccmadmin` has user device affinity, execute:
 

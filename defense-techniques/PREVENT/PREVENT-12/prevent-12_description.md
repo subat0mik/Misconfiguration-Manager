@@ -1,4 +1,5 @@
 # PREVENT-12
+
 ## Description
 Require SMB signing on site systems
 
@@ -57,7 +58,7 @@ Both policies are located under `Default Domain Controllers Policy > Computer Co
 - [TAKEOVER-2: Hierarchy takeover via NTLM coercion and relay to SMB on remote site databas](../../../attack-techniques/TAKEOVER/TAKEOVER-2/takeover-2_description.md)
 - [TAKEOVER-6: Hierarchy takeover via NTLM coercion and relay to SMB on remote SMS Provider](../../../attack-techniques/TAKEOVER/TAKEOVER-6/takeover-6_description.md)
 - [TAKEOVER-7: Hierarchy takeover via NTLM coercion and relay to SMB between primary and passive site servers](../../../attack-techniques/TAKEOVER/TAKEOVER-7/takeover-7_description.md)
-- [ELEVATE-1: Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
+- [ELEVATE-1: NTLM relay site server to SMB on site systems](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
 
 ## References

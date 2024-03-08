@@ -1,7 +1,7 @@
-# TECHNIQUE ID
+# PREVENT-22
 
 ## Description
-This is a simple one-line description
+Do not manage Tier 0 assets
 
 ## Summary
 This is the bulk of the content

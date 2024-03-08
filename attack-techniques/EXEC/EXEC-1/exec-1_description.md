@@ -20,14 +20,13 @@ An attacker could use this technique to deploy an application on a remote client
 
 New applications can also be hidden from being displayed in the Configuration Manager Console software, making them more difficult to detect.
 
-## Subtechniques
-- EXEC-1.1 - Deploy binary or script from share
-- EXEC-1.2 - Deploy as user to relay NTLM authentication
-
 ## Defensive IDs
 - [DETECT-4: Monitor application deployment logs in the site's Audit Status Messages](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
 - [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
 
+## Subtechniques
+- EXEC-1.1 - Deploy binary or script from share
+- EXEC-1.2 - Deploy as user to relay NTLM authentication
 
 ## Examples
 

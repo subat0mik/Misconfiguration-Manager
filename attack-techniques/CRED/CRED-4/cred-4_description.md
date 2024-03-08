@@ -1,7 +1,7 @@
 # CRED-4
 
 ## Description
-Retrieve legacy credentials from the CIM Repository
+Retrieve legacy secrets from the CIM repository
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
@@ -20,7 +20,6 @@ Data stored within WMI classes exists on disk in the CIM repository file located
 The credentials exist in the file in the following format: `CCM_NetworkAccessAccount  <PolicySecret Version="1"><![CDATA[0601000001000000D08C9DDF0115D1118C7A00C04FC297EB...`. The file can be searched either manually in a text or hex editor, or this process can be automated with [SharpDPAPI's search command](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#search): `SharpDPAPI.exe search /type:file /path:C:\Windows\System32\wbem\Repository\OBJECTS.DATA`.
 
 If an encrypted blob exists, it can be extracted and decrypted using the SYSTEM DPAPI masterkey and [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI), or this process can be automated with [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)'s `local secrets -m disk` command, which extends this technique to retrieve collection variables and task sequences that may also contain secrets such as credentials.
-
 
 ## Impact
 This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA or credential stored in a collection variable or task sequence is not overprivileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the credential is overprivileged, this technique may enable lateral movement to other clients and/or sensitive systems.

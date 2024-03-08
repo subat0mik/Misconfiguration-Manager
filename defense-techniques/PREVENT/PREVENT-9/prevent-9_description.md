@@ -10,7 +10,7 @@ Enforce MFA for SMS Provider calls
 - N/A
 
 ## Associated Offensive IDs
-- N/A
+- [EXEC-1: Application deployment](../../../attack-techniques/EXEC/EXEC-1/exec-1_description.md)
 
 ## References
 Microsoft, Enable MFA for SMS Provider Calls, https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/setup-migrate-backup-recovery/enable-mfa-for-sms-provider-calls
