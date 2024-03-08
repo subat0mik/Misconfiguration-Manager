@@ -18,41 +18,18 @@
 ---
 
 # Misconfiguration Manager
-This repository serves as a central knowledge-base for all known Microsoft Configuration Manager (AKA MCM, ConfigMgr, Systems Center Configuration Manager, or SCCM) tradecraft and associated defensive and hardening guidance. Our goal is to help demystify SCCM tradecraft and simplify SCCM attack path management for defenders while also educating offensive professionals on this nebulous attack surface. Designed to go beyond the static-nature of whitepapers, this living repository not only documents SpecterOps' real-world application of misconfigurations but also encourages ongoing contributions from the community to enhance its relevance and utility.
+This repository serves as a central knowledge base for all known Microsoft Configuration Manager (a.k.a. MCM, ConfigMgr, System Center Configuration Manager, or SCCM) tradecraft and associated defensive and hardening guidance. Our goal is to help demystify SCCM tradecraft and simplify SCCM attack path management for defenders while also educating offensive security professionals on this nebulous attack surface. Designed to go beyond the static nature of whitepapers, this living repository documents known SCCM misconfigurations and their abuses and encourages ongoing contributions from the community to enhance its relevance and utility.
 
-At SpecterOps, we've leveraged many misconfigurations highlighted in this repository in real-world environments while some represent experimental and exploratory research projects proved out in a lab environment.
+We've curated this repository to raise awareness of the rapidly evolving SCCM threat landscape, drawing inspiration from the [MITRE ATT&CK framework](https://attack.mitre.org/matrices/enterprise/), with a few deviations. We were also strongly influenced by Push Security's [SaaS attack techniques matrix](https://github.com/pushsecurity/saas-attacks/tree/main).
 
-We've curated this repository to raise awareness of the rapidly evolving MCM threat landscape, drawing inspiration from the MITRE ATT&CK framework, with a few deviations. We were also strongly influenced by Push Security's [SaaS attack techniques matrix](https://github.com/pushsecurity/saas-attacks/tree/main). Our approach extends beyond cataloging the tactics of known adversaries to include contributions from the realm of penetration testing, red team operations, and security research. We openly invite and value the submission of both proven and exploratory MCM-focused attack techniques and defensive strategies.
+Our approach extends beyond cataloging the tactics of known adversaries to include contributions from the realm of penetration testing, red team operations, and security research. At SpecterOps, we've leveraged many misconfigurations highlighted in this repository in real-world environments, while others represent experimental and exploratory research projects proved out in a lab environment. 
 
-## Taxonomy Overview
+We openly invite you to submit both proven and exploratory SCCM-focused attack techniques and defensive strategies to this project.
 
-### CRED
-Techniques coded with a CRED moniker primarily abuse credential access. CRED techniques are the most common we've seen and sometimes lead do direct hierarchy or site takeover or domain compromise.
+<hr>
+<br>
 
-### ELEVATE 
-Techniques coded with an ELEVATE moniker can be used for either local or domain privilege escalation. In some cases, these can be chained with other techniques for a hierarchy or site takeover primitive.
-
-### EXEC
-Techniques coded with an EXEC moniker can be used to execute commands, scripts, code, etc. on a remote target through MCM's builtin functionality
-
-### RECON
-Techniques coded with a RECON moniker relate to either performing reconnaissance against MCM infrastructure or using MCM to conduct further reconnaissance.
-
-### TAKEOVER
-Techniques coded with a TAKEOVER moniker describe the various steps necessary to compromise an MCM hierarchy or site.
-
-### PREVENT
-Defensive strategies coded with a PREVENT moniker describe configuration changes to mitigate one or more aspects of an offensive technique. In some cases, multiple PREVENT strategies may be needed to fully mitigate an offensive technique.
-
-**NOTE:** We strongly recommend proper and thorough testing of any changes before configuring them in a production environment. The authors and contributors of this repository are not responsible for any breaking changes. Use as a guide at your own risk.
-
-### DETECT
-Defensive strategies coded with a DETECT moniker describe strategies for detecting offensive techniques. In some cases, multiple DETECT strategies may be required for a stronger detection.
-
-### CANARY
-Defensive strategies coded with a CANARY moniker describe deception strategies that could be used to deceive adversaries in tripping a high-fidelity detection.
-
-## SCCM Attacks Matrix
+# SCCM Attack Matrix
 | Initial Access                                                                  | Execution                                                                          | Persistence                                                                        | Privilege Escalation                                                                              | Defense Evasion                                                               | Credential Access                                                                             | Discovery                                                                     | Lateral Movement                                                                                      | Collection	                                                              | Command and Control                                                     | Exfiltration                                                              |
 |:---:                                                                            |:---:	                                                                           |:---:                                                                               |:---:	                                                                                            |:---:                                                                          |:---:	                                                                                        |:---:	                                                                        |:---:	                                                                                                |:---:	                                                                      |:---:	                                                                |:---:	                                                                    |
 | [PXE Creds](./attack-techniques/CRED/CRED-1/cred-1_description.md)              | [App Deployment](./attack-techniques/EXEC/EXEC-1/exec-1_description.md)            | [App Deployment](./attack-techniques/EXEC/EXEC-1/exec-1_description.md)            | [Relay to Site Server SMB](./attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)        | [App Deployment](./attack-techniques/EXEC/EXEC-1/exec-1_description.md)       | [PXE Credentials](./attack-techniques/CRED/CRED-1/cred-1_description.md)                      | [LDAP Enumeration](./attack-techniques/RECON/RECON-1/recon-1_description.md)  | [Relay to Site DB (MSSQL)](./attack-techniques/TAKEOVER/TAKEOVER-1/takeover-1_description.md)         | [CMPivot](./attack-techniques/RECON/RECON-4/recon-4_description.md)         |   	                                                                    | [CMPivot](./attack-techniques/RECON/RECON-4/recon-4_description.md)       |
@@ -69,7 +46,9 @@ Defensive strategies coded with a CANARY moniker describe deception strategies t
 |                                                                                 |                                                                                    |                                                                                    |                                                                                                   |                                                                               |                                                                                               |                                                                               |                                                                                                       |                                                                             |                                                                         |                                                                           |
 
 
-## SCCM Attack and Defense Matrix
+<br>
+
+# SCCM Attack and Defense Matrix
 |                      | CRED&#x2011;1        | CRED&#x2011;2         | CRED&#x2011;3        | CRED&#x2011;4       | CRED&#x2011;5        | ELEVATE&#x2011;1     | ELEVATE&#x2011;2        |EXEC&#x2011;1        | EXEC&#x2011;2        | RECON&#x2011;1       | RECON&#x2011;2       | RECON&#x2011;3       | RECON&#x2011;4       | TAKEOVER&#x2011;1    | TAKEOVER&#x2011;2    | TAKEOVER&#x2011;3    | TAKEOVER&#x2011;4    | TAKEOVER&#x2011;5    | TAKEOVER&#x2011;6    | TAKEOVER&#x2011;7    | TAKEOVER&#x2011;8    |
 |:---------------------|:--------------------:|:---------------------:|:--------------------:|:-------------------:|:--------------------:|:--------------------:|:--------------------:|--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|
 | **PREVENT&#x2011;1** |                      |                       |                      |                     |                      |                      |                      |                     |                      |                      |                      |                      |                      |                      |                      |                      |                      |                      |                      |                      |                      | 
@@ -99,7 +78,50 @@ Defensive strategies coded with a CANARY moniker describe deception strategies t
 
 ---
 
-## Contributors
+<br>
+<br>
 
-[Duane Michael](https://twitter.com/subat0mik), [Chris Thompson](https://twitter.com/_Mayyhem), and [Garrett Foster](https://twitter.com/garrfoster) are the primary authors of this project. [Diego Lomellini](https://twitter.com/DiLomSec1) and [Josh Prager](https://twitter.com/Praga_Prag) have made contributions as well. Please reach out if you're interested in contributing!
+# Taxonomy Overview
 
+
+## Attack Techniques
+
+### CRED
+Techniques coded with a CRED moniker primarily abuse credential access. CRED techniques are the most common we've seen and often lead to direct hierarchy takeover or domain compromise.
+
+### ELEVATE 
+Techniques coded with an ELEVATE moniker can be used for either local or domain privilege escalation. In some cases, these can be chained with other techniques for a hierarchy takeover primitive.
+
+### EXEC
+Techniques coded with an EXEC moniker can be used to execute commands, scripts, code, etc. on a remote target through SCCM's builtin functionality.
+
+### RECON
+Techniques coded with a RECON moniker relate to either performing reconnaissance against SCCM infrastructure or using SCCM to conduct further reconnaissance.
+
+### TAKEOVER
+Techniques coded with a TAKEOVER moniker describe the various steps necessary to compromise an SCCM hierarchy.
+
+<hr>
+<br>
+
+## Defense Techniques
+
+### CANARY
+Defensive strategies coded with a CANARY moniker describe deception strategies that could be used to deceive adversaries in tripping a high-fidelity detection.
+
+### DETECT
+Defensive strategies coded with a DETECT moniker describe strategies for detecting offensive techniques. In some cases, multiple DETECT strategies may be required for a stronger detection.
+
+### PREVENT
+Defensive strategies coded with a PREVENT moniker describe configuration changes to mitigate one or more aspects of an offensive technique. In some cases, multiple PREVENT strategies may be needed to fully mitigate an offensive technique.
+
+**NOTE:** We strongly recommend proper and thorough testing of any changes before configuring them in a production environment. The authors and contributors of this repository are not responsible for any breaking changes. Use as a guide at your own risk.
+
+<hr>
+<br>
+
+# Contributors
+
+[Duane Michael](https://twitter.com/subat0mik), [Chris Thompson](https://twitter.com/_Mayyhem), and [Garrett Foster](https://twitter.com/garrfoster) are the primary authors of this project, with contributions from [Diego Lomellini](https://twitter.com/DiLomSec1) and [Josh Prager](https://twitter.com/Praga_Prag). 
+
+Please reach out to us on Twitter or join us in the `#sccm` channel on the [BloodHoundGang Slack](https://bloodhoundgang.herokuapp.com/) if you have any questions or are interested in contributing!

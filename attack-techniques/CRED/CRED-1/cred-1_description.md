@@ -1,4 +1,5 @@
 # CRED-1
+
 ## Description
 Retrieve secrets from PXE boot media
 
@@ -9,8 +10,8 @@ Retrieve secrets from PXE boot media
 
 ## Requirements
 - Unauthenticated network access
-- Line of sight to DHCP server
-- Line of sight to PXE-enabled distrution point
+- Line of sight to DHCP server (optional, but helps)
+- Line of sight to PXE-enabled distribution point
 
 ## Summary
 SCCM contains a preboot execution environment (PXE) feature which allows systems to load a specific operating system image on boot.
@@ -33,11 +34,11 @@ To Summarize this process, how PXE works in SCCM:
 9. TSPXE locates the MP and downloads policy assignments​
 10. Collection and machine variables are downloaded
 
-**Note:** This goes beyond the scope of this article but Microsoft's [documentation](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot) covers it in more depth.
+**Note:** This goes beyond the scope of this article, but Microsoft's [documentation](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot) covers it in more depth.
 
-This process can be abused because the files and policies can be accessed without booting the PXE media. By initiating the DHCPDISCOVER request, an attacker can locate the PXE media on the network and check if they are password-protected. If they are protected, the hash can be retrieved and cracked offline using [hashcat](https://github.com/hashcat/hashcat) and [this custom module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module) from Christopher Panayi. If not protected, the cleartext data can be directly used. [PXEThief](https://github.com/MWR-CyberSec/PXEThief​) and [pxethiefy](https://github.com/csandker/pxethiefy​) both enable and trivialize this attack.
+This process can be abused because the files and policies can be accessed without booting the PXE media. By initiating the DHCPDISCOVER request, an attacker can locate the PXE media on the network, or they can contact a PXE-enabled DP directly if they know its name or IP address. If the PXE media stored there is password-protected, the hash can be retrieved and cracked offline using [hashcat](https://github.com/hashcat/hashcat) and [this custom module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module) from Christopher Panayi. If not protected, the cleartext data can be directly used. [PXEThief](https://github.com/MWR-CyberSec/PXEThief​) and [pxethiefy](https://github.com/csandker/pxethiefy​) both enable and make it trivial to conduct this attack.
 
-Once the media file is decrypted, it may contain credential material in the `NAAConfig` (network access account(NAA)), `TaskSequence`, and `CollectionSettings` (collection variables) policies.
+Once the media file is decrypted, it may contain or be used to obtain credential material in the `NAAConfig` (network access account(NAA)), `TaskSequence`, and `CollectionSettings` (collection variables) policies.
 
 
 ## Impact
@@ -55,7 +56,7 @@ With these credentials, attackers may transition from an unauthenticated context
 
 ## Examples
 
-- Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set
+Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set:
 ```
 testsubject4@sphere4:~$ sudo python3 pxethiefy.py explore -i eth0 -a atlas.aperture.local
 
@@ -83,9 +84,9 @@ Sent 1 packets.
 ```
 
 ## References
-- Christopher Panayi, Identifying and Retrieving Credentials From SCCM/MECM Task Sequences, https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences
-- Christopher Panayi, Pulling Passwords Out of Configuration Manager, https://www.youtube.com/watch?v=Ly9goAud0gs
-- Christopher Panayi, PXEThief, https://github.com/MWR-CyberSec/PXEThief
-- Christopher Panayi, AES-128 ConfigMgr CryptDeriveKey Hashcat Module, https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module
-- Carsten Sandker, pxethiefy, https://github.com/csandker/pxethiefy​
-- Microsoft, Understanding PXE Boot, https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot
+- Christopher Panayi, [Identifying and Retrieving Credentials From SCCM/MECM Task Sequences](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences)
+- Christopher Panayi, [Pulling Passwords Out of Configuration Manager](https://www.youtube.com/watch?v=Ly9goAud0gs)
+- Christopher Panayi, [PXEThief](https://github.com/MWR-CyberSec/PXEThief)
+- Christopher Panayi, [AES-128 ConfigMgr CryptDeriveKey Hashcat Module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module)
+- Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy​)
+- Microsoft, [Understanding PXE Boot](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#)

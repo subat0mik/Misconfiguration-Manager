@@ -1,4 +1,5 @@
 # CRED-3
+
 ## Description
 Dump currently deployed credentials via WMI
 

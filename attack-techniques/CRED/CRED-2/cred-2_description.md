@@ -1,4 +1,5 @@
-# CRED-3
+# CRED-2
+
 ## Description
 Request and deobfuscate machine policy to retrieve credential material
 
@@ -7,7 +8,11 @@ Request and deobfuscate machine policy to retrieve credential material
 - [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
 ## Requirements
-- Domain authentication
+- Domain computer account credentials or administrator access to an SCCM client
+
+  OR
+
+- `MachineAccountQuota` > `0` and `Add workstations to domain` includes `Domain Users` (both defaults)
 
 ## Summary
 The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI). But what happens before that? How are the secrets protected in transit before the client protects them with DPAPI?
@@ -32,9 +37,9 @@ The `get secrets` command extends this technique to retrieve NAAs, collection va
 
 
 ## Impact
-In environments using Active Directory defaults, SCCM defaults, and NAAs, any domain-authenticated user may create a computer object, register it as an SCCM client, request the NAA policy, and deobfuscated the credentials.
+In environments using Active Directory defaults, SCCM defaults, and NAAs, any domain-authenticated user may create a computer object, register it as an SCCM client, request the NAA policy, and deobfuscate the credentials.
 
-If the NAA is implementely under the principle of least privilege, this may not extend the attacker's privilege level in the domain.  The more common result: If the NAA is over-privileged, this technique serves as a trivial privilege escalation vector.
+If the NAA is implemented under the principle of least privilege, this may not extend the attacker's privilege level in the domain.  The more common result: If the NAA is over-privileged, this technique serves as a trivial privilege escalation vector.
 
 ## Defensive IDs
 - [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
@@ -42,7 +47,7 @@ If the NAA is implementely under the principle of least privilege, this may not 
 - [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 
 ## Examples
-- Using Powermad and SharpSCCM
+Using Powermad and SharpSCCM:
 ```
 Import-Module .\Powermad.psm1
 New-MachineAccount -MachineAccount chell$
@@ -94,8 +99,8 @@ NetworkAccessPassword: <password>
 
 
 ## References
-- Adam Chester, Unobfuscating Network Access Accounts, https://blog.xpnsec.com/unobfuscating-network-access-accounts/
-- Adam Chester, sccmwtf, https://github.com/xpn/sccmwtf
-- Chris Thompson, SharpSCCM, https://github.com/Mayyhem/SharpSCCM/
-- Evan McBroom, SCCM Credential Recovery for Network Access Accounts, https://gist.github.com/EvanMcBroom/525d84b86f99c7a4eeb4e3495cffcbf0
+- Adam Chester, [Unobfuscating Network Access Accounts](https://blog.xpnsec.com/unobfuscating-network-access-accounts/)
+- Adam Chester, [sccmwtf](https://github.com/xpn/sccmwtf)
+- Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/)
+- Evan McBroom, [SCCM Credential Recovery for Network Access Accounts](https://gist.github.com/EvanMcBroom/525d84b86f99c7a4eeb4e3495cffcbf0)
 

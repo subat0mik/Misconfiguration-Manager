@@ -1,10 +1,12 @@
 # PREVENT-19
 
 ## Description
-Remove unnecessary SQL server links from site database server
+Remove unnecessary links to site databases
 
 ## Summary
-Configuration Manager installations with multiple sites in a hierarchy will create SQL server and replication links between the different site databases. However, SQL server links to non-SCCM servers should be audited and removed, preventing unintended attack vectors from non-SCCM servers. It is crucial to ensure the links to other SCCM site database servers are not removed, as this will break functionality. Therefore, ensure proper due dilligence for the target servers and databases before removing links.
+Configuration Manager installations with multiple sites in a hierarchy will create SQL server and replication links between the different site databases. However, other unnecessary SQL server links to SCCM servers should be audited and removed, particularly if the links were created with DBA privileges, preventing unintended attack vectors from non-SCCM servers. 
+
+It is crucial to ensure the links to other SCCM site database servers are not removed, as this will break functionality. Therefore, ensure proper due diligence for the target servers and databases before removing links.
 
 ## Linked Defensive IDs
 - N/A

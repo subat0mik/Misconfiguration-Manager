@@ -1,37 +1,38 @@
 # CRED-4
+
 ## Description
-Retrieve legacy network access account (NAA) credentials from the CIM Repository
+Retrieve legacy credentials from the CIM Repository
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
 - [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
 ## Requirements
-- Local administrative privileges on the SCCM client
+- Local administrator privileges on an SCCM client
 
 ## Summary
-The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace.
+The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point, but it serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Once received by the client, the credentials are stored in the `CCM_NetworkAccessAccount` class in the `root\ccm\policy\Machine\ActualConfig` WMI namespace.
 
 This technique may apply whether an NAA is currently configured [CRED-3](../CRED-3/cred-3_description.md) or not. Therefore, even if [CRED-3](../CRED-3/cred-3_description.md) is fruitless, there is still hope.
 
 Data stored within WMI classes exists on disk in the CIM repository file located at `C:\Windows\System32\wbem\Repository\OBJECTS.DATA`. Due to the [nuance](https://github.com/mandiant/flare-wmi/blob/master/python-cim/doc/data-recovery.md) of how WMI and CIM clean up these objects, they may be cleared from the database (as read from a WMI context) but still persist on disk in the CIM repository file.
 
-The credentials exist in the file in the following format: `CCM_NetworkAccessAccount  <PolicySecret Version="1"><![CDATA[0601000001000000D08C9DDF0115D1118C7A00C04FC297EB...`. The file can be searched either manually in a text or hex editor, or automated with [SharpDPAPI's search command](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#search): `SharpDPAPI.exe search /type:file /path:C:\Windows\System32\wbem\Repository\OBJECTS.DATA`.
+The credentials exist in the file in the following format: `CCM_NetworkAccessAccount  <PolicySecret Version="1"><![CDATA[0601000001000000D08C9DDF0115D1118C7A00C04FC297EB...`. The file can be searched either manually in a text or hex editor, or this process can be automated with [SharpDPAPI's search command](https://github.com/GhostPack/SharpDPAPI?tab=readme-ov-file#search): `SharpDPAPI.exe search /type:file /path:C:\Windows\System32\wbem\Repository\OBJECTS.DATA`.
 
-If an encrypted blob exists, it can be extracted and decrypted using the SYSTEM DPAPI masterkey and [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI) or automated with [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)'s `local secrets -m disk` command.
+If an encrypted blob exists, it can be extracted and decrypted using the SYSTEM DPAPI masterkey and [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI), or this process can be automated with [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)'s `local secrets -m disk` command, which extends this technique to retrieve collection variables and task sequences that may also contain secrets such as credentials.
+
 
 ## Impact
+This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA or credential stored in a collection variable or task sequence is not overprivileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the credential is overprivileged, this technique may enable lateral movement to other clients and/or sensitive systems.
 
-This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA is not over-privileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the NAA is overprivileged, this technique enables lateral movement to other clients and/or sensitive systems.
+At SpecterOps, we commonly see accounts that are members of the SCCM `Full Administrator` role and the `Domain Admins` group configured as NAAs.
 
-We (SpecterOps) commonly see accounts that are members of the `SCCM Administrators` and `Domain Admins` groups configured as the NAA.
-
-Currently-configured NAAs and/or legacy NAA configurations may be present in the CIM repository file. If so, an attacker can recover legacy accounts that have been configured for NAA in the past. For example, if a system administrator configure their SCCM Admin account as the NAA when the site was created but, years later, fixed their mistake and no longer use an overprivileged NAA or NAA at all, their SCCM Admin credentials may still be on disk on SCCM clients.
+Currently-configured and/or legacy NAA, collection variable, and task sequence configurations may be present in the CIM repository file. If so, an attacker can recover legacy accounts that have been configured in the past. For example, if a system administrator configured their SCCM admin account as the NAA when the site was created, but years later fixed their mistake and no longer use an overprivileged NAA or NAA at all, their SCCM admin credentials may still be on disk on SCCM clients.
 
 ## Defensive IDs
-- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
-- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 - [PREVENT-15: Disable legacy network access accounts in Active Directory](../../../defense-techniques/PREVENT/PREVENT-15/prevent-15_description.md)
 
 ## Examples
@@ -98,8 +99,8 @@ SharpDPAPI completed in 00:00:00.0397643
 ```
 
 ## References
-- Duane Michael, The Phantom Credentials of SCCM: Why the NAA Won’t Die, https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9
-- Chris Thompson, SharpSCCCM, https://github.com/Mayyhem/SharpSCCM
-- Will Schroeder, SharpDPAPI, https://github.com/GhostPack/SharpDPAPI
-- William Ballenthin, FlareWMI, https://github.com/mandiant/flare-wmi
-- William Ballenthin, Matt Graeber, Claudiu Teodorescu, Windows Management Instrumentation (WMI) Offense, Defense, and Forensics, https://www.mandiant.com/sites/default/files/2021-09/wp-windows-management-instrumentation.pdf
+- Duane Michael, [The Phantom Credentials of SCCM: Why the NAA Won’t Die](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
+- Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
+- Will Schroeder, [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI)
+- William Ballenthin, [FlareWMI](https://github.com/mandiant/flare-wmi)
+- William Ballenthin, Matt Graeber, and Claudiu Teodorescu, [Windows Management Instrumentation (WMI) Offense, Defense, and Forensics](https://www.mandiant.com/sites/default/files/2021-09/wp-windows-management-instrumentation.pdf)

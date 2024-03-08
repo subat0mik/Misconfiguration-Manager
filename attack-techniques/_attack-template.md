@@ -1,6 +1,6 @@
-# Technique Name
+# CODENAME-X
 
-## Code Name
+## Description
 CODENAME
 
 ## MITRE ATT&CK TTPs
@@ -25,4 +25,4 @@ CODENAME
 ## Examples
 
 ## References
-Author, Title, URL
+Author, [Title](URL)

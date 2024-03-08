@@ -1,7 +1,7 @@
-# TECHNIQUE ID
+# PREVENT-20
 
 ## Description
-This is a simple one-line description
+Block unnecessary connections to site systems
 
 ## Summary
 This is the bulk of the content

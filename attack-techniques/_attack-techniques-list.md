@@ -1,9 +1,9 @@
 | Codename | Description | Notes | Links | Status |
 |----------|-------------|-------| ----- | ------ |
-| CRED-1 | PXE boot creds | | PREVENT-3, PREVENT-6, PREVENT-7, PREVENT-21 | Complete |
+| CRED-1 | Retrieve secrets from PXE boot media | | PREVENT-3, PREVENT-6, PREVENT-7, PREVENT-21 | Complete |
 | CRED-2 | Request machine policy and deobfuscate secrets | | PREVENT-3, PREVENT-4, PREVENT-10 | Complete
-| CRED-3 | Current NAA DPAPI blobs | | PREVENT-3, PREVENT-4, PREVENT-10 | Complete
-| CRED-4 | Legacy NAA DPAPI blobs | | CRED-3, PREVENT-3, PREVENT-4, PREVENT-10, PREVENT-15 | Complete
+| CRED-3 | Dump currently deployed credentials via WMI | | PREVENT-3, PREVENT-4, PREVENT-10 | Complete
+| CRED-4 | Retrieve legacy credentials from the CIM Repository | | CRED-3, PREVENT-3, PREVENT-4, PREVENT-10, PREVENT-15 | Complete
 | CRED-5 | SCCM database credential dump | | | QA
 | ELEVATE-1 | NTLM relay site server to SMB on site systems | | | Not started
 | ELEVATE-2 | NTLM relay via automatic client push installation | | |
