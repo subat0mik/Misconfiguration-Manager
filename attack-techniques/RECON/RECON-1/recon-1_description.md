@@ -61,6 +61,42 @@ At SpecterOps, we frequently observe predictable naming conventions in use to he
 - "sccm site servers" for a security group that contained all SCCM site systems in the domain
 - "SCCMDP1" for a SCCM site system configured with the distribution point role
 
+## Examples
+
+### Management Points
+Use `pyldapsearch` to query for published `mSMSManagementPoint` class objects
+
+
+```
+└─# poetry run pyldapsearch internal.lab/administrator:"<password>" "(objectclass=mssmsmanagementpoint)"  -attributes dnshostname,msSMSSiteCode
+Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
+
+[*] pyldapsearch v0.1.2 - @Tw1sm
+
+[*] Binding to internal.lab
+[*] Distinguished name: DC=internal,DC=lab
+[*] Filter: (objectclass=mssmsmanagementpoint)
+[*] Returning specific attributes(s): dnshostname,msSMSSiteCode
+--------------------
+dNSHostName: mp2.internal.lab
+mSSMSSiteCode: ABC
+--------------------
+dNSHostName: mp.internal.lab
+mSSMSSiteCode: LAB
+--------------------
+dNSHostName: sccm.internal.lab
+mSSMSSiteCode: LAB
+--------------------
+dNSHostName: sccm2.internal.lab
+mSSMSSiteCode: ABC
+--------------------
+dNSHostName: active.internal.lab
+mSSMSSiteCode: ACT
+
+[*] Retrieved 5 results total
+
+```
+
 ## Impact
 1. Identifying the presence of site servers and site systems is typically the first step in building potential attack paths
 2. A resolved MP site system role can be abused to spoof SCCM client enrollment and potentially recover credentials ([CRED-2](../../CRED/CRED-2/cred-2_description.md))
@@ -76,3 +112,5 @@ At SpecterOps, we frequently observe predictable naming conventions in use to he
 
 ## References
 Garrett Foster, [SCCMHunter](https://github.com/garrettfoster13/sccmhunter)
+
+Matt Creel, [pyldapsearch](https://github.com/Tw1sm/pyldapsearch)
