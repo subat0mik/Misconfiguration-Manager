@@ -10,8 +10,6 @@ An attacker may utilize LDAP requests targeting the domain controller's `System`
 
 Defenders can set focused auditing on the `System Management` container to identify anomalous read access attempts. Defenders can enable a SACL (System Access Control List) on the `System Management` container and set the audit categories to monitor for `Read all properties`. Upon the querying of the `System Management` container within Active Directory Users and Computers, a [Event ID: 4662](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4662) will highlight that a Read operation was performed on the container object.
 
-## Examples
-
 The below example displays the `sccmhunter.py` `find` command. 
 
 ```
@@ -68,6 +66,13 @@ Computer        : System Management
 RequestedObject : container
 ObjectGuid      : %{fa360eb8-3156-4989-85b6-c15d8a2b4a05}
 ```
+
+## Linked Defensive IDs
+- 
+
+
+## Associated Offensive IDs
+- [RECON-1: Enumerate SCCM site information via LDAP](../../../attack-techniques/RECON/RECON-1/recon-1_description.md)
 
 ## References
 - Garrett Foster, SCCMHunter Find Module, https://github.com/garrettfoster13/sccmhunter/wiki/find

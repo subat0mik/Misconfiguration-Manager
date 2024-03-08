@@ -1,16 +1,16 @@
-# Plain English Title
+# DETECT-4
 
-## Code Name
-SITE-TAKEOVERX
+## Description
+Monitor application deployment logs in the site's Audit Status Messages
 
 ## Summary
 
 ## Linked Defensive IDs
-- [PREVENT-4: Enable Enhanced HTTP](../PREVENT-4/prevent-4_description.md)
+- 
 
 
 ## Associated Offensive IDs
-- [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
+- [EXEC-1: Application deployment](../../../attack-techniques/EXEC/EXEC-1/exec-1_description.md)
 
 ## References
-Author, Title, Link
+Author, [Title](Link)

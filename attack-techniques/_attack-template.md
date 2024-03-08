@@ -1,28 +1,30 @@
 # CODENAME-X
 
 ## Description
-CODENAME
+This is a simple one-line description
 
 ## MITRE ATT&CK TTPs
-- [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
-- [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+- [TTP-ID](https://attack.mitre.org/LINK) - Description
 
 ## Requirements
 -
 -
 
 ## Summary
+This is the bulk of the content
 
 ## Impact
+Brief description of impact
 
 ## Subtechniques
 -
 -
 
 ## Defensive IDs
-- [PREVENT-1: Patch SCCM Site Server with KB15599094](../defense-techniques/PREVENT/PREVENT-1/prevent-1_description.md)
+- [ID: Description](Link)
 
 ## Examples
+Operational examples
 
 ## References
-Author, [Title](URL)
+- Author, [Title](URL)

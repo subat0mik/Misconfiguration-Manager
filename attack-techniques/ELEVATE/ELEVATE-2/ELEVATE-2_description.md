@@ -44,6 +44,7 @@ If all configured accounts fail when the site server tries to authenticate to a 
 
 ## Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [DETECT-3: Monitor client push installation accounts authenticating from anywhere other than the primary site server](../../../defense-techniques/DETECT/DETECT-3/detect-3_description.md)
 - [PREVENT-1: Patch site server with KB15599094](../../../defense-techniques/PREVENT/PREVENT-1/prevent-1_description.md)
 - [PREVENT-2: Disable Fallback to NTLM](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
 - [PREVENT-5: Disable automatic side-wide client push installation](../../../defense-techniques/PREVENT/PREVENT-5/prevent-5_description.md)

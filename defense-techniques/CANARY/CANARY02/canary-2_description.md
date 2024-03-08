@@ -1,11 +1,16 @@
-# Plain English Title
+# CANARY-2
 
-## Code Name
-SITE-TAKEOVERX
+## Description
+Configure a minimally privileged client push account 
 
 ## Summary
+Monitor for any usage of this account
 
-## Examples
+## Linked Defensive IDs
+- [ID: Description](Link)
+
+## Associated Offensive IDs
+- [ID: Description](Link)
 
 ## References
-Author, Title, Link
+- Author, [Title](Link)

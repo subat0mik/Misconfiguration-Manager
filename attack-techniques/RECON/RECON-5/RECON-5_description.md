@@ -1,6 +1,7 @@
 # RECON-5
+
 ## Description
-User hunting via SMS Provider
+Locate users via SMS Provider 
 
 ## MITRE ATT&CK TTPs
 - [TA0007](https://attack.mitre.org/tactics/TA0007/) - Discovery
@@ -138,6 +139,6 @@ That said, it is possible to force a group of computers to update the `LastLogon
 NOTE: If you use this method of force-updating the `LastLogonUser` attribute, you are asking every device in the collection to send a data discovery record (DDR) to the management point at once. Doing this while targeting a large device collection (e.g., `All Systems`) could flood the management point with a ton of requests at once, so please be mindful of the size and sensitivity of the environment you’re testing in. It’s much safer to create a device collection that only includes the specific group of targets you would like to update.
 
 ## References
-- Chris Thompson, Relaying NTLM Authentication from SCCM Clients, https://posts.specterops.io/relaying-ntlm-authentication-from-sccm-clients-7dccb8f92867
-- Microsoft, Link users and devices with user device affinity in Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/apps/deploy-use/link-users-and-devices-with-user-device-affinity
-- Prajwal Desai, Allow Users to Set Primary Device in Software Center, https://www.prajwaldesai.com/allow-users-to-set-primary-device-in-software-center/
+- Chris Thompson, [Relaying NTLM Authentication from SCCM Clients](https://posts.specterops.io/relaying-ntlm-authentication-from-sccm-clients-7dccb8f92867)
+- Microsoft, [Link users and devices with user device affinity in Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/apps/deploy-use/link-users-and-devices-with-user-device-affinity)
+- Prajwal Desai, [Allow Users to Set Primary Device in Software Center](https://www.prajwaldesai.com/allow-users-to-set-primary-device-in-software-center/)

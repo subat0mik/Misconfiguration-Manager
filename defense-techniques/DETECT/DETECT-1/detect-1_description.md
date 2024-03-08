@@ -57,6 +57,9 @@ The example below displays a successful logon event for the SCCM site server fro
 
 ```
 
+## Linked Defensive IDs
+- [DETECT-3: Monitor client push installation accounts authenticating from anywhere other than the primary site server](../DETECT-3/detect-3_description.md)
+
 ## Associated Offensive IDs
 - [ELEVATE-1: NTLM relay site server to SMB on site systems](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)

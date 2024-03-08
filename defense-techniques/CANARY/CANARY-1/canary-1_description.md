@@ -1,11 +1,16 @@
-# Plain English Title
+# CANARY-1
 
-## Code Name
-SITE-TAKEOVERX
+## Description
+Configure an appropriately-privileged NAA with interactive logon restricted
 
 ## Summary
+Monitor for any usage of this account, which will be pushed out to all clients in the site.
 
-## Examples
+## Linked Defensive IDs
+- [ID: Description](Link)
+
+## Associated Offensive IDs
+- [ID: Description](Link)
 
 ## References
-Author, Title, Link
+- Author, [Title](Link)
