@@ -1,20 +1,15 @@
 # DETECT-1
 
 ## Description
-
-Monitor site system computer accounts authenticating from a source that is not its static netbios name.
+Monitor site server domain computer accounts authenticating from another source
 
 ## Summary
 
-An attacker could use authentication coercion methods to coerce the NTLM authentication from the SCCM site server's host system and then relay that coerced authentication to another target. This elevation method would enable privilege escalation and lateral movement if the attacker targets the SCCM site system.
+An attacker may use coercion methods to force the the SCCM site server's domain computer account to authenticate to an attacker-controlled machine and relay that authentication to another target. This elevation method enables privilege escalation and lateral movement if the attacker targets any other SCCM site system, as the site server requires local administrator privileges on other site systems.
 
-A defender can compare the account name field of [Event ID: 4624](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624) to that of the source host name field. The SCCM site server's machine account will generate the successful logon event of the machine account authentication on a server or host that is not the SCCM site server.
+A defender can compare the `Account Name` field of [Event ID: 4624](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624) to that of the `Source_Host` field, or the static IP address of the site server to the `Source Network Address` field. If the site server's domain computer account generates a successful logon event from a source that is not that site server, an NTLM relay attack may have taken place.
 
-For reduction of false positives, defenders can allow list the SCCM site server machine account's authentication to the domain controllers, as this behavior is expected and benign.
-
-## Examples
-
-The below example displays a successful logon event for the SCCM site server on a host that is not the SCCM site server.
+The example below displays a successful logon event for the SCCM site server from a host that is not the site server.
 
 ```
     Source_Host: server2.sccmlab.local
@@ -61,8 +56,13 @@ The below example displays a successful logon event for the SCCM site server on 
         Key Length:		128
 
 ```
+
+## Associated Offensive IDs
+- [ELEVATE-1: NTLM relay site server to SMB on site systems](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
+- [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
+
 ## References
-- Chris Thompson, SCCM Hierarchy Takeover, https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087
-- Josh Prager & Nico Shyne, Domain Persistence: Detection Triage and Recovery, https://github.com/bouj33boy/Domain-Persistence-Detection-Triage-and-Recovery-SO-CON-2024
-- Daniel Petri, How to Defend Against an NTLM Relay Attack, https://www.semperis.com/blog/how-to-defend-against-ntlm-relay-attack/
-- Fox-IT, Relaying credentials everywhere with ntlmrelayx, https://blog.fox-it.com/2017/05/09/relaying-credentials-everywhere-with-ntlmrelayx/
+- Chris Thompson, [SCCM Hierarchy Takeove](https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087)
+- Josh Prager and Nico Shyne, [Domain Persistence: Detection Triage and Recovery](https://github.com/bouj33boy/Domain-Persistence-Detection-Triage-and-Recovery-SO-CON-2024)
+- Daniel Petri, [How to Defend Against an NTLM Relay Attack](https://www.semperis.com/blog/how-to-defend-against-ntlm-relay-attack/)
+- Fox-IT, [Relaying credentials everywhere with ntlmrelayx](https://blog.fox-it.com/2017/05/09/relaying-credentials-everywhere-with-ntlmrelayx/)

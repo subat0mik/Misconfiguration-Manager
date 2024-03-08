@@ -1,6 +1,7 @@
 # ELEVATE-1
+
 ## Description
-NTLM relay site server SMB to SMB on site systems
+NTLM relay site server to SMB on site systems
 
 ## MITRE ATT&CK Tactics
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
@@ -20,7 +21,7 @@ NTLM relay site server SMB to SMB on site systems
     - `RestrictSendingNTLMTraffic` = `0` or not present, or = `1` and `ClientAllowedNTLMServers` contains attacker relay server
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < 5 or not present, or = `5` and LmCompatibilityLevel >= 3 on the coercion target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Relay target settings:
@@ -32,20 +33,19 @@ NTLM relay site server SMB to SMB on site systems
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
 
 ## Summary
-SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server machine account and requires [local administrative permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's host system and relay it to SMB on remote site systems in the same site to elevate their privileges and move laterally.
+SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain compuper account and requires [local administrative permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
 
 ## Impact
-Impact for these scenarios is difficult to quantify. In some cases a compromised site system role could lead to hierarchy takeover while in others a successful attack is simply a lateral movement opportunity. 
+Impact for these scenarios is difficult to quantify. In some cases a compromised site system role could lead to hierarchy takeover, while in others a successful attack is simply a lateral movement opportunity.
 
 ## Subtechniques
 - ELEVATE-1.1: NTLM relay primary site server SMB to SMB on remote site systems
 - ELEVATE-1.2: NTLM relay passive site server SMB to SMB on remote site systems
 
 
-
 ## Defensive IDs
-- [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
-- [DETECT-1: Monitor site system computer accounts authenticating from a source that is not its static netbios name](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
+- [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
 
 ## Examples
 1. On the attacker host, identify and profile SCCM assets with `SCCMhunter`. The output below is snipped from the output of the SMB module. From the results, *SCCM.INTERNAL.LAB* is identified as a site server in the *LAB* site with multiple hosts from the same site hosting various site system roles.
