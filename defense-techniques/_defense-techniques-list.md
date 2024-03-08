@@ -21,7 +21,7 @@
 | PREVENT-13 | Require LDAP channel binding and signing | Domain, server |
 | PREVENT-14 | Require EPA on AD CS and site databases | Domain, security, SCCM, server, database |
 | PREVENT-15 | Disable and change passwords of legacy NAAs and collection variables/task sequence secrets in Active Directory | Domain, SCCM |
-| PREVENT-16 | Remove SeMachineAccountPrivilege and set MachineAccountQuota to 0 for non-admin accounts | Domain |
+| PREVENT-16 | Restrict computer account creation | Domain |
 | PREVENT-17 | Remove Extended Rights assignment from accounts that do not require it | Domain, desktop |
 | PREVENT-18 | Use strong passwords for DBA accounts | Database, security, domain |
 | PREVENT-19 | Remove unnecessary links to site databases | SCCM, database |
