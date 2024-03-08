@@ -54,6 +54,7 @@ The "Full Administrator" security role is granted all permissions in Configurati
 
 ## Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [PREVENT-11: Disable and uninstall WebClient on site servers](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
 - [PREVENT-13: Require LDAP channel binding and signing](../../../defense-techniques/PREVENT/PREVENT-13/prevent-13_description.md)
 - [PREVENT-16: Remove SeMachineAccountPrivilege and set MachineAccountQuota to 0 for non-admin accounts](../../../defense-techniques/PREVENT/PREVENT-16/prevent-16_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)

@@ -55,6 +55,7 @@ And a lot more. There are more than 130 queries available.
 
 ## Defensive IDs
 - [PREVENT-9: Enforce MFA for SMS provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
 

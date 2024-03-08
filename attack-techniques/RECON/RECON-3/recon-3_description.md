@@ -18,7 +18,7 @@ When certain site system roles are installed, part of the installation process i
 3. A resolved SMS Provider role can be a target for hierarchy takeover ([TAKEOVER-5](../../TAKEOVER/TAKEOVER-5/takeover-5_description.md) and [TAKEOVER-6](../../TAKEOVER/TAKEOVER-6/takeover-6_description.md)).
 
 ## Defensive IDs
-- 
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
 The following examples are a sampling and are not an exhaustive representation.

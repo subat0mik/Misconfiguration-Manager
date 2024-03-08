@@ -41,6 +41,8 @@ Impact for these scenarios is difficult to quantify. In some cases a compromised
 ## Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
+
 
 ## Subtechniques
 - ELEVATE-1.1: NTLM relay primary site server SMB to SMB on remote site systems
@@ -171,6 +173,5 @@ WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:6d27d961da4a806f274e042f
 ```
 
 ## References
-
 - Microsoft, [Install site system roles for Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/install-site-system-roles)
 - Microsoft, [Site system installation account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account)

@@ -68,9 +68,8 @@ At SpecterOps, we frequently observe predictable naming conventions in use to he
 4. All SCCM sites require at least one MP role except for central administration sites (CAS), which [do not](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/design-a-hierarchy-of-sites#BKMK_ChooseCAS) support roles that interact with clients. However, the CAS site code is still published via the `mSSMSSite` class. Additionally, the CAS primary site server requires Full Control for the `System Management` container for publishing purposes. Therefore, a query for all published site codes in a domain can be used to identify the CAS primary site server by elimintating site codes that have a published MP. Knowlege of the CAS can be used to perform credential relay attacks to elevate privileges in the domain or SCCM hierarchy (see TAKEOVERs 1-8).
 5. Predictble naming conventions help identify high value targets associated with the SCCM hierarchy.
 
-
 ## Defensive IDs
-- [DETECT-2: Monitor read property access to the System Management container within Active Directory Users and Computers](../../../defense-techniques/DETECT/DETECT-2/detect-2_description.md)
+- [DETECT-2: Monitor read access to the `System Management` Active Directory container](../../../defense-techniques/DETECT/DETECT-2/detect-2_description.md)
 
 ## Examples
 

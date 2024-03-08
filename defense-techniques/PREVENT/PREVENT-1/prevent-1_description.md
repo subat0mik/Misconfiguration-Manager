@@ -16,7 +16,7 @@ In SCCM versions prior to 2207, there exists a bug such that without this settin
 This patch only applies to versions 2103+. If the installed version is older, Microsoft recommends updating to a current version.
 
 ## Linked Defensive IDs
-- [PREVENT-2](../PREVENT-2/prevent-2_description.md)
+- [PREVENT-2: Disable Fallback to NTLM](../PREVENT-2/prevent-2_description.md)
 
 ## Associated Offensive IDs
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)

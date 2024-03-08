@@ -14,11 +14,12 @@ An option to mitigate such access or attacks is restricting PXE boot to specific
 There is another method: DHCP options. Microsoft [does not recommend](https://techcommunity.microsoft.com/t5/configuration-manager-blog/you-want-to-pxe-boot-don-t-use-dhcp-options/ba-p/275562) this approach.
 
 ## Linked Defensive IDs
-- N/A
+- [PREVENT-6: Configure a strong PXE boot password](../PREVENT-6/prevent-6_description.md)
+- [PREVENT-7: Disable command support in PXE boot configuration](../PREVENT-7/prevent-7_description.md)
 
 ## Associated Offensive IDs
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
 
 ## References
-- Microsoft, Boot From PXE Server, https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/boot-from-pxe-server
-- Reddit, PXE Boot from only one VLAN?, https://www.reddit.com/r/SCCM/comments/nkkv1a/pxe_boot_from_only_one_vlan/
+- Microsoft, [Boot From PXE Server](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/boot-from-pxe-server)
+- Reddit, [PXE Boot from only one VLAN?](https://www.reddit.com/r/SCCM/comments/nkkv1a/pxe_boot_from_only_one_vlan/)

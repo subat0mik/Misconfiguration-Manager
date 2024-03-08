@@ -1,15 +1,14 @@
 # DETECT-2
 
 ## Description
-Monitor the read access requests of the `System Management` container within Active Directory Users and Computers.
+Monitor read access to the `System Management` Active Directory container
 
 ## Summary
 An attacker may utilize LDAP requests targeting the domain controller's `System` container which contains the `System Management` container. This `System Management` container usually has `GenericAll` permissions set on the container object and contains the SCCM published site information. An attacker can query this container to resolve the potential site servers.
 
 Defenders can set focused auditing on the `System Management` container to identify anomalous read access attempts. Defenders can enable a SACL (System Access Control List) on the `System Management` container and set the audit categories to monitor for `Read all properties`. Upon the querying of the `System Management` container within Active Directory Users and Computers, a [Event ID: 4662](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4662) will highlight that a Read operation was performed on the container object.
 
-The below example displays the `sccmhunter.py` `find` command. 
-
+The below example displays the `sccmhunter.py` `find` command to trigger the LDAP query: 
 ```
 python3 sccmhunter.py find -u 'john' -p 'Ieshoh5chael' -d sccmlab.local -dc-ip 10.10.0.100
 
@@ -24,8 +23,7 @@ SCCMHunter v1.0.0 by @garrfoster
 
 ```
 
-The below example displays a successful SACL generation upon the use of an LDAP request reading the properties of the `System Management` container.
-
+The below example displays a successful SACL generation upon the use of an LDAP request reading the properties of the `System Management` container:
 ```
 Event ID: 4662
 An operation was performed on an object.
@@ -55,8 +53,8 @@ Additional Information:
 	Parameter 1:		-
 	Parameter 2:
 ```
-The below example displays the System Management translation between the GUID identified in the Object Name field of the 4662 event and the actual plain text Object Name. 
 
+The below example displays the System Management translation between the GUID identified in the Object Name field of the 4662 event and the actual plain text Object Name.:
 ```
 TimeCreated     : 3/4/2024 11:20:32 PM
 UserName        : Administrator
@@ -64,10 +62,6 @@ Computer        : System Management
 RequestedObject : container
 ObjectGuid      : %{fa360eb8-3156-4989-85b6-c15d8a2b4a05}
 ```
-
-## Linked Defensive IDs
-- 
-
 
 ## Associated Offensive IDs
 - [RECON-1: Enumerate SCCM site information via LDAP](../../../attack-techniques/RECON/RECON-1/recon-1_description.md)

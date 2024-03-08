@@ -8,11 +8,11 @@ Request machine policy and deobfuscate secrets
 - [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
 ## Requirements
-- Domain computer account credentials or administrator access to an SCCM client
+- PKI certificates are not required for client authentication
 
-  OR
+  AND
 
-- `MachineAccountQuota` > `0` and `Add workstations to domain` includes `Domain Users` (both defaults)
+- Domain computer account credentials or (`MachineAccountQuota` > `0` and `Add workstations to domain` includes `Domain Users`)
 
 ## Summary
 The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI). But what happens before that? How are the secrets protected in transit before the client protects them with DPAPI?
@@ -43,6 +43,7 @@ If the NAA or credential stored in a collection variable or task sequence is imp
 ## Defensive IDs
 - [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
+- [PREVENT-8: Require PKI certificates for client authentation](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
 - [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 - [PREVENT-16: Remove SeMachineAccountPrivilege and set MachineAccountQuota to 0 for non-admin accounts](../../../defense-techniques/PREVENT/PREVENT-16/prevent-16_description.md)
 
@@ -102,4 +103,3 @@ NetworkAccessPassword: <password>
 - Adam Chester, [sccmwtf](https://github.com/xpn/sccmwtf)
 - Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/)
 - Evan McBroom, [SCCM Credential Recovery for Network Access Accounts](https://gist.github.com/EvanMcBroom/525d84b86f99c7a4eeb4e3495cffcbf0)
-

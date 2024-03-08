@@ -1,9 +1,8 @@
 | Codname | Description | Admin Roles |
 |---------|-------------|-------------|
 | CANARY-1 | Configure an appropriately-privileged NAA with interactive logon restricted | SCCM, domain |
-| CANARY-2 | Configure a minimally privileged client push account | SCCM, domain |
 | DETECT-1 | Monitor site server domain computer accounts authenticating from another source | Security |
-| DETECT-2 | Monitor the read access requests of the System Management container within Active Directory Users and Computers | Security |
+| DETECT-2 | Monitor read access to the System Management Active Directory container | Security |
 | DETECT-3 | Monitor client push installation accounts authenticating from anywhere other than the primary site server | Security |
 | DETECT-4 | Monitor application deployment logs in the site's Audit Status Messages | SCCM, security |
 | DETECT-5 | Monitor group membership changes for SMS Admins | SCCM, server, security |
@@ -17,7 +16,7 @@
 | PREVENT-8 | Require PKI certificates for client authentation | SCCM, network, security, server, domain |
 | PREVENT-9 | Enforce MFA for SMS Provider calls | SCCM |
 | PREVENT-10 | Enforce the principle of least privilege for accounts | SCCM, domain, server, security |
-| PREVENT-11 | Disable/uninstall WebClient on site servers | SCCM, server |
+| PREVENT-11 | Disable and uninstall WebClient on site servers | SCCM, server |
 | PREVENT-12 | Require SMB signing on site systems | Domain, server, SCCM |
 | PREVENT-13 | Require LDAP channel binding and signing | Domain, server |
 | PREVENT-14 | Require EPA on AD CS and site databases | Domain, security, SCCM, server, database |
@@ -28,4 +27,4 @@
 | PREVENT-19 | Remove unnecessary links to site databases | SCCM, database |
 | PREVENT-20 | Block unnecessary connections to site systems | Network, server |
 | PREVENT-21 | Restrict PXE boot to authorized VLANs | SCCM, network |
-| PREVENT-22 | Do not manage Tier 0 assets | SCCM, security |
+| PREVENT-22 | Do not manage assets in two or more segmented forests, domains, networks, or security tiers | SCCM, network, security, domain |

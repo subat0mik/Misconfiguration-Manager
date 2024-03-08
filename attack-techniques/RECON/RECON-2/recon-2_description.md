@@ -19,7 +19,7 @@ When certain site system roles are installed, part of the installation process i
 4. A resolved WSUS role can be a target for lateral movement or privilege escalation detailed in [ELEVATE-1](../../ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 
 ## Defensive IDs
-- 
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
 The following examples are a sampling and are not an exhaustive representation of site system roles and their shares.

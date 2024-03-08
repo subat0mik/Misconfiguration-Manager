@@ -4,6 +4,7 @@
 Require LDAP channel binding and signing
 
 ## Summary
+
 ### LDAP Security Overview
 This article discusses LDAP-specific mitigations that pertain to NTLM relay. Implementing these settings can cause breaking changes so it is crucial to first [audit](https://www.hub.trimarcsecurity.com/post/return-of-the-ldap-channel-binding-and-ldap-signing) the environment.
 
@@ -13,7 +14,22 @@ There are three distinct parts of LDAP security that are important to differenti
 - LDAP signing - LDAP messages are digitally signed by the client's secret, thus the server can detect tampering.
 - LDAP channel binding - Using a secure channel (SSL/TLS), LDAP authentication is "bound" to the TLS session, resulting in a unique channel binding token. Without this token from the TLS session, the LDAP authentication will fail.
 
-Before covering the specific LDAP security configurations, it is important to discuss NTLM authentication and the underlying session (LDAP).
+### LDAP Signing Configuration
+LDAP signing is negotiated in the NTLM negotiation step. If either client or server requires signing and the other does not, the session will not start. LDAP signing can be configured with the following group policies:
+
+- `Network security: LDAP client signing requirements` -> "Require signing"
+- `Domain Controller: LDAP server signing requirements` -> "Require signing"
+
+Both policies are located under `Default Domain Controllers Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options`.
+
+### LDAP Channel Binding Configuration
+LDAP channel binding can be configured with the following group policy:
+
+- `Domain controller: LDAP server channel binding token requirements` -> "Always"
+
+The policy is located under `Default Domain Controllers Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options`.
+
+To understand these LDAP security configurations, it is important to discuss NTLM authentication and the underlying session (LDAP).
 
 ### NTLM Authentication
 **NOTE:** This is a very high level overview of the NTLM protocol for the context of this article. We highly recommend reviewing [Pixis](https://twitter.com/HackAndDo)' articles on NTLM and NTLM relay for further detail: [NTLM article](https://en.hackndo.com/pass-the-hash/#protocol-ntlm), [NTLM Relay article](https://en.hackndo.com/ntlm-relay/). This article is heavily based on these great resources.
@@ -38,7 +54,6 @@ Session signing is a method of ensuring the integrity of a message between clien
 
 _Figure 3: Session signing failed_
 
-
 ### LDAPS
 LDAPS is the encrypted version of the LDAP protocol, where LDAP is wrapped in an SSL/TLS layer and providing an encrypted LDAP session. LDAPS itself does not prevent NTLM relay attacks, as the NTLM authentication could still be relayed without the need to decrypt the session. However, it does provide the secure channel necessary for LDAP channel binding.
 
@@ -55,21 +70,8 @@ There are three LDAP signing options that can be configured for both the client 
 
 _Figure 4: LDAP signing matrix_
 
-LDAP signing is negotiated in the NTLM negotiation step. If either client or server requires signing and the other does not, the session will not start. LDAP signing can be configured with the following group policies:
-
-- `Network security: LDAP client signing requirements` -> "Require signing"
-- `Domain Controller: LDAP server signing requirements` -> "Require signing"
-
-Both policies are located under `Default Domain Controllers Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options`.
-
 ### Channel Binding
 When a secure LDAP connection is initiated by a client, a unique token, called a channel binding token (CBT), is generated from the `TLS Finished` message, which is a hash of the TLS handshake messages. This token is included in authentication requests. The server generates the same CBT and compares with the client's CBT. If the CBTs match, the client is authenticated. Since the authentication is tied to a specific TLS session, an attacker cannot replay or relay the messages therein without the TLS session.
-
-LDAP channel binding can be configured with the following group policy:
-
-- `Domain controller: LDAP server channel binding token requirements` -> "Always"
-
-The policy is located under `Default Domain Controllers Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options`.
 
 ## Linked Defensive IDs
 - [PREVENT-12: Require SMB signing on site systems](../PREVENT-12/prevent-12_description.md)
@@ -79,9 +81,9 @@ The policy is located under `Default Domain Controllers Policy > Computer Config
 - [TAKEOVER-8: Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller](../../../attack-techniques/TAKEOVER/TAKEOVER-8/takeover-8_description.md)
 
 ## References
-- NTLM Relay, Pixis, https://en.hackndo.com/ntlm-relay/
-- NTLM Protocol, Pixis, https://en.hackndo.com/pass-the-hash/#protocol-ntlm
-- LDAP Channel Binding and Signing, Scott W Blake, https://www.hub.trimarcsecurity.com/post/ldap-channel-binding-and-signing
-- Return of LDAP Channel Binding and Signing, Scott W Blake, https://www.hub.trimarcsecurity.com/post/return-of-the-ldap-channel-binding-and-ldap-signing
-- Domain controller: LDAP server channel binding token requirements, https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/domain-controller-ldap-server-channel-binding-token-requirements
-- Domain controller: LDAP server signing requirements: https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/domain-controller-ldap-server-signing-requirements
+- Pixis, [NTLM Relay](https://en.hackndo.com/ntlm-relay/)
+- Pixis, [NTLM Protocol](https://en.hackndo.com/pass-the-hash/#protocol-ntlm)
+- Scott W Blake, [LDAP Channel Binding and Signing](https://www.hub.trimarcsecurity.com/post/ldap-channel-binding-and-signing)
+- Scott W Blake, [Return of LDAP Channel Binding and Signing](https://www.hub.trimarcsecurity.com/post/return-of-the-ldap-channel-binding-and-ldap-signing)
+- Microsoft, [Domain controller: LDAP server channel binding token requirements](https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/domain-controller-ldap-server-channel-binding-token-requirements)
+- Microsoft, [Domain controller: LDAP server signing requirements](https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/domain-controller-ldap-server-signing-requirements)

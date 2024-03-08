@@ -19,7 +19,6 @@ For example, if there are two primary sites, `PS1` and `PS2`, and a network acce
 From the site server, which is granted the `sysadmin` role on the site database, it is possible to query the `SC_UserAccount` table for usernames and passwords and decrypt the blobs using this private key. Alternatively, this table can be read to obtain the blobs for later offline decryption on the site server or with the stolen private key. This is particularly dangerous if the database is compromised through some attack path where SCCM credentials may not yet have been compromised, such as SQL links.
 
 ## Impact
-
 If an attacker can compromise the primary site server, they can recover plaintext credentials for any account stored in the site database.
 
 ## Defensive IDs
@@ -95,4 +94,3 @@ sccmdecryptpoc.exe 0C01000008000000010200001066000000A40000DC0179CE1BAE4E3922075
 - Adam Chester, https://twitter.com/_xpn_/status/1543682652066258946
 - Adam Chester, [sccmdecryptpoc.cs](https://gist.github.com/xpn/5f497d2725a041922c427c3aaa3b37d1)
 - Sanjiv Kawa, [SQLRecon](https://github.com/skahwah/SQLRecon)
-

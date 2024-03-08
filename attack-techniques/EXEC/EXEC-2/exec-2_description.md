@@ -20,7 +20,8 @@ SCCM allows administrators to create and execute custom scripts on a single devi
 An attacker could use this technique to execute arbitrary code/commands on a remote client device as `SYSTEM`. 
 
 ## Defensive IDs
-- 
+- [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
 1. Following hiearchy takeover, use `SCCMHunter` to access the admin service API and then identify and interact with a target device. 

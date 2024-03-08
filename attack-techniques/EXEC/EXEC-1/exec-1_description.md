@@ -23,6 +23,7 @@ New applications can also be hidden from being displayed in the Configuration Ma
 ## Defensive IDs
 - [DETECT-4: Monitor application deployment logs in the site's Audit Status Messages](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
 - [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Subtechniques
 - EXEC-1.1 - Deploy binary or script from share

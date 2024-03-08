@@ -49,7 +49,7 @@ If all configured accounts fail when the site server tries to authenticate to a 
 - [PREVENT-2: Disable Fallback to NTLM](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
 - [PREVENT-5: Disable automatic side-wide client push installation](../../../defense-techniques/PREVENT/PREVENT-5/prevent-5_description.md)
 - [PREVENT-8: Require PKI certificates for client authentation](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
-- [PREVENT-11: Disable/uninstall WebClient on site servers](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
+- [PREVENT-11: Disable and uninstall WebClient on site servers](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
 
 ## Examples

@@ -20,7 +20,7 @@
 # Misconfiguration Manager
 This repository serves as a central knowledge base for all known Microsoft Configuration Manager (a.k.a. MCM, ConfigMgr, System Center Configuration Manager, or SCCM) tradecraft and associated defensive and hardening guidance. Our goal is to help demystify SCCM tradecraft and simplify SCCM attack path management for defenders while also educating offensive security professionals on this nebulous attack surface. Designed to go beyond the static nature of whitepapers, this living repository documents known SCCM misconfigurations and their abuses and encourages ongoing contributions from the community to enhance its relevance and utility.
 
-We've curated this repository to raise awareness of the rapidly evolving SCCM threat landscape, drawing inspiration from the [MITRE ATT&CK framework](https://attack.mitre.org/matrices/enterprise/), with a few deviations. We were also strongly influenced by Push Security's [SaaS attack techniques matrix](https://github.com/pushsecurity/saas-attacks/tree/main).
+We've curated this repository to raise awareness of the rapidly evolving SCCM threat landscape, drawing inspiration from the [MITRE ATT&CK framework](https://attack.mitre.org/matrices/enterprise/), with a few deviations. We were also strongly influenced by Push Security's [SaaS attack techniques matrix](https://github.com/pushsecurity/saas-attacks/tree/main) as well as Will Schroeder and Lee Chagolla-Christensen's [Certified Pre-Owned](https://specterops.io/wp-content/uploads/sites/3/2022/06/Certified_Pre-Owned.pdf) whitepaper.
 
 Our approach extends beyond cataloging the tactics of known adversaries to include contributions from the realm of penetration testing, red team operations, and security research. At SpecterOps, we've leveraged many misconfigurations highlighted in this repository in real-world environments, while others represent experimental and exploratory research projects proved out in a lab environment.
 
@@ -102,7 +102,7 @@ If we've overlooked anything or are missing credits for prior work, please reach
 <br>
 
 # Taxonomy Overview
-
+> Techniques are numbered in no particular order. A higher or lower number does not represent our opinion of the item's importance, likelihood, or how it should be prioritized.
 
 ## Attack Techniques
 

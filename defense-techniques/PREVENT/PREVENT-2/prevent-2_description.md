@@ -17,10 +17,11 @@ Disabling this setting prevents the use of NTLM authentication and coercion.
 **NOTE:** This technique must be used in conjunction with [PREVENT-1](../PREVENT-1/prevent-1_description.md). 
 
 ## Linked Defensive IDs
-- [PREVENT-1](../PREVENT-1/prevent-1_description.md)
+- [PREVENT-1: Patch site server with KB15599094](../PREVENT-1/prevent-1_description.md)
+- [PREVENT-5: Disable automatic side-wide client push installation](../PREVENT-5/prevent-5_description.md)
 
 ## Associated Offensive IDs
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
 
 ## References
-- Chris Thompson, Coercing NTLM Authentication from SCCM, https://posts.specterops.io/coercing-ntlm-authentication-from-sccm-e6e23ea8260a
+- Chris Thompson, [Coercing NTLM Authentication from SCCM](https://posts.specterops.io/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
