@@ -1,7 +1,7 @@
 # CRED-2
 
 ## Description
-Request machine policy and deobfuscate secrets
+Request computer policy and deobfuscate secrets
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
