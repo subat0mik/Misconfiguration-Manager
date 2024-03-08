@@ -1,13 +1,18 @@
-# CRED-3
+# CRED-2
+
 ## Description
-Request and deobfuscate machine policy to retrieve credential material
+Request machine policy and deobfuscate secrets
 
 ## MITRE ATT&CK TTPs
 - [TA0006](https://attack.mitre.org/tactics/TA0006/) - Credential Access
 - [T1555](https://attack.mitre.org/techniques/T1555/) - Passwords from Password Stores
 
 ## Requirements
-- Domain authentication
+- PKI certificates are not required for client authentication
+
+  AND
+
+- Domain computer account credentials or (`MachineAccountQuota` > `0` and `Add workstations to domain` includes `Domain Users`)
 
 ## Summary
 The [network access account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#network-access-account) (NAA) is a domain account that can be configured on the site server. Clients use the NAA to access and retrieve software from a distribution point but serves no other purpose on the client. The credentials are retrieved by clients as part of the Computer Policy. Upon receipt, the client will encrypt the NAA using the Data Protection API (DPAPI). But what happens before that? How are the secrets protected in transit before the client protects them with DPAPI?
@@ -28,21 +33,22 @@ With this domain computer context, the computer can be registered as a client wh
 
 This technique has also been built into [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/wiki/get#get-naa--get-secrets) with the `get secrets` and `get naa` commands.
 
-The `get secrets` command extends this technique to retrieve NAAs, collection variables, and task sequences.
-
+The `get secrets` command extends this technique to retrieve collection variables and task sequences from machine policies, which may also contain secrets such as credentials.
 
 ## Impact
-In environments using Active Directory defaults, SCCM defaults, and NAAs, any domain-authenticated user may create a computer object, register it as an SCCM client, request the NAA policy, and deobfuscated the credentials.
+In environments using Active Directory defaults, SCCM defaults, and NAAs (or collection variables/task sequences containing credentials), any domain-authenticated user may create a computer object, register it as an SCCM client, request the machine policy, and deobfuscate credentials.
 
-If the NAA is implementely under the principle of least privilege, this may not extend the attacker's privilege level in the domain.  The more common result: If the NAA is over-privileged, this technique serves as a trivial privilege escalation vector.
+If the NAA or credential stored in a collection variable or task sequence is implemented under the principle of least privilege, this may not extend the attacker's privilege level in the domain. The more common result: If the NAA is overprivileged, this technique serves as a trivial privilege escalation vector.
 
 ## Defensive IDs
-- [PREVENT-3: Harden or Disable Network Access Account](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
-- [PREVENT-10: Principle of Least Privilege](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-8: Require PKI certificates for client authentation](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
+- [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-16: Remove SeMachineAccountPrivilege and set MachineAccountQuota to 0 for non-admin accounts](../../../defense-techniques/PREVENT/PREVENT-16/prevent-16_description.md)
 
 ## Examples
-- Using Powermad and SharpSCCM
+Using Powermad and SharpSCCM:
 ```
 Import-Module .\Powermad.psm1
 New-MachineAccount -MachineAccount chell$
@@ -92,10 +98,8 @@ NetworkAccessPassword: <password>
 [+] Completed execution in 00:00:05.9045603
 ```
 
-
 ## References
-- Adam Chester, Unobfuscating Network Access Accounts, https://blog.xpnsec.com/unobfuscating-network-access-accounts/
-- Adam Chester, sccmwtf, https://github.com/xpn/sccmwtf
-- Chris Thompson, SharpSCCM, https://github.com/Mayyhem/SharpSCCM/
-- Evan McBroom, SCCM Credential Recovery for Network Access Accounts, https://gist.github.com/EvanMcBroom/525d84b86f99c7a4eeb4e3495cffcbf0
-
+- Adam Chester, [Unobfuscating Network Access Accounts](https://blog.xpnsec.com/unobfuscating-network-access-accounts/)
+- Adam Chester, [sccmwtf](https://github.com/xpn/sccmwtf)
+- Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/)
+- Evan McBroom, [SCCM Credential Recovery for Network Access Accounts](https://gist.github.com/EvanMcBroom/525d84b86f99c7a4eeb4e3495cffcbf0)

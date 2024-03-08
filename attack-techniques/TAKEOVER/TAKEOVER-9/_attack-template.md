@@ -1,7 +1,7 @@
-# CODENAME-X
+# TAKEOVER-9
 
 ## Description
-This is a simple one-line description
+Crawl site database links configured with DBA privileges
 
 ## MITRE ATT&CK TTPs
 - [TTP-ID](https://attack.mitre.org/LINK) - Description
@@ -11,10 +11,8 @@ This is a simple one-line description
 -
 
 ## Summary
-This is the bulk of the content
 
 ## Impact
-Brief description of impact
 
 ## Defensive IDs
 - [ID: Description](Link)
@@ -24,7 +22,7 @@ Brief description of impact
 -
 
 ## Examples
-Operational examples
+
 
 ## References
 - Author, [Title](URL)

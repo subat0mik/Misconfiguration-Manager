@@ -1,7 +1,7 @@
 # PREVENT-17
 
 ## Description
-Remove unnecessary privileges 
+Remove Extended Rights assignment from accounts that do not require it
 
 ## Summary
 

