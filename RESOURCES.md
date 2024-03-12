@@ -1,3 +1,11 @@
+# SCCM Lab Resources
+[@an0n_r0](https://twitter.com/an0n_r0/status/1687230842601451522) released a [Snap Labs range](https://dashboard.snaplabs.io/templates/121fda0a-6cc3-4889-bee3-2fe83856f530) that can be used to test the majority of SCCM tradecraft in this repo.
+
+The following labs are options as well, but do not separate the site database or SMS Provider roles from the primary site server, preventing the use of the majority of TAKEOVER techniques:
+- [Microsoft and Office 365 deployment lab kit](https://learn.microsoft.com/en-us/microsoft-365/enterprise/modern-desktop-deployment-and-management-lab?view=o365-worldwide)
+- [SCCM Technical Preview Azure Template](https://learn.microsoft.com/en-us/samples/azure/azure-quickstart-templates/sccm-technicalpreview/)
+- [AutomatedLab](https://automatedlab.org/en/latest/Wiki/Roles/configurationmanager/)
+
 # Offensive and Defensive SCCM Resources
 - [Active Directory Spotlight: Attacking The Microsoft Configuration Manager (SCCM/MECM), by Carsten Sandker (@0xcsandker)](https://www.securesystems.de/blog/active-directory-spotlight-attacking-the-microsoft-configuration-manager/)
 - [An Inside Look: How to Distribute Credentials Securely in SCCM, by Christopher Panayi](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm)
