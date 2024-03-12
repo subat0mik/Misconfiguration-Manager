@@ -27,4 +27,4 @@ This password can be retrieve using tools like [PXEThief](https://github.com/MWR
 - Christopher Panayi, [Pulling Passwords Out of Configuration Manager](https://www.youtube.com/watch?v=Ly9goAud0gs)
 - Christopher Panayi, [PXEThief](https://github.com/MWR-CyberSec/PXEThief)
 - Christopher Panayi, [AES-128 ConfigMgr CryptDeriveKey Hashcat Module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module)
-- Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy​)
+- Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy)

@@ -23,20 +23,20 @@ The boot images are then [deployed](https://learn.microsoft.com/en-us/troublesho
 The three required components for PXE boot to work are: a PXE client, a DHCP server, and a PXE-enabled DP. A non-domain-joined computer (the PXE client in this case) that has network access could initiate the [DHCP process](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences), resulting in the PXE client receiving a DHCPPACK request containing the `BootFileName` location and Windows Deployment Services (WDS) network boot program (NBP). Next, the client initiates a TFTP session to [download](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#downloading-the-boot-files) the NBP. The NBP contains several files and and programs that are used to boot the computer into a Windows Preinstallation Environment (WinPE).
 
 To Summarize this process, how PXE works in SCCM:
-1. PXE client gets an IP from DHCP server​
-2. Client sends new DHCPREQUEST to DP, DP responds with DHCPACK that contains the BootFileName​
-3. Client starts TFTP session targeting the boot file​
-4. Client downloads the network boot program (NBP)​
-5. NBP downloads the operating system loader and boot files​
-6. The WinPE image is loaded into a RAMDISK in memory​
-7. WinPE boots, loading a task sequence (TS) boot shell, TS manager boot strap (TsPxe.dll)​
-8. TS environment variables and a client certificate are downloaded via TFTP​
-9. TSPXE locates the MP and downloads policy assignments​
+1. PXE client gets an IP from DHCP server
+2. Client sends new DHCPREQUEST to DP, DP responds with DHCPACK that contains the BootFileName
+3. Client starts TFTP session targeting the boot file
+4. Client downloads the network boot program (NBP)
+5. NBP downloads the operating system loader and boot files
+6. The WinPE image is loaded into a RAMDISK in memory
+7. WinPE boots, loading a task sequence (TS) boot shell, TS manager boot strap (TsPxe.dll)
+8. TS environment variables and a client certificate are downloaded via TFTP
+9. TSPXE locates the MP and downloads policy assignments
 10. Collection and machine variables are downloaded
 
 **Note:** This goes beyond the scope of this article, but Microsoft's [documentation](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot) covers it in more depth.
 
-This process can be abused because the files and policies can be accessed without booting the PXE media. By initiating the DHCPDISCOVER request, an attacker can locate the PXE media on the network, or they can contact a PXE-enabled DP directly if they know its name or IP address. If the PXE media stored there is password-protected, the hash can be retrieved and cracked offline using [hashcat](https://github.com/hashcat/hashcat) and [this custom module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module) from Christopher Panayi. If not protected, the cleartext data can be directly used. [PXEThief](https://github.com/MWR-CyberSec/PXEThief​) and [pxethiefy](https://github.com/csandker/pxethiefy​) both enable and make it trivial to conduct this attack.
+This process can be abused because the files and policies can be accessed without booting the PXE media. By initiating the DHCPDISCOVER request, an attacker can locate the PXE media on the network, or they can contact a PXE-enabled DP directly if they know its name or IP address. If the PXE media stored there is password-protected, the hash can be retrieved and cracked offline using [hashcat](https://github.com/hashcat/hashcat) and [this custom module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module) from Christopher Panayi. If not protected, the cleartext data can be directly used. [PXEThief](https://github.com/MWR-CyberSec/PXEThief) and [pxethiefy](https://github.com/csandker/pxethiefy) both enable and make it trivial to conduct this attack.
 
 Once the media file is decrypted, it may contain or be used to obtain credential material in the `NAAConfig` (network access account(NAA)), `TaskSequence`, and `CollectionSettings` (collection variables) policies.
 
@@ -85,5 +85,5 @@ Sent 1 packets.
 - Christopher Panayi, [Pulling Passwords Out of Configuration Manager](https://www.youtube.com/watch?v=Ly9goAud0gs)
 - Christopher Panayi, [PXEThief](https://github.com/MWR-CyberSec/PXEThief)
 - Christopher Panayi, [AES-128 ConfigMgr CryptDeriveKey Hashcat Module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module)
-- Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy​)
+- Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy)
 - Microsoft, [Understanding PXE Boot](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#)
