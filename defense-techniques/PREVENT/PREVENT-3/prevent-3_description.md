@@ -28,8 +28,8 @@ _Figure 1 - Network access account configuration_
 
 ## Linked Defensive IDs
 - [PREVENT-4: Enable Enhanced HTTP](../PREVENT-4/prevent-4_description.md)
-- [PREVENT-8: Require PKI certificates for client authentation](../prevent-8/prevent-8_description.md)
-- [PREVENT-15: Disable legacy network access accounts in active directory](../prevent-15/prevent-15_description.md)
+- [PREVENT-8: Require PKI certificates for client authentation](../PREVENT-8/prevent-8_description.md)
+- [PREVENT-15: Disable legacy network access accounts in active directory](../PREVENT-15/prevent-15_description.md)
 - [PREVENT-22: Do not manage assets in two or more segmented forests, domains, networks, or security tiers](../PREVENT-22/prevent-22_description.md)
 
 ## Associated Offensive IDs
