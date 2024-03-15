@@ -13,7 +13,7 @@
 | [RECON&#x2011;2](./RECON/RECON-2/recon-2_description.md) | Enumerate SCCM roles via SMB | Authenticated domain user | Internal network |
 | [RECON&#x2011;3](./RECON/RECON-3/recon-3_description.md) | Enumerate SCCM roles via HTTP | Authenticated domain user | Internal network |
 | [RECON&#x2011;4](./RECON/RECON-4/recon-4_description.md) | Query client devices via CMPivot | SCCM administrator | Internal network |
-| [RECON&#x2011;5](./RECON/RECON-5/RECON-5_description.md) | Locate users via SMS Provider | SCCM administrator | Internal network |
+| [RECON&#x2011;5](./RECON/RECON-5/recon-5_description.md) | Locate users via SMS Provider | SCCM administrator | Internal network |
 | [TAKEOVER&#x2011;1](./TAKEOVER/TAKEOVER-1/takeover-1_description.md) | NTLM coercion and relay to MSSQL on remote site database | Domain user creds | Internal network |
 | [TAKEOVER&#x2011;2](./TAKEOVER/TAKEOVER-2/takeover-2_description.md) | NTLM coercion and relay to SMB on remote site database | Domain user creds | Internal network |
 | [TAKEOVER&#x2011;3](./TAKEOVER/TAKEOVER-3/takeover-3_description.md) | NTLM coercion and relay to HTTP on AD CS | Domain user creds | Internal network |
