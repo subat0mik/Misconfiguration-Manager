@@ -37,8 +37,9 @@ This technique may allow an attacker to relay a site server's domain computer ac
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
 - [DETECT-5: Monitor group membership changes for SMS Admins](../../../defense-techniques/DETECT/DETECT-5/detect-5_description.md)
 - [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
-- [PREVENT-14: Require EPA on AD CS and site databases](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
+
+> **Note:** Extended Protection for Authentication (EPA) is not currently supported by the AdminService (as of March 2024), so cannot be configured to prevent relay to the AdminService.
 
 ## Subtechniques
 - TAKEOVER-5.1: Coerce primary site server
