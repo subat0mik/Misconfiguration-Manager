@@ -25,13 +25,14 @@ Hierarchy takeover via NTLM coercion and relay to HTTP on AD CS
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
-- Connectivity from the relay server to HTTPS (TCP/443) on the relay target, the AD CS Certificate Authority
-- Extended protection for authentication not required on the the certificate enrollment web interface
+- Either of the following AD CS services is in use:
+    - Certificate Authority Web Enrollment
+    - Certificate Enrollment Web Service
+- Connectivity from the relay server to HTTPS (TCP/443) on the relay target hosting the AD CS service
+- Extended protection for authentication is not required by the target AD CS service
 - An enabled AD CS template that allows enrollment and supports authentication 
 - Relay target settings:
-    - `RequireSecuritySignature` = `0` or not present
     - `RestrictReceivingNTLMTraffic` = `0` or not present
-    - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
 
