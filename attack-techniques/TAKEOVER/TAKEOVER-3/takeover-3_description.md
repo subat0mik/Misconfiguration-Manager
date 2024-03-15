@@ -36,6 +36,7 @@ Hierarchy takeover via NTLM coercion and relay to HTTP on AD CS
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
 
+## Summary
 When available, SCCM uses public key infrastructure (PKI) for authentication and authorization. While not required, administrators may choose to deploy Active Directory Certificate Services (AD CS) to support SCCM's [various certificate requirements](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/security/plan-for-certificates) rather than use self-signed certificates. AD CS is home to its own [misconfigurations](https://posts.specterops.io/certified-pre-owned-d95910965cd2); particularly ESC8. In short, the [certificate enrollment web interface](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831649(v=ws.11)) is vulnerable to NTLM relaying. An attacker may coerce NTLM authentication from a coercion target and relay to the AD CS enrollment web service to enroll in and acquire a valid certificate template on behalf of the target. The template can then be used to escalate to "Full Administrator" in SCCM by impersonating the coerced target.
 
 ## Impact
