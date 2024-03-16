@@ -42,6 +42,8 @@ Offensive security practitioners may also benefit from reviewing the list of kno
 
 Defenders and IT administrators may benefit from reviewing the list of known and documented [Defense Techniques](./defense-techniques/_defense-techniques-list.md), which identifies the administrator roles we think are most likely to be involved in the implementation of each item.
 
+Curious about how a hierarchy can be completely compromised in certain, mostly default conditions? Check out the list of [TAKEOVER techniques](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/attack-techniques/TAKEOVER/_takeover-techniques-list.md).
+
 If you aren't familiar with a term used in a technique's description, refer to the [glossary page](./GLOSSARY.md), which contains definitions for terms commonly used in SCCM.
 
 If you'd like to test these techniques in a lab environment or learn more about SCCM attack and defense, please refer to the [resources page](./RESOURCES.md), which contains links to all the SCCM lab and attack/defense resources that we are aware of, many of which inspired and informed the information in this repository.
