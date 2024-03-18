@@ -46,6 +46,7 @@ The example below displays a successful logon event for a client push installati
 ## Linked Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../DETECT-1/detect-1_description.md)
 - [PREVENT-5: Disable automatic side-wide client push installation](../../PREVENT/PREVENT-5/prevent-5_description.md)
+- [PREVENT-12: Require SMB signing on site systems](../../PREVENT/PREVENT-12/prevent-12_description.md)
 
 ## Associated Offensive IDs
 - [ELEVATE-1: NTLM relay site server to SMB on site systems](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
