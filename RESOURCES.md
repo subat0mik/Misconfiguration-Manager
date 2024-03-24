@@ -1,5 +1,6 @@
 # SCCM Lab Resources
-[@an0n_r0](https://twitter.com/an0n_r0/status/1687230842601451522) released a [Snap Labs range](https://dashboard.snaplabs.io/templates/121fda0a-6cc3-4889-bee3-2fe83856f530) that can be used to test the majority of SCCM tradecraft in this repo.
+- [@an0n_r0](https://twitter.com/an0n_r0/status/1687230842601451522) released a [Snap Labs range](https://dashboard.snaplabs.io/templates/121fda0a-6cc3-4889-bee3-2fe83856f530) that can be used to test the majority of SCCM tradecraft in this repo.
+- [@M4yFly](https://twitter.com/m4yfly/status/1771643303164891262) released an [SCCM lab for the Game of Active Directory (GOAD) project](https://github.com/Orange-Cyberdefense/GOAD) that can be used with VMware or VirtualBox which also covers a lot of the tradecraft in this repo.   
 
 The following labs are options as well, but do not separate the site database or SMS Provider roles from the primary site server, preventing the use of the majority of TAKEOVER techniques:
 - [Microsoft and Office 365 deployment lab kit](https://learn.microsoft.com/en-us/microsoft-365/enterprise/modern-desktop-deployment-and-management-lab?view=o365-worldwide)
