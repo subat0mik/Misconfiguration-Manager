@@ -46,7 +46,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM Decrypt POC, by Adam Chester (@_xpn_)](https://gist.github.com/xpn/5f497d2725a041922c427c3aaa3b37d1)
 - [SCCM w/ Garrett Foster (@garrfoster), by Brandon Colley (@TechBrandon) at Trimarc Happy Hour](https://www.youtube.com/watch?v=I5YTH0kQlr8)
 - [SCCM Exploitation: The First Cred is the Deepest II, by Gabriel Prud'homme (@vendetce)](https://www.youtube.com/watch?v=W9PC9erm_pI)
-- [SCCM Exploitation: Account Compromise Through Automatic Client Push & AD System Discovery, by Marshall Price](https://www.guidepointsecurity.com/blog/sccm-exploitation-account-compromise-through-automatic-client-push-amp-ad-system-discovery/)
+- [SCCM Exploitation: Account Compromise Through Automatic Client Push & AD System Discovery, by Marshall Price (@__mastadon)](https://www.guidepointsecurity.com/blog/sccm-exploitation-account-compromise-through-automatic-client-push-amp-ad-system-discovery/)
 - [SCCM/MECM Hacker Recipes, by Charlie Bromberg (@_nwodtuhs)](https://www.thehacker.recipes/a-d/movement/sccm-mecm)
 - [SCCM Hierarchy Takeover, by Chris Thompson (@_Mayyhem)](https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087)
 - [SCCM Site Takeover via Automatic Client Push Installation, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
