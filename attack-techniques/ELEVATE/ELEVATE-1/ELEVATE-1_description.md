@@ -21,7 +21,6 @@ NTLM relay site server to SMB on site systems
     - `RestrictSendingNTLMTraffic` = `0` or not present, or = `1` and `ClientAllowedNTLMServers` contains attacker relay server
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Relay target settings:
@@ -31,6 +30,7 @@ NTLM relay site server to SMB on site systems
     - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ## Summary
 SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain compuper account and requires [local administrator permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
