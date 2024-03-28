@@ -21,7 +21,6 @@ Hierarchy takeover via NTLM coercion and relay to SMB on remote site database
     - Domain computer account is not in `Protected Users`
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Connectivity from the relay server to SMB (TCP/445) on the relay target, the site database
@@ -31,6 +30,8 @@ Hierarchy takeover via NTLM coercion and relay to SMB on remote site database
     - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+
 
 ## Summary
 By default, the Active Directory domain computer accounts for primary site servers (including CAS site servers) and passive site servers are granted membership in their respective site database server's local Administrators group. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database server via SMB can use these permissions to access the system and database, then grant an arbitrary domain account the SCCM "Full Administrator" role.
