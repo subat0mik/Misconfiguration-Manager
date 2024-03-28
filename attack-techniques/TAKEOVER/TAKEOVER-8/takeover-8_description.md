@@ -23,7 +23,6 @@ Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller
     - Domain computer account is not `is sensitive and cannot be delegated`
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Connectivity from the relay server to LDAP or LDAPS on the relay target, the domain controller
@@ -32,6 +31,8 @@ Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller
     - `RestrictReceivingNTLMTraffic` = `0` or not present
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+
 - For resource-based constrained delegation:
     - Control of an account's SPN
 
