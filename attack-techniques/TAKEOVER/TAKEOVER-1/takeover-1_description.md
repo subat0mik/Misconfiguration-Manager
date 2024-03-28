@@ -22,11 +22,12 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
     - Domain computer account is not in `Protected Users`
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
 - Extended protection for authentication not required on the site database
+- Domain controller settings:
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ## Summary
 By default, the Active Directory domain computer accounts for primary site servers (including CAS site servers), systems hosting the SMS Provider role, and passive site servers are granted the `db_owner` role in their respective site's MSSQL database. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.
