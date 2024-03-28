@@ -19,7 +19,6 @@ Hierarchy takeover via NTLM coercion and relay from CAS to origin primary site s
     - Domain computer account is not in `Protected Users`
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ### Relay
 - Connectivity from the relay server to SMB (TCP/445) on the relay target, the child primary site
@@ -36,6 +35,7 @@ Hierarchy takeover via NTLM coercion and relay from CAS to origin primary site s
     - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
 
 ## Summary
 In some situations, such as reaching limits for [client enrollment](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/configs/size-and-scale-numbers#bkmk_pri), SCCM adminsitrators may choose to expand from single site into a hierarchy managed by a central administration site (CAS). A prerequisite for expansion is for the CAS's domain computer account to be a [local administrator](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/install/prerequisites-for-installing-sites#computer-account-as-administrator) on the originating primary site server. This permission is only required during expansion of the site and can be removed when complete. Additionally, this permission is not required for any further sites joined to the hierarchy once complete. However, if a configuration exists where all site server hosts are a member of a security group that grants local administrator rights to each other, the CAS can be coerced and relayed to *any* child site.
