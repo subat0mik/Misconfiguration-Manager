@@ -132,6 +132,11 @@ It is not possible to identify whether automatic site-wide client push installat
     SMB       10.2.10.113  SEVENKINGDOMS/SCCM01$    FALSE        445
     ```
 ### Cleanup
+#### AD Computer Account cleanup
+Prior to cleaning up the DDR from SCCM, its important to delete the computer account from Active Directory, otherwise, during the next full poll, the computer account may be re-discovered and a corresponding DDR may be recreated resulting in further authentication attempts. This will require administrative privileges within the domain.
+```
+addcomputer.py -computer-name 'COMPUTER$' -dc-host $DomainController -delete 'DOMAIN\user:password'
+```
 It is not possible to remotely delete device records or remove CCRs in the retry queue that are created by System Discovery generated DDRs without having `Full Administrator` privileges to SCCM. By default, the site will retry client push installation every 60 minutes for 7 days, and if a newly discovered device sits in the client push installation retry queue for more than 24 hours, an error message may be displayed in the console to administrators.
 
 With `Full Administrator` access to SCCM, artifacts can be removed from the site server and database through the ConfigMgr console or using SharpSCCM.
