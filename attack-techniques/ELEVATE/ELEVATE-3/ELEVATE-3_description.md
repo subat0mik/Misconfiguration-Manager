@@ -134,10 +134,14 @@ It is not possible to identify whether automatic site-wide client push installat
 ### Cleanup
 #### AD Computer Account cleanup
 Prior to cleaning up the DDR from SCCM, its important to delete the computer account from Active Directory, otherwise, during the next full poll, the computer account may be re-discovered and a corresponding DDR may be recreated resulting in further authentication attempts. This will require administrative privileges within the domain.
+Using addcomputer.py from the impacket library to delete the computer account is one potential method.
 ```
-addcomputer.py -computer-name 'COMPUTER$' -dc-host $DomainController -delete 'DOMAIN\user:password'
+python3 examples/addcomputer.py -computer-name 'MARLBORO$' -dc-ip 10.2.10.10 'sevenkingdoms.local/administrator:<REDACTED PASSWORD>' -delete
+Impacket v0.12.0.dev1+20240320.191945.7e25245e - Copyright 2023 Fortra
+[*] Successfully deleted MARLBORO$.
 ```
 #### AD DNS Record Cleanup
+Using dnstool.py to remove the A record is one potential method. This will require administrative privileges.
 ```
 # python3 dnstool.py -u 'sevenkingdoms.local\administrator' -p '<REDACTED PASSWORD>' -r marlboro.sevenkingdoms.local -a remove -t A -d 10.2.10.249 10.2.10.10
 [-] Connecting to host...
