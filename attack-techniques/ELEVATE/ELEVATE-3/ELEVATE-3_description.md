@@ -137,6 +137,16 @@ Prior to cleaning up the DDR from SCCM, its important to delete the computer acc
 ```
 addcomputer.py -computer-name 'COMPUTER$' -dc-host $DomainController -delete 'DOMAIN\user:password'
 ```
+#### AD DNS Record Cleanup
+```
+# python3 dnstool.py -u 'sevenkingdoms.local\administrator' -p '<REDACTED PASSWORD>' -r marlboro.sevenkingdoms.local -a remove -t A -d 10.2.10.249 10.2.10.10
+[-] Connecting to host...
+[-] Binding to host
+[+] Bind OK
+[-] Target has only one record, tombstoning it
+[+] LDAP operation completed successfully
+```
+#### SCCM DDR Cleanup
 It is not possible to remotely delete device records or remove CCRs in the retry queue that are created by System Discovery generated DDRs without having `Full Administrator` privileges to SCCM. By default, the site will retry client push installation every 60 minutes for 7 days, and if a newly discovered device sits in the client push installation retry queue for more than 24 hours, an error message may be displayed in the console to administrators.
 
 With `Full Administrator` access to SCCM, artifacts can be removed from the site server and database through the ConfigMgr console or using SharpSCCM.
