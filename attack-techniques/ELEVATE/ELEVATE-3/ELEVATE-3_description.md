@@ -185,3 +185,5 @@ SharpSCCM.exe remove device GUID:<GUID> -sms <SMS_PROVIDER> -sc <SITECODE>
 - Chris Thompson, [Coercing NTLM Authentication from SCCM Servers](https://posts.specterops.io/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
 - Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
 - Marshall Price, [SCCM Exploitation: Account Compromise Through Automatic Client Push & AD System Discovery](https://www.guidepointsecurity.com/blog/sccm-exploitation-account-compromise-through-automatic-client-push-amp-ad-system-discovery/)
+- Brandon Colley, [Push Comes To Shove: Bypassing Kerberos Authentication of SCCM Client Push Accounts.](https://www.hub.trimarcsecurity.com/post/push-comes-to-shove-bypassing-kerberos-authentication-of-sccm-client-push-accounts)
+- Brandon Colley, [Push Comes To Shove: exploring the attack surface of SCCM Client Push Accounts](https://www.hub.trimarcsecurity.com/post/push-comes-to-shove-exploring-the-attack-surface-of-sccm-client-push-accounts)
