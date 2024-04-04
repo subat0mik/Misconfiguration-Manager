@@ -156,6 +156,9 @@ Defensive strategies coded with a PREVENT moniker describe configuration changes
 
 # Contributors
 
-[Duane Michael](https://twitter.com/subat0mik), [Chris Thompson](https://twitter.com/_Mayyhem), and [Garrett Foster](https://twitter.com/garrfoster) are the primary authors of this project, with contributions from [Diego Lomellini](https://twitter.com/DiLomSec1) and [Josh Prager](https://twitter.com/Praga_Prag). 
+[Duane Michael](https://twitter.com/subat0mik), [Chris Thompson](https://twitter.com/_Mayyhem), and [Garrett Foster](https://twitter.com/garrfoster) are the primary authors of this project, with contributions from:
+- [Diego Lomellini](https://twitter.com/DiLomSec1)
+- [Josh Prager](https://twitter.com/Praga_Prag)
+- [Marshall Price](https://twitter.com/__Mastadon)
 
 Please reach out to us on Twitter or join us in the `#sccm` channel on the [BloodHoundGang Slack](https://bloodhoundgang.herokuapp.com/) if you have any questions or are interested in contributing!
