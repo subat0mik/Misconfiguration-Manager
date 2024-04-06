@@ -58,6 +58,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM - Microsoft's Native C2, by @RedHeadSec](https://redheadsec.tech/sccm-exploitation/)
 - [sccmhunter, by Garrett Foster (@garrfoster)](https://github.com/garrettfoster13/sccmhunter)
 - [sccmwtf, by Adam Chester (@_xpn_)](https://github.com/xpn/sccmwtf)
+- [SCCM-Enumeration, by Cr0n1c](https://github.com/Cr0n1c/SCCM-Enumeration/)
 - [SeeSeeYouExec: Windows Session Hijacking via CcmExec, by Andrew Oliveau (@AndrewOliveau)](https://cloud.google.com/blog/topics/threat-intelligence/windows-session-hijacking-via-ccmexec)
 - [SharpDPAPI SCCM Credential Gathering Support, by Duane Michael (@subat0mik)](https://github.com/GhostPack/SharpDPAPI/blob/81e1fcdd44e04cf84ca0085cf5db2be4f7421903/SharpDPAPI/Commands/SCCM.cs#L208-L244)
 - [SharpSCCM, by Chris Thompson (@_Mayyhem)](https://github.com/Mayyhem/SharpSCCM)
