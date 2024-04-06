@@ -24,6 +24,7 @@ The following labs are options as well, but do not separate the site database or
 - [Get Secrets via PXE Media Certificates SharpSCCM PR, by Carsten Sandker (@0xcsandker)](https://github.com/Mayyhem/SharpSCCM/pull/28)
 - [Grow Your Own SCCM Lab, by @HTTP418](https://http418infosec.com/grow-your-own-sccm-lab)
 - [Hierarchy Takeover without SOCKS, by Chris Thompson (@_Mayyhem)](https://twitter.com/_Mayyhem/status/1700602445603209236)
+- [Identifying and Retrieving Credentials from SCCM/MECM Task Sequences, Christopher Panayi](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences)
 - [impacket SCCM Relay, by Matt Creel (@Tw1sm)](https://github.com/Tw1sm/impacket/tree/feature/sccm-relay)
 - [Looting Microsoft Configuration Manager, by Tomas Rzepka (@1njected)](https://labs.withsecure.com/publications/looting-microsoft-configuration-manager)
 - [Mimikatz misc::sccm, by Benjamin Delpy (@gentilkiwi)](https://twitter.com/gentilkiwi/status/1392204021461569537?lang=en)
