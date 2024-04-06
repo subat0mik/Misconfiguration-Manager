@@ -50,6 +50,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM Exploitation: Account Compromise Through Automatic Client Push & AD System Discovery, by Marshall Price (@__mastadon)](https://www.guidepointsecurity.com/blog/sccm-exploitation-account-compromise-through-automatic-client-push-amp-ad-system-discovery/)
 - [SCCM/MECM Hacker Recipes, by Charlie Bromberg (@_nwodtuhs)](https://www.thehacker.recipes/a-d/movement/sccm-mecm)
 - [SCCM Hierarchy Takeover, by Chris Thompson (@_Mayyhem)](https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087)
+- [SCCM Hierarchy Takeover with High Availability, by Garrett Foster (@garrfoster13)](https://medium.com/specter-ops-posts/sccm-hierarchy-takeover-with-high-availability-7dcbd3696b43)
 - [SCCM Site Takeover via Automatic Client Push Installation, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
 - [SCCM - Microsoft's Native C2, by @RedHeadSec](https://redheadsec.tech/sccm-exploitation/)
 - [sccmhunter, by Garrett Foster (@garrfoster)](https://github.com/garrettfoster13/sccmhunter)
