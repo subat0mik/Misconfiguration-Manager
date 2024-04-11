@@ -1071,4 +1071,36 @@ try {
         # Begin output
         Write-Host "`nHierarchy Tree:`n"
 
-        # Start with top
+        # Start with top-level site
+        $topLevelSites = $sites | Where-Object { -not $_.ParentSiteCode }  
+
+        foreach ($site in $topLevelSites) {
+            Print-SiteStructure -Site $site -AllSites $sites
+        }
+    }
+    else {
+        Write-Warning "No sites were found. Add -Verbose option to debug"
+    }
+} 
+
+catch {
+    Write-Error "Encountered an unexpected error at line $($_.InvocationInfo.ScriptLineNumber): $($_.Exception.Message)"
+} 
+
+finally {
+    # Set preferences back to original values
+    $VerbosePreference = $originalVerbosePreference
+    $WarningPreference = $originalWarningPreference
+
+    if ($Host.Name -eq 'ConsoleHost') {
+        # For the standard console, we use ConsoleColor enum values
+        $Host.PrivateData.VerboseForegroundColor = $originalVerboseColor
+        $Host.PrivateData.WarningForegroundColor = $originalWarningColor
+        $Host.PrivateData.VerboseBackgroundColor = $originalVerboseBackgroundColor
+        $Host.PrivateData.WarningBackgroundColor = $originalWarningBackgroundColor
+    } elseif ($Host.Name -eq 'Windows PowerShell ISE Host') {
+        # For ISE, we use System.Windows.Media.Color values
+        $psISE.Options.VerboseForegroundColor = $originalVerboseColor
+        $psISE.Options.WarningForegroundColor = $originalWarningColor
+    }
+}
