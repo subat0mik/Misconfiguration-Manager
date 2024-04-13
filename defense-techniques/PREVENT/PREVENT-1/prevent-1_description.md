@@ -20,6 +20,7 @@ This patch only applies to versions 2103+. If the installed version is older, Mi
 
 ## Associated Offensive IDs
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
+- [ELEVATE-3: NTLM relay via automatic client push installation and AD System Discovery](../../../attack-techniques/ELEVATE/ELEVATE-3/ELEVATE-3_description.md)
 
 ## References
 - Microsoft, [NTLM client installation update for Microsoft Endpoint Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/hotfix/2207/15599094)
