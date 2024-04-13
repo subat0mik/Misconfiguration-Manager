@@ -63,7 +63,7 @@ The example below displays a successful logon event for the SCCM site server fro
 ## Associated Offensive IDs
 - [ELEVATE-1: NTLM relay site server to SMB on site systems](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
-- [ELEVATE-3: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-3/ELEVATE-3_description.md)
+- [ELEVATE-3: NTLM relay via automatic client push installation and AD System Discovery](../../../attack-techniques/ELEVATE/ELEVATE-3/ELEVATE-3_description.md)
 - [TAKEOVER-1: NTLM coercion and relay to MSSQL on remote site database](../../../attack-techniques/TAKEOVER/TAKEOVER-1/takeover-1_description.md)
 - [TAKEOVER-2: NTLM coercion and relay to SMB on remote site database](../../../attack-techniques/TAKEOVER/TAKEOVER-2/takeover-2_description.md)
 - [TAKEOVER-3: NTLM coercion and relay to HTTP on AD CS](../../../attack-techniques/TAKEOVER/TAKEOVER-3/)
