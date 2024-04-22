@@ -7,6 +7,7 @@
 | [CRED&#x2011;5](./CRED/CRED-5/cred-5_description.md) | Site Database Credentials | Dump credentials from the site database | Primary site server admin, site database read | Internal network |
 | [ELEVATE&#x2011;1](./ELEVATE/ELEVATE-1/ELEVATE-1_description.md) | Relay to Site System (SMB) | NTLM relay site server to SMB on site systems | Domain user creds | Internal network |
 | [ELEVATE&#x2011;2](./ELEVATE/ELEVATE-2/ELEVATE-2_description.md) | Relay Client Push Installation | NTLM relay via automatic client push installation | Domain user creds | Internal network |
+| [ELEVATE&#x2011;3](./ELEVATE/ELEVATE-3/ELEVATE-3_description.md) | Relay Client Push Installation | NTLM relay via automatic client push installation and AD System Discovery | Domain user creds | Internal network |
 | [EXEC&#x2011;1](./EXEC/EXEC-1/exec-1_description.md) | App Deployment | Application deployment | SCCM administrator | Internal network |
 | [EXEC&#x2011;2](./EXEC/EXEC-2/exec-2_description.md) | Script Deployment | PowerShell script execution | SCCM administrator | Internal network |
 | [RECON&#x2011;1](./RECON/RECON-1/recon-1_description.md) | LDAP Enumeration | Enumerate SCCM site information via LDAP | Authenticated domain user | Internal network |
