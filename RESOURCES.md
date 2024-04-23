@@ -34,6 +34,7 @@ The following labs are options as well, but do not separate the site database or
 - [Offensive Operations with PowerSCCM, by Matt Nelson (@enigma0x3)](https://enigma0x3.net/2016/02/29/offensive-operations-with-powersccm/)
 - [Offensive SCCM Summary, by @HTTP418](https://http418infosec.com/offensive-sccm-summary)
 - [Owning One to Rule Them All, by Dave Kennedy (@HackingDave) and Dave DeSimone](https://www.youtube.com/watch?v=Mz9Bg9KAKBs)
+- [Network Access Accounts are evil..., by Roger Zander](https://rzander.azurewebsites.net/network-access-accounts-are-evil/)
 - [PowerSCCM, by Matt Nelson (@enigma0x3), Will Schroeder (@harmj0y), Jared Atkinson (@jaredcatkinson), and Matt Graeber (@mattifestation)](https://github.com/PowerShellMafia/PowerSCCM)
 - [Pulling Passwords Out of Configuration Manager, by Christopher Panayi](https://www.youtube.com/watch?v=Ly9goAud0gs)
 - [Push, by Vulnlab](https://www.vulnlab.com/machines)
