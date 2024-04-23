@@ -33,7 +33,7 @@ The following labs are options as well, but do not separate the site database or
 - [Microsoft's Accidental Enterprise DFIR Tool, by Keith Tyler](https://informationonsecurity.blogspot.com/2015/11/microsofts-accidental-enterprise-dfir.html)
 - [Offensive Operations with PowerSCCM, by Matt Nelson (@enigma0x3)](https://enigma0x3.net/2016/02/29/offensive-operations-with-powersccm/)
 - [Offensive SCCM Summary, by @HTTP418](https://http418infosec.com/offensive-sccm-summary)
-- [Owning One to Rule Them All, by Dave Kennedy (@HackingDave) and Dave DeSimone](https://vimeo.com/47978442)
+- [Owning One to Rule Them All, by Dave Kennedy (@HackingDave) and Dave DeSimone](https://www.youtube.com/watch?v=Mz9Bg9KAKBs)
 - [PowerSCCM, by Matt Nelson (@enigma0x3), Will Schroeder (@harmj0y), Jared Atkinson (@jaredcatkinson), and Matt Graeber (@mattifestation)](https://github.com/PowerShellMafia/PowerSCCM)
 - [Pulling Passwords Out of Configuration Manager, by Christopher Panayi](https://www.youtube.com/watch?v=Ly9goAud0gs)
 - [Push, by Vulnlab](https://www.vulnlab.com/machines)
