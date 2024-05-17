@@ -14,11 +14,11 @@ Hierarchy takeover via NTLM coercion and relay from CAS to origin primary site s
 - Connectivity to SMB (TCP/445) on coercion target:
 - Connectivity from the coercion target to SMB (TCP/445) on the relay server
 - Coercion target settings:
-    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
-    - Domain computer account is not in `Protected Users`
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
+    - Domain computer account is not in `Protected Users` [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target [DEFAULT]
 
 ### Relay
 - Connectivity from the relay server to SMB (TCP/445) on the relay target, the child primary site
@@ -30,12 +30,12 @@ Hierarchy takeover via NTLM coercion and relay from CAS to origin primary site s
     AND
 
 - Relay target settings:
-    - `RequireSecuritySignature` = `0` or not present
-    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - `RequireSecuritySignature` = `0` or not present [DEFAULT]
+    - `RestrictReceivingNTLMTraffic` = `0` or not present [DEFAULT]
     - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
 In some situations, such as reaching limits for [client enrollment](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/configs/size-and-scale-numbers#bkmk_pri), SCCM adminsitrators may choose to expand from single site into a hierarchy managed by a central administration site (CAS). A prerequisite for expansion is for the CAS's domain computer account to be a [local administrator](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/deploy/install/prerequisites-for-installing-sites#computer-account-as-administrator) on the originating primary site server. This permission is only required during expansion of the site and can be removed when complete. Additionally, this permission is not required for any further sites joined to the hierarchy once complete. However, if a configuration exists where all site server hosts are a member of a security group that grants local administrator rights to each other, the CAS can be coerced and relayed to *any* child site.
