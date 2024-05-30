@@ -19,7 +19,8 @@
 
 # Misconfiguration Manager
 
-![mcm_banner](https://github.com/subat0mik/Misconfiguration-Manager/assets/30671833/ebdd0b23-002c-4757-bdfa-71e1c3acdaac)
+![MM-cropped](https://github.com/subat0mik/Misconfiguration-Manager/assets/41414134/0c88e861-4b13-4722-a8b1-7db53f782ee8)
+
 
 This repository serves as a central knowledge base for all known Microsoft Configuration Manager (a.k.a. MCM, ConfigMgr, System Center Configuration Manager, or SCCM) tradecraft and associated defensive and hardening guidance. Our goal is to help demystify SCCM tradecraft and simplify SCCM attack path management for defenders while also educating offensive security professionals on this nebulous attack surface. Designed to go beyond the static nature of whitepapers, this living repository documents known SCCM misconfigurations and their abuses and encourages ongoing contributions from the community to enhance its relevance and utility.
 
