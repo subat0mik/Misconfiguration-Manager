@@ -1,4 +1,5 @@
 # SCCM Lab Resources
+- [Zach Stein](https://twitter.com/synzack21) released a [Ludus SCCM lab](https://github.com/Synzack/ludus_sccm) that covers a lot of the techniques in this repo.
 - [@an0n_r0](https://twitter.com/an0n_r0/status/1687230842601451522) released a [Snap Labs range](https://dashboard.snaplabs.io/templates/121fda0a-6cc3-4889-bee3-2fe83856f530) that can be used to test the majority of SCCM tradecraft in this repo.
 - [@M4yFly](https://twitter.com/m4yfly/status/1771643303164891262) released an [SCCM lab for the Game of Active Directory (GOAD) project](https://github.com/Orange-Cyberdefense/GOAD) that can be used with VMware or VirtualBox which also covers a lot of the tradecraft in this repo.   
 
@@ -10,6 +11,7 @@ The following labs are options as well, but do not separate the site database or
 # Offensive and Defensive SCCM Resources
 - [Active Directory Spotlight: Attacking The Microsoft Configuration Manager (SCCM/MECM), by Carsten Sandker (@0xcsandker)](https://www.securesystems.de/blog/active-directory-spotlight-attacking-the-microsoft-configuration-manager/)
 - [An Inside Look: How to Distribute Credentials Securely in SCCM, by Christopher Panayi](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm)
+- [Automating SCCM with Ludus: A Configuration Manager for Your Configuration Manager](https://posts.specterops.io/automating-sccm-with-ludus-a-configuration-manager-for-your-configuration-manager-c8f4d8e40473), by Zach Stein (@synzack21)
 - [Black Hat USA Arsenal 2022: SharpSCCM, by Chris Thompson (@_Mayyhem) and Duane Michael (@subat0mik)](https://www.youtube.com/watch?v=19F_Io1Tykg)
 - [Black Hat USA Arsenal 2023: SharpSCCM - Abusing Microsoft's C2 Framework, by Chris Thompson (@_Mayyhem) and Diego Lomellini (@DiLomSec1)](https://www.youtube.com/watch?v=uyI5rgR0D-s)
 - [Black Hat USA SpecterOps Booth 2023: SharpSCCM - Abusing Microsoft's C2 Framework, by Chris Thompson (@_Mayyhem) and Diego Lomellini (@DiLomSec1)](https://www.youtube.com/watch?v=Q8mEMFKscnk)
