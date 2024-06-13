@@ -8,6 +8,7 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 - [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
+The site database is not hosted on the coercion target
 
 ### Coercion
 - Valid Active Directory domain credentials
