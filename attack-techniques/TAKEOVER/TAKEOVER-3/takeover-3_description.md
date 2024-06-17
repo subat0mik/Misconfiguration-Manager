@@ -115,7 +115,7 @@ The steps to execute TAKEOVER-3.1 through TAKEOVER-3.4 are the same except that 
     [+] Attack worked!
     ```
 
-    After a few seconds, you should receive an SMB connection on the relay server that is forwarded to the AdminService on the SMS Provider to add a Full Administrator:
+    After a few seconds, you should receive an SMB connection on the relay server that is forwarded to the cert enrollment service to request a certificate for the coercion target:
 
     ```
     [*] SMBD-Thread-5 (process_request_thread): Received connection from 10.10.100.9, attacking target http://ca.internal.lab
