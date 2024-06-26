@@ -11,7 +11,7 @@ The following labs are options as well, but do not separate the site database or
 # Offensive and Defensive SCCM Resources
 - [Active Directory Spotlight: Attacking The Microsoft Configuration Manager (SCCM/MECM), by Carsten Sandker (@0xcsandker)](https://www.securesystems.de/blog/active-directory-spotlight-attacking-the-microsoft-configuration-manager/)
 - [An Inside Look: How to Distribute Credentials Securely in SCCM, by Christopher Panayi](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm)
-- [Automating SCCM with Ludus: A Configuration Manager for Your Configuration Manager](https://posts.specterops.io/automating-sccm-with-ludus-a-configuration-manager-for-your-configuration-manager-c8f4d8e40473), by Zach Stein (@synzack21)
+- [Automating SCCM with Ludus: A Configuration Manager for Your Configuration Manager, by Zach Stein (@synzack21)](https://posts.specterops.io/automating-sccm-with-ludus-a-configuration-manager-for-your-configuration-manager-c8f4d8e40473)
 - [Black Hat USA Arsenal 2022: SharpSCCM, by Chris Thompson (@_Mayyhem) and Duane Michael (@subat0mik)](https://www.youtube.com/watch?v=19F_Io1Tykg)
 - [Black Hat USA Arsenal 2023: SharpSCCM - Abusing Microsoft's C2 Framework, by Chris Thompson (@_Mayyhem) and Diego Lomellini (@DiLomSec1)](https://www.youtube.com/watch?v=uyI5rgR0D-s)
 - [Black Hat USA SpecterOps Booth 2023: SharpSCCM - Abusing Microsoft's C2 Framework, by Chris Thompson (@_Mayyhem) and Diego Lomellini (@DiLomSec1)](https://www.youtube.com/watch?v=Q8mEMFKscnk)
