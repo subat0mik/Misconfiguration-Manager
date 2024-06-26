@@ -16,7 +16,7 @@ Coerce NTLM relay via automatic client push installation and AD System Discovery
 - Connectivity from the primary site server to SMB (TCP/445) on the relay server
 - Primary site server settings:
     - Automatic site-wide client push installation is enabled [NON-DEFAULT]
-    - Automatic site assignment is enabled [DEFAULT]
+    - Automatic site assignment is enabled [NON-DEFAULT]
     - AD System Discovery is enabled with newly created computer accounts within search path or below if search resursive child objects is enabled. [NON-DEFAULT]
     - `Allow connection fallback to NTLM` is enabled for client push installation or Hotfix KB15599094 is missing on older SCCM deployments [DEFAULT if installation version < 2103 OR KB15599094 is not installed]
     - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
