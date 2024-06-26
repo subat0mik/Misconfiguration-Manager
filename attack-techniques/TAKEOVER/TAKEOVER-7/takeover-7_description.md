@@ -27,7 +27,7 @@ Hierarchy Takeover via NTLM coercion and relay to SMB between primary and passiv
 - Relay target settings:
     - `RequireSecuritySignature` = `0` or not present [DEFAULT]
     - `RestrictReceivingNTLMTraffic` = `0` or not present [DEFAULT]
-    - Coercion target is local admin (to access RPC/admin shares)
+    - Coercion target is local admin (to access RPC/admin shares) [DEFAULT]
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
