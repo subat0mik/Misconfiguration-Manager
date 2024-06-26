@@ -25,7 +25,7 @@ Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database
 
 ### Relay
 - Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
-- Extended protection for authentication not required on the site database
+- Extended protection for authentication not required on the site database [DEFAULT]
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
