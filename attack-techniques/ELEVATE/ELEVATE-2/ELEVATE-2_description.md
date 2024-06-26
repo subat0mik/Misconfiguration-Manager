@@ -17,7 +17,7 @@ NTLM relay via automatic client push installation
     - Automatic site-wide client push installation is enabled
     - Automatic site assignment is enabled
     - `Allow connection fallback to NTLM` is enabled for client push installation
-    - PKI certificates are not required for client authentication [DEFAULT if installation version < 2103 OR KB15599094 is not installed]
+    - PKI certificates are not required for client authentication
     - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
     - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
     - Domain computer account is not in `Protected Users` [DEFAULT]
