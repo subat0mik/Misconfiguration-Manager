@@ -15,25 +15,25 @@ Coerce NTLM relay via automatic client push installation and AD System Discovery
 - Ability to create a DNS A record
 - Connectivity from the primary site server to SMB (TCP/445) on the relay server
 - Primary site server settings:
-    - Automatic site-wide client push installation is enabled
-    - Automatic site assignment is enabled
-    - AD System Discovery is enabled with newly created computer accounts within search path or below if search resursive child objects is enabled.
-    - `Allow connection fallback to NTLM` is enabled for client push installation or Hotfix KB15599094 is missing on older SCCM deployments
-    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
-    - Domain computer account is not in `Protected Users`
+    - Automatic site-wide client push installation is enabled [NON-DEFAULT]
+    - Automatic site assignment is enabled [NON-DEFAULT]
+    - AD System Discovery is enabled with newly created computer accounts within search path or below if search resursive child objects is enabled. [NON-DEFAULT]
+    - `Allow connection fallback to NTLM` is enabled for client push installation or Hotfix KB15599094 is missing on older SCCM deployments [DEFAULT if installation version < 2103 OR KB15599094 is not installed]
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
+    - Domain computer account is not in `Protected Users` [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target [DEFAULT]
 
 ### Relay
 - Relay target settings:
     - Connectivity from the relay server to SMB (TCP/445) on the relay target
-    - `RequireSecuritySignature` = `0` or not present
-    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - `RequireSecuritySignature` = `0` or not present [DEFAULT]
+    - `RestrictReceivingNTLMTraffic` = `0` or not present [DEFAULT]
     - Coercion target is local admin (to access RPC/admin shares)
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
 When SCCM automatic site assignment, automatic client push installation, and AD System Discovery are enabled, and newly created computer accounts are within the system discovery search path, it’s possible to coerce NTLM authentication from the site server's installation and machine accounts to an arbitrary NetBIOS name, FQDN, or IP address, allowing the credentials to be relayed or cracked. This can be done using a low-privileged domain account if the default configuration is present which allows every domain user to create DNS records and join up to 10 computer accounts to AD.

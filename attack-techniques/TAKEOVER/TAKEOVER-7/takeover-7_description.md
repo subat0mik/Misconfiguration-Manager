@@ -16,21 +16,21 @@ Hierarchy Takeover via NTLM coercion and relay to SMB between primary and passiv
     - TAKEOVER-7.2: Coerce passive site server
 - Connectivity from the coercion target to SMB (TCP/445) on the relay server
 - Coercion target settings:
-    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target [DEFAULT]
 
 ### Relay
 - Connectivity from the relay server to SMB on target host 
 - SMS Provider role installed on target preferred (default) but not required
 - Relay target settings:
-    - `RequireSecuritySignature` = `0` or not present
-    - `RestrictReceivingNTLMTraffic` = `0` or not present
-    - Coercion target is local admin (to access RPC/admin shares)
+    - `RequireSecuritySignature` = `0` or not present [DEFAULT]
+    - `RestrictReceivingNTLMTraffic` = `0` or not present [DEFAULT]
+    - Coercion target is local admin (to access RPC/admin shares) [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
 For high availability configurations, the passive site server role is deployed to SCCM sites where redundancy for the site server role is required. A passive site server shares the same configuration and privileges as the active site server yet performs no writes or changes to the site until promoted manually or during an automated failover. 

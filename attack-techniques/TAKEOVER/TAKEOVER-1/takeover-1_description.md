@@ -18,18 +18,18 @@ The site database is not hosted on the coercion target
     - TAKEOVER-1.3: Coerce passive site server
 - Connectivity from the coercion target to SMB (TCP/445) on the relay server
 - Coercion target settings:
-    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
-    - Domain computer account is not in `Protected Users`
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
+    - Domain computer account is not in `Protected Users` [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target [DEFAULT]
 
 ### Relay
 - Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
-- Extended protection for authentication not required on the site database
+- Extended protection for authentication not required on the site database [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
 By default, the Active Directory domain computer accounts for primary site servers (including CAS site servers), systems hosting the SMS Provider role, and passive site servers are granted the `db_owner` role in their respective site's MSSQL database. An attacker who is able to successfully coerce NTLM authentication from one of these accounts and relay it to the site database can use these permissions to grant an arbitrary domain account the SCCM "Full Administrator" role.

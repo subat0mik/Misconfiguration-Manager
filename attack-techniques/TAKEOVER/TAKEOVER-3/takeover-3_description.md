@@ -17,24 +17,24 @@ Hierarchy takeover via NTLM coercion and relay to HTTP on AD CS
     - TAKEOVER-3.4: Coerce site database server
 - Connectivity from the coercion target to SMB (TCP/445) on the relay server (or WebClient enabled and connectivity via any port)
 - Coercion target settings:
-    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
-    - Domain computer account is not in `Protected Users`
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and  `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
+    - Domain computer account is not in `Protected Users` [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target [DEFAULT]
 
 ### Relay
 - Either of the following AD CS services is in use:
-    - Certificate Authority Web Enrollment
-    - Certificate Enrollment Web Service
+    - Certificate Authority Web Enrollment [NON-DEFAULT]
+    - Certificate Enrollment Web Service [NON-DEFAULT]
 - Connectivity from the relay server to HTTPS (TCP/443) on the relay target hosting the AD CS service
-- Extended protection for authentication is not required by the target AD CS service
+- Extended protection for authentication is not required by the target AD CS service [DEFAULT]
 - An enabled AD CS template that allows enrollment and supports authentication 
 - Relay target settings:
-    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - `RestrictReceivingNTLMTraffic` = `0` or not present [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
 When available, SCCM uses public key infrastructure (PKI) for authentication and authorization. While not required, administrators may choose to deploy Active Directory Certificate Services (AD CS) to support SCCM's [various certificate requirements](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/security/plan-for-certificates) rather than use self-signed certificates. AD CS is home to its own [misconfigurations](https://posts.specterops.io/certified-pre-owned-d95910965cd2); particularly ESC8. In short, the [certificate enrollment web interface](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831649(v=ws.11)) is vulnerable to NTLM relaying. An attacker may coerce NTLM authentication from a coercion target and relay to the AD CS enrollment web service to enroll in and acquire a valid certificate template on behalf of the target. The template can then be used to escalate to "Full Administrator" in SCCM by impersonating the coerced target.

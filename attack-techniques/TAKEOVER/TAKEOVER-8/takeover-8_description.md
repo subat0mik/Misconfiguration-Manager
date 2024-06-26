@@ -17,28 +17,28 @@ Hierarchy takeover via NTLM coercion and relay HTTP to LDAP on domain controller
 - Connectivity from the coercion target to any port on the relay server
 - The relay server is in the intranet zone and has a valid NetBIOS name or FQDN (e.g., via ADIDNS poisoning if using a network implant)
 - Coercion target settings:
-    - The `WebClient` service is installed and started
-    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server
-    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server
-    - Domain computer account is not `is sensitive and cannot be delegated`
+    - The `WebClient` service is installed and started [INSTALLED BY DEFAULT ON WINDOWS WORKSTATIONS]
+    - `BlockNTLM` = `0` or not present, or = `1` and `BlockNTLMServerExceptionList` contains attacker relay server [DEFAULT]
+    - `RestrictSendingNTLMTraffic` = `0`, `1`, or not present, or = `2` and `ClientAllowedNTLMServers` contains attacker relay server [DEFAULT]
+    - Domain computer account is not `is sensitive and cannot be delegated` [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains coercion target [DEFAULT]
 
 ### Relay
 - Connectivity from the relay server to LDAP or LDAPS on the relay target, the domain controller
 - Relay target settings:
-    - Either LDAP signing or channel binding is not required on the domain controller
-    - `RestrictReceivingNTLMTraffic` = `0` or not present
+    - Either LDAP signing or channel binding is not required on the domain controller [DEFAULT]
+    - `RestrictReceivingNTLMTraffic` = `0` or not present [DEFAULT]
 - Domain controller settings:
-    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target
-    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target
+    - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
+    - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 - For resource-based constrained delegation:
     - Control of an account's SPN
 
         OR
 
-    - `MachineAccountQuota` > `0` and domain users permitted to add computer accounts
+    - `MachineAccountQuota` > `0` and domain users permitted to add computer accounts [DEFAULT]
 
 ## Summary
 An attacker who is able to successfully coerce NTLM authentication from the Active Directory domain computer account for a primary site server, system hosting the SMS Provider role, or passive site server via HTTP and relay it to LDAP on a domain controller can conduct resource-based constrained delegation (RBCD) or shadow credentials attacks to compromise the server, then connect to:
