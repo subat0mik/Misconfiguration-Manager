@@ -1,38 +1,30 @@
 # CRED-6
 
 ## Description
-
 Loot domain credentials, SSH keys, and more from SCCM Distribution Points (DP)
 
 ## MITRE ATT&CK TTPs
-
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006)
 - [T1078.002 - Valid Accounts: Domain Accounts](https://attack.mitre.org/techniques/T1078/002/)
 
 ## Requirements
+One of the following:
+- Network access to SCCM SMB service (445/TCP) on a DP
+- Network access to SCCM HTTP service (80/TCP or 443/TCP) on a DP
 
-One or the other:
-
-- Network access to SCCM Distribution Points (DP) SMB service
-
-- Network access to SCCM Distribution Points (DP) HTTP service
-
-- Credentials are likely to be required **but not always**
+AND Credentials are likely to be required **but not always**
 
 ## Summary
-
-SCCM distribution points (DPs) are the servers used by Microsoft MC/SCCM to host all the files used in software installs, patches, script deployments, etc. By default, these servers allow access via SMB (TCP/445) and HTTP/S (TCP/80 and/or TCP/443) and require some type of Windows authentication (i.e. NTLM).
+A distribution point (DPs) is a server role used by SCCM to host the various files used in software installs, patches, script deployments, etc. By default, these servers allow access via SMB (TCP/445) and HTTP/S (TCP/80 and/or TCP/443) and require some type of Windows authentication (i.e. NTLM).
 
 IT professionals and software engineers have a tendency of hardcoding credentials in scripts, configuration files, software, etc.
 
-Because of this, we can loot the SCCM DP and extract valid credentials as authenticated (and sometimes unauthenticated) attackers.
+Therefore, we can loot the SCCM DP and extract valid credentials as authenticated (and sometimes unauthenticated) attackers.
 
 #### SMB
-
 The `C:\SCCMContentLib` folder is shared via SMB as the `SCCMContentLib$` SMB share and is accessible to any member of the Domain Users or Domain Computers groups. The file structure of the `C:\SCCMContentLib` folder is explained [here](https://github.com/badsectorlabs/sccm-http-looter/blob/main/DEFCON32_RTV_How-Ludu-%20made-it-rain-creds-from-SCCM.pdf)
 
 #### HTTP
-
 The IIS web server hosted on the distribution point defines a virtual directory, `SMS_DP_SMSPKG$`, which maps to the `C:\SCCMContentLib` folder explained above. The web server will perform all the file structure processing for us, allowing to retrieve resources belonging to a package through HTTP (that are by default domain-authenticated with Kerberos/NTLM, as all interactions to fetch external resources from the distribution point).
 
 URL format to list the subdirectories and files in a package: `http://<DP>/sms_dp_smspkg$/<PackageID>/`
@@ -40,8 +32,7 @@ URL format to list the subdirectories and files in a package: `http://<DP>/sms_d
 Retrieving a file in a package: `http://<DP>/sms_dp_smspkg$/<PackageID>/<filename>`
 
 ## Impact
-
-If anonymous authentication (no credentials required) is enabled, an internal attacker can dump the DP files and analyze its contents for valid credentials. NTLM relaying is still possible under proper conditions.
+If anonymous authentication (no credentials required) is enabled, an attacker can dump the DP files and analyze its contents for valid credentials. NTLM relaying is still possible under proper conditions.
 
 If authentication is required: An internal attacker can use existing credentials to authenticate to the SMB/HTTP services to loot the Distribution Points.
 
@@ -51,9 +42,7 @@ If authentication is required: An internal attacker can use existing credentials
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
-
 #### HTTP DP Looting (Anonymous Authentication Enabled)
-
 ```bash
 # Using Regular Method
 ┌──(.env)─(root㉿AR-kali)-[/opt/sccm-http-looter]
@@ -74,7 +63,6 @@ If authentication is required: An internal attacker can use existing credentials
 ```
 
 #### HTTP DP Looting (NTLMRelayx to HTTP endpoint)
-
 Currently, you can use the following version of [impacket](https://github.com/ar0dd/impacket). There is a pending [Pull Request](https://github.com/fortra/impacket/pull/1790) (as of 14 August, 2024) to include this into the main `impacket` repository.
 
 Just run your server and wait for authentication to take place.
@@ -116,7 +104,6 @@ Impacket v0.12.0.dev1+20240801.104651.6d8dd858 - Copyright 2023 Fortra
 ```
 
 #### SMB DP Looting (With Domain Credentials)
-
 ```bash
 # Create a loot inventory for a specific Distribution Point (DP)
 ┌──(root㉿AR-kali)-[/opt/cmloot]
@@ -145,7 +132,6 @@ Password:
 ```
 
 ## References
-
 - Tomas Rzepka, [Looting Microsoft Configuration Manager](https://rzec.se/blog/looting-microsoft-configuration-manager/)
 - Tomas Rzepka, [CMLoot](https://github.com/1njected/CMLoot)
 - Erik Hunstad, [sccm-http-looter](https://github.com/badsectorlabs/sccm-http-looter)
