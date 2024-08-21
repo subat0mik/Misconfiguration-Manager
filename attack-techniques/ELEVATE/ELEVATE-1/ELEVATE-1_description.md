@@ -33,7 +33,7 @@ NTLM relay site server to SMB on site systems
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
-SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain compuper account and requires [local administrator permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
+SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain computer account and requires [local administrator permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
 
 ## Impact
 Impact for these scenarios is difficult to quantify. In some cases a compromised site system role could lead to hierarchy takeover, while in others a successful attack is simply a lateral movement opportunity.
