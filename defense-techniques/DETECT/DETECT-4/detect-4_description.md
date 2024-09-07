@@ -17,3 +17,4 @@ select stat.*, ins.*, att1.*, stat.Time from v_StatusMessage as stat left join v
 
 ## References
 Marshall Price, [SCCM Exploitation: Evading Defenses and Moving Laterally with SCCM Application Deployment](https://www.guidepointsecurity.com/blog/sccm-exploitation-evading-defenses-and-moving-laterally-with-sccm-application-deployment/)
+Microsoft, [Status and alert views in Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/develop/core/understand/sqlviews/status-alert-views-configuration-manager)
