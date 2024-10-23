@@ -89,4 +89,6 @@ Properties:
 - [EXEC-1: Application deployment](../../../attack-techniques/EXEC/EXEC-1/exec-1_description.md)
 
 ## References
-Brandon McMillan, [Enhanced Audit Status Message Queries](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/enhanced-audit-status-message-queries/ba-p/884897)
+- Brandon McMillan, [Enhanced Audit Status Message Queries](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/enhanced-audit-status-message-queries/ba-p/884897)
+- Brandon McMillan, [EnhancedAuditStatusMsgQueries](https://github.com/brmcmill/EnhancedAuditStatusMsgQueries)
+- Microsoft Learn, [Use the status system in Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/core/servers/manage/use-status-system#bkmk_Status)

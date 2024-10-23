@@ -46,6 +46,7 @@ Attackers may recover domain credentials from this process, the difficulty of wh
 With these credentials, attackers may transition from an unauthenticated context on the network to a domain-authenticated context. If any of the credentials recovered are privileged, it may also enable privilege escalation and lateral movement vectors.
 
 ## Defensive IDs
+- [DETECT-7: Monitor read access to the SMSTemp directory](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
 - [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-6: Configure a strong PXE boot password](../../../defense-techniques/PREVENT/PREVENT-6/prevent-6_description.md)
 - [PREVENT-7: Disable command support in PXE boot configuration](../../../defense-techniques/PREVENT/PREVENT-7/prevent-7_description.md)
