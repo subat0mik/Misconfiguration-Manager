@@ -15,7 +15,7 @@ Several forms of offensive tooling (sccmhunter, pxethief, pxethiefy) will typica
 3. Enumerate SMSTemp directory
 4. Spider .var extensions, which likely contain PXE boot configuration variables
 
-Different tooling will conduct step 2. differently. For example, sccmhunter's `smb` module will search and access the `\\*\REMINST\` share path prior to connecting to `SMSTemp` directory, where as pxethiefy will utilize the `\\*\IPC$\winreg` named pipe to connect to `SMSTemp`. No one method is "stealthier" than the other, as there are opportunities for detection with either connection choice.
+Different tooling will conduct step 2. differently. For example, sccmhunter's `smb` module will search and access the `\\.\REMINST\` share path prior to connecting to `SMSTemp` directory. In contrast, pxethiefy will utilize the `\\.\IPC$\winreg` named pipe to connect to `SMSTemp`. No one method is "stealthier" than the other, as there are opportunities for detection with either connection choice.
 ### PXEThief Exmaple:
 ```
 root@DEBIAN:/home/labadmin/PXEThief# python pxethief.py 2 192.168.57.50

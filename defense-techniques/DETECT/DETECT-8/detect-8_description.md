@@ -4,68 +4,102 @@
 Monitor connections to winreg named pipe
 
 ## Summary
-An attacker may utilize LDAP requests targeting the domain controller's `System` container which contains the `System Management` container. This `System Management` container usually has `GenericAll` permissions set on the container object and contains the SCCM published site information. An attacker can query this container to resolve the potential site servers.
+An attacker may enumerate PXE configurations or primary (including CAS) and secondary site configuration information via the winreg named pipe (\\.\pipe\winreg).
+The winreg named pipe is primarily used by Windows for remote access to the Windows registry. The use of the named pipe in a client environment may be an anomaly in and of itself.
 
-Defenders can set focused auditing on the `System Management` container to identify anomalous read access attempts. Defenders can enable a SACL (System Access Control List) on the `System Management` container and set the audit categories to monitor for `Read all properties`. Upon the querying of the `System Management` container within Active Directory Users and Computers, a [Event ID: 4662](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4662) will highlight that a Read operation was performed on the container object.
-
-The below example displays the `sccmhunter.py` `find` command to trigger the LDAP query: 
+The following is an example of RECON-6 SMB Winreg named pipe enumeration.
 ```
-python3 sccmhunter.py find -u 'john' -p 'Ieshoh5chael' -d sccmlab.local -dc-ip 10.10.0.100
-
-SCCMHunter v1.0.0 by @garrfoster
-[23:01:38] INFO     [!] First time use detected.
-[23:01:38] INFO     [!] SCCMHunter data will be saved to /root/.sccmhunter
-[23:01:38] INFO     [*] Checking for System Management Container.
-[23:01:38] INFO     [+] Found System Management Container. Parsing DACL.
-[23:01:38] INFO     [-] System Management Container not found.
-[23:01:38] INFO     [*] Searching LDAP for anything containing the strings 'SCCM' or 'MECM'
-[23:01:39] INFO     [+] Found 7 principals that contain the string 'SCCM' or 'MECM'.   
-
+C:\Tools>pssrecon -u testsubject4 -p BlackMesa004 -d aperture.local -host atlas.aperture.local
+[+] Distrubution Point Installed
+[+] Site Code Found: PS1
+[+] Site Server Found: atlas.aperture.local
+[+] Management Point Found: http://atlas.aperture.local
+[+] PXE Installed
+[+] Management Point Installed
+[+] Site Database Found: P-BODY.APERTURE.LOCAL
 ```
 
-The below example displays a successful SACL generation upon the use of an LDAP request reading the properties of the `System Management` container:
+Defenders can leverage several assumptions to identify the connections to the winreg named pipe and reduce false positives:
+1. The connection will be made from an attacker controlled host
+2. The connection will target Tier0 infrastructure or a Distribution Point
+
+To identify connections to the winreg named pipe, defenders can create composite events based on the source network connection Event ID: 3 referencing destination port 445 and the name of the Tier 0, Primary (including CAS) or Secondary site servers, in combination with the destination Event ID: 18 winreg named pipe connection. 
+
+The below Sysmon Event ID: 3 (Source host) displays the connection to a site server over destination port 445:
 ```
-Event ID: 4662
-An operation was performed on an object.
+Event ID: 3
+Network connection detected:
+RuleName: -
+UtcTime: 2024-10-24 15:02:05.024
+ProcessGuid: {00000000-0000-0000-0000-000000000000}
+ProcessId: 6392
+Image: <unknown process>
+User: -
+Protocol: tcp
+Initiated: true
+SourceIsIpv6: false
+SourceIp: 10.1.0.101
+SourceHostname: sentry1.aperture.local
+SourcePort: 49839
+SourcePortName: -
+DestinationIsIpv6: false
+DestinationIp: 10.1.0.50
+DestinationHostname: ATLAS
+DestinationPort: 445
+DestinationPortName: microsoft-ds
+```
+The above event would need to be combined with a destination Sysmon Event ID: 18 named pipe connection:
+```
+Event ID: 18
+Pipe Connected:
+RuleName: -
+EventType: ConnectPipe
+UtcTime: 2024-10-24 15:02:05.541
+ProcessGuid: {8288158a-ce46-66cf-eb03-000000000000}
+ProcessId: 4
+PipeName: \winreg
+Image: System
+User: NT AUTHORITY\SYSTEM
+```
 
-Subject :
-	Security ID:		S-1-5-21-549653051-3181377268-3861266315-1108
-	Account Name:		john
-	Account Domain:		SCCMLAB
-	Logon ID:		0x40C307
+Additionally, defenders can enable detailed file access auditing (either for the entire domain (GPO) or local group policy). Enabling this audit category will generate an Event ID: 5145 detailed file share access event that displays the winreg named pipe connection and the source host that the connection originated from. Proxied execution of offensive tooling will still generate these Event IDs.
 
-Object:
-	Object Server:		DS
-	Object Type:		%{bf967a8b-0de6-11d0-a285-00aa003049e2}
-	Object Name:		%{fa360eb8-3156-4989-85b6-c15d8a2b4a05}
-	Handle ID:		0x0
+The below WinSec Detailed File Share Access Event ID: 5145 which will display the connection to the winreg named pipe:
+```
+Event ID: 5145	
+Subject:
+	Security ID:		APERTURE\TESTSUBJECT4
+	Account Name:		TESTSUBJECT4
+	Account Domain:		APERTURE
+	Logon ID:		0x6CB896C6
 
-Operation:
-	Operation Type:		Object Access
-	Accesses:		List Contents
+Network Information:	
+	Object Type:		File
+	Source Address:		10.1.0.101
+	Source Port:		49839
+	
+Share Information:
+	Share Name:		\\*\IPC$
+	Share Path:		
+	Relative Target Name:	winreg
+
+Access Request Information:
+	Access Mask:		0x120089
+	Accesses:		READ_CONTROL
+				SYNCHRONIZE
+				ReadData (or ListDirectory)
+				ReadEA
+				ReadAttributes
 				
-	Access Mask:		0x4
-	Properties:		List Contents
-	{bf967a8b-0de6-11d0-a285-00aa003049e2}
-
-
-Additional Information:
-	Parameter 1:		-
-	Parameter 2:
+Access Check Results:
+	-
 ```
 
-The below example displays the System Management translation between the GUID identified in the Object Name field of the 4662 event and the actual plain text Object Name.:
-```
-TimeCreated     : 3/4/2024 11:20:32 PM
-UserName        : Administrator
-Computer        : System Management
-RequestedObject : container
-ObjectGuid      : %{fa360eb8-3156-4989-85b6-c15d8a2b4a05}
-```
 
 ## Associated Offensive IDs
-- [RECON-1: Enumerate SCCM site information via LDAP](../../../attack-techniques/RECON/RECON-1/recon-1_description.md)
+- [RECON-6: Enumerate SCCM roles via the SMB Named Pipe winreg](../../../attack-techniques/RECON/RECON-6/recon-6_description.md)
+- [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
 
 ## References
-- Garrett Foster, SCCMHunter Find Module, https://github.com/garrettfoster13/sccmhunter/wiki/find
-- Josh Prager & Nico Shyne, Domain Persistence: Detection Triage and Recovery, https://github.com/bouj33boy/Domain-Persistence-Detection-Triage-and-Recovery-SO-CON-2024
+- Garrett Foster,[SCCMHunter SMB Module](https://github.com/garrettfoster13/sccmhunter/wiki/SMB)
+- Josh Prager & Nico Shyne, [Detection and Triage of Domain Persistence](https://github.com/bouj33boy/Domain-Persistence-Detection-Triage-and-Recovery-SO-CON-2024/blob/main/Detection%20and%20Triage%20of%20Domain%20Persistence-BSidesNYC.pdf)
