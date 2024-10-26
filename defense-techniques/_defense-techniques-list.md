@@ -7,6 +7,9 @@
 | [DETECT&#x2011;4](./DETECT/DETECT-4/detect-4_description.md) | Monitor application deployment logs in the site's Audit Status Messages | SCCM, security |
 | [DETECT&#x2011;5](./DETECT/DETECT-5/detect-5_description.md) | Monitor group membership changes for SMS Admins | SCCM, server, security |
 | [DETECT&#x2011;6](./DETECT/DETECT-6/detect-6_description.md) | Monitor group membership changes for RBAC_Admins table | SCCM, server, security |
+| [DETECT&#x2011;7](./DETECT/DETECT-7/detect-7_description.md) | Monitor read access to the SMSTemp directory | SCCM, server, security |
+| [DETECT&#x2011;8](./DETECT/DETECT-8/detect-8_description.md) | Monitor connections to winreg named pipe | SCCM, server, security |
+| [DETECT&#x2011;9](./DETECT/DETECT-9/detect-9_description.md) | Monitor local object access for local SCCM logs and settings | SCCM, server, security |
 | [PREVENT&#x2011;1](./PREVENT/PREVENT-1/prevent-1_description.md) | Patch site server with KB15599094 | SCCM, server |
 | [PREVENT&#x2011;2](./PREVENT/PREVENT-2/prevent-2_description.md) | Disable Fallback to NTLM | SCCM |
 | [PREVENT&#x2011;3](./PREVENT/PREVENT-3/prevent-3_description.md) | Harden or disable network access accounts | SCCM, domain, security |
