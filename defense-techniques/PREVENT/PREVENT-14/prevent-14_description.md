@@ -4,7 +4,7 @@
 Require EPA on AD CS and site databases
 
 ## Summary
-**IMPORTANT:** Implementing these settings **do** have a performance impact and the authors have only tested them to confirm that NTLM relay is prevented in a lab environment, so it is crucial to first test these changes in your environment before implementing in production.
+**IMPORTANT:** Implementing these settings **do** have a performance impact and the authors have only tested them to confirm that NTLM relay is prevented in a lab environment, so it is crucial to first test these changes in your environment before implementing in production. Further, they may result in connectivity issues in certain scenarios. Please refer to https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/connect-to-the-database-engine-using-extended-protection to understand the potential impact for your environment.
 
 Extended Protection for Authentication (EPA) uses service binding and channel binding to help prevent NTLM relay attacks. In an authentication relay attack, a client that can perform NTLM authentication connects to an attacker-controlled system. The attacker uses the client's credentials to masquerade as the client and authenticate to a service (for example, an instance of the MSSQL Database Engine service or Active Directory Certificate Services). NTLM relay attacks are made simple due to the presence of won't-fix issues (e.g., Printerbug, PetitPotam) that allow an attacker to automatically force a computer to authenticate to an arbitrary location. These issues are present on current versions of Windows Server by default.
 
@@ -27,7 +27,11 @@ Service binding addresses luring attacks by requiring a client to send a signed 
 Channel binding establishes a secure channel (in this case, Schannel) between a client and an instance of the SQL Server service. The service verifies the authenticity of the client by comparing the client's channel binding token (CBT) specific to that channel, with its own CBT. Channel binding addresses both luring and spoofing attacks. However, it incurs a larger runtime cost, because it requires Transport Layer Security (TLS) encryption of all the session traffic. Channel Binding occurs when a client application uses encryption to connect to the SQL Server, regardless of whether encryption is enforced by the client or by the server.
 
 #### Configuration
-On every site database server, including for every primary site and the central administration site (if using a CAS), open `Sql Server Configuration Manager`, expand `Sql Server Network Configuration`, right click `Protocols for MSSQLSERVER`, click `Properties`, navigate to the `Advanced` tab, then set `Extended Protection` to `Required`: 
+On every site database server, including for every primary site and the central administration site (if using a CAS), open `Sql Server Configuration Manager`, expand `Sql Server Network Configuration`, right click `Protocols for MSSQLSERVER`, click `Properties`, then set `Force Encryption` to `Yes`:
+
+<img width="517" alt="image" src="https://github.com/user-attachments/assets/9b2ce3bb-2974-49ef-b8a4-61c9831ab7d7">
+
+Next, navigate to the `Advanced` tab, then set `Extended Protection` to `Required` (not `Allowed`): 
 
 <img width="683" alt="image" src="https://github.com/subat0mik/Misconfiguration-Manager/assets/30671833/85cbbb4d-53c8-4a7c-bc59-a93834e13145">
 
