@@ -6,29 +6,29 @@ Monitor application deployment logs in the site's Audit Status Messages
 ## Summary
 Configuration Manager (CM) allows administrators to deploy applications located at specified UNC paths (e.g., `C:\Windows\System32\calc.exe`) to client devices. Additionally, the deployment can be selected to execute as SYSTEM, the currently logged in user, or a specified user.
 
-The CM clients can be any domain-joined host that is managed by a primary (including CAS) and passive site servers where the SCCM client has been installed. Typical methods of deploying application packages to CM clients are conducted via the CM console. To reference an application to deploy to an application, the administrator can reference a binary that is locally or remotely hosted. Referencing binaries that are remotely hosted is of particular importance when we consider the impact of offensive staging and “pushing” application packages to a CM client. Typically, system administrators will host application packages on remote file servers and “push” the CM client agent to retrieve and execute a copy of the binary hosted on the shares (e.g., deployment content= `\\ServerName\SharedFolder\MyApplicationInstaller.msi`). CM clients need only Read access to these remote file shares to retrieve these binaries. 
+The CM clients can be any domain-joined host that is managed by a primary (including CAS) and passive site servers where the SCCM client has been installed. Typical methods of deploying application packages to CM clients are conducted via the CM console. To reference an application to deploy to an application, the administrator can reference a binary that is locally or remotely hosted. Referencing binaries that are remotely hosted is of particular importance when we consider the impact of offensive staging and "pushing" application packages to a CM client. Typically, system administrators will host application packages on remote file servers and "push" the CM client agent to retrieve and execute a copy of the binary hosted on the shares (e.g., deployment content= `\\ServerName\SharedFolder\MyApplicationInstaller.msi`). CM clients need only `Read` access to the remote file shares to retrieve the binaries. 
 Application deployment is executed in the following steps:
 
-1. Create a “Collection”
+1. Create a "Collection"
 
-* A collection is a group of users or devices targeted for deployment in SCCM. When you create a collection, the SQL database of SCCM (hosted in the CM_<SiteCode> database) creates an entry for the collection. A collection is typically created in the SCCM console by navigating to Assets and Compliance > Device Collections > Create Device Collection.
+* A collection is a group of users or devices targeted for deployment in SCCM. When a collection is created, the SCCM site database (hosted in the `CM_<SiteCode>` MSSQL database) creates an entry for the collection. A collection is typically created in the SCCM console by navigating to `Assets and Compliance > Device Collections > Create Device Collection`.
 
 2. Add a device to the Collection
 
-* Devices are added to the Collection to define the scope to deploy the application package.
+* Devices are added to the Collection to define the deployment scope.
 
-3. Create an “Application” to deploy
+3. Create an "Application" to deploy
 
 * The application can reference a locally or remotely hosted binary via UNC paths.
 
-4. Create a “Deployment”
+4. Create a "Deployment"
 
 * The deployment defines how and when the application is sent to devices. In this step, the application is deployed to the previously created collection.
-* This deployment creates records in the SCCM database under tables such as Deployment and ApplicationAssignments, which link the application to the collection. This will also generate a new deployment policy for the collection’s members.
+* This deployment creates records in the SCCM site database under tables such as `Deployment` and `ApplicationAssignments`, which link the application to the collection. This will also generate a new deployment policy for the collection's members.
 
 5. Initiate a "Deployment"
 
-* The deployment will deploy the scoped application to execute on the SCCM clients as defined by the collection.
+* The deployment will deploy the scoped application to execute on the CM clients as defined by the collection.
 
 The Configuration Manager Status Message Queue contains corresponding Message IDs related to each of the steps explained above. The following examples display Message IDs related to the generation of a Collection, Application, and Deployment. Additionally, the examples below will share the relevant Message ID details related to initiating a Deployment.
 
