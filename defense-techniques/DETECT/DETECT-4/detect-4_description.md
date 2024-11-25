@@ -4,7 +4,7 @@
 Monitor application deployment logs in the site's Audit Status Messages
 
 ## Summary
-Configuration Manager (CM) allows administrators to deploy applications located at specified UNC paths (e.g., `C:\Windows\System32\calc.exe`) to client devices. Additionally, the deployment can be selected to executed as SYSTEM, the currently logged in user, or a specified user.
+Configuration Manager (CM) allows administrators to deploy applications located at specified UNC paths (e.g., `C:\Windows\System32\calc.exe`) to client devices. Additionally, the deployment can be selected to execute as SYSTEM, the currently logged in user, or a specified user.
 
 The CM clients can be any domain-joined host that is managed by a primary (including CAS) and passive site servers where the SCCM client has been installed. Typical methods of deploying application packages to CM clients are conducted via the CM console. To reference an application to deploy to an application, the administrator can reference a binary that is locally or remotely hosted. Referencing binaries that are remotely hosted is of particular importance when we consider the impact of offensive staging and “pushing” application packages to a CM client. Typically, system administrators will host application packages on remote file servers and “push” the CM client agent to retrieve and execute a copy of the binary hosted on the shares (e.g., deployment content= `\\ServerName\SharedFolder\MyApplicationInstaller.msi`). CM clients need only Read access to these remote file shares to retrieve these binaries. 
 Application deployment is executed in the following steps:
