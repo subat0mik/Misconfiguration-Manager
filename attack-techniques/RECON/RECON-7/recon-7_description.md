@@ -15,20 +15,20 @@ Upon the enrollment of a client to SCCM, default directories are created where S
 These log files can be enumerated simply by using the command and control file browser. Default defensive telemetry isn't usually generated upon the access of these SCCM log directories unless custom auditing is enabled.
 
 Log files located on the SCCM-enrolled clients will typically originate from the following directories:
-* C:\Windows\CCM\Logs
-* C:\Windows\ccmcache
-* C:\Windows\ccmsetup
+* `C:\Windows\CCM\Logs`
+* `C:\Windows\ccmcache`
+* `C:\Windows\ccmsetup`
 
 The `C:\Windows\CCM\Logs` directory is one of the most useful from an enumeration perspective, as it contains the SCCM server names in multiple logs:
-* C:\Windows\CCM\Logs\StatusAgent.log
-* C:\Windows\CCM\Logs\LocationServices.log
-* C:\Windows\CCM\Logs\DataTransferService.log
-* C:\Windows\CCM\Logs\ClientServicing.log
-* C:\Windows\CCM\Logs\CcmNotificationAgent.log
-* C:\Windows\CCM\Logs\CcmMessaging.log
-* C:\Windows\CCM\Logs\CcmEval.log
+* `C:\Windows\CCM\Logs\StatusAgent.log`
+* `C:\Windows\CCM\Logs\LocationServices.log`
+* `C:\Windows\CCM\Logs\DataTransferService.log`
+* `C:\Windows\CCM\Logs\ClientServicing.log`
+* `C:\Windows\CCM\Logs\CcmNotificationAgent.log`
+* `C:\Windows\CCM\Logs\CcmMessaging.log`
+* `C:\Windows\CCM\Logs\CcmEval.log`
 
-Additionally, the registry key/value of HKLM:\SOFTWARE\Microsoft\SMS\DP\ManagementPoints will enumerate the DPs and MPs for that particular SCCM-enrolled client. Defenders will typically have some default auditing aimed at accessing the registry.
+Additionally, the registry key/value of `HKLM:\SOFTWARE\Microsoft\SMS\DP\ManagementPoints` will enumerate the `Distribution Points` and `Management Points` for that particular SCCM-enrolled client. Defenders will typically have some default auditing aimed at accessing the registry.
 
 ## Impact
 1. Profiling site servers is a supplementary step in building potential attack paths
@@ -42,6 +42,7 @@ Additionally, the registry key/value of HKLM:\SOFTWARE\Microsoft\SMS\DP\Manageme
 
 ## Examples
 Use [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/) to enumerate local SCCM log files containing UNC paths:
+
 ### SCCM-Enrolled Client
 
 ```
@@ -109,7 +110,8 @@ Use [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/) to enumerate local SCCM l
 [+] Completed execution in 00:00:09.8748192
 ```
 
-Use PowerShell to enumerate the Distribution Point value within the HKLM registry key:
+Use PowerShell to enumerate the Distribution Point value within the `HKLM:\SOFTWARE\Microsoft\SMS\DP` registry key:
+
 ```
 PS C:\Tools> (Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\SMS\DP -Name ManagementPoints).ManagementPoints
 
