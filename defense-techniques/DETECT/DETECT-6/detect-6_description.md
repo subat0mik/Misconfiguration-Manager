@@ -4,16 +4,17 @@
 Monitor group membership changes for RBAC_Admins table
 
 ## Summary
-The RBAC_Admins table within the MSSQL database server controls the additions and deletions to the SMS Admins local security group. That means if a user is inserted into the RBAC_Admins table, then the user's SID is added to the SMS Admins local security group on the SMS Provider.  
+The `RBAC_Admins` table within the MSSQL database server controls the additions and deletions to the `SMS Admins` local security group. That means if a user is inserted into the `RBAC_Admins` table, then the user's `SID` is added to the `SMS Admins` local security group on the `SMS Provider`.  
 
-Attackers who relay the site server computer account to the MSSQL database server and insert a new user into the RBAC_Admins table will automatically add that user to the SMS Admins local security group.
+Attackers who relay the site server computer account to the MSSQL database server and insert a new user into the `RBAC_Admins` table will automatically add that user to the `SMS Admins` local security group.
 
-Defenders can implement custom auditing into the Application or Security log of the MSSQL database server. SQL Server Auditing will track changes on the RBAC_Admins table.
+Defenders can implement custom auditing into the `Application` or `Security` log of the MSSQL database server. SQL `Server Auditing` will track changes on the `RBAC_Admins` table.
 
-1. Within the MSSQL database server, open SQL Server Management Studio (SSMS), expand your SQL Server instance.
-2. Go to Security > Audits > Right-click > New Audit.
+1. Within the MSSQL database server, open `SQL Server Management Studio (SSMS)`, expand your SQL Server instance.
+2. Go to `Security` > `Audits` > Right-click > `New Audit`.
 3. Configure the audit to log to a file or the event log.
-4. Create an audit specification to track access to the RBAC_Admins table:
+4. Create an audit specification to track access to the `RBAC_Admins` table:
+
 ```
 USE [master];
 GO
@@ -41,7 +42,9 @@ ADD (INSERT ON dbo.RBAC_Admins BY PUBLIC)
 WITH (STATE = ON);
 GO
 ```
-After implementing the above audit, when a user is added to the RBAC_Admins table, an Event ID: 33205 will be generated within the MSSQL database server's application log. The following Event ID: 33205 displays the information expected from an "INSERT" into the RBAC_Admins table:
+
+After implementing the above audit, when a user is added to the `RBAC_Admins` table, an `Event ID: 33205` will be generated within the MSSQL database server's `Application` log. The following `Event ID: 33205` displays the information expected from an `"INSERT"` into the `RBAC_Admins` table:
+
 ```
 Audit event: audit_schema_version:1
 event_time:2024-10-23 03:11:01.1300947
@@ -84,7 +87,6 @@ data_sensitivity_information:
 host_name:UVJyJtIi
 .
 ```
-
 
 ## Associated Offensive IDs
 - [TAKEOVER-1: Hierarchy takeover via NTLM coercion and relay to MSSQL on remote site database](../../../attack-techniques/TAKEOVER/TAKEOVER-1/takeover-1_description.md)

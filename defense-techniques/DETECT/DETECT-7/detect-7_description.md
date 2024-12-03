@@ -4,18 +4,19 @@
 Monitor read access to the SMSTemp directory
 
 ## Summary
-SCCM contains a preboot execution environment (PXE) feature which allows systems to load a specific operating system image on boot.
+SCCM contains a `preboot execution environment (PXE)` feature which allows systems to load a specific operating system image on boot.
 
 Attackers can recover domain credentials from PXE media if weak passwords are used, potentially transitioning from an unauthenticated network context to a domain-authenticated one, allowing for privilege escalation and lateral movement.
 
-Several forms of offensive tooling (sccmhunter, pxethief, pxethiefy) will typically follow this operational flow:
+Several forms of offensive tooling (`sccmhunter`, `pxethief`, `pxethiefy`) will typically follow this operational flow:
 
-1. Connect to Distribution Point via SMB
-2. Enumerate “REMINST” (Remote Install) share (Windows Deployment Services (WDS) and often contains PXE boot files)
-3. Enumerate SMSTemp directory
-4. Spider .var extensions, which likely contain PXE boot configuration variables
+1. Connect to the `Distribution Point` via `SMB`
+2. Enumerate `“REMINST”` (Remote Install) share (`Windows Deployment Services (WDS)` and often contains PXE boot files)
+3. Enumerate `SMSTemp` directory
+4. Spider `.var` extensions, which likely contain PXE boot configuration variables
 
-Different tooling will conduct step 2. differently. For example, sccmhunter's `smb` module will search and access the `\\.\REMINST\` share path prior to connecting to `SMSTemp` directory. In contrast, pxethiefy will utilize the `\\.\IPC$\winreg` named pipe to connect to `SMSTemp`. No one method is "stealthier" than the other, as there are opportunities for detection with either connection choice.
+Different tooling will conduct step 2. differently. For example, `sccmhunter's` `smb` module will search and access the `\\.\REMINST\` share path prior to connecting to `SMSTemp` directory. In contrast, `pxethiefy` will utilize the `\\.\IPC$\winreg` named pipe to connect to `SMSTemp`. No one method is `"stealthier"` than the other, as there are opportunities for detection with either connection choice.
+
 ### PXEThief Exmaple:
 ```
 root@DEBIAN:/home/labadmin/PXEThief# python pxethief.py 2 192.168.57.50
@@ -51,9 +52,11 @@ Received 1 packets, got 1 answers, remaining 0 packets
 [+] Successfully decrypted media variables file with the provided password!
 ...SNIP...
 ```
-Notice that the `SMSTemp` directory is enumerated for `.var` files and `.bcd` files containing credentials or blank passwords. Defenders can monitor the connections to the `\\REMINST\` file share and the `SMSTemp` directory with Event ID: 5145 and SACLs set on the `SMSTemp` directory.
 
-The below example displays a successful Event ID 5145 generation upon the connection to `\\REMINST\` file share:
+Notice that the `SMSTemp` directory is enumerated for `.var` files and `.bcd` files containing credentials or blank passwords. Defenders can monitor the connections to the `\\REMINST\` file share and the `SMSTemp` directory with `Event ID: 5145` and SACLs set on the `SMSTemp` directory.
+
+The below example displays a successful `Event ID 5145` generation upon the connection to `\\REMINST\` file share:
+
 ```
 Event ID: 5145
 A network share object was checked to see whether client can be granted desired access.
@@ -84,7 +87,7 @@ Access Check Results:
 				ReadAttributes:	Granted by	D:(A;;0x1200a9;;;WD)
 ```
 
-The below example displays a successful SACL generation upon the access of the `SMSTemp` directory within `C:\RemoteInstall\` on the distribution point:
+The below example displays a successful SACL generation upon the access of the `SMSTemp` directory within `C:\RemoteInstall\` on the `Distribution Point`:
 ```
 Event ID: 4663
 An attempt was made to access an object.
@@ -109,6 +112,7 @@ Process Information:
 Access Request Information:
 	Accesses:		ReadData (or ListDirectory)
 ```
+
 ## Associated Offensive IDs
 - [RECON-1: Enumerate SCCM site information via LDAP](../../../attack-techniques/RECON/RECON-1/recon-1_description.md)
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)

@@ -4,10 +4,10 @@
 Monitor connections to winreg named pipe
 
 ## Summary
-An attacker may enumerate PXE configurations or primary (including CAS) and secondary site configuration information via the winreg named pipe (\\.\pipe\winreg).
+An attacker may enumerate PXE configurations or primary (including CAS) and secondary site configuration information via the winreg named pipe (`\\.\pipe\winreg`).
 The winreg named pipe is primarily used by Windows for remote access to the Windows registry. The use of the named pipe in a client environment may be an anomaly in and of itself.
 
-The following is an example of RECON-6 SMB Winreg named pipe enumeration.
+The following is an example of `RECON-6 SMB Winreg` named pipe enumeration.
 ```
 C:\Tools>pssrecon -u testsubject4 -p BlackMesa004 -d aperture.local -host atlas.aperture.local
 [+] Distrubution Point Installed
@@ -23,9 +23,9 @@ Defenders can leverage several assumptions to identify the connections to the wi
 1. The connection will be made from an attacker controlled host
 2. The connection will target Tier0 infrastructure or a Distribution Point
 
-To identify connections to the winreg named pipe, defenders can create composite events based on the source network connection Event ID: 3 referencing destination port 445 and the name of the Tier 0, Primary (including CAS) or Secondary site servers, in combination with the destination Event ID: 18 winreg named pipe connection. 
+To identify connections to the winreg named pipe, defenders can create composite events based on the source network connection Sysmon `Event ID: 3` referencing destination port `445` and the name of the Tier 0, Primary (including CAS) or Secondary site servers, in combination with the destination Sysmon `Event ID: 18` winreg named pipe connection.
 
-The below Sysmon Event ID: 3 (Source host) displays the connection to a site server over destination port 445:
+The below Sysmon `Event ID: 3` (Source host) displays the connection to a site server over destination port `445`:
 ```
 Event ID: 3
 Network connection detected:
@@ -48,7 +48,9 @@ DestinationHostname: ATLAS
 DestinationPort: 445
 DestinationPortName: microsoft-ds
 ```
-The above event would need to be combined with a destination Sysmon Event ID: 18 named pipe connection:
+
+The above event would need to be combined with a destination Sysmon `Event ID: 18` named pipe connection:
+
 ```
 Event ID: 18
 Pipe Connected:
@@ -62,9 +64,9 @@ Image: System
 User: NT AUTHORITY\SYSTEM
 ```
 
-Additionally, defenders can enable detailed file access auditing (either for the entire domain (GPO) or local group policy). Enabling this audit category will generate an Event ID: 5145 detailed file share access event that displays the winreg named pipe connection and the source host that the connection originated from. Proxied execution of offensive tooling will still generate these Event IDs.
+Additionally, defenders can enable detailed file access auditing (either for the entire domain (GPO) or local group policy). Enabling this audit category will generate an Windows Security `Event ID: 5145` detailed file share access event that displays the winreg named pipe connection and the source host that the connection originated from. Proxied execution of offensive tooling will still generate these event IDs.
 
-The below WinSec Detailed File Share Access Event ID: 5145 which will display the connection to the winreg named pipe:
+The below Windows Security Detailed File Share Access `Event ID: 5145` which will display the connection to the winreg named pipe:
 ```
 Event ID: 5145	
 Subject:
@@ -94,7 +96,6 @@ Access Request Information:
 Access Check Results:
 	-
 ```
-
 
 ## Associated Offensive IDs
 - [RECON-6: Enumerate SCCM roles via the SMB Named Pipe winreg](../../../attack-techniques/RECON/RECON-6/recon-6_description.md)
