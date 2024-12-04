@@ -32,6 +32,11 @@ Application deployment is executed in the following steps:
 
 The Configuration Manager Status Message Queue contains corresponding Message IDs related to each of the steps explained above. The following examples display Message IDs related to the generation of a Collection, Application, and Deployment. Additionally, the examples below will share the relevant Message ID details related to initiating a Deployment.
 
+The following SQL query can be run against the SCCM MSSQL database to retrieve these message types:
+```
+select stat.*, ins.*, att1.*, stat.Time from v_StatusMessage as stat left join v_StatMsgInsStrings as ins on stat.RecordID = ins.RecordID left join v_StatMsgAttributes as att1 on stat.RecordID = att1.RecordID where stat.MessageType = 768 and stat.MessageID >= 30224 and stat.MessageID <= 30228 and stat.Time >= ##PRM:v_StatusMessage.Time## order by stat.Time desc
+```
+
 **Message ID: 30015** Create a Collection:
 
 ```
@@ -86,14 +91,6 @@ Properties:
 - User Name : APERTURE\SCCMADMIN
 ```
 
-The following message ID's can be used to monitor application deployment:
-- 30226: Creation of application deployment
-- 30228: Deletion of application deployment
-
-The following SQL query can be run against the SCCM MSSQL database to retrieve these message types:
-```
-select stat.*, ins.*, att1.*, stat.Time from v_StatusMessage as stat left join v_StatMsgInsStrings as ins on stat.RecordID = ins.RecordID left join v_StatMsgAttributes as att1 on stat.RecordID = att1.RecordID where stat.MessageType = 768 and stat.MessageID >= 30224 and stat.MessageID <= 30228 and stat.Time >= ##PRM:v_StatusMessage.Time## order by stat.Time desc
-```
 ## Associated Offensive IDs
 - [EXEC-1: Application deployment](../../../attack-techniques/EXEC/EXEC-1/exec-1_description.md)
 
