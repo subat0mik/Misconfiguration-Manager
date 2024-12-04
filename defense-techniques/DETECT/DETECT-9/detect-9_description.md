@@ -1,11 +1,11 @@
 # DETECT-9
 
 ## Description
-Monitor local object access for local SCCM logs and settings
+Monitor local object access for SCCM logs and settings
 
 ## Summary
-An attacker enumerate SCCM infrastructure by locally accessing SCCM client logs that are stored on the local endpoint that the adversary has compromised. 
-By default all SCCM-enrolled clients will have specific directories associated to SCCM:
+An attacker enumerate SCCM infrastructure by locally accessing SCCM logs on a compromised client.
+By default, all SCCM-enrolled clients will have specific directories associated to SCCM:
 * `C:\Windows\CCMCACHE`
 * `C:\Windows\CCMSETUP`
 * `C:\Windows\CCM\Logs`
