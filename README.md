@@ -10,9 +10,9 @@
     <a href="https://twitter.com/_Mayyhem">
         <img src="https://img.shields.io/twitter/follow/_Mayyhem?style=social"
         alt="@_Mayyhem on Twitter"/></a>
-    <a href="https://twitter.com/garrfoster">
-        <img src="https://img.shields.io/twitter/follow/garrfoster?style=social"
-        alt="@garrfoster on Twitter"/></a>
+    <a href="https://twitter.com/unsigned_sh0rt">
+        <img src="https://img.shields.io/twitter/follow/unsigned_sh0rt?style=social"
+        alt="@unsigned_sh0rt on Twitter"/></a>
 </p>
 
 ---
