@@ -5,7 +5,7 @@ Monitor connections to winreg named pipe
 
 ## Summary
 An attacker may enumerate PXE configurations or primary (including CAS) and secondary site configuration information via the winreg named pipe (`\\.\pipe\winreg`).
-The winreg named pipe is primarily used by Windows for remote access to the Windows registry. The use of the named pipe in a client environment may be an anomaly in and of itself.
+The winreg named pipe is used by Windows for remote access to the Windows registry. The use of the named pipe in an environment may be an anomaly in and of itself.
 
 The following is an example of `RECON-6 SMB Winreg` named pipe enumeration.
 ```
