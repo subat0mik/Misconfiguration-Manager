@@ -17,13 +17,13 @@ We recommend auditing the permissions of the task sequence domain join account, 
 
 We can use the following PowerShell script to:
 
-1. Create  the necessary `system.security.principal.ntaccount` object for `SetOwner`
+1. Create  the necessary `System.Security.Principal.NTAccount` object for `SetOwner`
 2. Enumerate all computers with a name like `win11*`
 3. Iterate over each computer, creating an ACL variable for each
 4. Set the owner on each ACL to the account specificed in `$user`
 
 ```
-$user = new-object system.security.principal.ntaccount("contoso\djoin")
+$user = New-Object System.Security.Principal.NTAccount("contoso\djoin")
 Get-ADComputer -filter 'name -like "win11*"' |
 foreach{
     $acl = Get-Acl -Path "AD:$($_.DistinguishedName)"
