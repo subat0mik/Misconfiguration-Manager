@@ -31,6 +31,11 @@ This project also serves as a central point of reference for all of the [SCCM at
 
 We openly invite you to submit both proven and exploratory SCCM-focused attack techniques and defensive strategies and resources to this project and to provide any feedback and recommendations about the content in this repository.
 
+For more of an introduction to the project, please reference our blog and conference talks:
+- [Misconfiguration Manager: Overlooked and Overprivileged Blog Post](https://posts.specterops.io/misconfiguration-manager-overlooked-and-overprivileged-70983b8f350d)
+- [Misconfiguration Manager: Overlooked and Overprivileged (SO-CON 2024)](https://www.youtube.com/watch?v=nvaOszFzXCQ&t=4s&pp=ygUYbWlzY29uZmlndXJhdGlvbiBtYW5hZ2Vy)
+- [Misconfiguration Manager: Overlooked and Overprivileged (TROOPERS24)](https://www.youtube.com/watch?v=GhT6nPes1h0&t=12s&pp=ygUYbWlzY29uZmlndXJhdGlvbiBtYW5hZ2Vy)
+
 <hr>
 <br>
 
@@ -47,6 +52,8 @@ Curious about how a hierarchy can be completely compromised in certain, mostly d
 If you aren't familiar with a term used in a technique's description, refer to the [glossary page](./GLOSSARY.md), which contains definitions for terms commonly used in SCCM.
 
 If you'd like to test these techniques in a lab environment or learn more about SCCM attack and defense, please refer to the [resources page](./RESOURCES.md), which contains links to all the SCCM lab and attack/defense resources that we are aware of, many of which inspired and informed the information in this repository.
+
+We've included a [script](./MisconfigurationManager.ps1) that will audit many of the misconfigurations included in this repo. For more information about the script and how to use it, please reference our [blog post](https://posts.specterops.io/rooting-out-risky-sccm-configs-with-misconfiguration-manager-0beecaab1af3).
 
 If we've overlooked anything or are missing credits for prior work, please reach out to us or submit a pull request and we'd be happy to make updates.
 
