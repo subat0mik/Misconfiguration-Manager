@@ -33,7 +33,7 @@ NTLM relay site server to SMB on site systems
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
-SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain computer account and requires [local administrator permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
+SCCM uses the site system installation account to install and maintain roles on new or existing site system servers. By default, this account is the site server's domain computer account and requires [local administrator permissions](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#site-system-installation-account) for and network access to the target systems, and site servers [require this permission](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#elevated-permissions) for ongoing operations regardless of the site system installation account. An attacker could coerce NTLM authentication from the site server's domain computer account and relay it to SMB on remote site systems in the same site to move laterally and elevate privileges.
 
 ## Impact
 Impact for these scenarios is difficult to quantify. In some cases a compromised site system role could lead to hierarchy takeover, while in others a successful attack is simply a lateral movement opportunity.
@@ -43,10 +43,10 @@ Impact for these scenarios is difficult to quantify. In some cases a compromised
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
-
 ## Subtechniques
 - ELEVATE-1.1: NTLM relay primary site server SMB to SMB on remote site systems
 - ELEVATE-1.2: NTLM relay passive site server SMB to SMB on remote site systems
+- ELEVATE-1.3: NTLM relay central administration site server SMB to SMB on remote site systems
 
 ## Examples
 1. On the attacker host, identify and profile SCCM assets with `SCCMhunter`. The output below is snipped from the output of the SMB module. From the results, *SCCM.INTERNAL.LAB* is identified as a site server in the *LAB* site with multiple hosts from the same site hosting various site system roles:
