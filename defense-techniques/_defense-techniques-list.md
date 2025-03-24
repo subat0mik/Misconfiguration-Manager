@@ -1,4 +1,4 @@
-| Codname | Description | Admin Roles |
+| Codename | Description | Admin Roles |
 |---------|-------------|-------------|
 | [CANARY&#x2011;1](./CANARY/CANARY-1/canary-1_description.md) | Configure an appropriately-privileged NAA with interactive logon restricted | SCCM, domain |
 | [DETECT&#x2011;1](./DETECT/DETECT-1/detect-1_description.md) | Monitor site server domain computer accounts authenticating from another source | Security |
