@@ -21,6 +21,15 @@
 
 ![MM-cropped](https://github.com/subat0mik/Misconfiguration-Manager/assets/41414134/0c88e861-4b13-4722-a8b1-7db53f782ee8)
 
+# Remediation Quick Start
+1. Review the list of known and documented [Attack Techniques](./attack-techniques/_attack-techniques-list.md) and corresponding [Defense Techniques](./defense-techniques/_defense-techniques-list.md) to identify issues that may be present in your environment and how to remediate them
+    - Refer to this [introduction to the project](https://www.youtube.com/watch?v=GhT6nPes1h0&t=12s&pp=ygUYbWlzY29uZmlndXJhdGlvbiBtYW5hZ2Vy)
+2. Run [MisconfigurationManager.ps1](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/MisconfigurationManager.ps1)
+    - Refer to this [walkthrough](https://posts.specterops.io/rooting-out-risky-sccm-configs-with-misconfiguration-manager-0beecaab1af3)
+3. Implement mitigations for identified misconfigurations
+    - Refer to this [walkthrough](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/SO-CON%202025%20-%20Admins%20Guide%20to%20Preventing%20SCCM%20Attacks.pdf) (recording will be available soon)
+
+# Overview
 This repository serves as a central knowledge base for all known Microsoft Configuration Manager (a.k.a. MCM, ConfigMgr, System Center Configuration Manager, or SCCM) tradecraft and associated defensive and hardening guidance. Our goal is to help demystify SCCM tradecraft and simplify SCCM attack path management for defenders while also educating offensive security professionals on this nebulous attack surface. Designed to go beyond the static nature of whitepapers, this living repository documents known SCCM misconfigurations and their abuses and encourages ongoing contributions from the community to enhance its relevance and utility.
 
 We've curated this repository to raise awareness of the rapidly evolving SCCM threat landscape, drawing inspiration from the [MITRE ATT&CK framework](https://attack.mitre.org/matrices/enterprise/), with a few deviations. We were also strongly influenced by Push Security's [SaaS attack techniques matrix](https://github.com/pushsecurity/saas-attacks/tree/main) as well as Will Schroeder and Lee Chagolla-Christensen's [Certified Pre-Owned](https://specterops.io/wp-content/uploads/sites/3/2022/06/Certified_Pre-Owned.pdf) whitepaper.
@@ -41,7 +50,7 @@ For more of an introduction to the project, please reference our blog and confer
 
 # How to use this project
 
-Start with the SCCM Attack Matrix and SCCM Attack and Defense Matrix below, which map attack techniques to their MITRE ATT&CK framework tactics, as well as to their detection and prevention strategies.
+Refer to the SCCM Attack Matrix and SCCM Attack and Defense Matrix below, which map attack techniques to their MITRE ATT&CK framework tactics, as well as to their detection and prevention strategies.
 
 Offensive security practitioners may also benefit from reviewing the list of known and documented [Attack Techniques](./attack-techniques/_attack-techniques-list.md), which identifies the security context and network access that are required for each technique.
 
