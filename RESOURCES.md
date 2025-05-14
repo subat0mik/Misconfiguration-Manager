@@ -64,6 +64,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM Site Takeover via Automatic Client Push Installation, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
 - [SCCM - Microsoft's Native C2, by @RedHeadSec](https://redheadsec.tech/sccm-exploitation/)
 - [sccmhunter, by Garrett Foster (@garrfoster)](https://github.com/garrettfoster13/sccmhunter)
+- [SCCMSecrets.py: exploiting SCCM policies distribution for credentials harvesting, initial access and lateral movement, by Quentin Roland (@croco_byte)](https://www.synacktiv.com/publications/sccmsecretspy-exploiting-sccm-policies-distribution-for-credentials-harvesting-initial)
 - [sccmwtf, by Adam Chester (@_xpn_)](https://github.com/xpn/sccmwtf)
 - [SCCM-Enumeration, by Cr0n1c](https://github.com/Cr0n1c/SCCM-Enumeration/)
 - [SeeSeeYouExec: Windows Session Hijacking via CcmExec, by Andrew Oliveau (@AndrewOliveau)](https://cloud.google.com/blog/topics/threat-intelligence/windows-session-hijacking-via-ccmexec)
