@@ -98,6 +98,12 @@ NetworkAccessPassword: <password>
 [+] Completed execution in 00:00:05.9045603
 ```
 
+NTLM Relay:
+It is also possible to conduct these attacks by coercing authentication from a domain computer (including the one you're operating from) and relaying to a management point:
+- [impacket SCCM Relay, by Matt Creel (@Tw1sm)](https://github.com/Tw1sm/impacket/tree/feature/sccm-relay)
+- [SCCMSecrets.py: exploiting SCCM policies distribution for credentials harvesting, initial access and lateral movement, by Quentin Roland (@croco_byte)](https://www.synacktiv.com/publications/sccmsecretspy-exploiting-sccm-policies-distribution-for-credentials-harvesting-initial)
+
+
 ## References
 - Adam Chester, [Unobfuscating Network Access Accounts](https://blog.xpnsec.com/unobfuscating-network-access-accounts/)
 - Adam Chester, [sccmwtf](https://github.com/xpn/sccmwtf)
