@@ -55,7 +55,7 @@ pssrecon -u lowpriv -p password -d corp.local -host dp.corp.local
 [+] PXE Installed
 ```
 
-Use [https://gist.github.com/Mayyhem/ef01ebf30b2779603bb7e0db83bc04f1](Get-SiteServerCurrentUser.ps1) to enumerate the currently logged on user on a site server (very likely to be an SCCM admin).
+Use [Get-SiteServerCurrentUser.ps1](https://gist.github.com/Mayyhem/ef01ebf30b2779603bb7e0db83bc04f1) to enumerate the currently logged on user on a site server (very likely to be an SCCM admin).
 ```
 Get-SiteServerCurrentUser -ComputerName cas-pss
 
