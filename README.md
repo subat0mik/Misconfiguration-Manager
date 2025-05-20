@@ -158,6 +158,10 @@ Techniques coded with a RECON moniker relate to either performing reconnaissance
 
 Techniques coded with a TAKEOVER moniker describe the various steps necessary to compromise an SCCM hierarchy.
 
+### COERCE
+
+Techniques coded with a COERCE moniker describe the various ways to coerce NTLM authentication from SCCM accounts (systems or users).
+
 <hr>
 <br>
 
