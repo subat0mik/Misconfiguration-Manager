@@ -25,6 +25,7 @@ This registry key and sub keys contain information about the current site server
 6. A resolved Site Database role can be a target for lateral movement or privilege escalation detailed in [TAKEOVER-1](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/attack-techniques/TAKEOVER/TAKEOVER-1/takeover-1_description.md)
  
 ## Defensive IDs
+- [DETECT-8: Monitor connections to winreg named pipe](../../../defense-techniques/DETECT/DETECT-8/detect-8_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
