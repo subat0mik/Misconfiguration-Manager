@@ -192,5 +192,7 @@ Defensive strategies coded with a PREVENT moniker describe configuration changes
 - [Josh Prager](https://twitter.com/Praga_Prag)
 - [Marshall Price](https://twitter.com/__Mastadon)
 - [Alberto Rodriguez](https://x.com/__ar0d__)
+- [Dylan Bradley](https://x.com/slygoo)
+- [Adam Chester](https://x.com/_xpn_)
 
 Please reach out to us on Twitter or join us in the `#sccm` channel on the [BloodHoundGang Slack](https://bloodhoundgang.herokuapp.com/) if you have any questions or are interested in contributing!
