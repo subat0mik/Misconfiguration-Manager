@@ -31,7 +31,7 @@ On every site database server, including for every primary site and the central 
 
 <img width="517" alt="image" src="https://github.com/user-attachments/assets/9b2ce3bb-2974-49ef-b8a4-61c9831ab7d7">
 
-Next, navigate to the `Advanced` tab, then set `Extended Protection` to `Required` (not `Allowed`): 
+Next, navigate to the `Advanced` tab, then set `Extended Protection` to `Required` (note: `Allowed` also prevents relay based on limited testing): 
 
 <img width="683" alt="image" src="https://github.com/subat0mik/Misconfiguration-Manager/assets/30671833/85cbbb4d-53c8-4a7c-bc59-a93834e13145">
 
