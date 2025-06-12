@@ -6,12 +6,16 @@ Require SMB signing on site systems
 ## Summary
 This will prevent successful relay of NTLM authentication to SMB on the system where this setting is enabled, preventing several of the TAKEOVER attack techniques.
 
-This configuration can be changed in the following group policies:
+This configuration can be changed in the following group policy:
 
 - "Microsoft network server: Digitally sign communications (always)" -> `Enabled`
+
+This policy is located under `Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options` or in the registry at `HKLM\System\CurrentControlSet\Services\LanManServer\Parameters\RequireSecuritySignature`, which should be set to `1`.
+
+Note that configuring the following setting on SMB clients in the environment (i.e., systems that could be coerced) will not prevent relay of authentication coerced from those clients to SMB servers because SMB negotiates signing in headers that can be stripped by an attacker in the middle of the connection.
 - "Microsoft network client: Digitally sign communications (always)" -> `Enabled`
 
-Both policies are located under `Default Domain Controllers Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options`.
+Client-side SMB signing also does not prevent NTLM relay from SMB to other protocols that do not support signing or that rely on TLS to provide signing and encryption (e.g., MSSQL and IIS). In such cases, channel binding should be configured to prevent NTLM relay attacks if it is supported (see [PREVENT-14](../PREVENT-14/prevent-14_description.md)).
 
 The rest of this article discusses the SMB-specific mitigations that pertain to NTLM relay. To understand the specific SMB security configurations, it is important to discuss NTLM authentication and the underlying session (SMB).
 
