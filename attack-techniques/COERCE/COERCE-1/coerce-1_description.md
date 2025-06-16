@@ -86,5 +86,4 @@ MIIRFQBAZCCEM8GCSqGSIb3DQEHAaCCEMAEghC8MIIQuDCCBu8GCSqGSb3DQEHBqCCBuAwggbcAgEAMI
 ## References
 - Microsoft, [Changes to CMPivot - ConfigurationManager] (https://learn.microsoft.com/en-us/intune/configmgr/core/servers/manage/cmpivot-changes)
 - Chris Thompson, [Coercing NTLM Authentication from SCCM] (https://posts.specterops.io/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
--  Chris Thompson, [Relaying NTLM Authentication from SCCM client] (https://posts.specterops.io/relaying-ntlm-authentication-from-sccm-clients-7dccb8f92867)
-- Duane Michael, [The Phantom Credentials of SCCM: Why the NAA Won't Die] (https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
+- Chris Thompson, [Relaying NTLM Authentication from SCCM client] (https://posts.specterops.io/relaying-ntlm-authentication-from-sccm-clients-7dccb8f92867)
