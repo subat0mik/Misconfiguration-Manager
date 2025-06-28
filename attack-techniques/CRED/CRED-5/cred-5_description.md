@@ -140,9 +140,15 @@ Invoke-Decrypt -Hex "0C0100000B000000010200000...3C39"
 
 Note that the script above will not work in hierarchies configured with a passive site server as different keys appear to be used for encryption and are not accessible in this function.
 
+#### SCCMDecryptor-BOF
+There is also a beacon object file (BOF) [implementation](https://github.com/NocteDefensor/SCCMDecryptor-BOF) of Adam's Chester's  `sccmdecryptpoc.cs` that can be run in your BOF capable C2 beacon of choice in a local administrative context on the site server.
+```
+beacon> sccmdecrypt <hex_string>
+```
 ## References
 - Benjamin Delpy, https://x.com/gentilkiwi/status/1392204021461569537?s=20
 - Benjamin Delpy, [mimikatz](https://github.com/gentilkiwi/mimikatz)
 - Adam Chester, https://twitter.com/_xpn_/status/1543682652066258946
 - Adam Chester, [sccmdecryptpoc.cs](https://gist.github.com/xpn/5f497d2725a041922c427c3aaa3b37d1)
 - Sanjiv Kawa, [SQLRecon](https://github.com/skahwah/SQLRecon)
+- Marshall Price, [SCCMDecryptor-BOF](https://github.com/NocteDefensor/SCCMDecryptor-BOF)
