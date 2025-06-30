@@ -63,6 +63,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM Hierarchy Takeover with High Availability, by Garrett Foster (@garrfoster)](https://medium.com/specter-ops-posts/sccm-hierarchy-takeover-with-high-availability-7dcbd3696b43)
 - [SCCM Site Takeover via Automatic Client Push Installation, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
 - [SCCM - Microsoft's Native C2, by @RedHeadSec](https://redheadsec.tech/sccm-exploitation/)
+- [SCCMDecryptor-BOF, by NocteDefensor](https://github.com/NocteDefensor/SCCMDecryptor-BOF)
 - [sccmhunter, by Garrett Foster (@garrfoster)](https://github.com/garrettfoster13/sccmhunter)
 - [SCCMSecrets.py: exploiting SCCM policies distribution for credentials harvesting, initial access and lateral movement, by Quentin Roland (@croco_byte)](https://www.synacktiv.com/publications/sccmsecretspy-exploiting-sccm-policies-distribution-for-credentials-harvesting-initial)
 - [sccmwtf, by Adam Chester (@_xpn_)](https://github.com/xpn/sccmwtf)
