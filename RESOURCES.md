@@ -76,4 +76,5 @@ The following labs are options as well, but do not separate the site database or
 - [SQLRecon SCCM Module, by Sanjiv Kawa (@sanjivkawa)](https://github.com/skahwah/SQLRecon)
 - [Targeted Workstation Compromise with SCCM, by Matt Nelson (@enigma0x3)](https://enigma0x3.net/2015/10/27/targeted-workstation-compromise-with-sccm/)
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
+- [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@garrfoster)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
