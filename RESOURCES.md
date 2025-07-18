@@ -29,6 +29,7 @@ The following labs are options as well, but do not separate the site database or
 - [Grow Your Own SCCM Lab, by @HTTP418](https://http418infosec.com/grow-your-own-sccm-lab)
 - [Hierarchy Takeover without SOCKS, by Chris Thompson (@_Mayyhem)](https://twitter.com/_Mayyhem/status/1700602445603209236)
 - [Identifying and Retrieving Credentials from SCCM/MECM Task Sequences, Christopher Panayi](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences)
+- [I’d Like to Speak to Your Manager: Stealing Secrets with Management Point Relays](https://specterops.io/blog/2025/07/15/id-like-to-speak-to-your-manager-stealing-secrets-with-management-point-relays/)
 - [impacket SCCM Relay, by Matt Creel (@Tw1sm)](https://github.com/Tw1sm/impacket/tree/feature/sccm-relay)
 - [Looting Microsoft Configuration Manager, by Tomas Rzepka (@1njected)](https://labs.withsecure.com/publications/looting-microsoft-configuration-manager)
 - [MalSCCM, by Phil Keeble (@The_Keeb)](https://github.com/nettitude/MalSCCM)
