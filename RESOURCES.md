@@ -36,6 +36,7 @@ The following labs are options as well, but do not separate the site database or
 - [Microsoft's Accidental Enterprise DFIR Tool, by Keith Tyler](https://informationonsecurity.blogspot.com/2015/11/microsofts-accidental-enterprise-dfir.html)
 - [Mimikatz misc::sccm, by Benjamin Delpy (@gentilkiwi)](https://twitter.com/gentilkiwi/status/1392204021461569537?lang=en)
 - [Mimikatz dpapi::sccm, by Benjamin Delpy (@gentilkiwi)](https://twitter.com/gentilkiwi/status/1392594113745362946?lang=en)
+- [mprecon, by temp43487580](https://github.com/temp43487580/mprecon)
 - [Offensive Operations with PowerSCCM, by Matt Nelson (@enigma0x3)](https://enigma0x3.net/2016/02/29/offensive-operations-with-powersccm/)
 - [Offensive SCCM Summary, by @HTTP418](https://http418infosec.com/offensive-sccm-summary)
 - [Owning One to Rule Them All, by Dave Kennedy (@HackingDave) and Dave DeSimone](https://www.youtube.com/watch?v=v4-S2903rOI)
