@@ -9,9 +9,12 @@ Distribution Point Takeover via OSD Media Recovery
 - [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
 
 ## Requirements
+- PKI client authentication certificates are used for communication with the target distribution point
+- The distrubution is PXE-enabled or still hosts the OSD media boot images for PXE
+
 One of the following:
-- Connectivity to SMB on a Distribution Point OR
-- Connectivty to HTTP(s) on a Distribution Point
+- Connectivity to SMB on the distribution point OR
+- Connectivty to HTTP(s) on the distribution point
 
 And one of the following:
 - Valid Active Directory domain credentials 
