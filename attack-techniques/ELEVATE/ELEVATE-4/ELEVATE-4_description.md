@@ -10,6 +10,7 @@ Distribution Point Takeover via PXE Boot Spoofing
 ## Requirements
 - Local network access
 - Line of sight to PXE-enabled distribution point
+- PKI client authentication certificates are used for communication with the PXE-enabled distribution point
 
 ## Optional Requirement
 - Line of sight to a DHCP server (required if a distribution point hasn't been previously discovered)
