@@ -10,6 +10,7 @@ The following labs are options as well, but do not separate the site database or
 
 # Offensive and Defensive SCCM Resources
 - [Active Directory Spotlight: Attacking The Microsoft Configuration Manager (SCCM/MECM), by Carsten Sandker (@0xcsandker)](https://www.securesystems.de/blog/active-directory-spotlight-attacking-the-microsoft-configuration-manager/)
+- [Adding MSSQL to BloodHound using OpenGraph, by Chris Thompson (@_Mayyhem)](https://specterops.io/blog/2025/08/04/adding-mssql-to-bloodhound-with-opengraph/)
 - [An Inside Look: How to Distribute Credentials Securely in SCCM, by Christopher Panayi](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm)
 - [Attacking and Defending Configuration Manager - An Attacker's Easy Win, by Logan Goins (@_logangoins)](https://logan-goins.com/2025-04-25-sccm/)
 - [Automating SCCM with Ludus: A Configuration Manager for Your Configuration Manager, by Zach Stein (@synzack21)](https://posts.specterops.io/automating-sccm-with-ludus-a-configuration-manager-for-your-configuration-manager-c8f4d8e40473)
@@ -80,3 +81,4 @@ The following labs are options as well, but do not separate the site database or
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@garrfoster)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
+
