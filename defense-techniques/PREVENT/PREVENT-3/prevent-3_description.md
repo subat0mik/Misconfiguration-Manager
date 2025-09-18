@@ -24,7 +24,7 @@ If none of the above scenarios pertain to the site in question, Microsoft recomm
 
 _Figure 1 - Network access account configuration_
 
-**NOTE:** When disabling or changing the NAA, it is paramount to disable the old account in Active Directory. This is explained in [PREVENT-15](../prevent-15/prevent-15_description.md).
+**NOTE:** When disabling or changing the NAA, it is paramount to disable the old account in Active Directory. This is explained in [PREVENT-15](../PREVENT-15/prevent-15_description.md).
 
 ## Linked Defensive IDs
 - [PREVENT-4: Enable Enhanced HTTP](../PREVENT-4/prevent-4_description.md)
