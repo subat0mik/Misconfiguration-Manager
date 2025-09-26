@@ -40,10 +40,10 @@ If any of these credentials are privileged, as they often unncessarily are, this
 
 
 ## Defensive IDs
-- [PREVENT-10: Enforce the principle of least privilege for accounts](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
-- [PREVENT-12: Require SMB signing on site systems](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
-- [PREVENT-14: Configure Extended Protection for Authentication](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
-- [DETECT-1: Monitor site server domain computer accounts authenticating from another source](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-14: Configure Extended Protection for Authentication](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
+- [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
 
 
 
