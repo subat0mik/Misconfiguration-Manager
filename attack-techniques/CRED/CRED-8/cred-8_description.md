@@ -243,4 +243,7 @@ PXE Password: Password123
 
 ## References
 - Garrett Foster, [I’d Like to Speak to Your Manager: Stealing Secrets with Management Point Relays](https://specterops.io/blog/2025/07/15/id-like-to-speak-to-your-manager-stealing-secrets-with-management-point-relays/)
+
+- Garrett Foster, [mssqlkaren](https://github.com/garrettfoster13/mssqlkaren)
+
 - Christopher Panayi, [PXEThief](https://github.com/MWR-CyberSec/PXEThief)
