@@ -107,8 +107,6 @@ Password:
 [*] INFO(sccm-sql): Line 1: Changed language setting to us_english.
 [*] ACK: Result: 1 - Microsoft SQL Server (160 3232)
 [!] Press help for extra shell commands
-SQL (ludus\SCCM-MGMT$  guest@master)> select * from dbo.UnknownSystem_DISC
-ERROR(sccm-sql): Line 1: Invalid object name 'dbo.UnknownSystem_DISC'.
 SQL (ludus\SCCM-MGMT$  guest@master)> use CM_123
 ENVCHANGE(DATABASE): Old Value: master, New Value: CM_123
 INFO(sccm-sql): Line 1: Changed database context to 'CM_123'.
