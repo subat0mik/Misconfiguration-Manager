@@ -67,7 +67,6 @@ _Figure 4: SMB signing matrix_
 - [TAKEOVER-4: NTLM coercion and relay from CAS to origin primary site server](../../../attack-techniques/TAKEOVER/TAKEOVER-4/takeover-4_description.md)
 - [TAKEOVER-6: NTLM coercion and relay to SMB on remote SMS Provider](../../../attack-techniques/TAKEOVER/TAKEOVER-6/takeover-6_description.md)
 - [TAKEOVER-7: NTLM coercion and relay to SMB between primary and passive site servers](../../../attack-techniques/TAKEOVER/TAKEOVER-7/takeover-7_description.md)
-- [CRED-8: NTLM relay remote MP to site database to extract machine policy secrets](../../../attack-techniques/CRED/CRED-8/cred-8_description.md)
 
 ## References
 - Pixis, [NTLM Relay](https://en.hackndo.com/ntlm-relay/)
