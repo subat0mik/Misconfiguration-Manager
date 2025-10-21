@@ -26,7 +26,7 @@ The site database is not hosted on the coercion target
 
 ### Relay
 - Connectivity from the relay server to MSSQL (TCP/1433) on the relay target, the site database
-- Extended protection for authentication not required on the site database [DEFAULT]
+- Extended protection for authentication NOT set to Allowed or Required on the site database [DEFAULT]
 - Domain controller settings:
     - `RestrictNTLMInDomain` = `0` or not present, or is configured with any value and `DCAllowedNTLMServers` contains relay target [DEFAULT]
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
@@ -194,3 +194,4 @@ The steps to execute TAKEOVER-1.1 through TAKEOVER-1.3 are the same except that 
 - Garrett Foster, [SCCM Hierarchy Takeover with High Availability](https://posts.specterops.io/sccm-hierarchy-takeover-with-high-availability-7dcbd3696b43)
 - Garrett Foster, [sccmhunter](https://github.com/garrettfoster13/sccmhunter)
 - Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
+
