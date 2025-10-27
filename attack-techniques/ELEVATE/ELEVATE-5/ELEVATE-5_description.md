@@ -10,7 +10,7 @@ Distribution Point Takeover via OSD Media Recovery
 
 ## Requirements
 - PKI client authentication certificates are used for communication with the target distribution point
-- The distrubution is PXE-enabled or still hosts the OSD media boot images for PXE
+- The distribution is PXE-enabled or still hosts the OSD media boot images for PXE
 
 One of the following:
 - Connectivity to SMB on the distribution point OR
