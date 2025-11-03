@@ -41,9 +41,10 @@ This project also serves as a central point of reference for all of the [SCCM at
 We openly invite you to submit both proven and exploratory SCCM-focused attack techniques and defensive strategies and resources to this project and to provide any feedback and recommendations about the content in this repository.
 
 For more of an introduction to the project, please reference our blog and conference talks:
-- [Misconfiguration Manager: Overlooked and Overprivileged Blog Post](https://posts.specterops.io/misconfiguration-manager-overlooked-and-overprivileged-70983b8f350d)
+- [Misconfiguration Manager: Overlooked and Overprivileged Blog Post](https://specterops.io/blog/2024/03/05/misconfiguration-manager-overlooked-and-overprivileged/)
 - [Misconfiguration Manager: Overlooked and Overprivileged (SO-CON 2024)](https://www.youtube.com/watch?v=nvaOszFzXCQ&t=4s&pp=ygUYbWlzY29uZmlndXJhdGlvbiBtYW5hZ2Vy)
 - [Misconfiguration Manager: Overlooked and Overprivileged (TROOPERS24)](https://www.youtube.com/watch?v=GhT6nPes1h0&t=12s&pp=ygUYbWlzY29uZmlndXJhdGlvbiBtYW5hZ2Vy)
+- [Misconfiguration Manager: Still Overlooked, Still Overprivileged Blog Post](https://specterops.io/blog/2025/06/26/misconfiguration-manager-still-overlooked-still-overprivileged/)
 
 <hr>
 <br>
@@ -198,3 +199,4 @@ Defensive strategies coded with a PREVENT moniker describe configuration changes
 - [Adam Chester](https://x.com/_xpn_)
 
 Please reach out to us on Twitter or join us in the `#sccm` channel on the [BloodHoundGang Slack](https://bloodhoundgang.herokuapp.com/) if you have any questions or are interested in contributing!
+
