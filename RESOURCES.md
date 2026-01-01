@@ -23,6 +23,7 @@ The following labs are options as well, but do not separate the site database or
 - [cmloot, by Andreas Vikerup and Dan Rosenqvist](https://www.shelltrail.com/research/cmloot/)
 - [CMPivot SharpSCCM Support, by Diego Lomellini (@DiLomSec1)](https://github.com/Mayyhem/SharpSCCM/pull/27)
 - [Coercing NTLM Authentication from SCCM, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
+- [Decrypting credentials from SCCM site servers configured for high availability, by Dave Cossa (@G0ldenGunSec)](https://www.ibm.com/think/x-force/decrypting-credentials-from-sccm-site-servers)
 - [Deobfuscator Implementation in Python, by @SkelSec](https://github.com/xpn/sccmwtf/pull/3)
 - [Defending the Castle, by Tom Degreef and Kim Oppalfens](https://www.oscc.be/sccm/Defending-the-Castle/)
 - [Exploring SCCM by Unobfuscating Network Access Accounts, by Adam Chester (@_xpn_)](https://blog.xpnsec.com/unobfuscating-network-access-accounts/)
@@ -62,6 +63,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM w/ Garrett Foster (@unsigned_sh0rt), by Brandon Colley (@TechBrandon) at Trimarc Happy Hour](https://www.youtube.com/watch?v=I5YTH0kQlr8)
 - [SCCM Exploitation: The First Cred is the Deepest II, by Gabriel Prud'homme (@vendetce)](https://www.youtube.com/watch?v=W9PC9erm_pI)
 - [SCCM Exploitation: Account Compromise Through Automatic Client Push & AD System Discovery, by Marshall Price (@__mastadon)](https://www.guidepointsecurity.com/blog/sccm-exploitation-account-compromise-through-automatic-client-push-amp-ad-system-discovery/)
+- [SCCM Exploitation: Compromising Network Access Accounts, by Marshall Price (@__mastadon) and Connor Dowling](https://www.guidepointsecurity.com/blog/sccm-exploitation-compromising-network-access-accounts/)
 - [SCCM Exploitation: Evading Defenses and Moving Laterally with SCCM Application Deployment, by Marshall Price (@__mastadon)](https://www.guidepointsecurity.com/blog/sccm-exploitation-evading-defenses-and-moving-laterally-with-sccm-application-deployment/)
 - [SCCM/MECM Hacker Recipes, by Charlie Bromberg (@_nwodtuhs)](https://www.thehacker.recipes/a-d/movement/sccm-mecm)
 - [SCCM Hierarchy Takeover, by Chris Thompson (@_Mayyhem)](https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087)
@@ -88,6 +90,7 @@ The following labs are options as well, but do not separate the site database or
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@unsigned_sh0rt)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
+
 
 
 
