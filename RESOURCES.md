@@ -64,6 +64,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM Exploitation: Evading Defenses and Moving Laterally with SCCM Application Deployment, by Marshall Price (@__mastadon)](https://www.guidepointsecurity.com/blog/sccm-exploitation-evading-defenses-and-moving-laterally-with-sccm-application-deployment/)
 - [SCCM/MECM Hacker Recipes, by Charlie Bromberg (@_nwodtuhs)](https://www.thehacker.recipes/a-d/movement/sccm-mecm)
 - [SCCM Hierarchy Takeover, by Chris Thompson (@_Mayyhem)](https://posts.specterops.io/sccm-hierarchy-takeover-41929c61e087)
+- [SCCM Hierarchy Takeover via Entra Integration... Because of the Implication, by Garrett Foster (@unsigned_sh0rt)](https://specterops.io/blog/2025/11/19/sccm-hierarchy-takeover-via-entra-integrationbecause-of-the-implication/)
 - [SCCM Hierarchy Takeover with High Availability, by Garrett Foster (@unsigned_sh0rt)](https://medium.com/specter-ops-posts/sccm-hierarchy-takeover-with-high-availability-7dcbd3696b43)
 - [SCCM Site Takeover via Automatic Client Push Installation, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
 - [SCCM - Microsoft's Native C2, by @RedHeadSec](https://redheadsec.tech/sccm-exploitation/)
@@ -86,6 +87,7 @@ The following labs are options as well, but do not separate the site database or
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@unsigned_sh0rt)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
+
 
 
 
