@@ -31,6 +31,7 @@ The following labs are options as well, but do not separate the site database or
 - [Hierarchy Takeover without SOCKS, by Chris Thompson (@_Mayyhem)](https://twitter.com/_Mayyhem/status/1700602445603209236)
 - [Identifying and Retrieving Credentials from SCCM/MECM Task Sequences, Christopher Panayi](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences)
 - [I’d Like to Speak to Your Manager: Stealing Secrets with Management Point Relays](https://specterops.io/blog/2025/07/15/id-like-to-speak-to-your-manager-stealing-secrets-with-management-point-relays/)
+- [Less Praying More Relaying – Enumerating EPA Enforcement for MSSQL and HTTPS, by Nick Powers (@zyn3rgy) and Matt Creel (@Tw1sm)](https://specterops.io/blog/2025/11/25/less-praying-more-relaying-enumerating-epa-enforcement-for-mssql-and-https/)
 - [impacket SCCM Relay, by Matt Creel (@Tw1sm)](https://github.com/Tw1sm/impacket/tree/feature/sccm-relay)
 - [Looting Microsoft Configuration Manager, by Tomas Rzepka (@1njected)](https://labs.withsecure.com/publications/looting-microsoft-configuration-manager)
 - [MalSCCM, by Phil Keeble (@The_Keeb)](https://github.com/nettitude/MalSCCM)
@@ -87,6 +88,7 @@ The following labs are options as well, but do not separate the site database or
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@unsigned_sh0rt)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
+
 
 
 
