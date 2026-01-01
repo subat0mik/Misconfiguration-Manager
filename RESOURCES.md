@@ -68,6 +68,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM Site Takeover via Automatic Client Push Installation, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/sccm-site-takeover-via-automatic-client-push-installation-f567ec80d5b1)
 - [SCCM - Microsoft's Native C2, by @RedHeadSec](https://redheadsec.tech/sccm-exploitation/)
 - [SCCMDecryptor-BOF, by NocteDefensor](https://github.com/NocteDefensor/SCCMDecryptor-BOF)
+- [sccmhound, by Crowdstrike](https://github.com/CrowdStrike/sccmhound)
 - [sccmhunter, by Garrett Foster (@unsigned_sh0rt)](https://github.com/garrettfoster13/sccmhunter)
 - [SCCMSecrets.py: exploiting SCCM policies distribution for credentials harvesting, initial access and lateral movement, by Quentin Roland (@croco_byte)](https://www.synacktiv.com/publications/sccmsecretspy-exploiting-sccm-policies-distribution-for-credentials-harvesting-initial)
 - [sccmwtf, by Adam Chester (@_xpn_)](https://github.com/xpn/sccmwtf)
@@ -82,5 +83,6 @@ The following labs are options as well, but do not separate the site database or
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@unsigned_sh0rt)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
+
 
 
