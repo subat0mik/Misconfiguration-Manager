@@ -24,9 +24,11 @@
 # Remediation Quick Start
 1. Review the list of known and documented [Attack Techniques](./attack-techniques/_attack-techniques-list.md) and corresponding [Defense Techniques](./defense-techniques/_defense-techniques-list.md) to identify issues that may be present in your environment and how to remediate them
     - Refer to this [introduction to the project](https://www.youtube.com/watch?v=GhT6nPes1h0&t=12s&pp=ygUYbWlzY29uZmlndXJhdGlvbiBtYW5hZ2Vy)
-2. Run [MisconfigurationManager.ps1](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/MisconfigurationManager.ps1)
+2. Run [ConfigManBearPig](https://github.com/SpecterOps/ConfigManBearPig) and visualize the results in [BloodHound](https://github.com/SpecterOps/BloodHound) for free
+    - Refer to this [walkthrough](https://specterops.io/blog/2026/01/13/introducing-configmanbearpig-a-bloodhound-opengraph-collector-for-sccm/)
+3. Alternatively, run [MisconfigurationManager.ps1](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/MisconfigurationManager.ps1)
     - Refer to this [walkthrough](https://posts.specterops.io/rooting-out-risky-sccm-configs-with-misconfiguration-manager-0beecaab1af3)
-3. Implement mitigations for identified misconfigurations
+4. Implement mitigations for identified misconfigurations
     - Refer to this [walkthrough](https://github.com/subat0mik/Misconfiguration-Manager/blob/main/presentations/SO-CON%202025%20-%20Admins%20Guide%20to%20Preventing%20SCCM%20Attacks.pdf) (or [this recording](https://www.youtube.com/watch?v=Rc2J6fmhcJ4))
 
 # Overview
@@ -199,5 +201,6 @@ Defensive strategies coded with a PREVENT moniker describe configuration changes
 - [Adam Chester](https://x.com/_xpn_)
 
 Please reach out to us on Twitter or join us in the `#sccm` channel on the [BloodHoundGang Slack](https://bloodhoundgang.herokuapp.com/) if you have any questions or are interested in contributing!
+
 
 
