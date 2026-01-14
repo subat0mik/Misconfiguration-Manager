@@ -23,6 +23,7 @@ The following labs are options as well, but do not separate the site database or
 - [cmloot, by Andreas Vikerup and Dan Rosenqvist](https://www.shelltrail.com/research/cmloot/)
 - [CMPivot SharpSCCM Support, by Diego Lomellini (@DiLomSec1)](https://github.com/Mayyhem/SharpSCCM/pull/27)
 - [Coercing NTLM Authentication from SCCM, by Chris Thompson (@_Mayyhem)](https://medium.com/specter-ops-posts/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
+- [ConfigManBearPig, by Chris Thompson (@_Mayyhem)](https://github.com/SpecterOps/ConfigManBearPig)
 - [cred1py, by Adam Chester (@_xpn_)](https://github.com/SpecterOps/cred1py)
 - [Decrypting credentials from SCCM site servers configured for high availability, by Dave Cossa (@G0ldenGunSec)](https://www.ibm.com/think/x-force/decrypting-credentials-from-sccm-site-servers)
 - [Deobfuscator Implementation in Python, by @SkelSec](https://github.com/xpn/sccmwtf/pull/3)
@@ -35,6 +36,7 @@ The following labs are options as well, but do not separate the site database or
 - [I’d Like to Speak to Your Manager: Stealing Secrets with Management Point Relays](https://specterops.io/blog/2025/07/15/id-like-to-speak-to-your-manager-stealing-secrets-with-management-point-relays/)
 - [Less Praying More Relaying – Enumerating EPA Enforcement for MSSQL and HTTPS, by Nick Powers (@zyn3rgy) and Matt Creel (@Tw1sm)](https://specterops.io/blog/2025/11/25/less-praying-more-relaying-enumerating-epa-enforcement-for-mssql-and-https/)
 - [impacket SCCM Relay, by Matt Creel (@Tw1sm)](https://github.com/Tw1sm/impacket/tree/feature/sccm-relay)
+- [Introducing ConfigManBearPig, a BloodHound OpenGraph Collector for SCCM, by Chris Thompson (@_Mayyhem)](https://specterops.io/blog/2026/01/13/introducing-configmanbearpig-a-bloodhound-opengraph-collector-for-sccm/)
 - [Looting Microsoft Configuration Manager, by Tomas Rzepka (@1njected)](https://labs.withsecure.com/publications/looting-microsoft-configuration-manager)
 - [MalSCCM, by Phil Keeble (@The_Keeb)](https://github.com/nettitude/MalSCCM)
 - [Microsoft Configuration Manager (ConfigMgr) 2403 Unauthenticated SQL Injections, by Mehdi Elyassa](https://www.synacktiv.com/advisories/microsoft-configuration-manager-configmgr-2403-unauthenticated-sql-injections)
@@ -84,6 +86,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCM_SQL_Collector, by Dave Cossa (@G0ldenGunSec)](https://github.com/G0ldenGunSec/SCCM_SQL_Collector)
 - [SeeSeeYouExec: Windows Session Hijacking via CcmExec, by Andrew Oliveau (@AndrewOliveau)](https://cloud.google.com/blog/topics/threat-intelligence/windows-session-hijacking-via-ccmexec)
 - [SharpDPAPI SCCM Credential Gathering Support, by Duane Michael (@subat0mik)](https://github.com/GhostPack/SharpDPAPI/blob/81e1fcdd44e04cf84ca0085cf5db2be4f7421903/SharpDPAPI/Commands/SCCM.cs#L208-L244)
+- [SharpPXE, by Lefteris Panos (@leftp)](https://github.com/leftp/SharpPXE)
 - [SharpSCCM, by Chris Thompson (@_Mayyhem)](https://github.com/Mayyhem/SharpSCCM)
 - [Site Takeover via SCCM's AdminService API, by Garrett Foster (@unsigned_sh0rt)](https://posts.specterops.io/site-takeover-via-sccms-adminservice-api-d932e22b2bf)
 - [Snaplabs SCCM Lab Template, by @an0n_r0](https://twitter.com/an0n_r0/status/1687230842601451522)
@@ -92,6 +95,7 @@ The following labs are options as well, but do not separate the site database or
 - [The Phantom Credentials of SCCM: Why the NAA Won't Die, by Duane Michael (@subat0mik)](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - [The State of SCCM Exploitation in 2024, by Christopher Panayi](https://www.youtube.com/watch?v=zLeTmXkmBcQ)
 - [We Have C2 at Home: Leveraging Microsoft's C2 Framework, by Garrett Foster (@unsigned_sh0rt)](https://www.youtube.com/watch?v=w-9GMz7vD0o&t=6435s)
+
 
 
 
