@@ -30,7 +30,7 @@ Hierarchy Takeover via NTLM coercion and relay to AdminService on remote SMS Pro
 ## Summary
 The SMS Provider is a SCCM site server role installed by default on the site server when configuring a primary site or central administration site. The role can optionally be installed on additional SCCM site systems for high availability configurations. The SMS Provider is a Windows Management Instrumentation (WMI) provider that performs as an intermediary for accessing and modifying data stored in the site database. Access to the SMS Provider is controlled via membership of the the `SMS Admins` local security group on each site server. The site server computer account is a member of the `SMS Admins` security group on each SMS Provider in a site by default.
 
-The SMS Provider also provides access to the site database via the administration service (AdminService) REST API and uses Microsoft Negotiate for authentication. In default configurations, the AdminService is vulnerable to NTLM relay attacks.
+The SMS Provider also provides access to the site database via the administration service (AdminService) REST API and uses Microsoft Negotiate for authentication. In default configurations in versions prior to [2509](https://learn.microsoft.com/en-us/intune/configmgr/core/plan-design/changes/whats-new-in-version-2509#adminservice-now-rejects-ntlm-authentication), the AdminService is vulnerable to NTLM relay attacks.
 
 ## Impact
 This technique may allow an attacker to relay a site server's domain computer account to a remote SMS Provider and elevate their privileges to "Full Administrator" for the SCCM hierarchy. If successful, this technique enables an attacker to execute arbitrary programs on any client device that is online as SYSTEM, the currently logged on user, or as a specific user when they next log on.
@@ -43,6 +43,8 @@ This technique may allow an attacker to relay a site server's domain computer ac
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 > **Note:** Extended Protection for Authentication (EPA) is not currently supported by the AdminService (as of March 2024), so cannot be configured to prevent relay to the AdminService.
+>
+> **Update 1/21/2026:** Upgrading to version [2509](https://learn.microsoft.com/en-us/intune/configmgr/core/plan-design/changes/whats-new-in-version-2509#adminservice-now-rejects-ntlm-authentication) now prevents this attack by rejecting NTLM authentication at the SMS Provider AdminService.
 
 ## Subtechniques
 - TAKEOVER-5.1: Coerce primary site server
@@ -133,3 +135,4 @@ This technique may allow an attacker to relay a site server's domain computer ac
 - Garrett Foster, [Site Takeover via SCCM's AdminService API](https://posts.specterops.io/site-takeover-via-sccms-adminservice-api-d932e22b2bf)
 - Microsoft, [Plan for the SMS Provider](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/plan-for-the-sms-provider)
 - Microsoft, [What is the administration service in Configuration Manager?](https://learn.microsoft.com/en-us/mem/configmgr/develop/adminservice/overview)
+
