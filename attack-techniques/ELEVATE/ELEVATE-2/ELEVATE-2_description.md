@@ -261,3 +261,4 @@ SharpSCCM.exe remove device GUID:<GUID> -sms <SMS_PROVIDER> -sc <SITECODE>
 ## References
 - Chris Thompson, [Coercing NTLM Authentication from SCCM Servers](https://posts.specterops.io/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
 - Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
+- Logan Goins, [Wait, Why is my WebClient Started?: SCCM Hierarchy Takeover via NTLM Relay to LDAP](https://specterops.io/blog/2026/01/14/wait-why-is-my-webclient-started-sccm-hierarchy-takeover-via-ntlm-relay-to-ldap/)
