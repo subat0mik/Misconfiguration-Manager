@@ -29,10 +29,12 @@ At SpecterOps, we commonly see accounts that are members of the SCCM `Full Admin
 Currently-configured and/or legacy NAA, collection variable, and task sequence configurations may be present in the CIM repository file. If so, an attacker can recover legacy accounts that have been configured in the past. For example, if a system administrator configured their SCCM admin account as the NAA when the site was created, but years later fixed their mistake and no longer use an overprivileged NAA or NAA at all, their SCCM admin credentials may still be on disk on SCCM clients.
 
 ## Defensive IDs
+- [CANARY-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
 - [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
 - [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 - [PREVENT-15: Disable legacy network access accounts in Active Directory](../../../defense-techniques/PREVENT/PREVENT-15/prevent-15_description.md)
+- [PREVENT-17: Remove unnecessary privileges from accounts](../../../defense-techniques/PREVENT/PREVENT-17/prevent-17_description.md)
 
 ## Examples
 

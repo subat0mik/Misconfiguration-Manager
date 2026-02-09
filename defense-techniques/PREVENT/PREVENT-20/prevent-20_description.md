@@ -18,6 +18,9 @@ To help prevent NTLM coercion and relay and remote management from untrusted, no
 
 ## Associated Offensive IDs
 - [CRED-5: Dump credentials from the site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
+- [CRED-6: Loot domain credentials, SSH keys, and more from SCCM Distribution Points (DP)](../../../attack-techniques/CRED/CRED-6/cred-6_description.md)
+- [CRED-7: Retrieve credentials via AdminService API](../../../attack-techniques/CRED/CRED-7/cred-7_description.md)
+- [CRED-8: Extract credentials from SCCM policies by coercing and relaying management point (MP) NTLM authentication to the site database](../../../attack-techniques/CRED/CRED-8/cred-8_description.md)
 - [ELEVATE-1: NTLM relay site server to SMB on site systems](../../../attack-techniques/ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
 - [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
 - [EXEC-1: Application deployment](../../../attack-techniques/EXEC/EXEC-1/exec-1_description.md)
@@ -26,6 +29,7 @@ To help prevent NTLM coercion and relay and remote management from untrusted, no
 - [RECON-3: Enumerate SCCM roles via HTTP](../../../attack-techniques/RECON/RECON-3/recon-3_description.md)
 - [RECON-4: Query client devices via CMPivot](../../../attack-techniques/RECON/RECON-4/recon-4_description.md)
 - [RECON-5: Locate users via SMS Provider](../../../attack-techniques/RECON/RECON-5/RECON-5_description.md)
+- [RECON-6: Enumerate SCCM roles via the SMB Named Pipe winreg](../../../attack-techniques/RECON/RECON-6/recon-6_description.md)
 - [TAKEOVER-1: NTLM coercion and relay to MSSQL on remote site database](../../../attack-techniques/TAKEOVER/TAKEOVER-1/takeover-1_description.md)
 - [TAKEOVER-2: NTLM coercion and relay to SMB on remote site database](../../../attack-techniques/TAKEOVER/TAKEOVER-2/takeover-2_description.md)
 - [TAKEOVER-3: NTLM coercion and relay to HTTP on AD CS](../../../attack-techniques/TAKEOVER/TAKEOVER-3/)

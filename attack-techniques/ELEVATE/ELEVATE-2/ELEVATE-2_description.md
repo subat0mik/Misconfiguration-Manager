@@ -51,6 +51,7 @@ If all configured accounts fail when the site server tries to authenticate to a 
 - [PREVENT-8: Require PKI certificates for client authentication](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
 - [PREVENT-11: Disable and uninstall WebClient on site servers](../../../defense-techniques/PREVENT/PREVENT-11/prevent-11_description.md)
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
+- [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Examples
 It is not possible to identify whether automatic site-wide client push installation, automatic site assignment, and `Allow connection fallback to NTLM` are enabled without attempting this attack.
