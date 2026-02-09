@@ -37,7 +37,6 @@ If anonymous authentication (no credentials required) is enabled, an attacker ca
 If authentication is required: An internal attacker can use existing credentials to authenticate to the SMB/HTTP services to loot the Distribution Points.
 
 ## Defensive IDs
-
 - [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 

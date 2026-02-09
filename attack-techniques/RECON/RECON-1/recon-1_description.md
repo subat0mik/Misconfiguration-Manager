@@ -106,6 +106,7 @@ mSSMSSiteCode: ACT
 
 ## Defensive IDs
 - [DETECT-2: Monitor read access to the `System Management` Active Directory container](../../../defense-techniques/DETECT/DETECT-2/detect-2_description.md)
+- [DETECT-7: Monitor read access to the SMSTemp directory](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
 
 ## Examples
 

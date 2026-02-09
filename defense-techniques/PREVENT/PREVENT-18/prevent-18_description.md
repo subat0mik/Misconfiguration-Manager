@@ -7,11 +7,10 @@ Use strong passwords for DBA accounts
 This is the bulk of the content
 
 ## Linked Defensive IDs
-- Remove if not relevant
 
 
 ## Associated Offensive IDs
-
+[CRED-5: Dump credentials from the site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
 
 ## References
 Author, Title, Link

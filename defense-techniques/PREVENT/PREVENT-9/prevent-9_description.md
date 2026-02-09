@@ -11,7 +11,10 @@ Configure a requirement for multi-factor authentication to access WMI/AdminServi
 
 ## Associated Offensive IDs
 - [EXEC-1: Application deployment](../../../attack-techniques/EXEC/EXEC-1/exec-1_description.md)
+- [EXEC-2: PowerShell script execution](../../../attack-techniques/EXEC/EXEC-2/exec-2_description.md)
 - [RECON-4: Query client devices via CMPivot](../../../attack-techniques/RECON/RECON-4/recon-4_description.md)
+- [RECON-5: Locate users via SMS Provider](../../../attack-techniques/RECON/RECON-5/recon-5_description.md)
+- [RECON-7: Enumerate SCCM site information via local files](../../../attack-techniques/RECON/RECON-7/recon-7_description.md)
 - [TAKEOVER-5: NTLM coercion and relay to AdminService on remote SMS Provider](../../../attack-techniques/TAKEOVER/TAKEOVER-5/takeover-5_description.md)
 
 ## References
