@@ -13,6 +13,7 @@ NTLM relay via automatic client push installation
 - Valid Active Directory domain credentials
 - Connectivity to HTTPS (TCP/443) on a management point
 - Connectivity from the primary site server to SMB (TCP/445) on the relay server
+- To coerce HTTP authentication from a site server where the WebClient service is installed, but not started, the ability to add a DNS A record to the Active Directory domain is required [DEFAULT]
 - Primary site server settings:
     - Automatic site-wide client push installation is enabled
     - Automatic site assignment is enabled
