@@ -125,8 +125,6 @@ It is not possible to identify whether automatic site-wide client push installat
     
 ### ELEVATE-2.2
 
-When a client push installation account is privileged in the current domain, compromising such an identity through HTTP coercion and a relay to LDAP could mean full domain compromise.
-
 1. On the attacker relay server, start `ntlmrelayx`, targeting the IP address of the domain controller relay target and the LDAP(S) service:
 
     ```
