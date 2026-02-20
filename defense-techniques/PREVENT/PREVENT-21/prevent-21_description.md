@@ -19,6 +19,7 @@ There is another method: DHCP options. Microsoft [does not recommend](https://te
 
 ## Associated Offensive IDs
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
+- [ELEVATE-4: Distribution Point Takeover via PXE Boot Spoofing](../../../attack-techniques/ELEVATE/ELEVATE-4/ELEVATE-4_description.md)
 
 ## References
 - Microsoft, [Boot From PXE Server](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/boot-from-pxe-server)

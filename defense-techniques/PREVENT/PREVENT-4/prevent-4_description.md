@@ -17,6 +17,8 @@ _Figure 1 - Enhanced HTTP Diagram_
 
 ## Associated Offensive IDs
 - [CRED-2: Request machine policy and deobfuscate secrets](../../../attack-techniques/CRED/CRED-2/cred-2_description.md)
+- [CRED-3: Dump currently deployed secrets via WMI](../../../attack-techniques/CRED/CRED-3/cred-3_description.md)
+- [CRED-4: Retrieve legacy secrets from the CIM repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
 
 ## References
 - Microsoft, Enhanced HTTP, https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/enhanced-http

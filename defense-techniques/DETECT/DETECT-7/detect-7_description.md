@@ -116,6 +116,8 @@ Access Request Information:
 ## Associated Offensive IDs
 - [RECON-1: Enumerate SCCM site information via LDAP](../../../attack-techniques/RECON/RECON-1/recon-1_description.md)
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
+- [ELEVATE-4: Distribution Point Takeover via PXE Boot Spoofing](../../../attack-techniques/ELEVATE/ELEVATE-4/ELEVATE-4_description.md)
+- [ELEVATE-5: Distribution Point Takeover via OSD Media Recovery](../../../attack-techniques/ELEVATE/ELEVATE-5/ELEVATE-5_description.md)
 
 ## References
 - Garrett Foster, [SCCMHunter Find Module](https://github.com/garrettfoster13/sccmhunter/wiki/find)

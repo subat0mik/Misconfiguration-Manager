@@ -22,10 +22,14 @@ From the site server, which is granted the `sysadmin` role on the site database,
 If an attacker can compromise the primary site server, they can recover plaintext credentials for any account stored in the site database.
 
 ## Defensive IDs
+- [CANARY-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
+- [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
+- [PREVENT-17: Remove unnecessary privileges from accounts](../../../defense-techniques/PREVENT/PREVENT-17/prevent-17_description.md)
 - [PREVENT-18: Use strong passwords for DBA accounts](../../../defense-techniques/PREVENT/PREVENT-18/prevent-18_description.md)
 - [PREVENT-19: Remove unnecessary links to site databases](../../../defense-techniques/PREVENT/PREVENT-19/prevent-19_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
+- [PREVENT-22: Do not manage assets in two or more segmented forests, domains, networks, or security tiers](../../../defense-techniques/PREVENT/PREVENT-22/prevent-22_description.md)
 
 ## Examples
 
