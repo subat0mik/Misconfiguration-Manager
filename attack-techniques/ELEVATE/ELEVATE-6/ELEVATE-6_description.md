@@ -1,0 +1,231 @@
+# ELEVATE-6
+
+## Description
+
+Local Privilege Escalation via Writable SCCM Client Cache (`ccmcache`) Package Replacement
+
+## MITRE ATT&CK Tactics
+
+* [TA0004](https://attack.mitre.org/tactics/TA0004) - Privilege Escalation
+* [TA0008](https://attack.mitre.org/tactics/TA0008) - Lateral Movement
+* [TA0003](https://attack.mitre.org/tactics/TA0003) - Persistence
+
+## Requirements
+
+* The SCCM client is installed on the target endpoint
+* The SCCM client cache directory (`ccmcache`, typically `C:\Windows\ccmcache`, `C:\ccmcache`, or a custom path such as `D:\SCCMCache\ccmcache`) is:
+
+  * Writable by a non-privileged user **OR**
+  * Renameable/modifiable by a non-privileged user
+* A package or application deployment is available in **Software Center**
+
+## Summary
+
+Microsoft Configuration Manager (SCCM/MECM) clients download application and package content to a local cache directory before installation. This cache directory (`ccmcache`) is normally stored under `C:\Windows\ccmcache`, but administrators can configure a custom path (for example `D:\SCCMCache\ccmcache`) when deploying the SCCM client.
+
+Applications installed through **Software Center** are executed by the SCCM client service (`CcmExec`), which runs with **NT AUTHORITY\SYSTEM** privileges.
+
+If the configured SCCM cache directory is **writable or renameable by non-administrative users**, the integrity of cached package contents cannot be guaranteed. An attacker can modify or replace the cached installation files and then trigger a reinstall of the package through Software Center.
+
+When the package is executed, SCCM launches the modified installer or script **as SYSTEM**, resulting in privilege escalation.
+
+Two exploitation scenarios are commonly observed:
+
+* **Writable Cache Directory:**
+  The attacker replaces binaries or scripts within an existing cached package with a malicious payload.
+
+* **Renameable Cache Directory:**
+  If the directory cannot be modified directly but can be renamed, the attacker can manipulate the SCCM cache structure and replace package content after forcing SCCM to repopulate the cache.
+
+Because SCCM trusts the cached package content during reinstall operations, the altered files are executed with **SYSTEM privileges**.
+
+## Impact
+
+The impact of this misconfiguration is **local privilege escalation to NT AUTHORITY\SYSTEM**.
+
+Successful exploitation allows an attacker to:
+
+* Execute arbitrary code as **SYSTEM**
+* Maintain persistence through malicious package replacement
+* Dump credentials or harvest secrets from the host
+* Pivot laterally within the environment using elevated privileges
+
+In environments where SCCM client configurations are standardized across endpoints, this misconfiguration can provide a **repeatable privilege escalation technique across multiple systems**.
+
+
+## Examples
+
+### 1. Identify the SCCM cache directory
+
+Typical locations include:
+
+```
+C:\Windows\ccmcache
+C:\ccmcache
+```
+Or for custom paths
+```
+*\SCCMCache\ccmcache
+```
+
+Verify permissions (we are using the D:\ drive in this scenario):
+
+```
+icacls D:\SCCMCache
+```
+
+Example vulnerable output:
+
+```
+BUILTIN\Users:(OI)(CI)(M)
+```
+
+This indicates users have **modify permissions**.
+
+---
+
+### 2. Replace cached package contents (Writable scenario)
+
+Locate the cached package directory:
+
+```
+D:\SCCMCache\ccmcache
+```
+
+Example structure:
+
+```
+D:\SCCMCache\ccmcache\15z\
+```
+
+Replace the installer or script with a malicious payload:
+
+```
+copy reverse_shell.exe D:\SCCMCache\ccmcache\15z\installer.exe
+```
+
+Reinstall the application via **Software Center** to execute the payload as **SYSTEM**.
+
+---
+
+### 3. Rename-based cache manipulation (Rename-only scenario)
+
+If files cannot be directly modified but the SCCM cache directory can be renamed, an attacker can manipulate the cache structure to insert malicious content.
+
+#### Step 1 — Uninstall the target application
+
+Uninstall the application from **Software Center**.
+
+---
+
+#### Step 2 — Rename the SCCM cache directory
+
+Rename the cache directory (example location `D:\`):
+
+```
+D:\SCCMCache → D:\SCCMCache.bak
+```
+
+Create a new directory:
+
+```
+D:\SCCMCache
+```
+
+---
+
+#### Step 3 — Trigger SCCM to populate the cache
+
+Reinstall the application via **Software Center**.
+
+SCCM will recreate the cache structure:
+
+```
+D:\SCCMCache\ccmcache\15z\
+```
+
+After installation completes, uninstall the application again.
+
+---
+
+#### Step 4 — Copy the generated cache folder
+
+Copy the newly created folder from:
+
+```
+D:\SCCMCache\ccmcache\15z
+```
+
+to a temporary location for later use.
+
+---
+
+#### Step 5 — Recreate the malicious cache structure
+
+Rename the existing cache again:
+
+```
+D:\SCCMCache → D:\SCCMCache.bak.bak
+```
+
+Create a new directory structure:
+
+```
+D:\SCCMCache\ccmcache\15z
+```
+
+The folder name **must exactly match** the folder name originally generated by SCCM.
+
+Example:
+
+```
+D:\SCCMCache\ccmcache\15z
+```
+
+Copy the previously extracted files into this directory.
+
+---
+
+#### Step 6 — Modify installer or scripts
+
+Insert a malicious payload by either:
+
+* Replacing the **MSI installer**, or
+* Modifying an existing PowerShell script executed during installation.
+
+Example:
+
+```
+Tools\ExampleTool_start.ps1
+```
+
+This script will execute as:
+
+```
+NT AUTHORITY\SYSTEM
+```
+
+Add a reverse shell or malicious command.
+
+---
+
+#### Step 7 — Reinstall the application
+
+Reinstall the application via **Software Center**.
+
+When SCCM executes the cached installation scripts or MSI, the modified payload runs as:
+
+```
+NT AUTHORITY\SYSTEM
+```
+
+Resulting in successful **privilege escalation**.
+
+---
+
+## References
+
+* Microsoft, [Configuration Manager Client Cache](https://learn.microsoft.com/en-us/mem/configmgr/core/clients/manage/configure-client-cache)
+* MITRE ATT&CK, [Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)
+
+---
