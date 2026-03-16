@@ -32,3 +32,4 @@
 | [PREVENT&#x2011;20](./PREVENT/PREVENT-20/prevent-20_description.md) | Block unnecessary connections to site systems | Network, server |
 | [PREVENT&#x2011;21](./PREVENT/PREVENT-21/prevent-21_description.md) | Restrict PXE boot to authorized VLANs | SCCM, network |
 | [PREVENT&#x2011;22](./PREVENT/PREVENT-22/prevent-22_description.md) | Do not manage assets in two or more segmented forests, domains, networks, or security tiers | SCCM, network, security, domain |
+| [PREVENT&#x2011;23](./PREVENT/PREVENT-23/prevent-23_description.md) | Ensure the SCCM client cache directory (`ccmcache`) is not writable or renameable by non-administrative users | SCCM, desktop, security |
