@@ -1,11 +1,12 @@
 # CRED-6
 
 ## Description
-Loot domain credentials, SSH keys, and more from SCCM Distribution Points (DP)
+Loot domain credentials, SSH keys, and more from SCCM Distribution Points (DP) and other site server shares
 
 ## MITRE ATT&CK TTPs
 - [TA0006 - Credential Access](https://attack.mitre.org/tactics/TA0006)
 - [T1078.002 - Valid Accounts: Domain Accounts](https://attack.mitre.org/techniques/T1078/002/)
+- [T1552.001 - Unsecured Credentials: Credentials In Files](https://attack.mitre.org/techniques/T1552/001/)
 
 ## Requirements
 One of the following:
@@ -30,6 +31,16 @@ The IIS web server hosted on the distribution point defines a virtual directory,
 URL format to list the subdirectories and files in a package: `http://<DP>/sms_dp_smspkg$/<PackageID>/`
 
 Retrieving a file in a package: `http://<DP>/sms_dp_smspkg$/<PackageID>/<filename>`
+
+#### Other Site Server Shares
+Beyond the `SCCMContentLib$` share on DPs, SCCM site servers and site systems frequently host additional SMB shares that contain scripts, configuration files, and other artifacts with hardcoded credentials. Common locations include:
+
+- `\\<SiteServer>\temp` or similar staging directories
+- Custom deployment script shares created by administrators
+- Admin shares (`C$`) on site servers where deployment scripts are stored
+- Backup or log directories left accessible to domain users
+
+These shares are not SCCM-specific, but SCCM infrastructure is a frequent offender because site server administrators routinely write and test PowerShell scripts that interact with SCCM APIs, NAA credentials, task sequence variables, and domain admin accounts. In practice, operators should enumerate all accessible shares on identified SCCM site systems, not just `SCCMContentLib$`, and search for scripts (`.ps1`, `.vbs`, `.bat`), configuration files (`.xml`, `.ini`, `.config`), and any files containing credential material.
 
 ## Impact
 If anonymous authentication (no credentials required) is enabled, an attacker can dump the DP files and analyze its contents for valid credentials. NTLM relaying is still possible under proper conditions.
