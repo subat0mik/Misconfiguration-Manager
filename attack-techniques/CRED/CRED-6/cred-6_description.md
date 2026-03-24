@@ -33,14 +33,15 @@ URL format to list the subdirectories and files in a package: `http://<DP>/sms_d
 Retrieving a file in a package: `http://<DP>/sms_dp_smspkg$/<PackageID>/<filename>`
 
 #### Other Site Server Shares
-Beyond the `SCCMContentLib$` share on DPs, SCCM site servers and site systems frequently host additional SMB shares that contain scripts, configuration files, and other artifacts with hardcoded credentials. Common locations include:
+Beyond `SCCMContentLib$`, SCCM site servers sometimes have additional non-default shares that admins have created for staging scripts, software sources, OSD (Operating System Deployment) files, etc. These aren't necessarily SCCM-specific shares, but SCCM infrastructure tends to expose them because admins are often writing and testing PowerShell scripts that touch SCCM APIs, NAA credentials, task sequence variables, and domain admin accounts.
 
-- `\\<SiteServer>\temp` or similar staging directories
-- Custom deployment script shares created by administrators
-- Admin shares (`C$`) on site servers where deployment scripts are stored
-- Backup or log directories left accessible to domain users
+Real-life examples of finding sensitive data in non-standard shares include:
+- The password for an SCCM Administrator account hard-coded in a PowerShell script
+- Backup files for vCenter applicance
+- NAA blobs (see ../../CRED/CRED-3/cred-3_description.md) in a .txt file 
+- PowerShell scripts to connect to vCenter (without credentials, but still useful)
 
-These shares are not SCCM-specific, but SCCM infrastructure is a frequent offender because site server administrators routinely write and test PowerShell scripts that interact with SCCM APIs, NAA credentials, task sequence variables, and domain admin accounts. In practice, operators should enumerate all accessible shares on identified SCCM site systems, not just `SCCMContentLib$`, and search for scripts (`.ps1`, `.vbs`, `.bat`), configuration files (`.xml`, `.ini`, `.config`), and any files containing credential material.
+It's therefore worth enumerating all shares on identified SCCM site systems, not just `SCCMContentLib$`, and comparing the results against the [standard SCCM share names in RECON-2](../../RECON/RECON-2/recon-2_description.md). Anything not in that list is worth digging into for scripts (`.ps1`, `.vbs`, `.bat`), config files (`.xml`, `.ini`, `.config`), and anything else that might contain credentials or other useful information from an offensive perspective.
 
 ## Impact
 If anonymous authentication (no credentials required) is enabled, an attacker can dump the DP files and analyze its contents for valid credentials. NTLM relaying is still possible under proper conditions.
@@ -140,6 +141,53 @@ Password:
 ┌──(root㉿AR-kali)-[/opt/cmloot]
 └─# ls CMLootOut
 7CEE-configure-baseline.ps1  F906-ep_defaultpolicy.xml
+```
+
+#### Enumerating and Looting Non-Default Site Server Shares
+Impacket's `smbclient.py` can be used to list shares on a site server. Compare what you see against the [standard SCCM shares in RECON-2](../../RECON/RECON-2/recon-2_description.md). Anything that doesn't belong is worth a look.
+
+```bash
+# Enumerate shares on a site server
+┌──(root㉿kali)-[~]
+└─# smbclient.py sccm.lab/eve:iloveyou@10.112.0.142
+Impacket v0.13.0 - Copyright Fortra, LLC and its affiliated companies
+
+Type help for list of commands
+> shares
+
+ADMIN$
+AdminUIContentPayload
+C$
+EasySetupPayload
+IPC$
+REMINST
+SCCMContentLib$
+SCCMContentLibS$
+SMSPKGC$
+SMSPKGS$
+SMSSIG$
+SMS_CPSC$
+SMS_DP$
+SMS_OCM_DATACACHE
+SMS_P01
+SMS_SITE
+SMS_SUIAgent
+sources
+UpdateServicesPackages
+WsusContent
+WSUSTemp
+
+# "sources" is not a standard SCCM share, so investigate it
+
+> use sources
+> ls
+drw-rw-rw-          0  Tue Mar 24 18:46:01 2026 .
+drw-rw-rw-          0  Fri Mar  6 13:11:08 2026 ..
+-rw-rw-rw-          6  Tue Mar 24 18:46:05 2026 secret.txt
+drw-rw-rw-          0  Thu Mar  5 20:06:13 2026 WSUS
+
+# discover a secret file, so download it
+> get secret.txt
 ```
 
 ## References
