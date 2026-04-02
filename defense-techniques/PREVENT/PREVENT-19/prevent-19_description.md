@@ -9,9 +9,9 @@ Configuration Manager installations with multiple sites in a hierarchy will crea
 It is crucial to ensure the links to other SCCM site database servers are not removed, as this will break functionality. Therefore, ensure proper due diligence for the target servers and databases before removing links.
 
 ## Linked Defensive IDs
-- [CRED-5: Dump credentials from the site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
 
 ## Associated Offensive IDs
+- [CRED-5: Dump credentials from the site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
 - [TAKEOVER-9: Crawl site database links configured with DBA privileges](../../../attack-techniques/TAKEOVER/TAKEOVER-9/takeover-9_description.md)
 
 ## References

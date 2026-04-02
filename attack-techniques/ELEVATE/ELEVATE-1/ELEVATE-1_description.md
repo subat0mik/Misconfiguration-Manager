@@ -40,6 +40,7 @@ Impact for these scenarios is difficult to quantify. In some cases a compromised
 
 ## Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [DETECT-3: Monitor client push installation accounts authenticating from anywhere other than the primary site server](../../../defense-techniques/DETECT/DETECT-3/detect-3_description.md)
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 

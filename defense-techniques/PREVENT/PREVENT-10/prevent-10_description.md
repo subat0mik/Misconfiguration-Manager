@@ -131,6 +131,8 @@ Nothing specifically requires that these variables be credentials, but they can 
 - [CRED-3: Dump currently deployed credentials via WMI](../../../attack-techniques/CRED/CRED-3/cred-3_description.md)
 - [CRED-4: Retrieve legacy network access account (NAA) credentials from the CIM Repository](../../../attack-techniques/CRED/CRED-4/cred-4_description.md)
 - [CRED-5: Dump SCCM credentials from site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
+- [CRED-6: Loot domain credentials, SSH keys, and more from SCCM Distribution Points (DP)](../../../attack-techniques/CRED/CRED-6/cred-6_description.md)
+- [CRED-7: Retrieve credentials via AdminService API](../../../attack-techniques/CRED/CRED-7/cred-7_description.md)
 - [CRED-8: NTLM relay remote MP to site database to extract machine policy secrets](../../../attack-techniques/CRED/CRED-8/cred-8_description.md)
 
 ## References
