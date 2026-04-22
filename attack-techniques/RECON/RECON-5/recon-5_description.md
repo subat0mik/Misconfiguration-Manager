@@ -27,6 +27,8 @@ Attributes that clients periodically report to their management point can be que
 Attackers can assume that these users either have an active session or may log onto these systems again, in which case stored credentials in memory could be used to conduct further actions in the context of that user. For example, they could identify devices where a member of the `Domain Admins` group is the primary user or the last to log on and move laterally to the system or coerce NTLM authentication to compromise their account (EXEC-1).
 
 ## Defensive IDs
+- [DETECT-5: Monitor group membership changes for SMS Admins](../../../defense-techniques/DETECT/DETECT-5/detect-5_description.md)
+- [DETECT-6: Monitor group membership changes for RBAC_Admins table](../../../defense-techniques/DETECT/DETECT-6/detect-6_description.md)
 - [PREVENT-9: Enforce MFA for SMS provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 

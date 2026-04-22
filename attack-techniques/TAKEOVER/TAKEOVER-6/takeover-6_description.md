@@ -41,7 +41,7 @@ This technique may allow an attacker to relay a site server domain computer acco
 ## Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
 - [DETECT-5: Monitor group membership changes for SMS Admins](../../../defense-techniques/DETECT/DETECT-5/detect-5_description.md)
-- [DETECT-5: Monitor group membership changes for RBAC_Admins table](../../../defense-techniques/DETECT/DETECT-6/detect-6_description.md)
+- [DETECT-6: Monitor group membership changes for RBAC_Admins table](../../../defense-techniques/DETECT/DETECT-6/detect-6_description.md)
 - [PREVENT-12: Require SMB signing on site systems](../../../defense-techniques/PREVENT/PREVENT-12/prevent-12_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 

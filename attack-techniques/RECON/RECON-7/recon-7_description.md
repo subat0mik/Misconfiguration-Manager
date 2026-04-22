@@ -38,6 +38,7 @@ Additionally, the registry key/value of `HKLM:\SOFTWARE\Microsoft\SMS\DP\Managem
 5. A resolved MP site system role can be used to elevate privileges via credential relay attacks [ELEVATE-1](../../ELEVATE/ELEVATE-1/ELEVATE-1_description.md)
  
 ## Defensive IDs
+- [DETECT-7: Monitor local object access for SCCM logs and settings](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
 - [DETECT-9: Monitor local object access for local SCCM logs and settings](../../../defense-techniques/DETECT/DETECT-9/detect-9_description.md)
 
 ## Examples

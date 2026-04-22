@@ -39,6 +39,8 @@ The "Full Administrator" security role is granted all permissions in Configurati
 
 ## Defensive IDs
 - [DETECT-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/DETECT/DETECT-1/detect-1_description.md)
+- [DETECT-5: Monitor group membership changes for SMS Admins](../../../defense-techniques/DETECT/DETECT-5/detect-5_description.md)
+- [DETECT-6: Monitor group membership changes for RBAC_Admins table](../../../defense-techniques/DETECT/DETECT-6/detect-6_description.md)
 - [PREVENT-14: Require EPA on AD CS and site databases](../../../defense-techniques/PREVENT/PREVENT-14/prevent-14_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 

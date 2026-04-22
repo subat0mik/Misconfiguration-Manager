@@ -20,6 +20,8 @@ This password can be retrieve using tools like [PXEThief](https://github.com/MWR
 
 ## Associated Offensive IDs
 - [CRED-1: Retrieve secrets from PXE boot media](../../../attack-techniques/CRED/CRED-1/cred-1_description.md)
+- [ELEVATE-4: Distribution Point Takeover via PXE Boot Spoofing](../../../attack-techniques/ELEVATE/ELEVATE-4/ELEVATE-4_description.md)
+- [ELEVATE-5: Distribution Point Takeover via OSD Media Recovery](../../../attack-techniques/ELEVATE/ELEVATE-5/ELEVATE-5_description.md)
 
 ## References
 - Microsoft, [Understanding PXE Boot](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot)
