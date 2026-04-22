@@ -41,7 +41,7 @@ In environments using Active Directory defaults, SCCM defaults, and NAAs (or col
 If the NAA or credential stored in a collection variable or task sequence is implemented under the principle of least privilege, this may not extend the attacker's privilege level in the domain. The more common result: If the NAA is overprivileged, this technique serves as a trivial privilege escalation vector.
 
 ## Defensive IDs
-- [CANARY-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
+- [CANARY-1: Configure an appropriately-privileged NAA with interactive logon restricted](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
 - [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-4: Configure Enhanced HTTP](../../../defense-techniques/PREVENT/PREVENT-4/prevent-4_description.md)
 - [PREVENT-8: Require PKI certificates for client authentation](../../../defense-techniques/PREVENT/PREVENT-8/prevent-8_description.md)
