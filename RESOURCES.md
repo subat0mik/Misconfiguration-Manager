@@ -1,5 +1,6 @@
 # SCCM Lab Resources
 - [Zach Stein](https://twitter.com/synzack21) released a [Ludus SCCM lab](https://github.com/Synzack/ludus_sccm) that covers a lot of the techniques in this repo.
+- [@_Mayyhem](https://x.com/_Mayyhem) released an [updated version of Zach's Ludus lab]((https://specterops.io/blog/2026/04/01/ludus-sccm-lab-expansion/)) with an expanded hierarchy.
 - [@an0n_r0](https://twitter.com/an0n_r0/status/1687230842601451522) released a [Snap Labs range](https://dashboard.snaplabs.io/templates/121fda0a-6cc3-4889-bee3-2fe83856f530) that can be used to test the majority of SCCM tradecraft in this repo.
 - [@M4yFly](https://twitter.com/m4yfly/status/1771643303164891262) released an [SCCM lab for the Game of Active Directory (GOAD) project](https://github.com/Orange-Cyberdefense/GOAD) that can be used with VMware or VirtualBox which also covers a lot of the tradecraft in this repo.   
 
