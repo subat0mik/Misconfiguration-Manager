@@ -80,6 +80,7 @@ The following labs are options as well, but do not separate the site database or
 - [SCCMSecrets.py: exploiting SCCM policies distribution for credentials harvesting, initial access and lateral movement, by Quentin Roland (@croco_byte)](https://www.synacktiv.com/publications/sccmsecretspy-exploiting-sccm-policies-distribution-for-credentials-harvesting-initial)
 - [SCCMSiteCodeHunter, by Andy Gill (@ZephrFish)](https://github.com/ZephrFish/SCCMSiteCodeHunter)
 - [sccmsqlclient, by Mehdi Elyassa](https://github.com/synacktiv/sccmsqlclient)
+- [SCCMVersionGuesser, by Mehdi Elyassa at Synactiv](https://github.com/synacktiv/SCCMVersionGuesser)
 - [SCCMVNC, by Chris Au (@netero1010)](https://github.com/netero1010/SCCMVNC)
 - [sccmwtf, by Adam Chester (@_xpn_)](https://github.com/xpn/sccmwtf)
 - [SCCM-Enumeration, by Cr0n1c](https://github.com/Cr0n1c/SCCM-Enumeration/)
