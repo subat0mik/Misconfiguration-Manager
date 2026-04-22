@@ -46,7 +46,7 @@ Attackers may recover domain credentials from this process, the difficulty of wh
 With these credentials, attackers may transition from an unauthenticated context on the network to a domain-authenticated context. If any of the credentials recovered are privileged, it may also enable privilege escalation and lateral movement vectors.
 
 ## Defensive IDs
-- [CANARY-1: Monitor site server domain computer accounts authenticating from another source](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
+- [CANARY-1: Configure an appropriately-privileged NAA with interactive logon restricted](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
 - [DETECT-7: Monitor read access to the SMSTemp directory](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
 - [DETECT-8: Monitor connections to winreg named pipe](../../../defense-techniques/DETECT/DETECT-8/detect-8_description.md)
 - [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
