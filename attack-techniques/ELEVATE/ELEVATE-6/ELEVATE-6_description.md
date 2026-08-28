@@ -52,6 +52,8 @@ Successful exploitation allows an attacker to:
 
 In environments where SCCM client configurations are standardized across endpoints, this misconfiguration can provide a **repeatable privilege escalation technique across multiple systems**.
 
+## Defensive IDs
+- [PREVENT-23: Ensure the SCCM client cache directory (`ccmcache`) is not writable or renameable by non-administrative users](../../../defense-techniques/PREVENT/PREVENT-23/prevent-23_description.md)
 
 ## Examples
 

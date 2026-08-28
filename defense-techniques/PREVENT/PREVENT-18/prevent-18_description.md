@@ -10,7 +10,7 @@ This is the bulk of the content
 
 
 ## Associated Offensive IDs
-[CRED-5: Dump credentials from the site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
+- [CRED-5: Dump credentials from the site database](../../../attack-techniques/CRED/CRED-5/cred-5_description.md)
 
 ## References
 Author, Title, Link

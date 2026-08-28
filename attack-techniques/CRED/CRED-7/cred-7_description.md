@@ -23,6 +23,7 @@ All of these credentials are stored in the `SC_UserAccount` table in the site MS
 This technique provides an alternative to [CRED-5](../CRED-5/cred-5_description.md) that does not require direct interaction with the database.
 
 ## Defensive IDs
+- [PREVENT-9: Enforce MFA for SMS Provider calls](../../../defense-techniques/PREVENT/PREVENT-9/prevent-9_description.md)
 - [PREVENT-10: Enforce the principle of least privilege for accounts](../../../defense-techniques/PREVENT/PREVENT-10/prevent-10_description.md)
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
