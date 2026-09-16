@@ -8,6 +8,8 @@ Configuration Manager installations with multiple sites in a hierarchy will crea
 
 It is crucial to ensure the links to other SCCM site database servers are not removed, as this will break functionality. Therefore, ensure proper due diligence for the target servers and databases before removing links.
 
+It is not possible to see inbound SQL links to a particular database from the system that hosts that database, the links and credentials are stored on the remote system that initiates connections to the linked server, so an organization-wide audit must occur using tooling such as MSSQLHound to properly identify all MSSQL instances with links to the SCCM site databases.
+
 ## Linked Defensive IDs
 
 ## Associated Offensive IDs
@@ -17,3 +19,4 @@ It is crucial to ensure the links to other SCCM site database servers are not re
 ## References
 - Microsoft, [Database Replication](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/database-replication)
 - Microsoft, [Linked Servers (Database Engine)](https://learn.microsoft.com/en-us/sql/relational-databases/linked-servers/linked-servers-database-engine)
+- SpecterOps, [MSSQLHound](https://github.com/SpecterOps/MSSQLHound)
