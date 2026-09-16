@@ -40,6 +40,7 @@ Next, navigate to the `Advanced` tab, then set `Extended Protection` to `Require
 - [PREVENT-20: Block unnecessary connections to site systems](../../../defense-techniques/PREVENT/PREVENT-20/prevent-20_description.md)
 
 ## Associated Offensive IDs
+- [ELEVATE-2: NTLM relay via automatic client push installation](../../../attack-techniques/ELEVATE/ELEVATE-2/ELEVATE-2_description.md)
 - [TAKEOVER-1: NTLM coercion and relay to MSSQL on remote site database](../../../attack-techniques/TAKEOVER/TAKEOVER-1/takeover-1_description.md)
 - [TAKEOVER-3: NTLM coercion and relay to HTTP on AD CS](../../../attack-techniques/TAKEOVER/TAKEOVER-3/takeover-3_description.md)
 - [CRED-8: NTLM relay remote MP to site database to extract machine policy secrets](../../../attack-techniques/CRED/CRED-8/cred-8_description.md)
