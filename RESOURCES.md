@@ -24,7 +24,7 @@ The following are usable too, but don't separate the site database or SMS Provid
 
 | Name | Source | Link |
 |---|---|---|
-| Push | Vulnlab/HackTheBox | [Link]([https://www.vulnlab.com/machines](https://help.hackthebox.com/en/articles/11582861-vulnlab-x-hack-the-box)) |
+| Push | Vulnlab/Hack The Box | [Link](https://help.hackthebox.com/en/articles/11582861-vulnlab-x-hack-the-box) |
 
 ### Lab Walkthroughs
 
@@ -40,7 +40,7 @@ The following are usable too, but don't separate the site database or SMS Provid
 |---|---|---|
 | [Active Directory Spotlight: Attacking The Microsoft Configuration Manager (SCCM/MECM)](https://www.securesystems.de/blog/active-directory-spotlight-attacking-the-microsoft-configuration-manager/) | Carsten Sandker ([@0xcsandker](https://x.com/0xcsandker)) | Offensive |
 | [Adding MSSQL to BloodHound using OpenGraph](https://specterops.io/blog/2025/08/04/adding-mssql-to-bloodhound-with-opengraph/) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Tooling |
-| [An Inside Look: How to Distribute Credentials Securely in SCCM](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm) | Christopher Panayi | Defensive |
+| [An Inside Look: How to Distribute Credentials Securely in SCCM](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm) | Christopher Panayi ([@Raiona_ZA](https://x.com/Raiona_ZA)) | Defensive |
 | [Attacking and Defending Configuration Manager - An Attacker's Easy Win](https://logan-goins.com/2025-04-25-sccm/) | Logan Goins ([@_logangoins](https://x.com/_logangoins)) | Offensive/Defensive |
 | [Automating SCCM with Ludus](https://specterops.io/blog/2024/06/06/automating-sccm-with-ludus-a-configuration-manager-for-your-configuration-manager/) | Zach Stein ([@synzack21](https://x.com/synzack21)) | Lab/Tooling |
 | [CISA Red Team Report Featuring SCCM](https://www.cisa.gov/sites/default/files/2023-03/aa23-059a-cisa_red_team_shares_key_findings_to_improve_monitoring_and_hardening_of_networks_1.pdf) | CISA | Defensive/Report |
@@ -49,22 +49,22 @@ The following are usable too, but don't separate the site database or SMS Provid
 | [Coercing NTLM Authentication from SCCM](https://medium.com/specter-ops-posts/coercing-ntlm-authentication-from-sccm-e6e23ea8260a) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Offensive |
 | [ConfigManBearPig 2.0 – Things Are Getting Cereal](https://specterops.io/blog/2026/08/03/configmanbearpig-2-0/) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Tooling |
 | [Decrypting credentials from SCCM site servers configured for high availability](https://www.ibm.com/think/x-force/decrypting-credentials-from-sccm-site-servers) | Dave Cossa ([@G0ldenGunSec](https://x.com/G0ldenGunSec)) | Offensive |
-| [Defending the Castle](https://www.oscc.be/sccm/Defending-the-Castle/) | Tom Degreef & Kim Oppalfens | Defensive |
+| [Defending the Castle](https://www.oscc.be/sccm/Defending-the-Castle/) | Tom Degreef ([@TomDegreef](https://x.com/TomDegreef)) & Kim Oppalfens ([@TheWMIGuy](https://x.com/TheWMIGuy)) | Defensive |
 | [Exploring SCCM by Unobfuscating Network Access Accounts](https://blog.xpnsec.com/unobfuscating-network-access-accounts/) | Adam Chester ([@_xpn_](https://x.com/_xpn_)) | Offensive |
 | [From Domain User to Enterprise Control: Microsoft Configuration Manager RCE 0-Day Exploit Chain](https://medium.com/@omribaso/from-domain-user-to-enterprise-control-microsoft-configuration-manager-rce-0-day-exploit-chain-393c63c680ca) | Omri Baso ([@omribaso](https://x.com/omribaso)) | Offensive |
 | [Hierarchy Takeover without SOCKS](https://twitter.com/_Mayyhem/status/1700602445603209236) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Offensive |
 | [I'd Like to Speak to Your Manager: Stealing Secrets with Management Point Relays](https://specterops.io/blog/2025/07/15/id-like-to-speak-to-your-manager-stealing-secrets-with-management-point-relays/) | Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Offensive |
-| [Identifying and Retrieving Credentials from SCCM/MECM Task Sequences](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences) | Christopher Panayi | Offensive |
+| [Identifying and Retrieving Credentials from SCCM/MECM Task Sequences](https://www.mwrcybersec.com/research_items/identifying-and-retrieving-credentials-from-sccm-mecm-task-sequences) | Christopher Panayi ([@Raiona_ZA](https://x.com/Raiona_ZA)) | Offensive |
 | [Introducing ConfigManBearPig, a BloodHound OpenGraph Collector for SCCM](https://specterops.io/blog/2026/01/13/introducing-configmanbearpig-a-bloodhound-opengraph-collector-for-sccm/) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Tooling |
 | [Less Praying More Relaying – Enumerating EPA Enforcement for MSSQL and HTTPS](https://specterops.io/blog/2025/11/25/less-praying-more-relaying-enumerating-epa-enforcement-for-mssql-and-https/) | Nick Powers ([@zyn3rgy](https://x.com/zyn3rgy)) & Matt Creel ([@Tw1sm](https://x.com/Tw1sm)) | Offensive |
 | [Looting Microsoft Configuration Manager](https://labs.withsecure.com/publications/looting-microsoft-configuration-manager) | Tomas Rzepka ([@1njected](https://x.com/1njected)) | Offensive |
 | [Ludus SCCM Lab Expansion](https://specterops.io/blog/2026/04/01/ludus-sccm-lab-expansion/) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Lab/Tooling |
-| [Mapping Deception Solutions With BloodHound OpenGraph – Configuration Manager](https://specterops.io/blog/2026/02/19/mapping-deception-solutions-with-bloodhound-opengraph-configuration-manager/) | Joshua Prager | Defensive |
-| [Microsoft Configuration Manager (ConfigMgr) 2403 Unauthenticated SQL Injections](https://www.synacktiv.com/advisories/microsoft-configuration-manager-configmgr-2403-unauthenticated-sql-injections) | Mehdi Elyassa, Synacktiv | Offensive |
+| [Mapping Deception Solutions With BloodHound OpenGraph – Configuration Manager](https://specterops.io/blog/2026/02/19/mapping-deception-solutions-with-bloodhound-opengraph-configuration-manager/) | Joshua Prager ([@Praga_Prag](https://x.com/Praga_Prag)) | Defensive |
+| [Microsoft Configuration Manager (ConfigMgr) 2403 Unauthenticated SQL Injections](https://www.synacktiv.com/advisories/microsoft-configuration-manager-configmgr-2403-unauthenticated-sql-injections) | Mehdi Elyassa ([@kalimer0x00](https://x.com/kalimer0x00)), Synacktiv | Offensive |
 | [Microsoft's Accidental Enterprise DFIR Tool](https://informationonsecurity.blogspot.com/2015/11/microsofts-accidental-enterprise-dfir.html) | Keith Tyler | Defensive/Historical |
 | [Mimikatz dpapi::sccm](https://twitter.com/gentilkiwi/status/1392594113745362946?lang=en) | Benjamin Delpy ([@gentilkiwi](https://x.com/gentilkiwi)) | Tooling |
 | [Mimikatz misc::sccm](https://twitter.com/gentilkiwi/status/1392204021461569537?lang=en) | Benjamin Delpy ([@gentilkiwi](https://x.com/gentilkiwi)) | Tooling |
-| [Misconfiguration Manager: Detection Updates](https://specterops.io/blog/2024/12/16/misconfiguration-manager-detection-updates/) | Joshua Prager | Defensive |
+| [Misconfiguration Manager: Detection Updates](https://specterops.io/blog/2024/12/16/misconfiguration-manager-detection-updates/) | Joshua Prager ([@Praga_Prag](https://x.com/Praga_Prag)) | Defensive |
 | [Misconfiguration Manager: Overlooked and Overprivileged](https://specterops.io/blog/2024/03/05/misconfiguration-manager-overlooked-and-overprivileged/) | Duane Michael ([@subat0mik](https://x.com/subat0mik)) | Offensive |
 | [Misconfiguration Manager: Still Overlooked, Still Overprivileged](https://specterops.io/blog/2025/06/26/misconfiguration-manager-still-overlooked-still-overprivileged/) | Duane Michael ([@subat0mik](https://x.com/subat0mik)) & Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Offensive/Defensive |
 | [MSSQL and SCCM Elevation of Privilege Vulnerabilities](https://specterops.io/blog/2026/01/15/mssql-and-sccm-elevation-of-privilege-vulnerabilities/) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Offensive |
@@ -102,13 +102,13 @@ The following are usable too, but don't separate the site database or SMS Provid
 |---|---|---|---|
 | 2026 | [Exposing SCCM and MSSQL Attack Paths in Hardened Environments with OpenGraph \| SO-CON 26](https://www.youtube.com/watch?v=vd5UWRBg6ps) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | ConfigManBearPig |
 | 2026 | [Attacking SCCM with SCCMHunter \| Wild West Hacking Fest](https://www.youtube.com/watch?v=sh3Zb7MbiIg) | Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | sccmhunter / tooling |
-| 2026 | [DEF CON 33 - SCCM: The tree that always bears bad fruits](https://www.youtube.com/watch?v=epyI3b8Vl0M) | Mehdi 'kalimer0x00' Elyassa | Post-exploitation and SCCM internals |
-| 2026 | [SCCM: The tree that always bears bad fruits \| SO-CON 26](https://www.youtube.com/watch?v=cNgRbT4I97w) | Mehdi 'kalimer0x00' Elyassa | Post-exploitation and SCCM internals |
+| 2026 | [DEF CON 33 - SCCM: The tree that always bears bad fruits](https://www.youtube.com/watch?v=epyI3b8Vl0M) | Mehdi Elyassa ([@kalimer0x00](https://x.com/kalimer0x00)) | Post-exploitation and SCCM internals |
+| 2026 | [SCCM: The tree that always bears bad fruits \| SO-CON 26](https://www.youtube.com/watch?v=cNgRbT4I97w) | Mehdi Elyassa ([@kalimer0x00](https://x.com/kalimer0x00)) | Post-exploitation and SCCM internals |
 | 2025 | [TROOPERS25: Misconfiguration Manager - Still Overlooked, Still Overprivileged](https://youtu.be/H9zujF9bTjc) | Duane Michael ([@subat0mik](https://x.com/subat0mik)) & Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Misconfiguration Manager updates |
 | 2025 | [The Admin's Guide to Preventing SCCM Attacks \| SO-CON 2025](https://www.youtube.com/watch?v=Rc2J6fmhcJ4) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) & Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Defensive guidance |
-| 2024 | [Detecting Configuration Manager Attack Paths \| SO-CON 2025](https://www.youtube.com/watch?v=DoUyX9zx8m4) | Joshua Prager | Defensive guidance |
+| 2024 | [Detecting Configuration Manager Attack Paths \| SO-CON 2025](https://www.youtube.com/watch?v=DoUyX9zx8m4) | Joshua Prager ([@Praga_Prag](https://x.com/Praga_Prag)) | Defensive guidance |
 | 2024 | [Misconfiguration Manager: Overlooked and Overprivileged \| SO-CON 2024](https://www.youtube.com/watch?v=nvaOszFzXCQ) | Duane Michael ([@subat0mik](https://x.com/subat0mik)) & Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Misconfiguration Manager |
-| 2024 | [The State of SCCM Exploitation in 2024](https://www.youtube.com/watch?v=zLeTmXkmBcQ) | Christopher Panayi | Exploitation |
+| 2024 | [The State of SCCM Exploitation in 2024](https://www.youtube.com/watch?v=zLeTmXkmBcQ) | Christopher Panayi ([@Raiona_ZA](https://x.com/Raiona_ZA)) | Exploitation |
 | 2023 | [SCCM Exploitation: The First Cred Is the Deepest II](https://www.youtube.com/watch?v=W9PC9erm_pI) | Gabriel Prud'homme ([@vendetce](https://x.com/vendetce)) | Exploitation |
 | 2023 | [Push Comes to Shove: Exploring SCCM Attack Paths](https://www.youtube.com/watch?v=qLBJJPUGk9U) | Brandon Colley ([@TechBrandon](https://x.com/TechBrandon)) | Exploitation |
 | 2023 | [Black Hat USA Arsenal 2023: SharpSCCM - Abusing Microsoft's C2 Framework](https://www.youtube.com/watch?v=uyI5rgR0D-s) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) & Diego Lomellini ([@DiLomSec1](https://x.com/DiLomSec1)) | Tooling |
@@ -116,7 +116,7 @@ The following are usable too, but don't separate the site database or SMS Provid
 | 2023 | [SCCM w/ Garrett Foster, Trimarc Happy Hour](https://www.youtube.com/watch?v=I5YTH0kQlr8) | Brandon Colley ([@TechBrandon](https://x.com/TechBrandon), host), Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt), guest) | Interview |
 | 2023 | [We Have C2 at Home: Leveraging Microsoft's C2 Framework](https://www.youtube.com/watch?v=jLoOa5xXkIs) | Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Exploitation |
 | 2022 | [Black Hat USA Arsenal 2022: SharpSCCM](https://www.youtube.com/watch?v=19F_Io1Tykg) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) & Duane Michael ([@subat0mik](https://x.com/subat0mik)) | Tooling |
-| 2022 | [Pulling Passwords Out of Configuration Manager](https://www.youtube.com/watch?v=Ly9goAud0gs) | Christopher Panayi | Exploitation |
+| 2022 | [Pulling Passwords Out of Configuration Manager](https://www.youtube.com/watch?v=Ly9goAud0gs) | Christopher Panayi ([@Raiona_ZA](https://x.com/Raiona_ZA)) | Exploitation |
 | 2012 | [Owning One to Rule Them All](https://www.youtube.com/watch?v=v4-S2903rOI) | Dave Kennedy ([@HackingDave](https://x.com/HackingDave)) & Dave DeSimone | DEF CON 20 |
 
 ## Tools
@@ -125,41 +125,41 @@ The following are usable too, but don't separate the site database or SMS Provid
 |---|---|---|---|
 | [SharpSCCM](https://github.com/Mayyhem/SharpSCCM) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | C# | Core post-ex C# tool: SCCM interaction, NTLM coercion, hierarchy takeover. CMPivot support contributed by Diego Lomellini ([@DiLomSec1](https://x.com/DiLomSec1), [PR](https://github.com/Mayyhem/SharpSCCM/pull/27)); PXE media cert credential support by Carsten Sandker ([@0xcsandker](https://x.com/0xcsandker), [PR](https://github.com/Mayyhem/SharpSCCM/pull/28)) |
 | [sccmhunter](https://github.com/garrettfoster13/sccmhunter) | Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Python | Recon/attack framework for SCCM assets in AD |
-| [ConfigManBearPig](https://github.com/SpecterOps/ConfigManBearPig) | SpecterOps / Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Python | SCCM attack path collector for BloodHound OpenGraph |
-| [sccmhound](https://github.com/CrowdStrike/sccmhound) | CrowdStrike | C# | BloodHound collector for SCCM |
-| [PowerSCCM](https://github.com/PowerShellMafia/PowerSCCM) | PowerShellMafia (Matt Nelson ([@enigma0x3](https://x.com/enigma0x3)), Will Schroeder ([@harmj0y](https://x.com/harmj0y)), Jared Atkinson ([@jaredcatkinson](https://x.com/jaredcatkinson)), Matt Graeber ([@mattifestation](https://x.com/mattifestation))) | PowerShell | Original PowerShell SCCM offensive module |
-| [SCCMSecrets.py](https://github.com/synacktiv/SCCMSecrets) | Synacktiv | Python | Exploits SCCM policy distribution for creds/initial access |
-| [MalSCCM](https://github.com/nettitude/MalSCCM) | Nettitude (Phil Keeble ([@The_Keeb](https://x.com/The_Keeb))) | C# | Abuses SCCM application deployment |
-| [sccm-http-looter](https://github.com/badsectorlabs/sccm-http-looter) | badsectorlabs | Go | Finds interesting files on SCCM shares via HTTP(S) |
+| [ConfigManBearPig](https://github.com/SpecterOps/ConfigManBearPig) | [SpecterOps](https://github.com/SpecterOps) / Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Python | SCCM attack path collector for BloodHound OpenGraph |
+| [sccmhound](https://github.com/CrowdStrike/sccmhound) | [CrowdStrike](https://github.com/CrowdStrike) | C# | BloodHound collector for SCCM |
+| [PowerSCCM](https://github.com/PowerShellMafia/PowerSCCM) | [PowerShellMafia](https://github.com/PowerShellMafia) (Matt Nelson ([@enigma0x3](https://x.com/enigma0x3)), Will Schroeder ([@harmj0y](https://x.com/harmj0y)), Jared Atkinson ([@jaredcatkinson](https://x.com/jaredcatkinson)), Matt Graeber ([@mattifestation](https://x.com/mattifestation))) | PowerShell | Original PowerShell SCCM offensive module |
+| [SCCMSecrets.py](https://github.com/synacktiv/SCCMSecrets) | [Synacktiv](https://github.com/synacktiv) | Python | Exploits SCCM policy distribution for creds/initial access |
+| [MalSCCM](https://github.com/nettitude/MalSCCM) | [Nettitude](https://github.com/nettitude) (Phil Keeble ([@The_Keeb](https://x.com/The_Keeb))) | C# | Abuses SCCM application deployment |
+| [sccm-http-looter](https://github.com/badsectorlabs/sccm-http-looter) | [badsectorlabs](https://github.com/badsectorlabs) | Go | Finds interesting files on SCCM shares via HTTP(S) |
 | [sccm-http-looter (fork)](https://github.com/chryzsh/sccm-http-looter) | [@chryzsh](https://x.com/chryzsh) | Go | Fork adding NTLM authentication support |
 | [CMLoot](https://github.com/1njected/CMLoot) | Tomas Rzepka ([@1njected](https://x.com/1njected)) | PowerShell | Loots files from SCCM SMB shares |
-| [go-cmloot](https://github.com/jfjallid/go-cmloot) | jfjallid | Go | Go reimplementation of CMLoot for SCCMContentLib SMB share |
+| [go-cmloot](https://github.com/jfjallid/go-cmloot) | [jfjallid](https://github.com/jfjallid) | Go | Go reimplementation of CMLoot for SCCMContentLib SMB share |
 | [go-cmloot (fork)](https://github.com/chryzsh/go-cmloot) | [@chryzsh](https://x.com/chryzsh) | Go | Fork containing the `acl-hunt` branch |
 | [sccmwtf](https://github.com/xpn/sccmwtf) | Adam Chester ([@_xpn_](https://x.com/_xpn_)) | Python | NAA deobfuscation / policy request tooling. Python port of the deobfuscator contributed by [@SkelSec](https://x.com/SkelSec) ([PR](https://github.com/xpn/sccmwtf/pull/3)) |
 | [SCCMVNC](https://github.com/netero1010/SCCMVNC) | Chris Au ([@netero_1010](https://x.com/netero_1010)) | C# | Modifies SCCM remote control settings for stealthy remote access |
 | [ludus_sccm](https://github.com/Synzack/ludus_sccm) | Zach Stein ([@synzack21](https://x.com/synzack21)) | PowerShell | Original Ludus SCCM Ansible deployment |
 | [ludus_sccm (fork)](https://github.com/Mayyhem/ludus_sccm) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | PowerShell | 3-tier hierarchy expansion (CAS → PS1 → SEC) |
-| [SCCM-CVE-2026-47301-RCE-Exploit](https://github.com/OmriBaso/SCCM-CVE-2026-47301-Remote-Code-Execution-Exploit) | OmriBaso | C# | PoC exploit chain for CVE-2026-47301 |
-| [SCCMDecryptor-BOF](https://github.com/NocteDefensor/SCCMDecryptor-BOF) | NocteDefensor | C | BOF for decrypting SCCM credentials |
+| [SCCM-CVE-2026-47301-RCE-Exploit](https://github.com/OmriBaso/SCCM-CVE-2026-47301-Remote-Code-Execution-Exploit) | [OmriBaso](https://github.com/OmriBaso) | C# | PoC exploit chain for CVE-2026-47301 |
+| [SCCMDecryptor-BOF](https://github.com/NocteDefensor/SCCMDecryptor-BOF) | [NocteDefensor](https://github.com/NocteDefensor) | C | BOF for decrypting SCCM credentials |
 | [SharpPXE](https://github.com/leftp/SharpPXE) | Lefteris Panos ([@leftp](https://github.com/leftp)) | C# | Extracts info from SCCM PXE boot media |
-| [WimWizard](https://github.com/TacII/WimWizard) | TacII | PowerShell | Builds patched OS images w/ language packs for SCCM OSD |
-| [offlineSCCMdecrypt](https://github.com/MartinoTommasini/offlineSCCMdecrypt) | MartinoTommasini | Python | Step-by-step offline decryption of SCCM database secrets |
+| [WimWizard](https://github.com/TacII/WimWizard) | [TacII](https://github.com/TacII) | PowerShell | Builds patched OS images w/ language packs for SCCM OSD |
+| [offlineSCCMdecrypt](https://github.com/MartinoTommasini/offlineSCCMdecrypt) | [MartinoTommasini](https://github.com/MartinoTommasini) | Python | Step-by-step offline decryption of SCCM database secrets |
 | [mssqlkaren](https://github.com/garrettfoster13/mssqlkaren) | Garrett Foster ([@unsigned_sh0rt](https://x.com/unsigned_sh0rt)) | Python | Modified impacket mssqlclient to extract SCCM DB policies |
-| [sccmsqlclient](https://github.com/synacktiv/sccmsqlclient) | Synacktiv | Python | MSSQL client tailored for SCCM DB |
-| [SCCMVersionGuesser](https://github.com/synacktiv/SCCMVersionGuesser) | Synacktiv (Mehdi Elyassa) | Python | Fingerprints SCCM/ConfigMgr version |
+| [sccmsqlclient](https://github.com/synacktiv/sccmsqlclient) | [Synacktiv](https://github.com/synacktiv) | Python | MSSQL client tailored for SCCM DB |
+| [SCCMVersionGuesser](https://github.com/synacktiv/SCCMVersionGuesser) | [Synacktiv](https://github.com/synacktiv) (Mehdi Elyassa ([@kalimer0x00](https://x.com/kalimer0x00))) | Python | Fingerprints SCCM/ConfigMgr version |
 | [SQLRecon (SCCM module)](https://github.com/skahwah/SQLRecon) | Sanjiv Kawa ([@sanjivkawa](https://x.com/sanjivkawa)) | C# | MSSQL recon/exploitation tool with SCCM-specific module |
 | [impacket SCCM Relay fork](https://github.com/Tw1sm/impacket/tree/feature/sccm-relay) | Matt Creel ([@Tw1sm](https://x.com/Tw1sm)) | Python | NTLM relay support for SCCM in impacket |
 | [SharpDPAPI (SCCM module)](https://github.com/GhostPack/SharpDPAPI/blob/81e1fcdd44e04cf84ca0085cf5db2be4f7421903/SharpDPAPI/Commands/SCCM.cs) | Duane Michael ([@subat0mik](https://x.com/subat0mik)) / GhostPack | C# | SCCM credential gathering via DPAPI |
 | [cred1py](https://github.com/SpecterOps/cred1py) | Adam Chester ([@_xpn_](https://x.com/_xpn_)) / SpecterOps | Python | SOCKS5-enabled CRED-1 PoC, AES-256 auto-detect, pure-Python CMS/PKCS7 |
-| [PXEThief](https://github.com/MWR-CyberSec/PXEThief) | Christopher Panayi (MWR-CyberSec) | Python | OSD/PXE credential extraction — original tool, direct ancestor of the PXE lineage below |
-| [PXEThief (blurbdust fork)](https://github.com/blurbdust/PXEThief) | blurbdust | Python | Actively-maintained fork — AES-256, dynamic hash-type detection, legacy 3DES |
+| [PXEThief](https://github.com/MWR-CyberSec/PXEThief) | Christopher Panayi ([@Raiona_ZA](https://x.com/Raiona_ZA), [MWR-CyberSec](https://github.com/MWR-CyberSec)) | Python | OSD/PXE credential extraction — original tool, direct ancestor of the PXE lineage below |
+| [PXEThief (blurbdust fork)](https://github.com/blurbdust/PXEThief) | [blurbdust](https://github.com/blurbdust) | Python | Actively-maintained fork — AES-256, dynamic hash-type detection, legacy 3DES |
 | [pxethiefy](https://github.com/csandker/pxethiefy) | Carsten Sandker ([@0xcsandker](https://x.com/0xcsandker)) | Python | First Linux port of PXEThief |
-| [pxethiefup](https://github.com/evildaemond/pxethiefup) | Adam Jon Foster | Python | Fork adding weak/default password auto-try, hashcat-mode wiring |
-| [powerpxe](https://github.com/wavestone-cdt/powerpxe) | wavestone-cdt | PowerShell | Extracts info from PXE boot media (predates PXEThief) |
-| [hashcat-6.2.6-SCCM](https://github.com/The-Viper-One/hashcat-6.2.6-SCCM) | The-Viper-One | C | Hashcat fork adding mode 19850 for SCCM PXE media hashes |
+| [pxethiefup](https://github.com/evildaemond/pxethiefup) | Adam Jon Foster ([@evildaemond](https://github.com/evildaemond)) | Python | Fork adding weak/default password auto-try, hashcat-mode wiring |
+| [powerpxe](https://github.com/wavestone-cdt/powerpxe) | [wavestone-cdt](https://github.com/wavestone-cdt) | PowerShell | Extracts info from PXE boot media (predates PXEThief) |
+| [hashcat-6.2.6-SCCM](https://github.com/The-Viper-One/hashcat-6.2.6-SCCM) | [The-Viper-One](https://github.com/The-Viper-One) | C | Hashcat fork adding mode 19850 for SCCM PXE media hashes |
 | [hashcat-6.2.6-SCCM (fork)](https://github.com/chryzsh/hashcat-6.2.6-SCCM) | [@chryzsh](https://x.com/chryzsh) | C | Fork adding AES-256 support (mode 19851) |
 | [PXEHacker](https://github.com/chryzsh/PXEHacker) | [@chryzsh](https://x.com/chryzsh) | Python | Linux-first CLI combining PXEThief and cred1py to cover the full CRED-1 chain, with SOCKS5, AES-128/192/256 and legacy 3DES support, weak-password attempts, and hashcat integration |
-| [mprecon](https://github.com/temp43487580/mprecon) | temp43487580 | Python | Collects management point info (site details, distribution point data, credentials) from an SCCM management point |
+| [mprecon](https://github.com/temp43487580/mprecon) | [temp43487580](https://github.com/temp43487580) | Python | Collects management point info (site details, distribution point data, credentials) from an SCCM management point |
 | [SCCMSiteCodeHunter](https://github.com/ZephrFish/SCCMSiteCodeHunter) | Andy Gill ([@ZephrFish](https://x.com/ZephrFish)) | C# | Enumerates SCCM servers/site codes by querying Active Directory via LDAP |
-| [SCCM-Enumeration](https://github.com/Cr0n1c/SCCM-Enumeration/) | Cr0n1c | PowerShell | Enumerates an SCCM SQL database for computers, users, applications, and their relationships |
+| [SCCM-Enumeration](https://github.com/Cr0n1c/SCCM-Enumeration/) | [Cr0n1c](https://github.com/Cr0n1c) | PowerShell | Enumerates an SCCM SQL database for computers, users, applications, and their relationships |
 | [SCCM_SQL_Collector](https://github.com/G0ldenGunSec/SCCM_SQL_Collector) | Dave Cossa ([@G0ldenGunSec](https://x.com/G0ldenGunSec)) | C# | PoC that collects SCCM attack paths from the SQL database for BloodHound OpenGraph visualization |
