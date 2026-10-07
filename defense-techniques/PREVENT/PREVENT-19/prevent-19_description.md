@@ -10,6 +10,8 @@ It is crucial to ensure the links to other SCCM site database servers are not re
 
 It is not possible to see inbound SQL links to a particular database from the system that hosts that database, the links and credentials are stored on the remote system that initiates connections to the linked server, so an organization-wide audit must occur using tooling such as MSSQLHound to properly identify all MSSQL instances with links to the SCCM site databases.
 
+It may be possible to monitor MSSQL logs for successful logins from remote servers to help enumerate links to the site database, but be aware that there may be false negatives, as linked servers may exist on remote systems without ever being used. 
+
 ## Linked Defensive IDs
 
 ## Associated Offensive IDs
