@@ -40,6 +40,14 @@ This process can be abused because the files and policies can be accessed withou
 
 Once the media file is decrypted, it may contain or be used to obtain credential material in the `NAAConfig` (network access account(NAA)), `TaskSequence`, and `CollectionSettings` (collection variables) policies.
 
+The `TaskSequence` policy itself is not limited to the NAA. A task sequence's steps and properties are stored as [documented task sequence variables](https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-variables), and several of Microsoft's built-in [account types](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts) may be embedded as plaintext or obfuscated values within it, independent of the NAA:
+- `OSDJoinAccount` / `OSDJoinPassword` - the [task sequence domain join account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#task-sequence-domain-join-account), used by the **Apply Network Settings** or **Join Domain or Workgroup** steps to join the destination computer to a domain
+- `OSDLocalAdminPassword` - the local Administrator password Windows Setup applies to the destination computer
+- `SMSConnectNetworkFolderAccount` / `SMSConnectNetworkFolderPassword` - the [task sequence network folder connection account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#task-sequence-network-folder-connection-account), used by the **Connect to Network Folder** step
+- `SMSTSRunCommandLineUserName` / `SMSTSRunCommandLineUserPassword` - the [task sequence run as account](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts#task-sequence-run-as-account), used by the **Run Command Line** or **Run PowerShell Script** steps when configured to run as a specific account rather than Local System
+
+Any of these values, when present, may expose domain or local credentials distinct from the NAA and are recoverable through the same PXE media decryption process described here (see the `OSDJoinAccount` and `OSDLocalAdminPassword` values recovered in the PXEThief example below). This same category of task sequence and collection variable content is also reachable through [CRED-2](../CRED-2/cred-2_description.md), [CRED-3](../CRED-3/cred-3_description.md), and [CRED-4](../CRED-4/cred-4_description.md), since all four techniques ultimately expose the same underlying policy content through different collection methods.
+
 ## Impact
 Attackers may recover domain credentials from this process, the difficulty of which is a direct function of the complexity of the password set on the PXE media file. If a weak password is set, cracking the password is relatively computionally "easy," depending on the hardware.
 
@@ -181,3 +189,5 @@ testsubject4@sphere4:~$ python3 ./main.py 10.0.1.200 10.0.2.4 TS-HOST 9090
 - Microsoft, [Understanding PXE Boot](https://learn.microsoft.com/en-us/troubleshoot/mem/configmgr/os-deployment/understand-pxe-boot#)
 - SpecterOps, [Cred1py](https://github.com/specterops/Cred1py)
 - Nic Losby, [PXEThief PR 11](https://github.com/MWR-CyberSec/PXEThief/pull/11)
+- Microsoft, [Accounts used - Configuration Manager](https://learn.microsoft.com/en-us/mem/configmgr/core/plan-design/hierarchy/accounts)
+- Microsoft, [Task sequence variable reference](https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-variables)
