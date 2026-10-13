@@ -10,7 +10,6 @@ NTLM relay via automatic client push installation
 ## Requirements
 
 ### Coercion
-- Valid Active Directory domain credentials
 - Connectivity to HTTPS (TCP/443) on a management point
 - Connectivity from the primary site server to SMB (TCP/445) on the relay server
 - To coerce HTTP authentication from a site server where the WebClient service is installed, but not started, the ability to add a DNS A record to the Active Directory domain is required [DEFAULT]
@@ -36,7 +35,7 @@ NTLM relay via automatic client push installation
     - `LmCompatibilityLevel` < `5` or not present, or = `5` and LmCompatibilityLevel >= `3` on the coercion target [DEFAULT]
 
 ## Summary
-When SCCM automatic site assignment and automatic client push installation are enabled, and PKI certificates aren’t required for client authentication, it’s possible to coerce NTLM authentication from the site server's installation and machine accounts to an arbitrary NetBIOS name, FQDN, or IP address, allowing the credentials to be relayed or cracked. This can be done using a low-privileged domain account on any Windows system.
+When SCCM automatic site assignment and automatic client push installation are enabled, and PKI certificates aren’t required for client authentication, it’s possible to coerce NTLM authentication from the site server's installation and machine accounts to an arbitrary NetBIOS name, FQDN, or IP address, allowing the credentials to be relayed or cracked.
 
 ## Impact
 Client push installation accounts require local admin privileges to install software on systems in an SCCM site, so it is often possible to relay the credentials and execute actions in the context of a local admin on other SCCM clients in the site. Many organizations use a member of highly privileged groups such as "Domain Admins" for client push installation for the sake of convenience.
