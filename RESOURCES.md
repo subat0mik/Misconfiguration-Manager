@@ -38,6 +38,8 @@ The following are usable too, but don't separate the site database or SMS Provid
 
 | Title | Author | Category |
 |---|---|---|
+| [A year of hacking SCCM, Part 1: Exposed credentials and short attack paths](https://www.mnemonic.io/resources/blog/a-year-of-hacking-sccm-this-is-what-we-found-part-1/) | Chris Risvik ([crusher](https://x.com/chryzsh)) | Offensive/Defensive |
+| [A year of hacking SCCM, Part 2: Taking over SCCM and defending it](https://www.mnemonic.io/resources/blog/a-year-of-hacking-sccm-this-is-what-we-found-part-2/) | Chris Risvik ([crusher](https://x.com/chryzsh)) | Offensive/Defensive |
 | [Active Directory Spotlight: Attacking The Microsoft Configuration Manager (SCCM/MECM)](https://www.securesystems.de/blog/active-directory-spotlight-attacking-the-microsoft-configuration-manager/) | Carsten Sandker ([@0xcsandker](https://x.com/0xcsandker)) | Offensive |
 | [Adding MSSQL to BloodHound using OpenGraph](https://specterops.io/blog/2025/08/04/adding-mssql-to-bloodhound-with-opengraph/) | Chris Thompson ([@_Mayyhem](https://x.com/_Mayyhem)) | Tooling |
 | [An Inside Look: How to Distribute Credentials Securely in SCCM](https://www.mwrcybersec.com/an-inside-look-how-to-distribute-credentials-securely-in-sccm) | Christopher Panayi ([@Raiona_ZA](https://x.com/Raiona_ZA)) | Defensive |
