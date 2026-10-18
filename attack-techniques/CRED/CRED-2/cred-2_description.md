@@ -33,7 +33,7 @@ With this domain computer context, the computer can be registered as a client wh
 
 This technique has also been built into [SharpSCCM](https://github.com/Mayyhem/SharpSCCM/wiki/get#get-naa--get-secrets) with the `get secrets` and `get naa` commands.
 
-The `get secrets` command extends this technique to retrieve collection variables and task sequences from machine policies, which may also contain secrets such as credentials.
+The `get secrets` command extends this technique to retrieve collection variables and task sequences from machine policies, which may also contain secrets such as credentials. See [CRED-1](../CRED-1/cred-1_description.md#summary) for known task sequence variables that may embed domain or local credentials distinct from the NAA.
 
 ## Impact
 In environments using Active Directory defaults, SCCM defaults, and NAAs (or collection variables/task sequences containing credentials), any domain-authenticated user may create a computer object, register it as an SCCM client, request the machine policy, and deobfuscate credentials.
