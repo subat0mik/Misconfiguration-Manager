@@ -47,7 +47,7 @@ With these credentials, attackers may transition from an unauthenticated context
 
 ## Defensive IDs
 - [CANARY-1: Configure an appropriately-privileged NAA with interactive logon restricted](../../../defense-techniques/CANARY/CANARY-1/canary-1_description.md)
-- [DETECT-7: Monitor read access to the SMSTemp directory](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
+- [DETECT-7: Monitor read access to sensitive distribution point share content](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
 - [DETECT-8: Monitor connections to winreg named pipe](../../../defense-techniques/DETECT/DETECT-8/detect-8_description.md)
 - [PREVENT-3: Harden or disable network access accounts](../../../defense-techniques/PREVENT/PREVENT-3/prevent-3_description.md)
 - [PREVENT-6: Configure a strong PXE boot password](../../../defense-techniques/PREVENT/PREVENT-6/prevent-6_description.md)

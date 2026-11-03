@@ -7,7 +7,7 @@
 | [DETECT&#x2011;4](./DETECT/DETECT-4/detect-4_description.md) | Monitor application deployment logs in the site's Audit Status Messages | SCCM, security |
 | [DETECT&#x2011;5](./DETECT/DETECT-5/detect-5_description.md) | Monitor group membership changes for SMS Admins | SCCM, server, security |
 | [DETECT&#x2011;6](./DETECT/DETECT-6/detect-6_description.md) | Monitor group membership changes for RBAC_Admins table | SCCM, server, security |
-| [DETECT&#x2011;7](./DETECT/DETECT-7/detect-7_description.md) | Monitor read access to the SMSTemp directory | SCCM, server, security |
+| [DETECT&#x2011;7](./DETECT/DETECT-7/detect-7_description.md) | Monitor read access to sensitive distribution point share content | SCCM, server, security |
 | [DETECT&#x2011;8](./DETECT/DETECT-8/detect-8_description.md) | Monitor connections to winreg named pipe | SCCM, server, security |
 | [DETECT&#x2011;9](./DETECT/DETECT-9/detect-9_description.md) | Monitor local object access for local SCCM logs and settings | SCCM, server, security |
 | [PREVENT&#x2011;1](./PREVENT/PREVENT-1/prevent-1_description.md) | Patch site server with KB15599094 | SCCM, server |
@@ -33,3 +33,4 @@
 | [PREVENT&#x2011;21](./PREVENT/PREVENT-21/prevent-21_description.md) | Restrict PXE boot to authorized VLANs | SCCM, network |
 | [PREVENT&#x2011;22](./PREVENT/PREVENT-22/prevent-22_description.md) | Do not manage assets in two or more segmented forests, domains, networks, or security tiers | SCCM, network, security, domain |
 | [PREVENT&#x2011;23](./PREVENT/PREVENT-23/prevent-23_description.md) | Ensure the SCCM client cache directory (`ccmcache`) is not writable or renameable by non-administrative users | SCCM, desktop, security |
+| [PREVENT&#x2011;24](./PREVENT/PREVENT-24/prevent-24_description.md) | Review distribution point and site server shares for plaintext credentials and remove unneeded non-default shares | SCCM, server, security |
