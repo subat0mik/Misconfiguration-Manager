@@ -40,6 +40,8 @@ This process can be abused because the files and policies can be accessed withou
 
 Once the media file is decrypted, it may contain or be used to obtain credential material in the `NAAConfig` (network access account(NAA)), `TaskSequence`, and `CollectionSettings` (collection variables) policies.
 
+The same media variables file (`variables.dat`) is also part of bootable and prestaged media, and copies of these sometimes end up on file shares on SCCM servers ([CRED-6](../CRED-6/cred-6_description.md)). PXEThief can decrypt a saved copy with `pxethief.py 3`.
+
 ## Impact
 Attackers may recover domain credentials from this process, the difficulty of which is a direct function of the complexity of the password set on the PXE media file. If a weak password is set, cracking the password is relatively computionally "easy," depending on the hardware.
 
