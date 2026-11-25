@@ -21,6 +21,8 @@ The credentials exist in the file in the following format: `CCM_NetworkAccessAcc
 
 If an encrypted blob exists, it can be extracted and decrypted using the SYSTEM DPAPI masterkey and [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI), or this process can be automated with [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)'s `local secrets -m disk` command, which extends this technique to retrieve collection variables and task sequences that may also contain secrets such as credentials.
 
+Alternatively, for dead-disk forensics or offline extraction without on-host execution, [naa-dump-offline](https://github.com/shehzade/naa-dump-offline) parses raw `OBJECTS.DATA`, `SYSTEM`/`SECURITY` registry hives, and DPAPI master keys to carve and decrypt NAA credentials cross-platform.
+
 ## Impact
 This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA or credential stored in a collection variable or task sequence is not overprivileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the credential is overprivileged, this technique may enable lateral movement to other clients and/or sensitive systems.
 
@@ -99,9 +101,20 @@ PS C:\Users\labadmin\Desktop> .\SharpDPAPI.exe blob /target:$b64 /mkfile:masterk
 SharpDPAPI completed in 00:00:00.0397643
 ```
 
+### naa-dump-offline
+
+```bash
+# 1. Identify the required SYSTEM MasterKey GUID from OBJECTS.DATA
+naa-dump-offline -o OBJECTS.DATA
+
+# 2. Carve and decrypt credentials using the retrieved hives and MasterKey file
+naa-dump-offline -o OBJECTS.DATA -sys SYSTEM -sec SECURITY -m <GUID>
+```
+
 ## References
 - Duane Michael, [The Phantom Credentials of SCCM: Why the NAA Won’t Die](https://posts.specterops.io/the-phantom-credentials-of-sccm-why-the-naa-wont-die-332ac7aa1ab9)
 - Chris Thompson, [SharpSCCM](https://github.com/Mayyhem/SharpSCCM)
 - Will Schroeder, [SharpDPAPI](https://github.com/GhostPack/SharpDPAPI)
 - William Ballenthin, [FlareWMI](https://github.com/mandiant/flare-wmi)
 - William Ballenthin, Matt Graeber, and Claudiu Teodorescu, [Windows Management Instrumentation (WMI) Offense, Defense, and Forensics](https://www.mandiant.com/sites/default/files/2021-09/wp-windows-management-instrumentation.pdf)
+- Abdullah Ansari, [naa-dump-offline](https://github.com/shehzade/naa-dump-offline)
