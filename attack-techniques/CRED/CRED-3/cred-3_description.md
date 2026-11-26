@@ -19,7 +19,7 @@ This process is automated in [SharpDPAPI](https://github.com/GhostPack/SharpDPAP
 
 A successful decryption result of `00 00 0E 0E 0E 0E...` indicates that the site server is configured to instruct the client to use its [machine account](https://twitter.com/subat0mik/status/1582387536147582976?s=20) for the NAA.
 
-The SharpSCCM `local secrets -m wmi` command extends this technique to retrieve collection variables and task sequences via WMI, which may also contain secrets such as credentials.
+The SharpSCCM `local secrets -m wmi` command extends this technique to retrieve collection variables and task sequences via WMI, which may also contain secrets such as credentials. See [CRED-1](../CRED-1/cred-1_description.md#summary) for known task sequence variables that may embed domain or local credentials distinct from the NAA.
 
 ## Impact
 This technique may allow an attacker to retrieve plaintext domain credentials. Even if the NAA or credential stored in a collection variable or task sequence is not overprivileged, domain credentials may be useful for attackers where explicit credentials are required, such as proxying tooling into an environment over command and control (C2). If the credential is overprivileged, this technique may enable lateral movement to other clients and/or sensitive systems.
