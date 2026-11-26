@@ -36,10 +36,12 @@ Retrieving a file in a package: `http://<DP>/sms_dp_smspkg$/<PackageID>/<filenam
 Beyond `SCCMContentLib$`, SCCM site servers sometimes have additional non-default shares that admins have created for staging scripts, software sources, OSD (Operating System Deployment) files, etc. These aren't necessarily SCCM-specific shares, but SCCM infrastructure tends to expose them because admins are often writing and testing PowerShell scripts that touch SCCM APIs, NAA credentials, task sequence variables, and domain admin accounts.
 
 Real-life examples of finding sensitive data in non-standard shares include:
+
 - The password for an SCCM Administrator account hard-coded in a PowerShell script
-- Backup files for vCenter applicance
-- NAA blobs (see ../../CRED/CRED-3/cred-3_description.md) in a .txt file 
+- Backup files for vCenter appliance
+- NAA blobs (see [CRED-3](../CRED-3/cred-3_description.md)) in a .txt file
 - PowerShell scripts to connect to vCenter (without credentials, but still useful)
+- Boot media files with a `variables.dat` file (see [CRED-1](../CRED-1/cred-1_description.md))
 
 It's therefore worth enumerating all shares on identified SCCM site systems, not just `SCCMContentLib$`, and comparing the results against the [standard SCCM share names in RECON-2](../../RECON/RECON-2/recon-2_description.md). Anything not in that list is worth digging into for scripts (`.ps1`, `.vbs`, `.bat`), config files (`.xml`, `.ini`, `.config`), and anything else that might contain credentials or other useful information from an offensive perspective.
 
