@@ -22,7 +22,7 @@ SCCM sites may optionally be configured to support public-key infrastructure (PK
  The impact of recovery is environment dependent. At a minimuim, based on Microsoft's [documentation](https://learn.microsoft.com/en-us/intune/configmgr/core/plan-design/network/pki-certificate-requirements#site-systems-that-have-a-distribution-point-installed) an attacker that recovers this certificate can impersonate a DP's AD identity and compromise the host system. 
 
 ## Defensive IDs
-- [DETECT-7: Monitor read access to the SMSTemp directory](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
+- [DETECT-7: Monitor read access to sensitive distribution point share content](../../../defense-techniques/DETECT/DETECT-7/detect-7_description.md)
 - [PREVENT-6: Configure a strong PXE boot password](../../../defense-techniques/PREVENT/PREVENT-6/prevent-6_description.md)
 - [PREVENT-21: Restrict PXE boot to authorized VLANs](../../../defense-techniques/PREVENT/PREVENT-21/prevent-21_description.md)
 
